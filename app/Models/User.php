@@ -45,13 +45,26 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    //Relationship
+
+    //User(parent) has many children. This is relation to itself
     public function children()
     {
         return $this->hasMany(User::class, 'user_id');
     }
-
+    //User(child) belongs to parent. This is relation to itself
     public function parent()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+    //User can be owner many tasks
+    public function createdTasks()
+    {
+        $this->hasMany(Task::class);
+    }
+
+    public function tasksForUser()
+    {
+        return $this->hasMany(Task::class, 'executor_id');
     }
 }

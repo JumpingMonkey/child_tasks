@@ -24,4 +24,18 @@ class Task extends Model
         'review',
         'done',
     ];
+
+    //Relationship
+
+    //Task owner, creator
+    public function creator()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    //Executor
+    public function executor()
+    {
+        return $this->belongsTo(User::class, 'executor_id');
+    }
 }
