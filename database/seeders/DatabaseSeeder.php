@@ -21,6 +21,16 @@ class DatabaseSeeder extends Seeder
             ['is_parent' => 0],
         ))->create();
 
+        $users->each(function($user) use($users){
+            if($user->is_parent == 0){
+                $user->user_id = $users->filter(function($value, $key){
+                    return $value->is_parent == 1;
+                })->random()->id;
+            }
+            $user->save();
+            
+        });
+
         // $parents = $users->filter(function($value){
         //     return $value->is_parent == 1;
         // });
