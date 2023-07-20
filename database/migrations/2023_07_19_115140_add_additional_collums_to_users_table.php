@@ -14,7 +14,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->tinyText('user_name')->nullable();
             $table->timestamp('last_login')->nullable();
             $table->integer('coins')->default(0);
             $table->boolean('is_parent');
@@ -29,7 +28,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('user_name');
             $table->dropColumn('last_login');
             $table->dropColumn('coins');
             $table->dropColumn('is_parent');

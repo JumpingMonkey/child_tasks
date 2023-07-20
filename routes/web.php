@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\UserAccountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,9 @@ Route::controller(AuthController::class)->group(function(){
     Route::post('login', 'store')->name('login.store');
     Route::delete('logout', 'destroy')->name('logout');
 });
+
+Route::resource('user-account', UserAccountController::class)
+    ->only(['create', 'store']);
 
 
 
