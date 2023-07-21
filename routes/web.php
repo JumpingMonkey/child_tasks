@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ParentTaskController;
 use App\Http\Controllers\UserAccountController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,10 @@ Route::controller(ChildrenController::class)->group(function(){
     Route::get('/children', 'index')->name('children.get');
     Route::delete('/children/{child}', 'detouch')->name('children.detouch');
     Route::get('/children/attach', 'generateAttachCode')->name('children.attach');
-});
+})->middleware('auth');
+
+Route::resource('/parents-tasks', ParentTaskController::class)
+    ->only('index', 'create')
+    ->middleware('auth');
 
 

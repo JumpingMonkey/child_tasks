@@ -23,6 +23,7 @@ class Task extends Model
         'in progress',
         'review',
         'done',
+        'overdue',
     ];
 
     //Relationship

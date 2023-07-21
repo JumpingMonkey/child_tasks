@@ -61,7 +61,7 @@ class User extends Authenticatable
     //User can be owner many tasks
     public function createdTasks()
     {
-        $this->hasMany(Task::class);
+        return $this->hasMany(Task::class);
     }
 
     public function tasksForUser()
