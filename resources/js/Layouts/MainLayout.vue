@@ -26,11 +26,16 @@
     <div class="flex h-full min-h-screen">
         <div class="w-full px-4 py-2 bg-gray-200">
             <div class="container mx-auto">
-                <main class="container mx-auto p-4 w-full">
+                <main class="container mx-auto px-4 w-full">
                     <div v-if="flashSuccess" class="mb-4 p-2 border rounded-md shadow-sm border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-800">
                         {{ flashSuccess }}
                     </div>
-                    <slot>Default</slot>
+                    <div v-if="user?.is_parent" class="flex items-center justify-center space-x-5 py-4 mb-4 border-b-2 border-gray-300">
+                        <Link :href="route('children.get')" class="submenu-items">Your Children</Link>
+                        <Link :href="route('login')" class="submenu-items">Children's tasks</Link>
+                        <Link :href="route('login')" class="submenu-items">Rewords store</Link>
+                    </div>
+                    <slot >Default</slot>
                 </main>
             </div>
         </div>

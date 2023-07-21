@@ -26,7 +26,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended()->with('success', 'You have got login!');
+        return redirect()->intended();
     }
 
 
