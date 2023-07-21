@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\AttachCode;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -66,6 +67,11 @@ class User extends Authenticatable
     public function tasksForUser()
     {
         return $this->hasMany(Task::class, 'executor_id');
+    }
+
+    public function code()
+    {
+        return $this->hasOne(AttachCode::class);
     }
 
     

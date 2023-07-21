@@ -34,6 +34,7 @@ Route::resource('user-account', UserAccountController::class)
 Route::controller(ChildrenController::class)->group(function(){
     Route::get('/children', 'index')->name('children.get');
     Route::delete('/children/{child}', 'detouch')->name('children.detouch');
+    Route::get('/children/attach', 'generateAttachCode')->name('children.attach');
 });
 
 
