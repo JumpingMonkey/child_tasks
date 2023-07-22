@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\TaskStatus;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->tinyText('title');
             $table->text('description');
-            $table->tinyText('status');
+            $table->foreignIdFor(TaskStatus::class, 'task_status_id')->default(1)->constrained();
             $table->timestamp('planned_and_date');
             $table->boolean('is_image_required');
             $table->unsignedSmallInteger('coins');

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Task;
+use App\Models\TaskStatus;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
@@ -36,6 +37,14 @@ class DatabaseSeeder extends Seeder
         // });
 
         // dd($users);
+
+        TaskStatus::factory()->count(5)->state(new Sequence(
+            ['name' => 'new'],
+            ['name' => 'in progress'],
+            ['name' => 'review'],
+            ['name' => 'done'],
+            ['name' => 'overdue'],
+        ))->create();
 
         $tasks = Task::factory()->count(10)->make()
             ->each(function($task) use ($users){

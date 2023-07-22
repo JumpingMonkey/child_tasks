@@ -19,7 +19,7 @@ class TaskFactory extends Factory
         return [
             'title' => fake()->sentence(),
             'description' => fake()->paragraph(),
-            'status' => fake()->randomElement(['new', 'in progress', 'review', 'done',]),
+            'task_status_id' => fake()->randomElement([1, 2, 3, 4]),
             'planned_and_date' => fake()->dateTimeBetween('-1 week', '+1 week'),
             'is_image_required' => fake()->boolean(),
             'coins' => fake()->numberBetween(5,30),

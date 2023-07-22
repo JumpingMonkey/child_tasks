@@ -12,10 +12,11 @@ class Task extends Model
     protected $fillable = [
         'title',
         'description',
-        'status',
+        'task_status_id',
         'planned_and_date',
         'is_image_required',
         'coins',
+        'executor_id',
     ];
 
     public $statuses = [
@@ -38,5 +39,11 @@ class Task extends Model
     public function executor()
     {
         return $this->belongsTo(User::class, 'executor_id');
+    }
+
+    // Tasks belong to statuses
+    public function status()
+    {
+        return $this->belongsTo(TaskStatus::class);
     }
 }

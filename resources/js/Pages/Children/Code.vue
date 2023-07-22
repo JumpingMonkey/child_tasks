@@ -5,7 +5,8 @@
         <div class="">Send code above to your child.</div>
     </div>
     <div class="flex items-center justify-center my-4">
-        <Link class="btn-primary w-1/2" :href="route('children.get')">Back</Link>
+        <button class="btn-primary w-1/2" @click="goBack">Back</button>
+        <!-- <Link class="btn-primary w-1/2" :href="route('children.get')">Back</Link> -->
     </div>
     
     
@@ -13,7 +14,7 @@
 
 <script setup>
 import {Link} from "@inertiajs/vue3"; 
-
+const goBack = () => window.history.back()
 defineProps({
     code: Object,
 })
