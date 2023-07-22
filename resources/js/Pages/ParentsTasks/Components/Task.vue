@@ -12,7 +12,7 @@
             <div>Child: {{ task.executor.name }}</div>
         </div>
         <div class="flex items-center justify-end space-x-4">
-            <Link class="btn-outline">Preview</Link>
+            <Link class="btn-outline" :href="route('parents-tasks.show', {parents_task: task.id})">Preview</Link>
             <Link class="btn-outline">Edit</Link>
             <Link class="btn-outline-delete" method="delete" as="button">Delete</Link>
             

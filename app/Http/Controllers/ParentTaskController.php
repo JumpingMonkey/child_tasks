@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 
@@ -9,7 +10,10 @@ class ParentTaskController extends Controller
 {
     public function index(Request $request)
     {
-        $tasks = $request->user()->createdTasks()->with('executor')->get();
+        $tasks = $request->user()
+            ->createdTasks()
+            ->latest()
+            ->with('executor')->get();
 
         return inertia('ParentsTasks/Index', [
             'tasks' => $tasks,
@@ -40,5 +44,14 @@ class ParentTaskController extends Controller
         $request->user()->createdTasks()->create($validated);
 
         return redirect()->route('parents-tasks.index')->with('success', 'Task was created!');
+    }
+
+    public function show(Task $parents_task)
+    {
+        $task = $parents_task->load('executor', 'status');
+        
+        return inertia('ParentsTasks/Show', [
+            'task' => $task,
+        ]);
     }
 }

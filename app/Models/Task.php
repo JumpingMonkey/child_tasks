@@ -27,6 +27,10 @@ class Task extends Model
         'overdue',
     ];
 
+    public $casts = [
+        'is_image_required' => 'boolean',
+    ];
+
     //Relationship
 
     //Task owner, creator
@@ -44,6 +48,11 @@ class Task extends Model
     // Tasks belong to statuses
     public function status()
     {
-        return $this->belongsTo(TaskStatus::class);
+        return $this->belongsTo(TaskStatus::class, 'task_status_id');
+    }
+
+    public function scopeLatest(Builder $query): void
+    {
+        $query->orderByDesc();
     }
 }
