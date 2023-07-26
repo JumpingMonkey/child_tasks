@@ -39,7 +39,7 @@ Route::controller(ChildrenController::class)->group(function(){
 })->middleware('auth');
 
 Route::resource('/parents-tasks', ParentTaskController::class)
-    ->only('index', 'create', 'store', 'show', 'edit')
+    ->only('index', 'create', 'store', 'show', 'edit', 'update', 'destroy')
     ->middleware('auth');
 
 

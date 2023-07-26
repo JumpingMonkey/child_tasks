@@ -54,4 +54,36 @@ class ParentTaskController extends Controller
             'task' => $task,
         ]);
     }
+
+    public function edit(Task $parents_task)
+    {
+        $task = $parents_task->load('executor', 'creator.children');
+
+        return inertia('ParentsTasks/Edit', [
+            'task' => $task,
+        ]);
+    }
+
+    public function update(Request $request, Task $parents_task)
+    {
+        $validated = $request->validate([
+            'title' =>  'required|string|max:255',
+            'description' =>  'required|string:max:500',
+            'coins' => 'required|integer|max:30000|min:1',
+            'planned_and_date' =>  'required|date',
+            'executor_id' =>  'required|integer',
+            'is_image_required' =>  'required|boolean',
+        ]);
+        
+        $request->user()->createdTasks()->where('id', $parents_task->id)->update($validated);
+
+        return redirect()->route('parents-tasks.index')->with('success', 'Task was updated!');
+    }
+
+    public function destroy(Task $parents_task)
+    {
+        $parents_task->delete();
+
+        return redirect()->route('parents-tasks.index')->with('success', 'Task was deleted!');
+    }
 }

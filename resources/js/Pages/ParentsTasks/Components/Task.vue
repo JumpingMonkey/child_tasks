@@ -1,7 +1,7 @@
 <template>
     <Box>
         <div class="flex items-center space-x-4 justify-between">
-            <Link class="font-medium text-blue-600">{{ task.title }}</Link>
+            <Link class="font-medium text-blue-600" :href="route('parents-tasks.show', {parents_task: task.id})">{{ task.title }}</Link>
             <div class="status-label" >{{ task.status }}</div>
         </div>
         <div class="flex items-center justify-between space-y-4">
@@ -13,9 +13,9 @@
         </div>
         <div class="flex items-center justify-end space-x-4">
             <Link class="btn-outline" :href="route('parents-tasks.show', {parents_task: task.id})">Preview</Link>
-            <Link class="btn-outline">Edit</Link>
-            <Link class="btn-outline-delete" method="delete" as="button">Delete</Link>
-            
+            <Link class="btn-outline" :href="route('parents-tasks.edit', {parents_task: task.id})">Edit</Link>
+            <Link class="btn-outline-delete" :href="route('parents-tasks.destroy', {parents_task: task.id})" 
+                method="delete" as="button">Delete</Link>
         </div>
     </Box>
 </template>

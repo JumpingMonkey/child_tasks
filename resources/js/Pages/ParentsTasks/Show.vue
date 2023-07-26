@@ -29,7 +29,7 @@
             <div class="w-3/4">{{ task.status.name }}</div>
         </div>
         <div class="flex items-center justify-end space-x-4">
-            <Link class="btn-outline">Edit</Link>
+            <Link class="btn-outline" :href="route('parents-tasks.edit', {parents_task: task.id})">Edit</Link>
             <Link class="btn-outline-delete" method="delete" as="button">Delete</Link>
         </div>
     </Box>
