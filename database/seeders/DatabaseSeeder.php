@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Reward;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use App\Models\User;
@@ -58,6 +59,8 @@ class DatabaseSeeder extends Seeder
 
                 $task->save();
         });
+
+        $rewards = \App\Models\Reward::factory()->count(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
