@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ParentTaskController;
+use App\Http\Controllers\RewardController;
 use App\Http\Controllers\UserAccountController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,7 +40,9 @@ Route::controller(ChildrenController::class)->group(function(){
 })->middleware('auth');
 
 Route::resource('/parents-tasks', ParentTaskController::class)
-    ->only('index', 'create', 'store', 'show', 'edit', 'update', 'destroy')
+    ->middleware('auth');
+
+Route::resource('/parents-rewards', RewardController::class)
     ->middleware('auth');
 
 

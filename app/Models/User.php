@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\AttachCode;
+use App\Models\Reward;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -62,6 +63,12 @@ class User extends Authenticatable
     public function createdTasks()
     {
         return $this->hasMany(Task::class);
+    }
+
+    //User has many rewards
+    public function rewards()
+    {
+        return $this->hasMany(Reward::class);
     }
 
     public function tasksForUser()

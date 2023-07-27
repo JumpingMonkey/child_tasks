@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = User::factory()->count(4)->state(new Sequence(
+        $users = User::factory()->count(40)->state(new Sequence(
             ['is_parent' => 1],
             ['is_parent' => 0],
         ))->create();
@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'overdue'],
         ))->create();
 
-        $tasks = Task::factory()->count(10)->make()
+        $tasks = Task::factory()->count(100)->make()
             ->each(function($task) use ($users){
                 $task->user_id = $users->filter(function($value, $key){
                     return $value->is_parent == 1;
@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
                 $task->save();
         });
 
-        $rewards = \App\Models\Reward::factory()->count(10)->create();
+        $rewards = Reward::factory()->count(100)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
