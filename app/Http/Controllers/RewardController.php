@@ -32,7 +32,7 @@ class RewardController extends Controller
      */
     public function create(Request $request)
     {
-        return inertia('Reward/Create');
+        return inertia('Rewards/Create');
     }
 
     /**
@@ -43,40 +43,47 @@ class RewardController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:100|string',
             'description' => 'required|string',
-            'price' => 'required|integer',
+            'price' => 'required|integer|max:100',
         ]);
+
+        $request->user()->is_parent ? 
+            $validated['status']  = 1
+            : $validated['status'] = 0;
 
         $reward = Reward::make($validated);
 
-        $request->user()->rewards()->create($reward);
+        $reward->user()->associate($request->user());
 
-        return redirect()->back()->with('success', 'Reward was created!');
+        $reward->save();
+
+        return redirect()->route('parents-rewards.index')->with('success', 'Reward was created!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Reward $reward)
+    public function show(Reward $parents_reward)
     {
         return inertia('Rewards/Show', [
-            'reward' => $reward->load(['user']),
+            'reward' => $parents_reward->load(['user']),
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Reward $reward)
+    public function edit(Reward $parents_reward)
     {
-        return inertia('Reward/Edit', [
-            'reward' => $reward,
+        
+        return inertia('Rewards/Edit', [
+            'reward' => $parents_reward,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Reward $reward)
+    public function update(Request $request, Reward $parents_reward)
     {
         $validated = $request->validate([
             'title' => 'required|max:100|string',
@@ -84,18 +91,18 @@ class RewardController extends Controller
             'price' => 'required|integer',
             'status' => 'boolean',
         ]);
+        
+        $parents_reward->update($validated);
 
-        $reward = Reward::update($validated);
-
-        return redirect()->back()->with('success', 'Reward was created!');
+        return redirect()->route('parents-rewards.index')->with('success', 'Reward was updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Reward $reward)
+    public function destroy(Reward $parents_reward)
     {
-        $reward->deleteOrFail();
-        return redirect()->back()->with('success', 'Reward was deleted!');
+        $parents_reward->deleteOrFail();
+        return redirect()->route('parents-rewards.index')->with('success', 'Reward was deleted!');
     }
 }

@@ -16,30 +16,9 @@
         </div>
 
         <div class="col-span-2">
-          <label class="label">Coins</label>
-          <input type="text" v-model.number="form.coins" class="input"/>
-          <FormErrorMessage v-if="form.errors.coins" :error="form.errors.coins" />
-        </div>
-
-        <div class="col-span-4">
-          <label class="label">End date</label>
-          <input type="date" v-model="form.planned_and_date" class="input"/>
-          <FormErrorMessage v-if="form.errors.planned_and_date" :error="form.errors.planned_and_date" />
-        </div>
-
-        <div class="col-span-6">
-          <label class="label">Child</label>
-          <select v-model="form.executor_id" class="input">
-            <option v-for="child in children" :key="child.id" :value="child.id">{{ child.name }}</option>
-          </select>
-          <Link class="text-sm text-blue-700 hover:text-blue-500" :href="route('children.attach')">Add child</Link>
-          <FormErrorMessage v-if="form.errors.executor_id" :error="form.errors.executor_id" />
-        </div>
-
-        <div class="col-span-2">
-          <label class="label">Image required</label>
-          <input type="checkbox" v-model="form.is_image_required" class=""/>
-          <FormErrorMessage v-if="form.errors.is_image_required" :error="form.errors.is_image_required" />
+          <label class="label">Price</label>
+          <input type="text" v-model.number="form.price" class="input"/>
+          <FormErrorMessage v-if="form.errors.price" :error="form.errors.price" />
         </div>
 
         <div class="col-span-6">
@@ -60,12 +39,9 @@
     const form = useForm({
         title: null,
         description: null,
-        coins: 1,
-        planned_and_date: null,
-        executor_id: null,
-        is_image_required: false,
+        price: 1,
     })
 
-    const create = () => form.post(route('parents-tasks.store'), form)
+    const create = () => form.post(route('parents-rewards.store'), form)
 
 </script>

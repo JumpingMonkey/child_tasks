@@ -8,7 +8,6 @@
             class="input"/>
           <FormErrorMessage v-if="form.errors.title" :error="form.errors.title" />
         </div>
-
         <div class="col-span-6">
           <label class="label">Description</label>
           <textarea type="text" v-model="form.description" class="input"> </textarea> 
@@ -16,30 +15,18 @@
         </div>
 
         <div class="col-span-2">
-          <label class="label">Coins</label>
-          <input type="text" v-model.number="form.coins" class="input"/>
-          <FormErrorMessage v-if="form.errors.coins" :error="form.errors.coins" />
-        </div>
-
-        <div class="col-span-4">
-          <label class="label">End date</label>
-          <input type="datetime-local" v-model="form.planned_and_date" class="input"/>
-          <FormErrorMessage v-if="form.errors.planned_and_date" :error="form.errors.planned_and_date" />
+          <label class="label">Price</label>
+          <input type="text" v-model.number="form.price" class="input"/>
+          <FormErrorMessage v-if="form.errors.price" :error="form.errors.price" />
         </div>
 
         <div class="col-span-6">
-          <label class="label">Child</label>
-          <select v-model="form.executor_id" class="input">
-            <option v-for="child in prop.task.creator.children" :key="child.id" :value="child.id">{{ child.name }}</option>
+          <label class="label">Status</label>
+          <select v-model="form.status" class="input">
+            <option v-for="option in options" :key="option.value" :value="option.value" >{{ option.text }}</option>
+            <!-- <option value="false">Inactive</option> -->
           </select>
-          <Link class="text-sm text-blue-700 hover:text-blue-500" :href="route('children.attach')">Add child</Link>
-          <FormErrorMessage v-if="form.errors.executor_id" :error="form.errors.executor_id" />
-        </div>
-
-        <div class="col-span-2">
-          <label class="label">Image required</label>
-          <input type="checkbox" v-model="form.is_image_required" class=""/>
-          <FormErrorMessage v-if="form.errors.is_image_required" :error="form.errors.is_image_required" />
+          <FormErrorMessage v-if="form.errors.status" :error="form.errors.status" />
         </div>
 
         <div class="col-span-6">
@@ -54,20 +41,26 @@
   </template>
 
 <script setup>
-    import {useForm, Link} from '@inertiajs/vue3';
+    import {useForm, Link,} from '@inertiajs/vue3';
     import FormErrorMessage from "@/Components/FormErrorMessage.vue";
+    import {ref} from "vue";
+
     const prop = defineProps({
-        task: Object
-    })
-    const form = useForm({
-        title: prop.task.title,
-        description: prop.task.description,
-        coins: prop.task.coins,
-        planned_and_date: prop.task.planned_and_date,
-        executor_id: prop.task.executor.id,
-        is_image_required: prop.task.is_image_required,
+        reward: Object
     })
 
-    const update = () => form.put(route('parents-tasks.update', {parents_task: prop.task.id}))
+    const options = ref([
+  { text: 'Active', value: 1 },
+  { text: 'Inactive', value: 0 },
+])
+
+    const form = useForm({
+        title: prop.reward.title,
+        description: prop.reward.description,
+        price: prop.reward.price,
+        status: prop.reward.status,
+    })
+
+    const update = () => form.put(route('parents-rewards.update', {parents_reward: prop.reward.id}))
 
 </script>
