@@ -13,7 +13,7 @@ class ParentTaskController extends Controller
         $tasks = $request->user()
             ->createdTasks()
             ->latest()
-            ->with('executor')->get();
+            ->with('executor', 'status')->get();
 
         return inertia('ParentsTasks/Index', [
             'tasks' => $tasks,

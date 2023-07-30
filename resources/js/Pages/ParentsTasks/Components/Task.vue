@@ -2,7 +2,7 @@
     <Box>
         <div class="flex items-center space-x-4 justify-between">
             <Link class="font-medium text-blue-600" :href="route('parents-tasks.show', {parents_task: task.id})">{{ task.title }}</Link>
-            <div class="status-label" >{{ task.status }}</div>
+            <div class="status-label" >{{ task.status.name }}</div>
         </div>
         <div class="flex items-center justify-between space-y-4">
             <div class="">Award: {{ task.coins }}</div>
