@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Task extends Model
 {
@@ -54,5 +56,13 @@ class Task extends Model
     public function scopeLatest(Builder $query): void
     {
         $query->orderByDesc();
+    }
+
+    /**
+     * Get all of the tags for the post.
+     */
+    public function images(): MorphTsoMany
+    {
+        return $this->morphToMany(Image::class, 'imageable');
     }
 }

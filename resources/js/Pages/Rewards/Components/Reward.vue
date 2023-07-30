@@ -2,7 +2,7 @@
     <Box>
         <div class="flex sm:flex-row flex-col gap-2">
             <div class="basis-1/4 bg-gray-200 rounded-md">
-                <img src="#" class="">
+                <img :src="reward.images[0].src"  class="">               
             </div>
             <div class="basis-3/4">
                 <div class="flex items-center space-x-4 justify-between">
@@ -15,11 +15,13 @@
         </div>
         
         <div class="flex items-center justify-end space-x-4 mt-4">
+            <Link class="btn-outline" :href="route('reward.image.create', {reward: reward.id})">Images</Link>
             <Link class="btn-outline" :href="route('parents-rewards.show', {parents_reward: reward.id})">Preview</Link>
             <Link class="btn-outline" :href="route('parents-rewards.edit', {parents_reward: reward.id})">Edit</Link>
             <Link class="btn-outline-delete" :href="route('parents-rewards.destroy', {parents_reward: reward.id})" 
                 method="delete" as="button">Delete</Link>
         </div>
+        
             </div>
         </div>
         

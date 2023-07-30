@@ -5,6 +5,7 @@ use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ParentTaskController;
 use App\Http\Controllers\RewardController;
+use App\Http\Controllers\RewardImageController;
 use App\Http\Controllers\UserAccountController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,5 +45,9 @@ Route::resource('/parents-tasks', ParentTaskController::class)
 
 Route::resource('/parents-rewards', RewardController::class)
     ->middleware('auth');
+
+Route::resource('reward.image', RewardImageController::class)
+->only(['create', 'store', 'destroy']);
+
 
 

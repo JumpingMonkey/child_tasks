@@ -13,7 +13,7 @@ class RewardController extends Controller
     public function index(Request $request)
     {
         $rewards = $request->user()
-            ->rewards()->with('user')->get();
+            ->rewards()->with('user', 'images')->get();
         
         $childrenRewards = $request->user()->children()->pluck('id');
             
