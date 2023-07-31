@@ -31,9 +31,14 @@
                         {{ flashSuccess }}
                     </div>
                     <div v-if="user?.is_parent" class="flex items-center justify-center space-x-5 py-4 mb-4 border-b-2 border-gray-300">
-                        <Link :href="route('children.get')" class="submenu-items">Your Children</Link>
-                        <Link :href="route('parents-tasks.index')" class="submenu-items">Children's tasks</Link>
-                        <Link :href="route('parents-rewards.index')" class="submenu-items">Rewords store</Link>
+                        <Link :href="route('parent.children.get')" class="submenu-items">Your Children</Link>
+                        <Link :href="route('parent.tasks.index')" class="submenu-items">Children's tasks</Link>
+                        <Link :href="route('parent.rewards.index')" class="submenu-items">Rewords store</Link>
+                    </div>
+                    <div v-else-if="!user?.is_parent" class="flex items-center justify-center space-x-5 py-4 mb-4 border-b-2 border-gray-300">
+                        <Link :href="route('parent.children.get')" class="submenu-items">Your Parent</Link>
+                        <Link :href="route('parent.tasks.index')" class="submenu-items">Tasks</Link>
+                        <Link :href="route('parent.rewards.index')" class="submenu-items">Rewords store</Link>
                     </div>
                     <slot >Default</slot>
                 </main>

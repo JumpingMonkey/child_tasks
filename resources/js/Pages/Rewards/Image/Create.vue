@@ -25,7 +25,7 @@
             <div v-for="image in reward.images" :key="image.id"
                 class="flex flex-col justify-between">
                 <img :src="image.src" class="rounded-md" />
-                <Link :href="route('reward.image.destroy', {reward: prop.reward.id, image: image})"
+                <Link :href="route('parent.reward.image.destroy', {reward: prop.reward.id, image: image})"
                 method="delete" as="button" class="mt-2 btn-outline text-xs">Delete</Link>
             </div>
         </section>

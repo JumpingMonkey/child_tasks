@@ -56,34 +56,34 @@ class RewardController extends Controller
 
         $reward->save();
 
-        return redirect()->route('parents-rewards.index')->with('success', 'Reward was created!');
+        return redirect()->route('parent.rewards.index')->with('success', 'Reward was created!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Reward $parents_reward)
+    public function show(Reward $reward)
     {
         return inertia('Rewards/Show', [
-            'reward' => $parents_reward->load(['user']),
+            'reward' => $reward->load(['user']),
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Reward $parents_reward)
+    public function edit(Reward $reward)
     {
         
         return inertia('Rewards/Edit', [
-            'reward' => $parents_reward,
+            'reward' => $reward,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Reward $parents_reward)
+    public function update(Request $request, Reward $reward)
     {
         $validated = $request->validate([
             'title' => 'required|max:100|string',
@@ -92,17 +92,17 @@ class RewardController extends Controller
             'status' => 'boolean',
         ]);
         
-        $parents_reward->update($validated);
+        $reward->update($validated);
 
-        return redirect()->route('parents-rewards.index')->with('success', 'Reward was updated!');
+        return redirect()->route('parent.rewards.index')->with('success', 'Reward was updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Reward $parents_reward)
+    public function destroy(Reward $reward)
     {
-        $parents_reward->deleteOrFail();
-        return redirect()->route('parents-rewards.index')->with('success', 'Reward was deleted!');
+        $reward->deleteOrFail();
+        return redirect()->route('parent.rewards.index')->with('success', 'Reward was deleted!');
     }
 }

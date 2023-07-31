@@ -61,6 +61,6 @@
         status: prop.reward.status,
     })
 
-    const update = () => form.put(route('parents-rewards.update', {parents_reward: prop.reward.id}))
+    const update = () => form.put(route('parent.rewards.update', {reward: prop.reward.id}))
 
 </script>

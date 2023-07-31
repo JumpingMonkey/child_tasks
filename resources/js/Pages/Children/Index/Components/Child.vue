@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="flex items-center justify-end mt-2">
-                    <Link class="btn-outline" method="delete" as="button" :href="route('children.detouch', { child: child.id})">Detach child</Link>
+                    <Link class="btn-outline" method="delete" as="button" :href="route('parent.children.detach', { child: child.id})">Detach child</Link>
                 </div>
                 
             </Link>

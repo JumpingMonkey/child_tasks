@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\TaskStatus;
 use Illuminate\Http\Request;
 
 
@@ -43,28 +44,31 @@ class ParentTaskController extends Controller
 
         $request->user()->createdTasks()->create($validated);
 
-        return redirect()->route('parents-tasks.index')->with('success', 'Task was created!');
+        return redirect()->route('parent.tasks.index')->with('success', 'Task was created!');
     }
 
-    public function show(Task $parents_task)
+    public function show(Task $task)
     {
-        $task = $parents_task->load('executor', 'status');
+        $task = $task->load('executor', 'status');
         
         return inertia('ParentsTasks/Show', [
             'task' => $task,
         ]);
     }
 
-    public function edit(Task $parents_task)
+    public function edit(Task $task)
     {
-        $task = $parents_task->load('executor', 'creator.children');
+        $task = $task->load('executor', 'creator.children', 'status');
+
+        $statuses = TaskStatus::all();
 
         return inertia('ParentsTasks/Edit', [
             'task' => $task,
+            'statuses' => $statuses,
         ]);
     }
 
-    public function update(Request $request, Task $parents_task)
+    public function update(Request $request, Task $task)
     {
         $validated = $request->validate([
             'title' =>  'required|string|max:255',
@@ -73,17 +77,18 @@ class ParentTaskController extends Controller
             'planned_and_date' =>  'required|date',
             'executor_id' =>  'required|integer',
             'is_image_required' =>  'required|boolean',
+            'task_status_id' => 'required|integer',
         ]);
         
-        $request->user()->createdTasks()->where('id', $parents_task->id)->update($validated);
+        $request->user()->createdTasks()->where('id', $task->id)->update($validated);
 
-        return redirect()->route('parents-tasks.index')->with('success', 'Task was updated!');
+        return redirect()->route('parent.tasks.index')->with('success', 'Task was updated!');
     }
 
-    public function destroy(Task $parents_task)
+    public function destroy(Task $task)
     {
-        $parents_task->delete();
+        $task->delete();
 
-        return redirect()->route('parents-tasks.index')->with('success', 'Task was deleted!');
+        return redirect()->route('parent.tasks.index')->with('success', 'Task was deleted!');
     }
 }

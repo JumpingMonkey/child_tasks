@@ -19,7 +19,7 @@ class ChildrenController extends Controller
         ]);
     }
 
-    public function detouch(Request $request, User $child)
+    public function detach(Request $request, User $child)
     {
         $child->parent()->disassociate();
         $child->save();

@@ -34,20 +34,25 @@ Route::controller(AuthController::class)->group(function(){
 Route::resource('user-account', UserAccountController::class)
     ->only(['create', 'store']);
 
-Route::controller(ChildrenController::class)->group(function(){
-    Route::get('/children', 'index')->name('children.get');
-    Route::delete('/children/{child}', 'detouch')->name('children.detouch');
-    Route::get('/children/attach', 'generateAttachCode')->name('children.attach');
-})->middleware('auth');
 
-Route::resource('/parents-tasks', ParentTaskController::class)
-    ->middleware('auth');
+Route::prefix('parent')
+    ->middleware(['auth', 'can:is_parent'])
+    ->name('parent.')
+    ->group(function(){
+        Route::controller(ChildrenController::class)->group(function(){
+            Route::get('/children', 'index')->name('children.get');
+            Route::delete('/children/{child}', 'detach')->name('children.detach');
+            Route::get('/children/attach', 'generateAttachCode')->name('children.attach');
+        });
+        
+        Route::resource('/tasks', ParentTaskController::class);
+        
+        Route::resource('/rewards', RewardController::class);
+        
+        Route::resource('reward.image', RewardImageController::class)
+        ->only(['create', 'store', 'destroy']);
+    });
 
-Route::resource('/parents-rewards', RewardController::class)
-    ->middleware('auth');
-
-Route::resource('reward.image', RewardImageController::class)
-->only(['create', 'store', 'destroy']);
 
 
 

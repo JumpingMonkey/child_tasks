@@ -42,6 +42,6 @@
         price: 1,
     })
 
-    const create = () => form.post(route('parents-rewards.store'), form)
+    const create = () => form.post(route('parent.rewards.store'), form)
 
 </script>

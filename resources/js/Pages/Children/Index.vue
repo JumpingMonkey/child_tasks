@@ -1,7 +1,7 @@
 <template>
     <div class="flex items-center justify-end m-2 p-2">
         
-        <Link class="btn-primary" :href="route('children.attach')">Add child </Link>
+        <Link class="btn-primary" :href="route('parent.children.attach')">Add child </Link>
     </div>
     <Child v-for="child in children" :key="child.id" :child="child" class="mt-4"></Child>
 </template>

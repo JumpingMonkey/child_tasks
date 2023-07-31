@@ -32,7 +32,7 @@
           <select v-model="form.executor_id" class="input">
             <option v-for="child in children" :key="child.id" :value="child.id">{{ child.name }}</option>
           </select>
-          <Link class="text-sm text-blue-700 hover:text-blue-500" :href="route('children.attach')">Add child</Link>
+          <Link class="text-sm text-blue-700 hover:text-blue-500" :href="route('parent.children.attach')">Add child</Link>
           <FormErrorMessage v-if="form.errors.executor_id" :error="form.errors.executor_id" />
         </div>
 
@@ -66,6 +66,6 @@
         is_image_required: false,
     })
 
-    const create = () => form.post(route('parents-tasks.store'), form)
+    const create = () => form.post(route('parent.tasks.store'), form)
 
 </script>
