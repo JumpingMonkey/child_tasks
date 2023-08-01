@@ -24,5 +24,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('is_parent', function (User $user) {
             return $user->is_parent;
         });
+
+        Gate::define('is_child', function (User $user) {
+            return !$user->is_parent;
+        });
     }
 }

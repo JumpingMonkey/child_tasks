@@ -19,10 +19,10 @@
             <div class="">Creator: {{ reward.user.name }}</div>  
         </div>
         <div class="flex items-center justify-end space-x-4 mt-4">
-            <Link class="btn-outline" :href="route('child.reward.image.create', {reward: reward.id})">Images({{ reward.images.length }})</Link>
+            <Link v-if="reward.user.id == user.id" class="btn-outline" :href="route('child.reward.image.create', {reward: reward.id})">Images({{ reward.images.length }})</Link>
             <Link class="btn-outline" :href="route('child.rewards.show', {reward: reward.id})">Preview</Link>
-            <Link class="btn-outline" :href="route('child.rewards.edit', {reward: reward.id})">Edit</Link>
-            <Link class="btn-outline-delete" :href="route('child.rewards.destroy', {reward: reward.id})" 
+            <Link v-if="reward.user.id == user.id" class="btn-outline" :href="route('child.rewards.edit', {reward: reward.id})">Edit</Link>
+            <Link v-if="reward.user.id == user.id" class="btn-outline-delete" :href="route('child.rewards.destroy', {reward: reward.id})" 
                 method="delete" as="button">Delete</Link>
         </div>
         
@@ -35,6 +35,13 @@
 <script setup>
 import Box from '@/Components/Ui/Box.vue';
 import {Link} from "@inertiajs/vue3";
+import { usePage } from "@inertiajs/vue3";
+import { computed } from 'vue';
+
+const user = computed(
+    () => usePage().props.user,
+)
+
 const props = defineProps({
     reward: Object,
 })

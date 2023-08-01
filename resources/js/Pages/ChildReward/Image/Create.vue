@@ -15,7 +15,7 @@
             </div>
 
                 <button type="submit" class="btn-outline disabled:opacity-25 disabled:cursor-not-allowed" :disabled="!canUpload">Upload</button>
-                <button type="reset" @click="reset" class="btn-outline">Reset</button>
+                <button type="reset" @click="reset" class="btn-outline">Resets</button>
             </section>
         </form>
     </Box>
@@ -58,7 +58,7 @@ const form = useForm({
     images: []
 })
 
-const upload = () => form.post(route('reward.image.store', {reward: prop.reward}),
+const upload = () => form.post(route('child.reward.image.store', {reward: prop.reward}),
         {
             onSuccess: () => form.reset('images')
         }

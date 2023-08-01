@@ -2,10 +2,14 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChildrenController;
+use App\Http\Controllers\ChildRewardController;
+use App\Http\Controllers\ChildRewardImageController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ParentController;
 use App\Http\Controllers\ParentTaskController;
 use App\Http\Controllers\RewardController;
 use App\Http\Controllers\RewardImageController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserAccountController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +57,19 @@ Route::prefix('parent')
         ->only(['create', 'store', 'destroy']);
     });
 
+Route::prefix('child')
+    ->middleware(['auth', 'can:is_child'])
+    ->name('child.')
+    ->group(function(){
+        Route::get('/parent', [ParentController::class, 'index'])->name('parent.index');
+        Route::get('/parent/create', [ParentController::class, 'create'])->name('parent.create');
+        Route::post('/parent/store', [ParentController::class, 'store'])->name('parent.store');
+        Route::resource('/tasks', TaskController::class)->only(['show', 'index', 'edit', 'update']);
+        Route::resource('/rewards', ChildRewardController::class)
+            ->only('index', 'show', 'create', 'edit', 'destroy', 'store', 'update');
+        Route::resource('reward.image', ChildRewardImageController::class)
+        ->only(['create', 'store', 'destroy']);
+    });
 
 
 
