@@ -61,8 +61,8 @@ class Task extends Model
     /**
      * Get all of the tags for the post.
      */
-    public function images(): MorphTsoMany
+    public function images(): MorphToMany
     {
-        return $this->morphToMany(Image::class, 'imageable');
+        return $this->morphToMany(Image::class, 'imageable', 'imageables', 'imageable_id');
     }
 }

@@ -10,6 +10,7 @@
         </div>
         
         <div class="flex items-center justify-end space-x-4">
+            <Link class="btn-outline" :href="route('child.task.image.create', {task: task.id})">Images({{ task.images.length }})</Link>
             <Link class="btn-outline" :href="route('child.tasks.show', {task: task.id})">Preview</Link>
         </div>
     </Box>

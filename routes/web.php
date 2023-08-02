@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\ChildRewardController;
 use App\Http\Controllers\ChildRewardImageController;
+use App\Http\Controllers\ChildTaskImageController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\ParentTaskController;
@@ -68,6 +69,8 @@ Route::prefix('child')
         Route::resource('/rewards', ChildRewardController::class)
             ->only('index', 'show', 'create', 'edit', 'destroy', 'store', 'update');
         Route::resource('reward.image', ChildRewardImageController::class)
+        ->only(['create', 'store', 'destroy']);
+        Route::resource('task.image', ChildTaskImageController::class)
         ->only(['create', 'store', 'destroy']);
     });
 

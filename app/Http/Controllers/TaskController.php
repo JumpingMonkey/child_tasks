@@ -16,7 +16,7 @@ class TaskController extends Controller
         $tasks = $request->user()
             ->tasksForUser()
             ->latest()
-            ->with('executor', 'status')
+            ->with('executor', 'status', 'images')
             ->get();
 
         return inertia('Tasks/Index', [
