@@ -11,13 +11,23 @@ class ParentTaskController extends Controller
 {
     public function index(Request $request)
     {
+        $filters = $request->only([
+            'status',
+        ]);
+
+        $statuses = TaskStatus::all();
+
         $tasks = $request->user()
             ->createdTasks()
+            ->filter($filters)
             ->latest()
-            ->with('executor', 'status')->get();
+            ->with('executor', 'status', 'images')
+            ->get();
 
         return inertia('ParentsTasks/Index', [
             'tasks' => $tasks,
+            'filters' => $filters,
+            'statuses' => $statuses,
         ]);
     }
 

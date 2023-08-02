@@ -45,6 +45,7 @@ class HandleInertiaRequests extends Middleware
                 'name' => $request->user()->name,
                 'email' => $request->user()->email,
                 'is_parent' => $request->user()->is_parent,
+                'coins' => $request->user()->coins,
             ] : null
         ]);
     }

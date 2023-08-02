@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Image;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -64,5 +65,11 @@ class Task extends Model
     public function images(): MorphToMany
     {
         return $this->morphToMany(Image::class, 'imageable', 'imageables', 'imageable_id');
+    }
+
+    public function scopeFilter(Builder $query, array $filters): void
+    {
+        $query->when($filters['status'] ?? false, 
+        fn($query, $value) => $query->where('task_status_id', $filters['status']));
     }
 }

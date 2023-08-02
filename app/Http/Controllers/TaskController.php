@@ -13,14 +13,23 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
+        $filters = $request->only([
+            'status',
+        ]);
+
+        $statuses = TaskStatus::all();
+
         $tasks = $request->user()
             ->tasksForUser()
+            ->filter($filters)
             ->latest()
             ->with('executor', 'status', 'images')
             ->get();
-
+        
         return inertia('Tasks/Index', [
             'tasks' => $tasks,
+            'filters' => $filters,
+            'statuses' => $statuses,
         ]);
     }
 
@@ -58,8 +67,8 @@ class TaskController extends Controller
     {
         $task = $task->load('executor', 'creator.children', 'status');
 
-        $statuses = TaskStatus::all();
-
+        $statuses = TaskStatus::where('only_parent', false)->get();
+        
         return inertia('Tasks/Edit', [
             'task' => $task,
             'statuses' => $statuses,
@@ -74,6 +83,7 @@ class TaskController extends Controller
         $validated = $request->validate([
             'task_status_id' => 'required|integer',
         ]);
+        
         $task->update($validated);
 
         return redirect()->route('child.tasks.index')->with('success', 'Task was updated!');
