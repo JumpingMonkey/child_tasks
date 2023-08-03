@@ -39,11 +39,10 @@ class DatabaseSeeder extends Seeder
 
         // dd($users);
 
-        TaskStatus::factory()->count(5)->state(new Sequence(
+        TaskStatus::factory()->count(4)->state(new Sequence(
             ['name' => 'new'],
             ['name' => 'in progress'],
             ['name' => 'review'],
-            ['name' => 'done'],
             ['name' => 'overdue'],
         ))->create();
 

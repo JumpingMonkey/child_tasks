@@ -43,6 +43,12 @@
         </div>
 
         <div class="col-span-2">
+          <label class="label">Is done?</label>
+          <input type="checkbox" v-model="form.is_done" class=""/>
+          <FormErrorMessage v-if="form.errors.is_done" :error="form.errors.is_done" />
+        </div>
+
+        <div class="col-span-2">
           <label class="label">Status</label>
           <select v-model="form.task_status_id" class="input">
             <option v-for="status in prop.statuses" :key="status.id" :value="status.id">{{ status.name }}</option>
@@ -75,6 +81,7 @@
         planned_and_date: prop.task.planned_and_date,
         executor_id: prop.task.executor.id,
         is_image_required: prop.task.is_image_required,
+        is_done: prop.task.is_done,
     })
 
     const update = () => form.put(route('parent.tasks.update', {task: prop.task.id}))

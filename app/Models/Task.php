@@ -32,6 +32,7 @@ class Task extends Model
 
     public $casts = [
         'is_image_required' => 'boolean',
+        'is_done' => 'boolean',
     ];
 
     //Relationship

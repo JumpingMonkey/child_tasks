@@ -88,7 +88,15 @@ class ParentTaskController extends Controller
             'executor_id' =>  'required|integer',
             'is_image_required' =>  'required|boolean',
             'task_status_id' => 'required|integer',
+            'is_done' => 'boolean|required',
         ]);
+        
+        if($validated['is_done'])
+        {
+            $executor =  $task->executor()->first();
+            $coins = $executor->coins;
+            $task->executor()->update(['coins' => $coins + $task->coins]);
+        }
         
         $request->user()->createdTasks()->where('id', $task->id)->update($validated);
 
