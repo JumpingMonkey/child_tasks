@@ -17,7 +17,7 @@ return new class extends Migration
             $table->tinyText('title');
             $table->text('description')->nullable();
             $table->tinyInteger('price');
-            $table->boolean('status')->defauslt(false);
+            $table->boolean('status')->default(false);
             $table->foreignIdFor(User::class)->constrained();
             $table->timestamps();
         });

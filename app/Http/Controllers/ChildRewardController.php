@@ -47,10 +47,6 @@ class ChildRewardController extends Controller
             'price' => 'required|integer|max:100',
         ]);
 
-        $request->user()->is_parent ? 
-            $validated['status']  = 1
-            : $validated['status'] = 0;
-
         $reward = Reward::make($validated);
 
         $reward->user()->associate($request->user());
@@ -105,5 +101,17 @@ class ChildRewardController extends Controller
     {
         $reward->deleteOrFail();
         return redirect()->route('child.rewards.index')->with('success', 'Reward was deleted!');
+    }
+
+    /*
+    * Make the reward claimed
+    */
+    public function makeClaime(Request $request, Reward $reward)
+    {
+        $reward->claimedBy()->associate($request->user());
+        $reward->setDataTimeAsCurentDatePlusNumbersOfDays('claimed_by_date');
+        $reward->save();
+
+        return redirect()->back()->with('success', 'Reward was claimed');
     }
 }

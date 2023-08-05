@@ -19,6 +19,11 @@
             <div class="">Creator: {{ reward.user.name }}</div>  
         </div>
         <div class="flex items-center justify-end space-x-4 mt-4">
+            <div v-if="reward.status">
+                <Link v-if="!reward.claimed_by" method="put" as="button" class="btn-outline border-blue-500 hover:bg-blue-700 hover:text-white duration-100" :href="route('child.rewards.claim', {reward: reward.id})">
+                Claim
+                </Link>
+            </div>
             <Link v-if="reward.user.id == user.id" class="btn-outline" :href="route('child.reward.image.create', {reward: reward.id})">Images({{ reward.images.length }})</Link>
             <Link class="btn-outline" :href="route('child.rewards.show', {reward: reward.id})">Preview</Link>
             <Link v-if="reward.user.id == user.id" class="btn-outline" :href="route('child.rewards.edit', {reward: reward.id})">Edit</Link>

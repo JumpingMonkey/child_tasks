@@ -64,6 +64,8 @@ Route::prefix('child')
         Route::post('/parent/store', [ParentController::class, 'store'])->name('parent.store');
         Route::resource('/tasks', TaskController::class)->only(['show', 'index', 'edit', 'update']);
         Route::resource('/rewards', ChildRewardController::class);
+        Route::put('rewards/{reward}/claim', [ChildRewardController::class, 'makeClaime'])
+        ->name('rewards.claim');
         Route::resource('reward.image', ChildRewardImageController::class)
         ->only(['create', 'store', 'destroy']);
         Route::resource('task.image', ChildTaskImageController::class)

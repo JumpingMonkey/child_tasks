@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('rewards', function (Blueprint $table) {
-            $table->date('claimed_by_date')->nullable();
+            $table->dateTime('claimed_by_date')->nullable();
             $table->unsignedBigInteger('claimed_by')->nullable();
             $table->foreign('claimed_by')
                 ->references('id')
