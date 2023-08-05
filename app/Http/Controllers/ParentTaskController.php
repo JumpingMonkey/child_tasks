@@ -91,12 +91,14 @@ class ParentTaskController extends Controller
             'is_done' => 'boolean|required',
         ]);
         
-        if($validated['is_done'])
+        if($validated['is_done'] && !$task->rewarded)
         {
             $executor =  $task->executor()->first();
             $coins = $executor->coins;
             $task->executor()->update(['coins' => $coins + $task->coins]);
-        }
+            $task->rewarded = true;
+            $task->save();
+        } 
         
         $request->user()->createdTasks()->where('id', $task->id)->update($validated);
 

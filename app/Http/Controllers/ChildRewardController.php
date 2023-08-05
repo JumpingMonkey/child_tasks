@@ -90,7 +90,7 @@ class ChildRewardController extends Controller
             'title' => 'required|max:100|string',
             'description' => 'required|string',
             'price' => 'required|integer',
-            'status' => 'boolean',
+            
         ]);
         
         $reward->update($validated);

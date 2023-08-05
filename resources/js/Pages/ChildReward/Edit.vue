@@ -20,14 +20,13 @@
           <FormErrorMessage v-if="form.errors.price" :error="form.errors.price" />
         </div>
 
-        <div class="col-span-6">
+        <!-- <div class="col-span-6">
           <label class="label">Status</label>
           <select v-model="form.status" class="input">
             <option v-for="option in options" :key="option.value" :value="option.value" >{{ option.text }}</option>
-            <!-- <option value="false">Inactive</option> -->
           </select>
           <FormErrorMessage v-if="form.errors.status" :error="form.errors.status" />
-        </div>
+        </div> -->
 
         <div class="col-span-6">
           <button type="submit" class="btn-primary">
