@@ -12,7 +12,11 @@
             <div class="basis-3/4">
                 <div class="flex items-center space-x-4 justify-between">
             <Link class="font-medium text-blue-600" :href="route('parent.rewards.show', {reward: reward.id})">{{ reward.title }}</Link>
-            <div class="status-label" :class="{'border-green-500 border-2': active, 'border-red-500 border-2': !active}" >{{ active? 'Active': 'Inactive' }}</div>
+            <div class="flex items-center justify-between gap-4">
+                <div v-if="reward.claimed_by" class="status-label bg-blue-200 border-blue-500">Claimed</div>
+                <div class="status-label" :class="{'border-green-500 border-2': active, 'border-red-500 border-2': !active}" >{{ active? 'Active': 'Inactive' }}</div>
+            </div>
+            
         </div>
         <div class="flex items-center justify-between space-y-4">
             <div class="">Price: {{ reward.price }}</div>
