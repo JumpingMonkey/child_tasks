@@ -24,6 +24,11 @@ class Reward extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function claimedBy()
+    {
+        return $this->belongsTo(User::class, 'claimed_by', 'id', 'claimedRewards');
+    }
+
     /**
      * Get all of the tags for the post.
      */

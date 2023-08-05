@@ -7,7 +7,7 @@
 
 <script setup>
   import {Link} from "@inertiajs/vue3";
-  import Reward from "@/Pages/ChildReward/Components/Reward.vue";
+  import Reward from "@/Pages/Rewards/Components/Reward.vue";
   defineProps({
       rewards: Object,
   })

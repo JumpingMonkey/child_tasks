@@ -49,11 +49,8 @@ Route::prefix('parent')
             Route::delete('/children/{child}', 'detach')->name('children.detach');
             Route::get('/children/attach', 'generateAttachCode')->name('children.attach');
         });
-        
         Route::resource('/tasks', ParentTaskController::class);
-        
         Route::resource('/rewards', RewardController::class);
-        
         Route::resource('reward.image', RewardImageController::class)
         ->only(['create', 'store', 'destroy']);
     });

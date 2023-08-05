@@ -17,10 +17,9 @@ class RewardController extends Controller
         
         $childrenRewards = $request->user()->children()->pluck('id');
             
-        $res = Reward::whereIn('user_id', $childrenRewards)->with('user')->get();
+        $res = Reward::whereIn('user_id', $childrenRewards)->with('user', 'images')->get();
 
-        $res = $rewards->merge($res);
-        
+        $res = $rewards->merge($res); 
             
         return inertia('Rewards/Index', [
             'rewards' => $res,

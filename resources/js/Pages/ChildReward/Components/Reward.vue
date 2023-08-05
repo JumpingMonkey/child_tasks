@@ -2,7 +2,7 @@
     <Box>
         <div class="flex sm:flex-row flex-col gap-2">
             <div class="basis-1/4 bg-gray-200 rounded-md flex items-center justify-center">
-                <div v-if="reward.images.length">
+                <div v-if="reward?.images?.length">
                     <img :src="reward.images[0].src"  class="">
                 </div>
                 <div v-else class="text-gray-500">

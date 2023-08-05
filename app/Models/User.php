@@ -65,10 +65,16 @@ class User extends Authenticatable
         return $this->hasMany(Task::class);
     }
 
-    //User has many rewards
+    //User can created many rewards
     public function rewards()
     {
         return $this->hasMany(Reward::class);
+    }
+
+    //User can claim rewards
+    public function claimedRewards()
+    {
+        return $this->hasMany(Reward::class, 'claimed_by', 'id');
     }
 
     public function tasksForUser()
