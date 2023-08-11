@@ -33,12 +33,6 @@ class DatabaseSeeder extends Seeder
             
         });
 
-        // $parents = $users->filter(function($value){
-        //     return $value->is_parent == 1;
-        // });
-
-        // dd($users);
-
         TaskStatus::factory()->count(4)->state(new Sequence(
             ['name' => 'new'],
             ['name' => 'in progress'],
