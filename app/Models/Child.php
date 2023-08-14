@@ -14,6 +14,8 @@ class Child extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $guard = 'child';
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -32,6 +34,7 @@ class Child extends Authenticatable
      */
     protected $hidden = [
         'remember_token',
+        'adult_id'
     ];
 
     /**
@@ -47,9 +50,9 @@ class Child extends Authenticatable
     //Relationship
 
     //User(child) belongs to parent. This is relation to itself
-    public function adult()
+    public function adults()
     {
-        return $this->belongsTo(Adult::class, 'adult_id');
+        return $this->belongsToMany(Adult::class);
     }
     //User can be owner many tasks
     public function createdTasks()

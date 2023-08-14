@@ -17,7 +17,6 @@ return new class extends Migration
             $table->tinyText('name');
             $table->tinyInteger('age');
             $table->boolean('gender');
-            $table->foreignIdFor(Adult::class)->constrained();
             $table->rememberToken();
             $table->timestamps();
         });

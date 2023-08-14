@@ -43,6 +43,10 @@ return [
         'adult' => [
             'driver' => 'sanctum',
             'provider' => 'adults',
+        ],
+        'child' => [
+            'driver' => 'sanctum',
+            'provider' => 'chilldren',
         ]
     ],
 
@@ -71,6 +75,10 @@ return [
         'adults' => [
             'driver' => 'eloquent',
             'model' => App\Models\Adult::class,
+        ],
+        'children' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Child::class,
         ],
 
         // 'users' => [

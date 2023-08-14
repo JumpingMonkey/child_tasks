@@ -25,13 +25,25 @@ class AdultSeeder extends Seeder
         //     ->for(Adult::factory())
         //     ->create();
 
-        $adults  = Adult::factory()
-            ->count(10)
-            ->create();
-
-        $adults->each(function($adult){
-                $adult->children()->save(Child::factory()->make());
-            });
+        $i = 0;
+        while($i < 10)
+            {
+                Adult::factory()
+                ->count(1)
+                ->hasAttached(Child::factory(), [
+                    'adult_type' => fake()->randomElement([
+                        'Father',
+                        'Mother',
+                        'Grandma',
+                        'Grandpa',
+                    ]),
+                ])
+                ->create();
+                $i++;
+            }
+        // $adults->each(function($adult){
+        //         $adult->children()->attach(Child::factory()->make());
+        //     });
         
 
     }
