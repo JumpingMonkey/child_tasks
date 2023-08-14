@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('adults', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('adult_type');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

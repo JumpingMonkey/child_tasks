@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RegisterRequest extends FormRequest
 {
@@ -24,7 +25,12 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'is_parent' => 'bool|required',
+            'adult_type' => ['required','string', Rule::in([
+                'Father',
+                'Mother',
+                'Grandma',
+                'Grandpa',
+            ])],
             'password' => 'required',
             'c_password' => 'required|same:password',
         ];

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\AttachCode;
 use App\Models\Reward;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,6 +13,8 @@ class Adult extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $guard = 'adult';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -23,6 +24,7 @@ class Adult extends Authenticatable
         'name',
         'email',
         'password',
+        'adult_type',
     ];
 
     /**

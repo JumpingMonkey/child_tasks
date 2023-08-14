@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\BaseController;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use App\Models\Adult;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class RegisterController extends BaseController
 {
@@ -35,15 +37,19 @@ class RegisterController extends BaseController
      */
     public function login(Request $request)
     {
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            $user = Auth::user();
-            $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-            $success['name'] =  $user->name;
+        $validate = $request->validate([
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required',
+        ]);
 
-            return $this->sendResponse($success);
-        }
-        else{
+        $user = Adult::where('email', $request->email)->first();
+        if (! $user || ! Hash::check($request->password, $user->password)) {
             return $this->sendError('Unauthorised.', ['error'=>'Unauthorised'], 401);
         }
+
+        $success['token'] =  $user->createToken('MyApp')->plainTextToken;
+        $success['name'] =  $user->name;
+        return $this->sendResponseWithData($success);
+        
     }
 }
