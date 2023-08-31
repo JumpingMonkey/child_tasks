@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Adult;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +21,7 @@ class RegisterController extends BaseController
     {
         $validated = $request->validated();
         $validated['password'] = bcrypt($validated['password']);
-        $user = User::create($validated);
+        $user = Adult::create($validated);
 
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
         $success['name'] =  $user->name;

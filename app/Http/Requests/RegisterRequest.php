@@ -25,12 +25,6 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'adult_type' => ['required','string', Rule::in([
-                'Father',
-                'Mother',
-                'Grandma',
-                'Grandpa',
-            ])],
             'password' => 'required',
             'c_password' => 'required|same:password',
         ];

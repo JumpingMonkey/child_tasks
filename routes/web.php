@@ -25,6 +25,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/documentation', function () {
+    return view('documentation', array("docName" => "api-doc.json"));
+});
+
 Route::get('/', [IndexController::class, 'index'])
     ->middleware('auth')
     ->name('index');

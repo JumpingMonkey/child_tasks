@@ -52,7 +52,7 @@ class Adult extends Authenticatable
     //User(parent) has many children. This is relation to itself
     public function children()
     {
-        return $this->belongsToMany(Child::class);
+        return $this->belongsToMany(Child::class)->withPivot(['adult_type']);
     }
     
     //User can be owner many tasks
