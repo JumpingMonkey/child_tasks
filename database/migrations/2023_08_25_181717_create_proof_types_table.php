@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            //
+        Schema::create('proof_types', function (Blueprint $table) {
+            $table->id();
+            $table->string('title', 128);
+            $table->timestamps();
         });
-    }
+    }  
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('proof_types');
     }
 };
