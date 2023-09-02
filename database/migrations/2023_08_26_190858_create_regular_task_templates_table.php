@@ -23,12 +23,11 @@ return new class extends Migration
             $table->string('icon');
             $table->boolean('is_general_available')->default(0);
             $table->integer('expected_duration')->nullable();
-            $table->tinyText('status');
-            $table->mediumInteger('coins');
-            $table->foreignIdFor(Adult::class)->nullable();
-            $table->foreignIdFor(Child::class)->nullable();
-            $table->foreignIdFor(ProofType::class);
-            $table->foreignIdFor(Schedule::class);
+            $table->mediumInteger('coins')->default(1);
+            $table->foreignIdFor(Adult::class)->constrained()->nullable();
+            $table->foreignIdFor(Child::class)->constrained()->nullable();
+            $table->foreignIdFor(ProofType::class)->constrained();
+            $table->foreignIdFor(Schedule::class)->constrained();
             $table->timestamps();
         });
     }

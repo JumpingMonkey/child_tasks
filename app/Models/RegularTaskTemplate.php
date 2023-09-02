@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Adult;
+use App\Models\Child;
 use App\Models\ProofType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +17,6 @@ class RegularTaskTemplate extends Model
         'description',
         'icon',
         'is_general_available',
-        'exepted_duration',
         'status',
         'coins',
         'adult_id',
@@ -32,11 +33,21 @@ class RegularTaskTemplate extends Model
 
     public function schedule()
     {
-        return $this->belongsTo();
+        return $this->belongsTo(Schedule::class);
     }
 
     public function regularTask()
     {
         return $this->hasOne(RegularTask::class);
+    }
+
+    public function adult()
+    {
+        return $this->belongsTo(Adult::class);
+    }
+
+    public function child()
+    {
+        return $this->belongsTo(Child::class);
     }
 }

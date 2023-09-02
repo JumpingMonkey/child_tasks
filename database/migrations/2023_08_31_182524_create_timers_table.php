@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignIdFor(RegularTask::class);
             $table->integer('expected_duration');
             $table->integer('duration')->nullable();
-            $table->foreignIdFor(Task::class);
             $table->timestamps();
         });
     }
