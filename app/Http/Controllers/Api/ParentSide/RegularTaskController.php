@@ -36,7 +36,7 @@ class RegularTaskController extends BaseController
 
     public function destroyGeneralAvalableTasks(Request $request)
     {
-        RegularTask::destroy($request->tasks);
+        RegularTask::destroy($request->get('tasks'));
         return $this->sendResponseWithOutData();
     }
     /**

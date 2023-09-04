@@ -4,19 +4,19 @@
     "id": "bx8v03jlmohm4"
   },
   "info": {
-    "title": "admin",
+    "title": "Api documentation",
     "version": "1.0"
   },
   "servers": [
     {
-      "url": "https://api.parkplus.staj.bid/admin/"
+      "url": "http://localhost/api/"
     }
   ],
   "paths": {
-    "/login": {
+    "/register": {
       "post": {
-        "summary": "Login",
-        "operationId": "post-login",
+        "summary": "Register",
+        "operationId": "post-register",
         "responses": {
           "200": {
             "description": "OK",
@@ -25,39 +25,27 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "status": {
-                      "type": "string"
+                    "success": {
+                      "type": "boolean"
                     },
                     "data": {
                       "type": "object",
                       "properties": {
-                        "tokenType": {
+                        "token": {
                           "type": "string"
                         },
-                        "expiresIn": {
-                          "type": "integer"
-                        },
-                        "accessToken": {
+                        "name": {
                           "type": "string"
-                        },
-                        "refreshToken": {
-                          "type": "string"
-                        },
-                        "refreshTokenExpiresAt": {
-                          "type": "integer"
                         }
                       }
                     }
                   },
                   "x-examples": {
                     "Example 1": {
-                      "status": "success",
+                      "success": true,
                       "data": {
-                        "tokenType": "Bearer",
-                        "expiresIn": 31622400,
-                        "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiM2NmMmIzMjExYmY4YjVkNzBhMDljNDFkMWZkNmRjMDE3YTU1ZTFlMjk3Y2FlZTA1YzNlM2UyMzhlMWVjNGUyODBmZGU0ZjAyMjgwNmNiZmMiLCJpYXQiOjE2ODk4NzI4ODAuMzI2NTE4LCJuYmYiOjE2ODk4NzI4ODAuMzI2NTIsImV4cCI6MTcyMTQ5NTI4MC4zMDA0NDMsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.j-lP1gmV7cxJkC_4co6532lmQR5HdOdIZLmu40xKuoDCcjHYOEAJ9pZKY3QMLgrjIerVBtxLV0Njylu6PJLlv6TA242dfKyoPI_3ujvPZtFx612wx5RSbwRbR7bUyM4BbwverC6wTHcxnYL8wmuB0bg7oXAP3Gh-pLYy0VXnZaaNlIRvGlhyaMj9DI33usIUiLVGokf4D37wc6IZIp4FDLD1_mYCytCsdKkGrzwbzT_F5TQrqonCcWCHNFBryG4Y3F2keDyR2phyVDQpqZvBIy4ymDOj7SCxK1S7XugVereqsLipnVQs-lAWXwCbv4f8sH17fsWbzoUF0SFraCEr-6DJwIsL8GnO24BepYRvqLqeFVV3W_8wurl_69_k7ztT2qdIZFj1YTojX2QS-xAszMprlUumbmZXfX1FOGzaoWLyIn6w2OpqyKX8Dg5yxxoqWlMQnz5GbqsGNaZJfJNGgDLmdXpWGL5ScHAMzZuqFYtYvtVicRlY-DfnejuaOISdXe2bZO8oKZQ5Hjfo_qLTacj4aODlwknUcCjyFhf6Scz4HgCEuB1XBkPUekLrszJOS9b8nGkZ8sJyjnFCzE7KRwLlj0aJ5iR7XVKM-v_HGU23Ie6INs0sH8I8y4BVaZpeuielP8CmSm1NGigJaLYgs4jsx0bhvtSx7T1QBHA0mtc",
-                        "refreshToken": "def5020070cf93fc4716b596681d7e9f81ea9a2382a0c673cdbae27792c1f2f82deb88085bd845635a9709b94f28941179340305460fc3023b2b144b23d85973a03d7710284b0e0f856b6e786cccab19f0a23b1d0534623b9b4b83934fd086799b13b2e358299ea70f5abe80f15835fe7155afae3653a814f9947fe287f4a5b19982ece2a3362c1b55cf7d79ce36a9a00e4d85c48053f028fd8edfe4aee56cfd6dd4b8a5051d6a4bef8bdecf88cb9906ac47293f7a6e27081591e7e2199530879ed16600af202dddbcac4cc65042d08d9cdebab42c310e8fed5836138c543fd741b2146cfa3ee804ae978606128f1ff03e7a0c9d2ca09e4d1d9859c35b6d31e2cb2826ae21057b4dc33e8ec72d10cf84cd84b3c886bf3fcafc71a2d60b2e55e87b4feb59d61ae5df76db0765ef6dcec9450d8b2c898bd41941b165f5efe2046bcdedd17b4f5c92f3d41c5ed029aaf441b78c513706a595bff51c3c440545200be9",
-                        "refreshTokenExpiresAt": 5183970
+                        "token": "10|bbKplmTvrkJ71d7RU36IztFPvoQQcA9kdFRRskGJ",
+                        "name": "name"
                       }
                     }
                   }
@@ -72,78 +60,6 @@
                         "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiM2NmMmIzMjExYmY4YjVkNzBhMDljNDFkMWZkNmRjMDE3YTU1ZTFlMjk3Y2FlZTA1YzNlM2UyMzhlMWVjNGUyODBmZGU0ZjAyMjgwNmNiZmMiLCJpYXQiOjE2ODk4NzI4ODAuMzI2NTE4LCJuYmYiOjE2ODk4NzI4ODAuMzI2NTIsImV4cCI6MTcyMTQ5NTI4MC4zMDA0NDMsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.j-lP1gmV7cxJkC_4co6532lmQR5HdOdIZLmu40xKuoDCcjHYOEAJ9pZKY3QMLgrjIerVBtxLV0Njylu6PJLlv6TA242dfKyoPI_3ujvPZtFx612wx5RSbwRbR7bUyM4BbwverC6wTHcxnYL8wmuB0bg7oXAP3Gh-pLYy0VXnZaaNlIRvGlhyaMj9DI33usIUiLVGokf4D37wc6IZIp4FDLD1_mYCytCsdKkGrzwbzT_F5TQrqonCcWCHNFBryG4Y3F2keDyR2phyVDQpqZvBIy4ymDOj7SCxK1S7XugVereqsLipnVQs-lAWXwCbv4f8sH17fsWbzoUF0SFraCEr-6DJwIsL8GnO24BepYRvqLqeFVV3W_8wurl_69_k7ztT2qdIZFj1YTojX2QS-xAszMprlUumbmZXfX1FOGzaoWLyIn6w2OpqyKX8Dg5yxxoqWlMQnz5GbqsGNaZJfJNGgDLmdXpWGL5ScHAMzZuqFYtYvtVicRlY-DfnejuaOISdXe2bZO8oKZQ5Hjfo_qLTacj4aODlwknUcCjyFhf6Scz4HgCEuB1XBkPUekLrszJOS9b8nGkZ8sJyjnFCzE7KRwLlj0aJ5iR7XVKM-v_HGU23Ie6INs0sH8I8y4BVaZpeuielP8CmSm1NGigJaLYgs4jsx0bhvtSx7T1QBHA0mtc",
                         "refreshToken": "def5020070cf93fc4716b596681d7e9f81ea9a2382a0c673cdbae27792c1f2f82deb88085bd845635a9709b94f28941179340305460fc3023b2b144b23d85973a03d7710284b0e0f856b6e786cccab19f0a23b1d0534623b9b4b83934fd086799b13b2e358299ea70f5abe80f15835fe7155afae3653a814f9947fe287f4a5b19982ece2a3362c1b55cf7d79ce36a9a00e4d85c48053f028fd8edfe4aee56cfd6dd4b8a5051d6a4bef8bdecf88cb9906ac47293f7a6e27081591e7e2199530879ed16600af202dddbcac4cc65042d08d9cdebab42c310e8fed5836138c543fd741b2146cfa3ee804ae978606128f1ff03e7a0c9d2ca09e4d1d9859c35b6d31e2cb2826ae21057b4dc33e8ec72d10cf84cd84b3c886bf3fcafc71a2d60b2e55e87b4feb59d61ae5df76db0765ef6dcec9450d8b2c898bd41941b165f5efe2046bcdedd17b4f5c92f3d41c5ed029aaf441b78c513706a595bff51c3c440545200be9",
                         "refreshTokenExpiresAt": 5183970
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "error",
-                      "message": "The login or password is incorrect"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity (WebDAV)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "errors": {
-                      "type": "object",
-                      "properties": {
-                        "password": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "The password field is required.",
-                      "errors": {
-                        "password": [
-                          "The password field is required."
-                        ]
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "The password field is required.",
-                      "errors": {
-                        "password": [
-                          "The password field is required."
-                        ]
                       }
                     }
                   }
@@ -161,38 +77,50 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "login": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
                     "type": "string"
                   },
                   "password": {
+                    "type": "string"
+                  },
+                  "c_password": {
                     "type": "string"
                   }
                 },
                 "x-examples": {
                   "Example 1": {
-                    "login": "admintable@gmail.com",
-                    "password": "12345678"
+                    "name": "name",
+                    "email": "mai2ss2332l@mail.com",
+                    "password": "12345",
+                    "c_password": "12345"
                   }
                 }
               },
               "examples": {
                 "Example 1": {
                   "value": {
-                    "login": "admin@gmail.com",
-                    "password": "12345678"
+                    "name": "name",
+                    "email": "mai2ss2saf332l@mail.com",
+                    "password": "12345",
+                    "c_password": "12345"
                   }
                 }
               }
             }
           },
           "description": ""
-        }
-      }
+        },
+        "parameters": []
+      },
+      "parameters": []
     },
-    "/refresh_token": {
+    "/login": {
       "post": {
-        "summary": "Refresh token",
-        "operationId": "post-refresh_token",
+        "summary": "Register",
+        "operationId": "post-register",
         "responses": {
           "200": {
             "description": "OK",
@@ -201,39 +129,27 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "status": {
-                      "type": "string"
+                    "success": {
+                      "type": "boolean"
                     },
                     "data": {
                       "type": "object",
                       "properties": {
-                        "tokenType": {
+                        "token": {
                           "type": "string"
                         },
-                        "expiresIn": {
-                          "type": "integer"
-                        },
-                        "accessToken": {
+                        "name": {
                           "type": "string"
-                        },
-                        "refreshToken": {
-                          "type": "string"
-                        },
-                        "refreshTokenExpiresAt": {
-                          "type": "integer"
                         }
                       }
                     }
                   },
                   "x-examples": {
                     "Example 1": {
-                      "status": "success",
+                      "success": true,
                       "data": {
-                        "tokenType": "Bearer",
-                        "expiresIn": 31622400,
-                        "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiMmIzYmQ3MTI2NzNjYzVmNWIzM2UxMTYwM2VhYmI0YzU0N2MxOTI5NzEyNTkyZjU4ZDVlMTc3OWQwNThjZjg2ZDEzZjk4NzczMzE2NWIxOTYiLCJpYXQiOjE2ODk5MzA4MTMuNzAzMjYzLCJuYmYiOjE2ODk5MzA4MTMuNzAzMjY1LCJleHAiOjE3MjE1NTMyMTMuNjgyNjIzLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mXcqUtr3H3e1sbK9l0GJFfWFi1tx5bnTxmlV_5LzpozZ6ZYTjjNB1mjLwdu1DoZWfnXfD3uVFgIRTgbPnpe_SFMOvyBdbOUrZY0Ga9ORS53Ahh3VPw__a4ZOeI8VFezgTTzzn5y0yjNLf_Im6nYl-AUxOTbcbqq87kL6VXoKNHDhm0Evb2BI_ap7TKF71CRDT4qV66VIHn2rKlp4lu4WL8h87Az4Y9p9px_1LGPOZAIaH4Jl_KywWnflEVgyIFDqE2P7MBx7Vzq40UGN7KRy_o4NY0Q-YQVABBHSA6wjzulkJ-pDZWLWJ9dsjYV4_lakY20ok2JPHIudHMiJlyY0r6pckmpaMhC5VY5FVUsSWlRe7N4r7yH061c2-ONjIjb9Kaqh-zZoxHH0ez7LH8scMeF7YnyMS2BH5uw9A6TzIVyJgxsTjOGprbHaec4_z_2Ng8c8O1gPKyaliVvT5DvVR1W6Fz_DLkoAV84y6JeXmz-CwsIC-gCiVyl53EwyrV0XP2ZskE5uWCOp773m-VlDBKd9Y6imKvRBG653fJQfBhgsQeb7gmEGPHauo0MJV__DEbjPrE9deUbgnNXgK9ubWS_nSFJnKHixfv19YUABRj8wbdBpCcisSrIhGJrCbIwNNZPjIvFHDD25UJvey_g1EhiDwPLcdtjrkW0AuSfknz4",
-                        "refreshToken": "def50200ecb302e6290d5bf4f0db9bcdb5721dbb8f014080408af2a1ef2d0b155ba35fb2e38fc51ad6c3930f7bcf49704fde4d669855adb37e091453561d13aa75d4f0523d7ccfb2b46a9b4ba795a7f6fd11f8cf1790158a9f3c3c73c0f88ee07d74da2c951d42679bb4183a50e31b6a75a3ed61acf8d285cc9e359c34a7cd7c1724a639cbcd4bb669cb78e20522afcbc8e2f67619570d64a2c939faf91965a614abbe4ed76fca9d33607248e1b065ed3b652510bea8da35ca29523bdbdad6c2827399f401790667ea1d7ef5057daa088488331d276c19d9e33b79185bf7cbd9d39f698eef4d398f9ee07aa8c341f7c62ccef6356ff665962a33a3bc1cbc520fd46f1f59d789f486bf7888fc71f915dee4c20de328dc1a303f357673cfed4ef633be5c9dfd7c585f872e64f0cbf1f757a1b8bb10b3032a505e9956141fb4d0f60022f4f3b9dbf70dca6266c75bff40e28ff8ca9a84f2dcf7ab3977179b9a27d1d3",
-                        "refreshTokenExpiresAt": 5183970
+                        "token": "10|bbKplmTvrkJ71d7RU36IztFPvoQQcA9kdFRRskGJ",
+                        "name": "name"
                       }
                     }
                   }
@@ -241,13 +157,10 @@
                 "examples": {
                   "Example 1": {
                     "value": {
-                      "status": "success",
+                      "success": true,
                       "data": {
-                        "tokenType": "Bearer",
-                        "expiresIn": 31622400,
-                        "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiMmIzYmQ3MTI2NzNjYzVmNWIzM2UxMTYwM2VhYmI0YzU0N2MxOTI5NzEyNTkyZjU4ZDVlMTc3OWQwNThjZjg2ZDEzZjk4NzczMzE2NWIxOTYiLCJpYXQiOjE2ODk5MzA4MTMuNzAzMjYzLCJuYmYiOjE2ODk5MzA4MTMuNzAzMjY1LCJleHAiOjE3MjE1NTMyMTMuNjgyNjIzLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mXcqUtr3H3e1sbK9l0GJFfWFi1tx5bnTxmlV_5LzpozZ6ZYTjjNB1mjLwdu1DoZWfnXfD3uVFgIRTgbPnpe_SFMOvyBdbOUrZY0Ga9ORS53Ahh3VPw__a4ZOeI8VFezgTTzzn5y0yjNLf_Im6nYl-AUxOTbcbqq87kL6VXoKNHDhm0Evb2BI_ap7TKF71CRDT4qV66VIHn2rKlp4lu4WL8h87Az4Y9p9px_1LGPOZAIaH4Jl_KywWnflEVgyIFDqE2P7MBx7Vzq40UGN7KRy_o4NY0Q-YQVABBHSA6wjzulkJ-pDZWLWJ9dsjYV4_lakY20ok2JPHIudHMiJlyY0r6pckmpaMhC5VY5FVUsSWlRe7N4r7yH061c2-ONjIjb9Kaqh-zZoxHH0ez7LH8scMeF7YnyMS2BH5uw9A6TzIVyJgxsTjOGprbHaec4_z_2Ng8c8O1gPKyaliVvT5DvVR1W6Fz_DLkoAV84y6JeXmz-CwsIC-gCiVyl53EwyrV0XP2ZskE5uWCOp773m-VlDBKd9Y6imKvRBG653fJQfBhgsQeb7gmEGPHauo0MJV__DEbjPrE9deUbgnNXgK9ubWS_nSFJnKHixfv19YUABRj8wbdBpCcisSrIhGJrCbIwNNZPjIvFHDD25UJvey_g1EhiDwPLcdtjrkW0AuSfknz4",
-                        "refreshToken": "def50200ecb302e6290d5bf4f0db9bcdb5721dbb8f014080408af2a1ef2d0b155ba35fb2e38fc51ad6c3930f7bcf49704fde4d669855adb37e091453561d13aa75d4f0523d7ccfb2b46a9b4ba795a7f6fd11f8cf1790158a9f3c3c73c0f88ee07d74da2c951d42679bb4183a50e31b6a75a3ed61acf8d285cc9e359c34a7cd7c1724a639cbcd4bb669cb78e20522afcbc8e2f67619570d64a2c939faf91965a614abbe4ed76fca9d33607248e1b065ed3b652510bea8da35ca29523bdbdad6c2827399f401790667ea1d7ef5057daa088488331d276c19d9e33b79185bf7cbd9d39f698eef4d398f9ee07aa8c341f7c62ccef6356ff665962a33a3bc1cbc520fd46f1f59d789f486bf7888fc71f915dee4c20de328dc1a303f357673cfed4ef633be5c9dfd7c585f872e64f0cbf1f757a1b8bb10b3032a505e9956141fb4d0f60022f4f3b9dbf70dca6266c75bff40e28ff8ca9a84f2dcf7ab3977179b9a27d1d3",
-                        "refreshTokenExpiresAt": 5183970
+                        "token": "11|fHXhuFunLOtTzi4VZBEZXMxcvzvd5GEurjGk8Tq6",
+                        "name": "name"
                       }
                     }
                   }
@@ -262,73 +175,39 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "status": {
-                      "type": "string"
+                    "success": {
+                      "type": "boolean"
                     },
                     "message": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "error",
-                      "message": "The refresh token is invalid."
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "error",
-                      "message": "The refresh token is invalid."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity (WebDAV)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "errors": {
                       "type": "object",
                       "properties": {
-                        "refreshToken": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
+                        "error": {
+                          "type": "string"
                         }
                       }
+                    },
+                    "data": {
+                      "type": "string"
                     }
                   },
                   "x-examples": {
                     "Example 1": {
-                      "message": "Поле \"refresh token\" є обов’язковим.",
-                      "errors": {
-                        "refreshToken": [
-                          "Поле \"refresh token\" є обов’язковим."
-                        ]
-                      }
+                      "success": false,
+                      "message": {
+                        "error": "Unauthorised"
+                      },
+                      "data": "Unauthorised."
                     }
                   }
                 },
                 "examples": {
                   "Example 1": {
                     "value": {
-                      "message": "Поле \"refresh token\" є обов’язковим.",
-                      "errors": {
-                        "refreshToken": [
-                          "Поле \"refresh token\" є обов’язковим."
-                        ]
-                      }
+                      "success": false,
+                      "message": {
+                        "error": "Unauthorised"
+                      },
+                      "data": "Unauthorised."
                     }
                   }
                 }
@@ -344,102 +223,43 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "refreshToken": {
-                    "type": "string"
-                  }
-                },
                 "x-examples": {
                   "Example 1": {
-                    "refreshToken": "def502000dd9d9f6b19d696acadb89d352f3be5b913c47b006a8bafc4fb62a52f08479ee34b11ab2fba2ca92aa42b126cc436dc164e19f48d876a9b5e4b431b90eaddd4a7527da859d89361d72476d57bcd3dc5a66662d77cbd5daf0a67b2015bd55d7368c28b46abc68817a4a1b8e3d195f5be14a76906028a7fe80b4579a27db56a8a282b1623aad642c0d4c7b97f43e4425039837a2b120264697abe0a25503ba9b3192f148f3ddac6e27e9ed26ea2fe23e0e9fb9bafcf44d20c8ab573d7ca527b8f5e8a01bb901546c7141d88cb3006fa9acee179dd8f427120c29bc6db7f0d516ed79365642c4de39409ba79285159d165f6428a2d6a072f73597930494276cd91639fa775968f1d166c148782b7258364be6213dd72b299a976c90f30873f13261a344a232486b9e1ad935c06047b95429cc8b559d5079eda797e2b905d3c0cf005d13eefd11945d3bd82fdfe4133dd7475091e6df87e6d7865bc5347eef"
+                    "name": "name",
+                    "email": "mai2ss2332l@mail.com",
+                    "password": "12345",
+                    "c_password": "12345"
+                  }
+                },
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
                   }
                 }
               },
               "examples": {
                 "Example 1": {
                   "value": {
-                    "refreshToken": "def502000dd9d9f6b19d696acadb89d352f3be5b913c47b006a8bafc4fb62a52f08479ee34b11ab2fba2ca92aa42b126cc436dc164e19f48d876a9b5e4b431b90eaddd4a7527da859d89361d72476d57bcd3dc5a66662d77cbd5daf0a67b2015bd55d7368c28b46abc68817a4a1b8e3d195f5be14a76906028a7fe80b4579a27db56a8a282b1623aad642c0d4c7b97f43e4425039837a2b120264697abe0a25503ba9b3192f148f3ddac6e27e9ed26ea2fe23e0e9fb9bafcf44d20c8ab573d7ca527b8f5e8a01bb901546c7141d88cb3006fa9acee179dd8f427120c29bc6db7f0d516ed79365642c4de39409ba79285159d165f6428a2d6a072f73597930494276cd91639fa775968f1d166c148782b7258364be6213dd72b299a976c90f30873f13261a344a232486b9e1ad935c06047b95429cc8b559d5079eda797e2b905d3c0cf005d13eefd11945d3bd82fdfe4133dd7475091e6df87e6d7865bc5347eef"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/logout": {
-      "post": {
-        "summary": "Logout",
-        "operationId": "post-logout",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success"
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success"
-                    }
+                    "email": "mai2ss2saf332l@mail.com",
+                    "password": "12345"
                   }
                 }
               }
             }
           },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                }
-              }
-            }
-          }
+          "description": ""
         },
-        "tags": [
-          "Auth"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
-      }
+        "parameters": []
+      },
+      "parameters": []
     },
-    "admin_groups": {
-      "get": {
-        "summary": "Get admin groups",
+    "/adult/children": {
+      "post": {
+        "summary": "Store child",
+        "operationId": "post-child",
         "responses": {
           "200": {
             "description": "OK",
@@ -448,452 +268,27 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "status": {
-                      "type": "string"
+                    "success": {
+                      "type": "boolean"
                     },
                     "data": {
                       "type": "object",
                       "properties": {
-                        "currentPage": {
-                          "type": "integer"
-                        },
-                        "data": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "integer"
-                              },
-                              "name": {
-                                "type": "string"
-                              },
-                              "status": {
-                                "type": "boolean"
-                              },
-                              "createdAt": {
-                                "type": "string"
-                              },
-                              "updatedAt": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        },
-                        "firstPageUrl": {
+                        "token": {
                           "type": "string"
                         },
-                        "from": {
-                          "type": "integer"
-                        },
-                        "lastPage": {
-                          "type": "integer"
-                        },
-                        "lastPageUrl": {
-                          "type": "string"
-                        },
-                        "links": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "url": {
-                                "type": [
-                                  "null",
-                                  "string"
-                                ]
-                              },
-                              "label": {
-                                "type": "string"
-                              },
-                              "active": {
-                                "type": "boolean"
-                              }
-                            }
-                          }
-                        },
-                        "nextPageUrl": {
-                          "type": "null"
-                        },
-                        "path": {
-                          "type": "string"
-                        },
-                        "perPage": {
-                          "type": "integer"
-                        },
-                        "prevPageUrl": {
-                          "type": "null"
-                        },
-                        "to": {
-                          "type": "integer"
-                        },
-                        "total": {
-                          "type": "integer"
-                        }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success",
-                      "data": {
-                        "currentPage": 1,
-                        "data": [
-                          {
-                            "id": 1,
-                            "name": "Admins",
-                            "status": false,
-                            "createdAt": "2023-07-27T13:03:29.000000Z",
-                            "updatedAt": "2023-07-27T13:03:29.000000Z"
-                          }
-                        ],
-                        "firstPageUrl": "http://localhost:3055/admin/admin_groups?page=1",
-                        "from": 1,
-                        "lastPage": 1,
-                        "lastPageUrl": "http://localhost:3055/admin/admin_groups?page=1",
-                        "links": [
-                          {
-                            "url": null,
-                            "label": "&laquo; Назад",
-                            "active": false
-                          },
-                          {
-                            "url": "http://localhost:3055/admin/admin_groups?page=1",
-                            "label": "1",
-                            "active": true
-                          },
-                          {
-                            "url": null,
-                            "label": "Вперед &raquo;",
-                            "active": false
-                          }
-                        ],
-                        "nextPageUrl": null,
-                        "path": "http://localhost:3055/admin/admin_groups",
-                        "perPage": 10,
-                        "prevPageUrl": null,
-                        "to": 1,
-                        "total": 1
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success",
-                      "data": {
-                        "currentPage": 1,
-                        "data": [
-                          {
-                            "id": 1,
-                            "name": "Admins",
-                            "status": false,
-                            "createdAt": "2023-07-27T13:03:29.000000Z",
-                            "updatedAt": "2023-07-27T13:03:29.000000Z"
-                          }
-                        ],
-                        "firstPageUrl": "http://localhost:3055/admin/admin_groups?page=1",
-                        "from": 1,
-                        "lastPage": 1,
-                        "lastPageUrl": "http://localhost:3055/admin/admin_groups?page=1",
-                        "links": [
-                          {
-                            "url": null,
-                            "label": "&laquo; Назад",
-                            "active": false
-                          },
-                          {
-                            "url": "http://localhost:3055/admin/admin_groups?page=1",
-                            "label": "1",
-                            "active": true
-                          },
-                          {
-                            "url": null,
-                            "label": "Вперед &raquo;",
-                            "active": false
-                          }
-                        ],
-                        "nextPageUrl": null,
-                        "path": "http://localhost:3055/admin/admin_groups",
-                        "perPage": 10,
-                        "prevPageUrl": null,
-                        "to": 1,
-                        "total": 1
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity (WebDAV)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "errors": {
-                      "type": "object",
-                      "properties": {
-                        "sort": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        },
-                        "sort.active": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Обране поле \"active\" не є дійсним. (and 1 more error)",
-                      "errors": {
-                        "sort": [
-                          "Обране поле \"active\" не є дійсним."
-                        ],
-                        "sort.active": [
-                          "Обране поле \"sort.active\" не є дійсним."
-                        ]
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Обране поле \"active\" не є дійсним. (and 1 more error)",
-                      "errors": {
-                        "sort": [
-                          "Обране поле \"active\" не є дійсним."
-                        ],
-                        "sort.active": [
-                          "Обране поле \"sort.active\" не є дійсним."
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-admin_groups",
-        "tags": [
-          "Admin groups"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ],
-        "parameters": [
-          {
-            "schema": {
-              "type": "integer"
-            },
-            "in": "query",
-            "name": "filter[id]",
-            "description": "id of group"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "filter[name]",
-            "description": "name of group"
-          },
-          {
-            "schema": {
-              "type": "integer"
-            },
-            "in": "query",
-            "name": "filter[active]",
-            "description": "0 or 1"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "filter[createdAt][]",
-            "description": "Date can be one or two"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "filter[updatedAt][]",
-            "description": "Date can be one or two"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "sort[id]",
-            "description": "asc or desc"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "sort[name]",
-            "description": "asc or desc"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "sort[active]",
-            "description": "asc or desc"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "sort[createdAt]",
-            "description": "asc or desc"
-          },
-          {
-            "schema": {
-              "type": "integer"
-            },
-            "in": "query",
-            "name": "sort[updatedAt]",
-            "description": "asc or desc"
-          }
-        ]
-      },
-      "post": {
-        "summary": "Create admin group",
-        "operationId": "post-admin_groups",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success"
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity (WebDAV)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "errors": {
-                      "type": "object",
-                      "properties": {
                         "name": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
+                          "type": "string"
                         }
                       }
                     }
                   },
                   "x-examples": {
                     "Example 1": {
-                      "message": "Поле \"Назва\" є обов’язковим.",
-                      "errors": {
-                        "name": [
-                          "Поле \"Назва\" є обов’язковим."
-                        ]
+                      "success": true,
+                      "data": {
+                        "token": "20|M29nroDSGrF6iFKc3SfqeZR3nkdB6ifQkfyRRyxv",
+                        "name": "test2"
                       }
                     }
                   }
@@ -901,65 +296,122 @@
                 "examples": {
                   "Example 1": {
                     "value": {
-                      "message": "Поле \"Назва\" є обов’язковим.",
-                      "errors": {
-                        "name": [
-                          "Поле \"Назва\" є обов’язковим."
-                        ]
+                      "success": true,
+                      "data": {
+                        "token": "20|M29nroDSGrF6iFKc3SfqeZR3nkdB6ifQkfyRRyxv",
+                        "name": "test2"
                       }
                     }
                   }
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "data": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": false,
+                      "message": {
+                        "error": "Unauthorised"
+                      },
+                      "data": "Unauthorised."
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": false,
+                      "message": {
+                        "error": "Unauthorised"
+                      },
+                      "data": "Unauthorised."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
           }
         },
-        "description": "",
-        "security": [
-          {
-            "Authorization": []
-          }
-        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "x-examples": {
-                  "Example 1": {
-                    "name": "Админі",
-                    "description": "|string",
-                    "status": 0
-                  }
-                },
                 "properties": {
                   "name": {
                     "type": "string"
                   },
-                  "description": {
-                    "type": "string"
-                  },
-                  "status": {
+                  "age": {
                     "type": "integer"
+                  },
+                  "gender": {
+                    "type": "integer"
+                  },
+                  "adult_type": {
+                    "type": "string"
                   }
                 },
-                "required": [
-                  "name",
-                  "status"
-                ]
+                "x-examples": {
+                  "Example 1": {
+                    "name": "test2",
+                    "age": 7,
+                    "gender": 1,
+                    "adult_type": "Grandma"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "name": "test2",
+                    "age": 7,
+                    "gender": 1,
+                    "adult_type": "Grandma"
+                  }
+                }
               }
             }
-          }
+          },
+          "description": ""
         },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
         "tags": [
-          "Admin groups"
+          "Children"
         ]
       },
-      "parameters": []
-    },
-    "/admin_groups/permissions": {
+      "parameters": [],
       "get": {
-        "summary": "Get groups permissions",
+        "summary": "Get children",
+        "operationId": "get-adult-children",
         "responses": {
           "200": {
             "description": "OK",
@@ -968,8 +420,8 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "status": {
-                      "type": "string"
+                    "success": {
+                      "type": "boolean"
                     },
                     "data": {
                       "type": "array",
@@ -982,31 +434,29 @@
                           "name": {
                             "type": "string"
                           },
-                          "permissionSubject": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "integer"
-                                },
-                                "name": {
-                                  "type": "string"
-                                },
-                                "permissions": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "id": {
-                                        "type": "integer"
-                                      },
-                                      "action": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  }
-                                }
+                          "age": {
+                            "type": "integer"
+                          },
+                          "gender": {
+                            "type": "integer"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          },
+                          "pivot": {
+                            "type": "object",
+                            "properties": {
+                              "adult_id": {
+                                "type": "integer"
+                              },
+                              "child_id": {
+                                "type": "integer"
+                              },
+                              "adult_type": {
+                                "type": "string"
                               }
                             }
                           }
@@ -1016,35 +466,33 @@
                   },
                   "x-examples": {
                     "Example 1": {
-                      "status": "success",
+                      "success": true,
                       "data": [
                         {
-                          "id": 23,
-                          "name": "Каталог",
-                          "permissionSubject": [
-                            {
-                              "id": 86,
-                              "name": "Каталог товарів",
-                              "permissions": [
-                                {
-                                  "id": 337,
-                                  "action": "create"
-                                },
-                                {
-                                  "id": 338,
-                                  "action": "read"
-                                },
-                                {
-                                  "id": 339,
-                                  "action": "update"
-                                },
-                                {
-                                  "id": 340,
-                                  "action": "delete"
-                                }
-                              ]
-                            }
-                          ]
+                          "id": 1,
+                          "name": "Dr. Luciano Jenkins I",
+                          "age": 8,
+                          "gender": 0,
+                          "created_at": "2023-08-14T19:46:49.000000Z",
+                          "updated_at": "2023-08-14T19:46:49.000000Z",
+                          "pivot": {
+                            "adult_id": 1,
+                            "child_id": 1,
+                            "adult_type": "Grandma"
+                          }
+                        },
+                        {
+                          "id": 16,
+                          "name": "test2",
+                          "age": 7,
+                          "gender": 1,
+                          "created_at": "2023-08-14T21:50:06.000000Z",
+                          "updated_at": "2023-08-14T21:50:06.000000Z",
+                          "pivot": {
+                            "adult_id": 1,
+                            "child_id": 16,
+                            "adult_type": "Grandma"
+                          }
                         }
                       ]
                     }
@@ -1053,35 +501,33 @@
                 "examples": {
                   "Example 1": {
                     "value": {
-                      "status": "success",
+                      "success": true,
                       "data": [
                         {
-                          "id": 23,
-                          "name": "Каталог",
-                          "permissionSubject": [
-                            {
-                              "id": 86,
-                              "name": "Каталог товарів",
-                              "permissions": [
-                                {
-                                  "id": 337,
-                                  "action": "create"
-                                },
-                                {
-                                  "id": 338,
-                                  "action": "read"
-                                },
-                                {
-                                  "id": 339,
-                                  "action": "update"
-                                },
-                                {
-                                  "id": 340,
-                                  "action": "delete"
-                                }
-                              ]
-                            }
-                          ]
+                          "id": 1,
+                          "name": "Dr. Luciano Jenkins I",
+                          "age": 8,
+                          "gender": 0,
+                          "created_at": "2023-08-14T19:46:49.000000Z",
+                          "updated_at": "2023-08-14T19:46:49.000000Z",
+                          "pivot": {
+                            "adult_id": 1,
+                            "child_id": 1,
+                            "adult_type": "Grandma"
+                          }
+                        },
+                        {
+                          "id": 16,
+                          "name": "test2",
+                          "age": 7,
+                          "gender": 1,
+                          "created_at": "2023-08-14T21:50:06.000000Z",
+                          "updated_at": "2023-08-14T21:50:06.000000Z",
+                          "pivot": {
+                            "adult_id": 1,
+                            "child_id": 16,
+                            "adult_type": "Grandma"
+                          }
                         }
                       ]
                     }
@@ -1118,24 +564,24 @@
             }
           }
         },
-        "operationId": "get-u",
-        "tags": [
-          "Admin groups"
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
+          }
         ],
         "security": [
           {
             "Authorization": []
           }
-        ]
-      },
-      "parameters": []
-    },
-    "admin_groups/{id}/permissions": {
-      "get": {
-        "summary": "Get permissions for group",
-        "tags": [
-          "Admin groups"
         ],
+        "tags": [
+          "Children"
+        ]
+      }
+    },
+    "/adult/children/{child}": {
+      "get": {
+        "summary": "Show child by id",
         "responses": {
           "200": {
             "description": "OK",
@@ -1144,143 +590,43 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "status": {
-                      "type": "string"
+                    "success": {
+                      "type": "boolean"
                     },
                     "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "integer"
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success",
-                      "data": [
-                        337,
-                        338
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success",
-                      "data": [
-                        337,
-                        338
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-admin_groups-1-permissions",
-        "security": [
-          {
-            "Authorization": []
-          }
-        ],
-        "x-extension-1": null
-      },
-      "parameters": [
-        {
-          "schema": {
-            "type": "integer"
-          },
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "description": "Id of group"
-        }
-      ],
-      "post": {
-        "summary": "Save permissions",
-        "operationId": "postadmin_groups-1-permissions",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity (WebDAV)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "errors": {
                       "type": "object",
                       "properties": {
-                        "permissionIds": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "age": {
+                          "type": "integer"
+                        },
+                        "gender": {
+                          "type": "integer"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
                         }
                       }
                     }
                   },
                   "x-examples": {
                     "Example 1": {
-                      "message": "Вкажіть будь-які дозволи перед збереженням",
-                      "errors": {
-                        "permissionIds": [
-                          "Вкажіть будь-які дозволи перед збереженням"
-                        ]
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "name": "Dr. Luciano Jenkins I",
+                        "age": 8,
+                        "gender": 0,
+                        "created_at": "2023-08-14T19:46:49.000000Z",
+                        "updated_at": "2023-08-14T19:46:49.000000Z"
                       }
                     }
                   }
@@ -1288,11 +634,14 @@
                 "examples": {
                   "Example 1": {
                     "value": {
-                      "message": "Вкажіть будь-які дозволи перед збереженням",
-                      "errors": {
-                        "permissionIds": [
-                          "Вкажіть будь-які дозволи перед збереженням"
-                        ]
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "name": "Dr. Luciano Jenkins I",
+                        "age": 8,
+                        "gender": 0,
+                        "created_at": "2023-08-14T19:46:49.000000Z",
+                        "updated_at": "2023-08-14T19:46:49.000000Z"
                       }
                     }
                   }
@@ -1300,26 +649,129 @@
               }
             }
           },
-          "": {
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          }
+        },
+        "operationId": "get-child",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "tags": [
+          "Children"
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "child",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "put": {
+        "summary": "Update child",
+        "operationId": "update-child",
+        "responses": {
+          "200": {
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "status": {
-                      "type": "string"
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "age": {
+                          "type": "integer"
+                        },
+                        "gender": {
+                          "type": "integer"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      }
                     }
                   },
                   "x-examples": {
                     "Example 1": {
-                      "status": "success"
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "name": "testssss2221321",
+                        "age": 7,
+                        "gender": 1,
+                        "created_at": "2023-08-14T19:46:49.000000Z",
+                        "updated_at": "2023-08-20T18:36:38.000000Z"
+                      }
                     }
                   }
                 },
                 "examples": {
                   "Example 1": {
                     "value": {
-                      "status": "success"
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "name": "testssss2221321",
+                        "age": 7,
+                        "gender": 1,
+                        "created_at": "2023-08-14T19:46:49.000000Z",
+                        "updated_at": "2023-08-20T18:36:38.000000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "message": "Unauthenticated."
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "message": "Unauthenticated."
                     }
                   }
                 }
@@ -1341,7 +793,343 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "permissionIds": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "age": {
+                    "type": "integer"
+                  },
+                  "gender": {
+                    "type": "integer"
+                  }
+                },
+                "x-examples": {
+                  "Example 1": {
+                    "name": "testssss2221321",
+                    "age": 7,
+                    "gender": 1
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "name": "testssss2221321",
+                    "age": 7,
+                    "gender": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete child",
+        "operationId": "delete-child",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "message": "Child was deleted!"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "message": "Child was deleted!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "message": "Unauthenticated."
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "message": "Unauthenticated."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "tags": [
+          "Children"
+        ]
+      }
+    },
+    "/adult/get_child_token/{child}": {
+      "get": {
+        "summary": "Get child token",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "token": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "token": "26|yLrY0CmlR5RmUgtHx6YGWUjlg5JcCgDO2ALryJ0t",
+                        "name": "Jeff Hauck"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "token": "26|yLrY0CmlR5RmUgtHx6YGWUjlg5JcCgDO2ALryJ0t",
+                        "name": "Jeff Hauck"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        },
+        "operationId": "get-child-token",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "tags": [
+          "Children"
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "child",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/adult/regular_tasks/general_avalable_tasks": {
+      "get": {
+        "summary": "Show general available regular tasks",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "age": {
+                          "type": "integer"
+                        },
+                        "gender": {
+                          "type": "integer"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "name": "Dr. Luciano Jenkins I",
+                        "age": 8,
+                        "gender": 0,
+                        "created_at": "2023-08-14T19:46:49.000000Z",
+                        "updated_at": "2023-08-14T19:46:49.000000Z"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "name": "Dr. Luciano Jenkins I",
+                        "age": 8,
+                        "gender": 0,
+                        "created_at": "2023-08-14T19:46:49.000000Z",
+                        "updated_at": "2023-08-14T19:46:49.000000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          }
+        },
+        "operationId": "get-child",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "tags": [
+          "Children"
+        ]
+      },
+      "parameters": [],
+      "delete": {
+        "summary": "Delete regular tasks",
+        "operationId": "delete-regular_tasks",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "tasks": [
+                        4
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "message": "Child was deleted!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "tasks": {
                     "type": "array",
                     "items": {
                       "type": "integer"
@@ -1350,9 +1138,10 @@
                 },
                 "x-examples": {
                   "Example 1": {
-                    "permissionIds": [
-                      337,
-                      338
+                    "tasks": [
+                      4,
+                      2,
+                      5
                     ]
                   }
                 }
@@ -1360,9 +1149,10 @@
               "examples": {
                 "Example 1": {
                   "value": {
-                    "permissionIds": [
-                      337,
-                      338
+                    "tasks": [
+                      5,
+                      6,
+                      7
                     ]
                   }
                 }
@@ -1370,717 +1160,10 @@
             }
           }
         }
-      }
-    },
-    "/admin_groups/{id}": {
-      "get": {
-        "summary": "Get group info for main tab",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "integer"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "description": {
-                          "type": "string"
-                        },
-                        "status": {
-                          "type": "boolean"
-                        },
-                        "createdAt": {
-                          "type": "string"
-                        },
-                        "updatedAt": {
-                          "type": "string"
-                        },
-                        "creator": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "integer"
-                            },
-                            "name": {
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "editor": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "integer"
-                            },
-                            "name": {
-                              "type": "string"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success",
-                      "data": {
-                        "id": 1,
-                        "name": "Админі",
-                        "description": "|string",
-                        "status": true,
-                        "createdAt": "2023-07-24T17:33:40.000000Z",
-                        "updatedAt": "2023-07-24T17:33:40.000000Z",
-                        "creator": {
-                          "id": 1,
-                          "name": "ANton"
-                        },
-                        "editor": {
-                          "id": 1,
-                          "name": "ANton"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-admin_groups-1",
-        "tags": [
-          "Admin groups"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
-      },
-      "parameters": [
-        {
-          "schema": {
-            "type": "integer"
-          },
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "description": "id of group"
-        }
-      ],
-      "put": {
-        "summary": "Edit admin group",
-        "operationId": "put-admin_groups-id",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success"
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity (WebDAV)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "errors": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Поле \"Назва\" є обов’язковим.",
-                      "errors": {
-                        "name": [
-                          "Поле \"Назва\" є обов’язковим."
-                        ]
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Поле \"Назва\" є обов’язковим.",
-                      "errors": {
-                        "name": [
-                          "Поле \"Назва\" є обов’язковим."
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Admin groups"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "status": {
-                    "type": "integer"
-                  }
-                },
-                "x-examples": {
-                  "Example 1": {
-                    "name": "Edit",
-                    "description": "|string",
-                    "status": 0
-                  }
-                }
-              },
-              "examples": {
-                "Example 1": {
-                  "value": {
-                    "name": "Edit",
-                    "description": "|string",
-                    "status": 0
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete admin group",
-        "operationId": "delete-admin_groups-id",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success"
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity (WebDAV)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "errors": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "\"id\" має бути цілим числом.",
-                      "errors": {
-                        "id": [
-                          "\"id\" має бути цілим числом."
-                        ]
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "\"id\" має бути цілим числом.",
-                      "errors": {
-                        "id": [
-                          "\"id\" має бути цілим числом."
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Admin groups"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ],
-        "description": ""
-      }
-    },
-    "admin_divisions": {
-      "get": {
-        "summary": "Get admin groups",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success",
-                      "data": {
-                        "currentPage": 1,
-                        "data": [
-                          {
-                            "id": 1,
-                            "name": "Admins",
-                            "status": false,
-                            "createdAt": "2023-07-27T13:03:29.000000Z",
-                            "updatedAt": "2023-07-27T13:03:29.000000Z"
-                          }
-                        ],
-                        "firstPageUrl": "http://localhost:3055/admin/admin_groups?page=1",
-                        "from": 1,
-                        "lastPage": 1,
-                        "lastPageUrl": "http://localhost:3055/admin/admin_groups?page=1",
-                        "links": [
-                          {
-                            "url": null,
-                            "label": "&laquo; Назад",
-                            "active": false
-                          },
-                          {
-                            "url": "http://localhost:3055/admin/admin_groups?page=1",
-                            "label": "1",
-                            "active": true
-                          },
-                          {
-                            "url": null,
-                            "label": "Вперед &raquo;",
-                            "active": false
-                          }
-                        ],
-                        "nextPageUrl": null,
-                        "path": "http://localhost:3055/admin/admin_groups",
-                        "perPage": 10,
-                        "prevPageUrl": null,
-                        "to": 1,
-                        "total": 1
-                      }
-                    }
-                  },
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "currentPage": {
-                          "type": "integer"
-                        },
-                        "data": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "integer"
-                              },
-                              "name": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        },
-                        "firstPageUrl": {
-                          "type": "string"
-                        },
-                        "from": {
-                          "type": "integer"
-                        },
-                        "lastPage": {
-                          "type": "integer"
-                        },
-                        "lastPageUrl": {
-                          "type": "string"
-                        },
-                        "links": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "url": {
-                                "type": [
-                                  "null",
-                                  "string"
-                                ]
-                              },
-                              "label": {
-                                "type": "string"
-                              },
-                              "active": {
-                                "type": "boolean"
-                              }
-                            }
-                          }
-                        },
-                        "nextPageUrl": {
-                          "type": "null"
-                        },
-                        "path": {
-                          "type": "string"
-                        },
-                        "perPage": {
-                          "type": "integer"
-                        },
-                        "prevPageUrl": {
-                          "type": "null"
-                        },
-                        "to": {
-                          "type": "integer"
-                        },
-                        "total": {
-                          "type": "integer"
-                        }
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success",
-                      "data": {
-                        "currentPage": 1,
-                        "data": [
-                          {
-                            "id": 1,
-                            "name": "Admins"
-                          }
-                        ],
-                        "firstPageUrl": "http://localhost:3055/admin/admin_groups?page=1",
-                        "from": 1,
-                        "lastPage": 1,
-                        "lastPageUrl": "http://localhost:3055/admin/admin_groups?page=1",
-                        "links": [
-                          {
-                            "url": null,
-                            "label": "&laquo; Назад",
-                            "active": false
-                          },
-                          {
-                            "url": "http://localhost:3055/admin/admin_groups?page=1",
-                            "label": "1",
-                            "active": true
-                          },
-                          {
-                            "url": null,
-                            "label": "Вперед &raquo;",
-                            "active": false
-                          }
-                        ],
-                        "nextPageUrl": null,
-                        "path": "http://localhost:3055/admin/admin_groups",
-                        "perPage": 10,
-                        "prevPageUrl": null,
-                        "to": 1,
-                        "total": 1
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity (WebDAV)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "errors": {
-                      "type": "object",
-                      "properties": {
-                        "sort": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        },
-                        "sort.active": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Обране поле \"active\" не є дійсним. (and 1 more error)",
-                      "errors": {
-                        "sort": [
-                          "Обране поле \"active\" не є дійсним."
-                        ],
-                        "sort.active": [
-                          "Обране поле \"sort.active\" не є дійсним."
-                        ]
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Обране поле \"active\" не є дійсним. (and 1 more error)",
-                      "errors": {
-                        "sort": [
-                          "Обране поле \"active\" не є дійсним."
-                        ],
-                        "sort.active": [
-                          "Обране поле \"sort.active\" не є дійсним."
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-admin_groups",
-        "security": [
-          {
-            "Authorization": []
-          }
-        ],
-        "parameters": [
-          {
-            "schema": {
-              "type": "integer"
-            },
-            "in": "query",
-            "name": "filter[id]",
-            "description": "id of group"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "filter[name]",
-            "description": "name of group"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "sort[id]",
-            "description": "asc or desc"
-          }
-        ],
-        "tags": [
-          "Admin divisions"
-        ]
       },
       "post": {
-        "summary": "Create admin group",
-        "operationId": "post-admin_groups",
+        "summary": "Store regular tasks for child",
+        "operationId": "post-adult-regular_tasks-general_avalable_tasks",
         "responses": {
           "200": {
             "description": "OK",
@@ -2089,95 +1172,20 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "status": {
-                      "type": "string"
+                    "success": {
+                      "type": "boolean"
                     }
                   },
                   "x-examples": {
                     "Example 1": {
-                      "status": "success"
+                      "success": true
                     }
                   }
                 },
                 "examples": {
                   "Example 1": {
                     "value": {
-                      "status": "success"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity (WebDAV)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "errors": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Поле \"Назва\" є обов’язковим.",
-                      "errors": {
-                        "name": [
-                          "Поле \"Назва\" є обов’язковим."
-                        ]
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Поле \"Назва\" є обов’язковим.",
-                      "errors": {
-                        "name": [
-                          "Поле \"Назва\" є обов’язковим."
-                        ]
-                      }
+                      "success": true
                     }
                   }
                 }
@@ -2185,290 +1193,11 @@
             }
           }
         },
-        "description": "",
-        "security": [
+        "parameters": [
           {
-            "Authorization": []
+            "$ref": "./admin.json#/components/parameters/Accept"
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "x-examples": {
-                  "Example 1": {
-                    "name": "Админі",
-                    "description": "|string",
-                    "status": 0
-                  }
-                },
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "status": {
-                    "type": "integer"
-                  }
-                },
-                "required": [
-                  "name",
-                  "status"
-                ]
-              }
-            }
-          }
-        },
-        "tags": [
-          "Admin divisions"
-        ]
-      },
-      "parameters": []
-    },
-    "/admin_divisions/{id}": {
-      "get": {
-        "summary": "Get group info for main tab",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "integer"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "description": {
-                          "type": "string"
-                        },
-                        "status": {
-                          "type": "boolean"
-                        },
-                        "createdAt": {
-                          "type": "string"
-                        },
-                        "updatedAt": {
-                          "type": "string"
-                        },
-                        "creator": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "integer"
-                            },
-                            "name": {
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "editor": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "integer"
-                            },
-                            "name": {
-                              "type": "string"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success",
-                      "data": {
-                        "id": 1,
-                        "name": "Админі",
-                        "description": "|string",
-                        "status": true,
-                        "createdAt": "2023-07-24T17:33:40.000000Z",
-                        "updatedAt": "2023-07-24T17:33:40.000000Z",
-                        "creator": {
-                          "id": 1,
-                          "name": "ANton"
-                        },
-                        "editor": {
-                          "id": 1,
-                          "name": "ANton"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-admin_groups-1",
-        "security": [
-          {
-            "Authorization": []
-          }
-        ],
-        "tags": [
-          "Admin divisions"
-        ]
-      },
-      "parameters": [
-        {
-          "schema": {
-            "type": "integer"
-          },
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "description": "id of group"
-        }
-      ],
-      "put": {
-        "summary": "Edit admin group",
-        "operationId": "put-admin_groups-id",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success"
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity (WebDAV)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "errors": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Поле \"Назва\" є обов’язковим.",
-                      "errors": {
-                        "name": [
-                          "Поле \"Назва\" є обов’язковим."
-                        ]
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Поле \"Назва\" є обов’язковим.",
-                      "errors": {
-                        "name": [
-                          "Поле \"Назва\" є обов’язковим."
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
         "security": [
           {
             "Authorization": []
@@ -2480,2207 +1209,42 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "status": {
-                    "type": "integer"
-                  }
-                },
-                "x-examples": {
-                  "Example 1": {
-                    "name": "Edit",
-                    "description": "|string",
-                    "status": 0
-                  }
-                }
-              },
-              "examples": {
-                "Example 1": {
-                  "value": {
-                    "name": "Edit",
-                    "description": "|string",
-                    "status": 0
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Admin divisions"
-        ]
-      },
-      "delete": {
-        "summary": "Delete admin group",
-        "operationId": "delete-admin_groups-id",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success"
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity (WebDAV)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "errors": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "\"id\" має бути цілим числом.",
-                      "errors": {
-                        "id": [
-                          "\"id\" має бути цілим числом."
-                        ]
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "\"id\" має бути цілим числом.",
-                      "errors": {
-                        "id": [
-                          "\"id\" має бути цілим числом."
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "Authorization": []
-          }
-        ],
-        "description": "",
-        "tags": [
-          "Admin divisions"
-        ]
-      }
-    },
-    "/product/filter": {
-      "post": {
-        "summary": "",
-        "operationId": "post-product-filter",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "content": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "header": {
-                            "type": "string"
-                          },
-                          "code": {
-                            "type": "string"
-                          },
-                          "component": {
-                            "type": "string"
-                          },
-                          "sortable": {
-                            "type": "integer"
-                          },
-                          "filtrated": {
-                            "type": "integer"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success",
-                      "content": [
-                        {
-                          "header": "ID",
-                          "code": "id",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Зображення",
-                          "code": "card_image",
-                          "component": "card_image",
-                          "sortable": 0,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Назва товару",
-                          "code": "name",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Артикул",
-                          "code": "vendor_code",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Штрихкод",
-                          "code": "barcode",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Категорія",
-                          "code": "category.id",
-                          "component": "linked_category",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Виробник",
-                          "code": "manufacturer.id",
-                          "component": "linked_manufacturer",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Ціна",
-                          "code": "price",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Валюта",
-                          "code": "currency.id",
-                          "component": "common_text",
-                          "sortable": 0,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Кількість",
-                          "code": "quantity",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Способи доставки",
-                          "code": "delivery_id",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Довжина",
-                          "code": "product_size_features.length",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Ширина",
-                          "code": "product_size_features.width",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Висота",
-                          "code": "product_size_features.height",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Од. розмірів",
-                          "code": "product_size_features.height_unit",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Маса",
-                          "code": "product_size_features.weight",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Од. маси",
-                          "code": "product_size_features.weight_unit",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Активність",
-                          "code": "is_active",
-                          "component": "switcher",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Сортування",
-                          "code": "sort",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Країни",
-                          "code": "country",
-                          "component": "country",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Дата створення",
-                          "code": "created_at",
-                          "component": "date_time",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Дата зміни",
-                          "code": "updated_at",
-                          "component": "date_time",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Змінений",
-                          "code": "user.id",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success",
-                      "content": [
-                        {
-                          "header": "ID",
-                          "code": "id",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Зображення",
-                          "code": "card_image",
-                          "component": "card_image",
-                          "sortable": 0,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Назва товару",
-                          "code": "name",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Артикул",
-                          "code": "vendor_code",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Штрихкод",
-                          "code": "barcode",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Категорія",
-                          "code": "category.id",
-                          "component": "linked_category",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Виробник",
-                          "code": "manufacturer.id",
-                          "component": "linked_manufacturer",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Ціна",
-                          "code": "price",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Валюта",
-                          "code": "currency.id",
-                          "component": "common_text",
-                          "sortable": 0,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Кількість",
-                          "code": "quantity",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Способи доставки",
-                          "code": "delivery_id",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Довжина",
-                          "code": "product_size_features.length",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Ширина",
-                          "code": "product_size_features.width",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Висота",
-                          "code": "product_size_features.height",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Од. розмірів",
-                          "code": "product_size_features.height_unit",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Маса",
-                          "code": "product_size_features.weight",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Од. маси",
-                          "code": "product_size_features.weight_unit",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Активність",
-                          "code": "is_active",
-                          "component": "switcher",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Сортування",
-                          "code": "sort",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Країни",
-                          "code": "country",
-                          "component": "country",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Дата створення",
-                          "code": "created_at",
-                          "component": "date_time",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Дата зміни",
-                          "code": "updated_at",
-                          "component": "date_time",
-                          "sortable": 1,
-                          "filtrated": 1
-                        },
-                        {
-                          "header": "Змінений",
-                          "code": "user.id",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "lang": {
-                    "type": "string"
-                  }
-                }
-              },
-              "examples": {
-                "Example 1": {
-                  "value": {
-                    "lang": "ru"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/categories/filter/": {
-      "get": {
-        "summary": "Your GET endpoint",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success",
-                      "data": [
-                        {
-                          "id": 1,
-                          "header": "ID",
-                          "code": "id",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 2,
-                          "header": "Зображення",
-                          "code": "image",
-                          "component": "card_image",
-                          "sortable": 0,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 3,
-                          "header": "Категорія",
-                          "code": "title",
-                          "component": "linked_category",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 4,
-                          "header": "URL",
-                          "code": "slug",
-                          "component": "slug_show",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 5,
-                          "header": "Країни",
-                          "code": "country",
-                          "component": "country",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 6,
-                          "header": "Активність",
-                          "code": "is_active",
-                          "component": "switcher",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 7,
-                          "header": "Сортування",
-                          "code": "sort",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 8,
-                          "header": "Дата створення",
-                          "code": "created_at",
-                          "component": "date_time",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 9,
-                          "header": "Дата зміни",
-                          "code": "updated_at",
-                          "component": "date_time",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 10,
-                          "header": "Ким змінений",
-                          "code": "changed_by",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        }
-                      ]
-                    }
-                  },
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "integer"
-                          },
-                          "header": {
-                            "type": "string"
-                          },
-                          "code": {
-                            "type": "string"
-                          },
-                          "component": {
-                            "type": "string"
-                          },
-                          "sortable": {
-                            "type": "integer"
-                          },
-                          "filtrated": {
-                            "type": "integer"
-                          },
-                          "createdAt": {
-                            "type": [
-                              "string",
-                              "null"
-                            ]
-                          },
-                          "updatedAt": {
-                            "type": [
-                              "string",
-                              "null"
-                            ]
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success",
-                      "data": [
-                        {
-                          "id": 1,
-                          "header": "ID",
-                          "code": "id",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 2,
-                          "header": "Зображення",
-                          "code": "image",
-                          "component": "card_image",
-                          "sortable": 0,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 3,
-                          "header": "Категорія",
-                          "code": "title",
-                          "component": "linked_category",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 4,
-                          "header": "URL",
-                          "code": "slug",
-                          "component": "slug_show",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 5,
-                          "header": "Країни",
-                          "code": "country",
-                          "component": "country",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 6,
-                          "header": "Активність",
-                          "code": "is_active",
-                          "component": "switcher",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 7,
-                          "header": "Сортування",
-                          "code": "sort",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 8,
-                          "header": "Дата створення",
-                          "code": "created_at",
-                          "component": "date_time",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 9,
-                          "header": "Дата зміни",
-                          "code": "updated_at",
-                          "component": "date_time",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        },
-                        {
-                          "id": 10,
-                          "header": "Ким змінений",
-                          "code": "changed_by",
-                          "component": "common_text",
-                          "sortable": 1,
-                          "filtrated": 1,
-                          "createdAt": null,
-                          "updatedAt": null
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-categories-filter",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "lang",
-            "description": "for admin panel \"ru\" or \"uk\""
-          }
-        ]
-      }
-    },
-    "/categories/list/": {
-      "get": {
-        "summary": "Your GET endpoint",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success",
-                      "data": [
-                        {
-                          "id": 1,
-                          "name": "Тестова",
-                          "slug": "tested",
-                          "isActive": 1,
-                          "description": "testerskaya",
-                          "image": null,
-                          "parentId": 2,
-                          "depth-level": 1,
-                          "metaTitle": "test",
-                          "metaDescription": "test",
-                          "metaKeywords": "test",
-                          "sort": 100,
-                          "lastChangedId": 1,
-                          "createdAt": "2023-07-04T21:22:49.000000Z",
-                          "updatedAt": "2023-07-06T00:00:00.000000Z",
-                          "createdById": 1,
-                          "countries": [
-                            {
-                              "id": 1,
-                              "name": "Україна",
-                              "isActive": 1,
-                              "sort": 100,
-                              "createdAt": null,
-                              "updatedAt": null,
-                              "pivot": {
-                                "categoryId": 1,
-                                "countryId": 1
-                              }
-                            }
-                          ]
-                        },
-                        {
-                          "id": 2,
-                          "name": "Тестова записка",
-                          "slug": "tested",
-                          "isActive": 0,
-                          "description": "testerskayaіі",
-                          "image": null,
-                          "parentId": null,
-                          "depth-level": 1,
-                          "metaTitle": "test",
-                          "metaDescription": "test",
-                          "metaKeywords": "test",
-                          "sort": 100,
-                          "lastChangedId": 2,
-                          "createdAt": null,
-                          "updatedAt": null,
-                          "createdById": 1,
-                          "countries": [
-                            {
-                              "id": 2,
-                              "name": "Польша",
-                              "isActive": 1,
-                              "sort": 100,
-                              "createdAt": null,
-                              "updatedAt": null,
-                              "pivot": {
-                                "categoryId": 2,
-                                "countryId": 2
-                              }
-                            }
-                          ]
-                        },
-                        {
-                          "id": 5,
-                          "name": "lulz",
-                          "slug": "lulz",
-                          "isActive": 1,
-                          "description": "",
-                          "image": null,
-                          "parentId": 1,
-                          "depth-level": 1,
-                          "metaTitle": "2",
-                          "metaDescription": "",
-                          "metaKeywords": "",
-                          "sort": 200,
-                          "lastChangedId": 1,
-                          "createdAt": "2023-07-16T21:43:06.000000Z",
-                          "updatedAt": "2023-07-16T22:35:30.000000Z",
-                          "createdById": 1,
-                          "countries": [
-                            {
-                              "id": 1,
-                              "name": "Україна",
-                              "isActive": 1,
-                              "sort": 100,
-                              "createdAt": null,
-                              "updatedAt": null,
-                              "pivot": {
-                                "categoryId": 5,
-                                "countryId": 1
-                              }
-                            },
-                            {
-                              "id": 2,
-                              "name": "Польша",
-                              "isActive": 1,
-                              "sort": 100,
-                              "createdAt": null,
-                              "updatedAt": null,
-                              "pivot": {
-                                "categoryId": 5,
-                                "countryId": 2
-                              }
-                            }
-                          ]
-                        },
-                        {
-                          "id": 6,
-                          "name": "kekw",
-                          "slug": "kekw",
-                          "isActive": 0,
-                          "description": "",
-                          "image": null,
-                          "parentId": null,
-                          "depth-level": 1,
-                          "metaTitle": "1",
-                          "metaDescription": "",
-                          "metaKeywords": "",
-                          "sort": 100,
-                          "lastChangedId": 1,
-                          "createdAt": "2023-07-16T22:36:59.000000Z",
-                          "updatedAt": "2023-07-16T22:36:59.000000Z",
-                          "createdById": 1,
-                          "countries": []
-                        }
-                      ]
-                    }
-                  },
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "integer"
-                          },
-                          "name": {
-                            "type": "string"
-                          },
-                          "slug": {
-                            "type": "string"
-                          },
-                          "isActive": {
-                            "type": "integer"
-                          },
-                          "description": {
-                            "type": "string"
-                          },
-                          "image": {
-                            "type": [
-                              "string",
-                              "null"
-                            ]
-                          },
-                          "parentId": {
-                            "type": [
-                              "integer",
-                              "null"
-                            ]
-                          },
-                          "depth-level": {
-                            "type": "integer"
-                          },
-                          "metaTitle": {
-                            "type": "string"
-                          },
-                          "metaDescription": {
-                            "type": "string"
-                          },
-                          "metaKeywords": {
-                            "type": "string"
-                          },
-                          "sort": {
-                            "type": "integer"
-                          },
-                          "lastChangedId": {
-                            "type": "integer"
-                          },
-                          "createdAt": {
-                            "type": "string"
-                          },
-                          "updatedAt": {
-                            "type": "string"
-                          },
-                          "createdById": {
-                            "type": "integer"
-                          },
-                          "countries": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "integer"
-                                },
-                                "name": {
-                                  "type": "string"
-                                },
-                                "isActive": {
-                                  "type": "integer"
-                                },
-                                "sort": {
-                                  "type": "integer"
-                                },
-                                "createdAt": {
-                                  "type": [
-                                    "string",
-                                    "null"
-                                  ]
-                                },
-                                "updatedAt": {
-                                  "type": [
-                                    "string",
-                                    "null"
-                                  ]
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success",
-                      "data": [
-                        {
-                          "id": 1,
-                          "name": "Тестова",
-                          "slug": "tested",
-                          "isActive": 1,
-                          "description": "testerskaya",
-                          "image": null,
-                          "parentId": 2,
-                          "depth-level": 1,
-                          "metaTitle": "test",
-                          "metaDescription": "test",
-                          "metaKeywords": "test",
-                          "sort": 100,
-                          "lastChangedId": 1,
-                          "createdAt": "2023-07-04T21:22:49.000000Z",
-                          "updatedAt": "2023-07-06T00:00:00.000000Z",
-                          "createdById": 1,
-                          "countries": [
-                            {
-                              "id": 1,
-                              "name": "Україна",
-                              "isActive": 1,
-                              "sort": 100,
-                              "createdAt": null,
-                              "updatedAt": null,
-                              "pivot": {
-                                "categoryId": 1,
-                                "countryId": 1
-                              }
-                            }
-                          ]
-                        },
-                        {
-                          "id": 2,
-                          "name": "Тестова записка",
-                          "slug": "tested",
-                          "isActive": 0,
-                          "description": "testerskayaіі",
-                          "image": null,
-                          "parentId": null,
-                          "depth-level": 1,
-                          "metaTitle": "test",
-                          "metaDescription": "test",
-                          "metaKeywords": "test",
-                          "sort": 100,
-                          "lastChangedId": 2,
-                          "createdAt": null,
-                          "updatedAt": null,
-                          "createdById": 1,
-                          "countries": [
-                            {
-                              "id": 2,
-                              "name": "Польша",
-                              "isActive": 1,
-                              "sort": 100,
-                              "createdAt": null,
-                              "updatedAt": null,
-                              "pivot": {
-                                "categoryId": 2,
-                                "countryId": 2
-                              }
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-categories-list",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "lang",
-            "description": "\"ru\" or \"uk\""
-          },
-          {
-            "schema": {
-              "type": "integer"
-            },
-            "in": "query",
-            "name": "id",
-            "description": "Item id"
-          },
-          {
-            "schema": {},
-            "in": "query",
-            "name": "image",
-            "description": "Item image"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "name",
-            "description": "Item name"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "slug",
-            "description": "Item slug"
-          },
-          {
-            "schema": {
-              "type": "integer"
-            },
-            "in": "query",
-            "name": "country",
-            "description": "Item country"
-          },
-          {
-            "schema": {
-              "type": "boolean"
-            },
-            "in": "query",
-            "name": "is_active",
-            "description": "Status of item activity"
-          },
-          {
-            "schema": {
-              "type": "integer"
-            },
-            "in": "query",
-            "name": "sort",
-            "description": "Sort param"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "created_at",
-            "description": "Date of creation"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "updated_at",
-            "description": "Date of last updation"
-          },
-          {
-            "schema": {
-              "type": "integer"
-            },
-            "in": "query",
-            "name": "changed_by",
-            "description": "Id of user who last changed the item"
-          },
-          {
-            "schema": {
-              "type": "integer"
-            },
-            "in": "query",
-            "name": "parent",
-            "description": "parent section id"
-          },
-          {
-            "schema": {
-              "type": "integer"
-            },
-            "in": "query",
-            "name": "depth",
-            "description": "Depth level"
-          }
-        ]
-      }
-    },
-    "/categories/fulllist/": {
-      "get": {
-        "summary": "Your GET endpoint",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success",
-                      "data": [
-                        {
-                          "id": 1,
-                          "name": "Тестова",
-                          "description": "",
-                          "metaTitle": "",
-                          "metaDescription": "",
-                          "metaKeywords": ""
-                        },
-                        {
-                          "id": 2,
-                          "name": "Тестова записка",
-                          "description": "",
-                          "metaTitle": "",
-                          "metaDescription": "",
-                          "metaKeywords": ""
-                        },
-                        {
-                          "id": 5,
-                          "name": "lulz",
-                          "description": "",
-                          "metaTitle": "",
-                          "metaDescription": "",
-                          "metaKeywords": ""
-                        },
-                        {
-                          "id": 6,
-                          "name": "kekw",
-                          "description": "",
-                          "metaTitle": "",
-                          "metaDescription": "",
-                          "metaKeywords": ""
-                        }
-                      ]
-                    }
-                  },
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "integer"
-                          },
-                          "name": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success",
-                      "data": [
-                        {
-                          "id": 1,
-                          "name": "Тестова",
-                          "description": "",
-                          "metaTitle": "",
-                          "metaDescription": "",
-                          "metaKeywords": ""
-                        },
-                        {
-                          "id": 2,
-                          "name": "Тестова записка",
-                          "description": "",
-                          "metaTitle": "",
-                          "metaDescription": "",
-                          "metaKeywords": ""
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-categories-fulllist",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "lang",
-            "description": "\"ru\" or \"uk\""
-          }
-        ]
-      }
-    },
-    "/categories/main_tab/{id}": {
-      "parameters": [
-        {
-          "schema": {
-            "type": "string"
-          },
-          "name": "id",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "get": {
-        "summary": "Your GET endpoint",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "string"
-                        },
-                        "description": {
-                          "type": "string"
-                        },
-                        "slug": {
-                          "type": "string"
-                        },
-                        "image": {
-                          "type": "string"
-                        },
-                        "metaTitle": {
-                          "type": "string"
-                        },
-                        "metaDescription": {
-                          "type": "string"
-                        },
-                        "metaKeywords": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success",
-                      "data": {
-                        "name": "Тестова",
-                        "description": "testerskaya",
-                        "slug": "tested",
-                        "image": "",
-                        "metaTitle": "test",
-                        "metaDescription": "test",
-                        "metaKeywords": "test"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success",
-                      "data": {
-                        "name": "Тестова",
-                        "description": "testerskaya",
-                        "slug": "tested",
-                        "image": null,
-                        "metaTitle": "test",
-                        "metaDescription": "test",
-                        "metaKeywords": "test"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-categories-main_tab-id",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "lang",
-            "description": "\"ru\" or \"uk\""
-          }
-        ]
-      },
-      "put": {
-        "summary": "",
-        "operationId": "put-categories-main_tab-id",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success",
-                      "data": 1
-                    }
-                  },
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "integer",
-                      "description": "Category id"
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success",
-                      "data": 5
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "slug": {
-                    "type": "string"
-                  },
-                  "image": {
-                    "type": "string"
-                  },
-                  "meta_description": {
-                    "type": "string"
-                  },
-                  "meta_title": {
-                    "type": "string"
-                  },
-                  "meta_keywords": {
-                    "type": "string"
-                  },
-                  "lang": {
-                    "type": "string"
-                  }
-                }
-              },
-              "examples": {
-                "Example 1": {
-                  "value": {
-                    "name": "string",
-                    "description": "string",
-                    "slug": "string",
-                    "image": "string",
-                    "meta_description": "string",
-                    "meta_title": "string",
-                    "meta_keywords": "string"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/categories/data_tab/{id}": {
-      "parameters": [
-        {
-          "schema": {
-            "type": "string"
-          },
-          "name": "id",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "get": {
-        "summary": "Your GET endpoint",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success",
-                      "data": {
-                        "categoryData": {
-                          "id": 1,
-                          "name": "testik",
-                          "isActive": 1,
-                          "sort": 100,
-                          "parentId": 2,
-                          "lastChangedId": 1,
-                          "createdById": 1,
-                          "createdAt": "2023-07-04T21:22:49.000000Z",
-                          "updatedAt": "2023-07-17T00:19:19.000000Z",
-                          "description": "",
-                          "metaTitle": "",
-                          "metaDescription": "",
-                          "metaKeywords": ""
-                        },
-                        "countries": [
-                          {
-                            "countryId": 1,
-                            "name": "Україна",
-                            "pivot": {
-                              "categoryId": 1,
-                              "countryId": 1
-                            }
-                          }
-                        ],
-                        "parentCategory": {
-                          "id": 2,
-                          "name": "Тестова записка",
-                          "description": "",
-                          "metaTitle": "",
-                          "metaDescription": "",
-                          "metaKeywords": ""
-                        },
-                        "lastChange": "Данила",
-                        "createdBy": "Данила"
-                      }
-                    }
-                  },
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "categoryData": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "integer"
-                            },
-                            "name": {
-                              "type": "string"
-                            },
-                            "isActive": {
-                              "type": "integer"
-                            },
-                            "sort": {
-                              "type": "integer"
-                            },
-                            "parentId": {
-                              "type": "integer"
-                            },
-                            "lastChangedId": {
-                              "type": "integer"
-                            },
-                            "createdById": {
-                              "type": "integer"
-                            },
-                            "createdAt": {
-                              "type": "string"
-                            },
-                            "updatedAt": {
-                              "type": "string"
-                            },
-                            "description": {
-                              "type": "string"
-                            },
-                            "metaTitle": {
-                              "type": "string"
-                            },
-                            "metaDescription": {
-                              "type": "string"
-                            },
-                            "metaKeywords": {
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "countries": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "countryId": {
-                                "type": "integer"
-                              },
-                              "name": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        },
-                        "parentCategory": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "integer"
-                            },
-                            "name": {
-                              "type": "string"
-                            },
-                            "description": {
-                              "type": "string"
-                            },
-                            "metaTitle": {
-                              "type": "string"
-                            },
-                            "metaDescription": {
-                              "type": "string"
-                            },
-                            "metaKeywords": {
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "lastChange": {
-                          "type": "string"
-                        },
-                        "createdBy": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success",
-                      "data": {
-                        "categoryData": {
-                          "id": 1,
-                          "name": "testik",
-                          "isActive": 1,
-                          "sort": 100,
-                          "parentId": 2,
-                          "lastChangedId": 1,
-                          "createdById": 1,
-                          "createdAt": "2023-07-04T21:22:49.000000Z",
-                          "updatedAt": "2023-07-17T00:19:19.000000Z",
-                          "description": "",
-                          "metaTitle": "",
-                          "metaDescription": "",
-                          "metaKeywords": ""
-                        },
-                        "countries": [
-                          {
-                            "countryId": 1,
-                            "name": "Україна",
-                            "pivot": {
-                              "categoryId": 1,
-                              "countryId": 1
-                            }
-                          }
-                        ],
-                        "parentCategory": {
-                          "id": 2,
-                          "name": "Тестова записка",
-                          "description": "",
-                          "metaTitle": "",
-                          "metaDescription": "",
-                          "metaKeywords": ""
-                        },
-                        "lastChange": "Данила",
-                        "createdBy": "Данила"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-categories-data_tab-id",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "lang",
-            "description": "\"ru\" or \"uk\""
-          }
-        ]
-      },
-      "put": {
-        "summary": "",
-        "operationId": "put-categories-data_tab-id",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success",
-                      "data": 1
-                    }
-                  },
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "integer",
-                      "description": "Category id"
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success",
-                      "data": 5
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "is_active": {
-                    "type": "boolean"
-                  },
-                  "sort": {
-                    "type": "integer"
-                  },
-                  "parent_id": {
-                    "type": "integer"
-                  },
-                  "countries": {
+                  "tasks": {
                     "type": "array",
                     "items": {
                       "type": "integer"
                     }
+                  },
+                  "child_id": {
+                    "type": "integer"
                   }
-                }
-              },
-              "examples": {
-                "Example 1": {
-                  "value": {
-                    "is_active": 1,
-                    "sort": 100,
-                    "parent_id": 1,
-                    "countries": [
+                },
+                "x-examples": {
+                  "Example 1": {
+                    "tasks": [
                       1,
-                      2
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/categories/design_tab/{id}": {
-      "parameters": [
-        {
-          "schema": {
-            "type": "string"
-          },
-          "name": "id",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "get": {
-        "summary": "Your GET endpoint",
-        "tags": [],
-        "responses": {},
-        "operationId": "get-categories-design_tab-id"
-      },
-      "put": {
-        "summary": "",
-        "operationId": "put-categories-design_tab-id",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/categories/create": {
-      "post": {
-        "summary": "",
-        "operationId": "post-categories-create",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "integer"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success",
-                      "data": 5
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success",
-                      "data": 5
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "slug": {
-                    "type": "string"
-                  },
-                  "image": {
-                    "type": "string"
-                  },
-                  "meta_description": {
-                    "type": "string"
-                  },
-                  "meta_title": {
-                    "type": "string"
-                  },
-                  "meta_keywords": {
-                    "type": "string"
-                  }
-                },
-                "x-examples": {
-                  "Example 1": {
-                    "name": "string",
-                    "description": "string",
-                    "slug": "string",
-                    "image": "string",
-                    "meta_description": "string",
-                    "meta_title": "string",
-                    "meta_keywords": "string"
+                      2,
+                      3
+                    ],
+                    "child_id": 5
                   }
                 }
               },
               "examples": {
                 "Example 1": {
                   "value": {
-                    "name": "string",
-                    "description": "string",
-                    "slug": "string",
-                    "image": "string",
-                    "meta_description": "string",
-                    "meta_title": "string",
-                    "meta_keywords": "string"
+                    "tasks": [
+                      1,
+                      2,
+                      3
+                    ],
+                    "child_id": 5
                   }
                 }
               }
             }
           }
         }
-      }
-    },
-    "/categories/delete/{id}": {
-      "parameters": [
-        {
-          "schema": {
-            "type": "string"
-          },
-          "name": "id",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "delete": {
-        "summary": "",
-        "operationId": "delete-categories-delete-id",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success"
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/table_settings": {
-      "get": {
-        "summary": "Get table settings",
-        "tags": [
-          "Table settings"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "integer"
-                          },
-                          "header": {
-                            "type": "string"
-                          },
-                          "code": {
-                            "type": "string"
-                          },
-                          "component": {
-                            "type": "string"
-                          },
-                          "sortable": {
-                            "type": "boolean"
-                          },
-                          "filtrated": {
-                            "type": "boolean"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "status": "success",
-                      "data": [
-                        {
-                          "id": 24,
-                          "header": "ID",
-                          "code": "id",
-                          "component": "common_text",
-                          "sortable": true,
-                          "filtrated": true
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "status": "success",
-                      "data": [
-                        {
-                          "id": 24,
-                          "header": "ID",
-                          "code": "id",
-                          "component": "common_text",
-                          "sortable": true,
-                          "filtrated": true
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "message": "Unauthenticated."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity (WebDAV)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "errors": {
-                      "type": "object",
-                      "properties": {
-                        "table": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "message": "Поле \"table\" є обов’язковим.",
-                      "errors": {
-                        "table": [
-                          "Поле \"table\" є обов’язковим."
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-table_settings",
-        "security": [
-          {
-            "Authorization": []
-          }
-        ],
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "table",
-            "description": "Can be admin_groups"
-          }
-        ]
       }
     }
   },
@@ -4688,10 +1252,131 @@
     "schemas": {},
     "securitySchemes": {
       "Authorization": {
-        "name": "Bearer",
-        "type": "apiKey",
-        "in": "header"
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "parameters": {
+      "Accept": {
+        "name": "Accept",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "default": "application/json",
+          "example": "application/json"
+        },
+        "description": "application/json"
+      }
+    },
+    "requestBodies": {},
+    "responses": {
+      "401": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "data": {
+                  "type": "string"
+                }
+              },
+              "x-examples": {
+                "Example 1": {
+                  "success": false,
+                  "message": {
+                    "error": "Unauthorised"
+                  },
+                  "data": "Unauthorised."
+                }
+              }
+            },
+            "examples": {
+              "Example 1": {
+                "value": {
+                  "success": false,
+                  "message": {
+                    "error": "Unauthorised"
+                  },
+                  "data": "Unauthorised."
+                }
+              }
+            }
+          }
+        }
+      },
+      "422": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object",
+                  "properties": {
+                    "age": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "x-examples": {
+                "Example 1": {
+                  "message": "The age field must be an integer.",
+                  "errors": {
+                    "age": [
+                      "The age field must be an integer."
+                    ]
+                  }
+                }
+              }
+            },
+            "examples": {
+              "Example 1": {
+                "value": "{\n    \"message\": \"The age field must be an integer.\",\n    \"errors\": {\n        \"age\": [\n            \"The age field must be an integer.\"\n        ]\n    }\n}"
+              }
+            }
+          }
+        }
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "Children"
+    }
+  ],
+  "security": [
+    {
+      "Authorization": []
+    }
+  ]
 }
