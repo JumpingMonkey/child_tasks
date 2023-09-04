@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\ParentSide;
 
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Controller;

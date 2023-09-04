@@ -26,6 +26,10 @@ class RegularTaskTemplate extends Model
         'schedule_id'
     ];
 
+    protected $casts = [
+        'is_general_available' => 'boolean'
+    ];
+
     public function proofType()
     {
         return $this->belongsTo(ProofType::class);
@@ -38,7 +42,7 @@ class RegularTaskTemplate extends Model
 
     public function regularTask()
     {
-        return $this->hasOne(RegularTask::class);
+        return $this->hasMany(RegularTask::class);
     }
 
     public function adult()

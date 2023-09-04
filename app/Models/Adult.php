@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\RegularTask;
 use App\Models\Reward;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -76,5 +77,11 @@ class Adult extends Authenticatable
     public function tasksForUser()
     {
         return $this->hasMany(Task::class, 'executor_id');
+    }
+
+    //Api
+    public function regularTasks()
+    {
+        return $this->hasMany(RegularTask::class);
     }
 }

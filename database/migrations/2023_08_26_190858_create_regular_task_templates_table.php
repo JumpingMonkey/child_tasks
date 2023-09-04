@@ -21,11 +21,8 @@ return new class extends Migration
             $table->string('title', 150);
             $table->string('description', 500);
             $table->string('icon');
-            $table->boolean('is_general_available')->default(0);
             $table->integer('expected_duration')->nullable();
             $table->mediumInteger('coins')->default(1);
-            $table->foreignIdFor(Adult::class)->constrained()->nullable();
-            $table->foreignIdFor(Child::class)->constrained()->nullable();
             $table->foreignIdFor(ProofType::class)->constrained();
             $table->foreignIdFor(Schedule::class)->constrained();
             $table->timestamps();

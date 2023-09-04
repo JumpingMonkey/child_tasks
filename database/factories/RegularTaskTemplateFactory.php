@@ -20,13 +20,8 @@ class RegularTaskTemplateFactory extends Factory
             'title' => fake()->sentence(3),
             'description' => fake()->paragraph(1),
             'icon' => fake()->image(),
-            'is_general_available' => 0,
             'coins' => 1,
-            // 'adult_id' => 1,
-            // 'child_id' => 1,
             'expected_duration' => 60,
-            // 'proof_type_id' => ,
-            // 'schedule_id' => 
         ];
     }
 }

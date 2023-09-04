@@ -2,9 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\ChildController;
+use App\Http\Controllers\Api\ParentSide\ChildController;
 use App\Http\Controllers\Api\RegisterController;
-use App\Http\Controllers\Api\Parent\ParentsChildrenController;
+use App\Http\Controllers\Api\ParentSide\RegularTaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,30 +30,39 @@ Route::middleware('auth:sanctum')->group(function () {
     ->group(function(){
         Route::apiResource('children', ChildController::class);
         Route::get('get_child_token/{child}', [ChildController::class, 'getAccessTokenByChild']);
+        Route::controller(RegularTaskController::class)
+        ->prefix('regular_tasks')
+        ->group(function(){
+            Route::delete('general_avalable_tasks', 'destroyGeneralAvalableTasks');
+            Route::get('general_avalable_tasks', 'getGeneralAvalableTasks');
+            Route::post('general_avalable_tasks', 'storeGeneralAvalableTasks');
+           
+        });
+        
     });
 });
 
-Route::middleware('auth:sanctum')->group(function () {
-    // Parent part
-    Route::prefix('parent')
-        ->name('parent.')
-        ->middleware('can:is_parent')
-        ->group(function(){
-            Route::controller(ParentsChildrenController::class)->group(function(){
-                Route::get('/children', 'index')->name('children.index');
-                Route::delete('/children/{child}', 'detach')->name('children.detach');
-                Route::get('/children/attach', 'generateAttachCode')->name('children.attach');
-            });
+// Route::middleware('auth:sanctum')->group(function () {
+//     // Parent part
+//     Route::prefix('parent')
+//         ->name('parent.')
+//         ->middleware('can:is_parent')
+//         ->group(function(){
+//             Route::controller(ParentsChildrenController::class)->group(function(){
+//                 Route::get('/children', 'index')->name('children.index');
+//                 Route::delete('/children/{child}', 'detach')->name('children.detach');
+//                 Route::get('/children/attach', 'generateAttachCode')->name('children.attach');
+//             });
             // Route::apiResource('/tasks', ParentTaskController::class);
             // Route::apiResource('/rewards', RewardController::class);
             // Route::apiResource('reward.image', RewardImageController::class)
             // ->only(['create', 'store', 'destroy']);
-    });
+    // });
     // Child part
-    Route::prefix('parent')
-        ->name('parent.')
-        ->middleware('can:is_child')
-        ->group(function(){
+    // Route::prefix('parent')
+    //     ->name('parent.')
+    //     ->middleware('can:is_child')
+    //     ->group(function(){
             
-    });
-});
+    // });
+// });

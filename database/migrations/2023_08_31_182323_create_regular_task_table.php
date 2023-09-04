@@ -17,8 +17,8 @@ return new class extends Migration
         Schema::create('regular_tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(RegularTaskTemplate::class)->constrained();
-            $table->string('picture_proof');
-            $table->string('status');
+            $table->string('picture_proof')->nullable();
+            $table->string('status')->default('new');
             $table->foreignIdFor(Adult::class)->constrained()->nullable();
             $table->foreignIdFor(Child::class)->constrained()->nullable();
             $table->timestamps();
