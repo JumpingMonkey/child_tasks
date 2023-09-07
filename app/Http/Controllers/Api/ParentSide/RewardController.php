@@ -10,9 +10,10 @@ class RewardController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request, int $id)
     {
-        //
+        $success = $request->user()->child()->where('id' , $id)->get();
+        return $this->sendResponseWithData($success, 200);
     }
 
     /**
