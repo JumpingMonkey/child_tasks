@@ -16,12 +16,14 @@ return new class extends Migration
     {
         Schema::create('regular_tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(RegularTaskTemplate::class)->constrained();
+            $regularTask = $table->foreignIdFor(RegularTaskTemplate::class)->constrained();
             $table->string('picture_proof')->nullable();
             $table->string('status')->default('new');
+            $table->smallInteger('coins');
             $table->foreignIdFor(Adult::class)->constrained()->nullable();
-            $table->foreignIdFor(Child::class)->constrained()->nullable();
+            $child = $table->foreignIdFor(Child::class)->constrained()->nullable();
             $table->timestamps();
+            $table->unique([$regularTask->columns[0], $child->columns[0]]);
         });
     }
 

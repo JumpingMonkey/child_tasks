@@ -42,11 +42,15 @@ class RegularTaskSeeder extends Seeder
             ->count(10)
             ->create();
 
-        RegularTask::factory()
-            ->for($taskTemplate->random())
-            ->for(Adult::factory())
-            ->for(Child::factory())
-            ->count(10)
-            ->create();
+            $i = 0;
+            while($i < 10){
+                RegularTask::factory()
+                ->for($taskTemplate->random())
+                ->for(Adult::factory())
+                ->for(Child::factory())
+                ->count(1)
+                ->create();
+                $i++;
+            }
     }
 }

@@ -24,7 +24,7 @@ class RegisterController extends BaseController
         $user = Adult::create($validated);
 
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-        $success['name'] =  $user->name;
+        $success['email'] =  $user->email;
 
         return $this->sendResponseWithData($success, 201);
     }
@@ -47,7 +47,7 @@ class RegisterController extends BaseController
         }
 
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-        $success['name'] =  $user->name;
+        $success['email'] =  $user->email;
         return $this->sendResponseWithData($success);
         
     }

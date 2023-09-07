@@ -19,6 +19,7 @@ class RegularTaskFactory extends Factory
         return [
             'picture_proof' => fake()->image(),
             'status' => 'new',
+            'coins' => 1
         ];
     }
 }

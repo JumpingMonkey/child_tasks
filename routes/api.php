@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ParentSide\ChildController;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\ParentSide\RegularTaskController;
+use App\Http\Controllers\Api\ParentSide\RewardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +39,14 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::post('general_avalable_tasks', 'storeGeneralAvalableTasks');
            
         });
-        
+        Route::controller(RewardController::class)
+        ->prefix('rewards')
+        ->group(function(){
+            Route::delete('general_avalable_tasks', 'destroyGeneralAvalableTasks');
+            Route::get('general_avalable_tasks', 'getGeneralAvalableTasks');
+            Route::post('general_avalable_tasks', 'storeGeneralAvalableTasks');
+           
+        });
     });
 });
 

@@ -22,10 +22,13 @@ class RegularTaskController extends BaseController
 
     public function storeGeneralAvalableTasks(Request $request)
     {
-        foreach($request->tasks as $taskId){
+        
+        foreach($request->get('tasks') as $task){
+            
             $regularTask = RegularTask::make();
-            $regularTask->regular_task_template_id = $taskId;
+            $regularTask->regular_task_template_id = $task['task_id'];
             $regularTask->child_id = $request->get('child_id');
+            $regularTask->coins = $task['coins'];
             $regularTask->status = "new";
             $regularTask->adult_id = $request->user()->id;
             $regularTask->save();
