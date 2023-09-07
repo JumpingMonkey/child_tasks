@@ -102,10 +102,8 @@
               "examples": {
                 "Example 1": {
                   "value": {
-                    "name": "name",
                     "email": "mai2ss2saf332l@mail.com",
-                    "password": "12345",
-                    "c_password": "12345"
+                    "password": "12345"
                   }
                 }
               }
@@ -1121,6 +1119,14 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Requested-With",
+            "description": "XmlHttpRequest"
           }
         ],
         "requestBody": {
@@ -1212,7 +1218,15 @@
                   "tasks": {
                     "type": "array",
                     "items": {
-                      "type": "integer"
+                      "type": "object",
+                      "properties": {
+                        "task_id": {
+                          "type": "integer"
+                        },
+                        "coins": {
+                          "type": "integer"
+                        }
+                      }
                     }
                   },
                   "child_id": {
@@ -1222,9 +1236,14 @@
                 "x-examples": {
                   "Example 1": {
                     "tasks": [
-                      1,
-                      2,
-                      3
+                      {
+                        "task_id": 1,
+                        "coins": 1
+                      },
+                      {
+                        "task_id": 2,
+                        "coins": 2
+                      }
                     ],
                     "child_id": 5
                   }
@@ -1234,9 +1253,14 @@
                 "Example 1": {
                   "value": {
                     "tasks": [
-                      1,
-                      2,
-                      3
+                      {
+                        "task_id": 1,
+                        "coins": 1
+                      },
+                      {
+                        "task_id": 2,
+                        "coins": 2
+                      }
                     ],
                     "child_id": 5
                   }
