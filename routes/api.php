@@ -34,9 +34,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::controller(RegularTaskController::class)
         ->prefix('regular_tasks')
         ->group(function(){
-            Route::delete('general_avalable_tasks', 'destroyGeneralAvalableTasks');
-            Route::get('general_avalable_tasks', 'getGeneralAvalableTasks');
-            Route::post('general_avalable_tasks', 'storeGeneralAvalableTasks');
+            Route::delete('/{child}', 'destroyRegularTasksByChild');
+            Route::get('/{child}', 'getRegularTasksByChild');
+            Route::post('/{child}', 'storeRegularTasks');
+            Route::put('/{child}/update/{regularTask}', 'updateTaskReward');
+            Route::get('general_avalable_tasks', 'getGeneralAvalableTaskTemplates');
+            Route::get('get_templates/{child}', 'getRegularTasksTemplatesByChildId');
            
         });
         Route::controller(RewardController::class)

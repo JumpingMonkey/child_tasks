@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\BaseController;
+use App\Http\Requests\ApiRegisterRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Adult;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class RegisterController extends BaseController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register(RegisterRequest $request)
+    public function register(ApiRegisterRequest $request)
     {
         $validated = $request->validated();
         $validated['password'] = bcrypt($validated['password']);
@@ -25,6 +26,7 @@ class RegisterController extends BaseController
 
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
         $success['email'] =  $user->email;
+        $success['id'] = $user->id;
 
         return $this->sendResponseWithData($success, 201);
     }
@@ -48,6 +50,7 @@ class RegisterController extends BaseController
 
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
         $success['email'] =  $user->email;
+        $success['id'] = $user->id;
         return $this->sendResponseWithData($success);
         
     }

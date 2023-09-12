@@ -49,38 +49,14 @@ class Child extends Authenticatable
 
     //Relationship
 
-    //User(child) belongs to parent. This is relation to itself
+    //child belongs to adult.
     public function adults()
     {
         return $this->belongsToMany(Adult::class);
     }
-    //User can be owner many tasks
-    public function createdTasks()
-    {
-        return $this->hasMany(Task::class);
-    }
-
-    //User can created many rewards
-    public function rewards()
-    {
-        return $this->hasMany(Reward::class);
-    }
-
-    //User can claim rewards
-    public function claimedRewards()
-    {
-        return $this->hasMany(Reward::class, 'claimed_by', 'id');
-    }
-
-    public function tasksForUser()
-    {
-        return $this->hasMany(Task::class, 'executor_id');
-    }
-
-    public function code()
-    {
-        return $this->hasOne(AttachCode::class);
-    }
-
     
+    public function regularTasks()
+    {
+        return $this->hasMany(RegularTask::class);
+    }
 }

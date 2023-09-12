@@ -34,8 +34,11 @@
                         "token": {
                           "type": "string"
                         },
-                        "name": {
+                        "email": {
                           "type": "string"
+                        },
+                        "id": {
+                          "type": "integer"
                         }
                       }
                     }
@@ -44,8 +47,9 @@
                     "Example 1": {
                       "success": true,
                       "data": {
-                        "token": "10|bbKplmTvrkJ71d7RU36IztFPvoQQcA9kdFRRskGJ",
-                        "name": "name"
+                        "token": "2|OuZGk0MUy6G9ydcs1QqkBdvxOknA03FpuZN5o9c8",
+                        "email": "mai2ss2saf332l@mail.com",
+                        "id": 11
                       }
                     }
                   }
@@ -53,13 +57,11 @@
                 "examples": {
                   "Example 1": {
                     "value": {
-                      "status": "success",
+                      "success": true,
                       "data": {
-                        "tokenType": "Bearer",
-                        "expiresIn": 31622400,
-                        "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiM2NmMmIzMjExYmY4YjVkNzBhMDljNDFkMWZkNmRjMDE3YTU1ZTFlMjk3Y2FlZTA1YzNlM2UyMzhlMWVjNGUyODBmZGU0ZjAyMjgwNmNiZmMiLCJpYXQiOjE2ODk4NzI4ODAuMzI2NTE4LCJuYmYiOjE2ODk4NzI4ODAuMzI2NTIsImV4cCI6MTcyMTQ5NTI4MC4zMDA0NDMsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.j-lP1gmV7cxJkC_4co6532lmQR5HdOdIZLmu40xKuoDCcjHYOEAJ9pZKY3QMLgrjIerVBtxLV0Njylu6PJLlv6TA242dfKyoPI_3ujvPZtFx612wx5RSbwRbR7bUyM4BbwverC6wTHcxnYL8wmuB0bg7oXAP3Gh-pLYy0VXnZaaNlIRvGlhyaMj9DI33usIUiLVGokf4D37wc6IZIp4FDLD1_mYCytCsdKkGrzwbzT_F5TQrqonCcWCHNFBryG4Y3F2keDyR2phyVDQpqZvBIy4ymDOj7SCxK1S7XugVereqsLipnVQs-lAWXwCbv4f8sH17fsWbzoUF0SFraCEr-6DJwIsL8GnO24BepYRvqLqeFVV3W_8wurl_69_k7ztT2qdIZFj1YTojX2QS-xAszMprlUumbmZXfX1FOGzaoWLyIn6w2OpqyKX8Dg5yxxoqWlMQnz5GbqsGNaZJfJNGgDLmdXpWGL5ScHAMzZuqFYtYvtVicRlY-DfnejuaOISdXe2bZO8oKZQ5Hjfo_qLTacj4aODlwknUcCjyFhf6Scz4HgCEuB1XBkPUekLrszJOS9b8nGkZ8sJyjnFCzE7KRwLlj0aJ5iR7XVKM-v_HGU23Ie6INs0sH8I8y4BVaZpeuielP8CmSm1NGigJaLYgs4jsx0bhvtSx7T1QBHA0mtc",
-                        "refreshToken": "def5020070cf93fc4716b596681d7e9f81ea9a2382a0c673cdbae27792c1f2f82deb88085bd845635a9709b94f28941179340305460fc3023b2b144b23d85973a03d7710284b0e0f856b6e786cccab19f0a23b1d0534623b9b4b83934fd086799b13b2e358299ea70f5abe80f15835fe7155afae3653a814f9947fe287f4a5b19982ece2a3362c1b55cf7d79ce36a9a00e4d85c48053f028fd8edfe4aee56cfd6dd4b8a5051d6a4bef8bdecf88cb9906ac47293f7a6e27081591e7e2199530879ed16600af202dddbcac4cc65042d08d9cdebab42c310e8fed5836138c543fd741b2146cfa3ee804ae978606128f1ff03e7a0c9d2ca09e4d1d9859c35b6d31e2cb2826ae21057b4dc33e8ec72d10cf84cd84b3c886bf3fcafc71a2d60b2e55e87b4feb59d61ae5df76db0765ef6dcec9450d8b2c898bd41941b165f5efe2046bcdedd17b4f5c92f3d41c5ed029aaf441b78c513706a595bff51c3c440545200be9",
-                        "refreshTokenExpiresAt": 5183970
+                        "token": "2|OuZGk0MUy6G9ydcs1QqkBdvxOknA03FpuZN5o9c8",
+                        "email": "mai2ss2saf332l@mail.com",
+                        "id": 11
                       }
                     }
                   }
@@ -76,26 +78,20 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "email": {
-                    "type": "string"
-                  },
-                  "password": {
-                    "type": "string"
-                  },
-                  "c_password": {
-                    "type": "string"
-                  }
-                },
                 "x-examples": {
                   "Example 1": {
                     "name": "name",
                     "email": "mai2ss2332l@mail.com",
                     "password": "12345",
                     "c_password": "12345"
+                  }
+                },
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
                   }
                 }
               },
@@ -136,8 +132,11 @@
                         "token": {
                           "type": "string"
                         },
-                        "name": {
+                        "email": {
                           "type": "string"
+                        },
+                        "id": {
+                          "type": "integer"
                         }
                       }
                     }
@@ -146,8 +145,9 @@
                     "Example 1": {
                       "success": true,
                       "data": {
-                        "token": "10|bbKplmTvrkJ71d7RU36IztFPvoQQcA9kdFRRskGJ",
-                        "name": "name"
+                        "token": "2|OuZGk0MUy6G9ydcs1QqkBdvxOknA03FpuZN5o9c8",
+                        "email": "mai2ss2saf332l@mail.com",
+                        "id": 11
                       }
                     }
                   }
@@ -157,8 +157,9 @@
                     "value": {
                       "success": true,
                       "data": {
-                        "token": "11|fHXhuFunLOtTzi4VZBEZXMxcvzvd5GEurjGk8Tq6",
-                        "name": "name"
+                        "token": "2|OuZGk0MUy6G9ydcs1QqkBdvxOknA03FpuZN5o9c8",
+                        "email": "mai2ss2saf332l@mail.com",
+                        "id": 11
                       }
                     }
                   }
@@ -573,7 +574,7 @@
           }
         ],
         "tags": [
-          "Children"
+          "Adult side"
         ]
       }
     },
@@ -666,7 +667,7 @@
           }
         ],
         "tags": [
-          "Children"
+          "Adult side"
         ]
       },
       "parameters": [
@@ -777,9 +778,6 @@
             }
           }
         },
-        "tags": [
-          "Admin groups"
-        ],
         "security": [
           {
             "Authorization": []
@@ -825,6 +823,9 @@
           {
             "$ref": "#/components/parameters/Accept"
           }
+        ],
+        "tags": [
+          "Adult side"
         ]
       },
       "delete": {
@@ -903,7 +904,7 @@
           }
         ],
         "tags": [
-          "Children"
+          "Adult side"
         ]
       }
     },
@@ -973,7 +974,7 @@
           }
         ],
         "tags": [
-          "Children"
+          "Adult side"
         ]
       },
       "parameters": [
@@ -1076,10 +1077,113 @@
           }
         ],
         "tags": [
-          "Children"
+          "Adult side"
         ]
       },
-      "parameters": [],
+      "parameters": []
+    },
+    "/adult/regular_tasks/{child}": {
+      "get": {
+        "summary": "Get regular tasks by child",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "age": {
+                          "type": "integer"
+                        },
+                        "gender": {
+                          "type": "integer"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "name": "Dr. Luciano Jenkins I",
+                        "age": 8,
+                        "gender": 0,
+                        "created_at": "2023-08-14T19:46:49.000000Z",
+                        "updated_at": "2023-08-14T19:46:49.000000Z"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "name": "Dr. Luciano Jenkins I",
+                        "age": 8,
+                        "gender": 0,
+                        "created_at": "2023-08-14T19:46:49.000000Z",
+                        "updated_at": "2023-08-14T19:46:49.000000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          }
+        },
+        "operationId": "get-regular-tasks-by-child",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "tags": [
+          "Adult side"
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "child",
+          "in": "path",
+          "required": true
+        }
+      ],
       "delete": {
         "summary": "Delete regular tasks",
         "operationId": "delete-regular_tasks",
@@ -1135,37 +1239,29 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "tasks": {
-                    "type": "array",
-                    "items": {
-                      "type": "integer"
-                    }
+                  "task": {
+                    "type": "integer"
                   }
                 },
                 "x-examples": {
                   "Example 1": {
-                    "tasks": [
-                      4,
-                      2,
-                      5
-                    ]
+                    "task": 13
                   }
                 }
               },
               "examples": {
                 "Example 1": {
                   "value": {
-                    "tasks": [
-                      5,
-                      6,
-                      7
-                    ]
+                    "task": 13
                   }
                 }
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Adult side"
+        ]
       },
       "post": {
         "summary": "Store regular tasks for child",
@@ -1220,7 +1316,7 @@
                     "items": {
                       "type": "object",
                       "properties": {
-                        "task_id": {
+                        "template_id": {
                           "type": "integer"
                         },
                         "coins": {
@@ -1228,24 +1324,20 @@
                         }
                       }
                     }
-                  },
-                  "child_id": {
-                    "type": "integer"
                   }
                 },
                 "x-examples": {
                   "Example 1": {
                     "tasks": [
                       {
-                        "task_id": 1,
+                        "template_id": 1,
                         "coins": 1
                       },
                       {
-                        "task_id": 2,
+                        "template_id": 2,
                         "coins": 2
                       }
-                    ],
-                    "child_id": 5
+                    ]
                   }
                 }
               },
@@ -1254,22 +1346,276 @@
                   "value": {
                     "tasks": [
                       {
-                        "task_id": 1,
+                        "template_id": 1,
                         "coins": 1
                       },
                       {
-                        "task_id": 2,
+                        "template_id": 2,
                         "coins": 2
                       }
-                    ],
-                    "child_id": 5
+                    ]
                   }
                 }
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Adult side"
+        ]
       }
+    },
+    "/adult/regular_tasks/{child}/update/{regularTask}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "child",
+          "in": "path",
+          "required": true
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "regularTask",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "put": {
+        "summary": "Update coins in regular task",
+        "operationId": "update-coins-in-regular-task",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "regular_task_template_id": {
+                          "type": "integer"
+                        },
+                        "picture_proof": {
+                          "type": "null"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "coins": {
+                          "type": "integer"
+                        },
+                        "adult_id": {
+                          "type": "integer"
+                        },
+                        "child_id": {
+                          "type": "integer"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "id": 15,
+                        "regular_task_template_id": 1,
+                        "picture_proof": null,
+                        "status": "new",
+                        "coins": 4,
+                        "adult_id": 1,
+                        "child_id": 12,
+                        "created_at": "2023-09-12T15:17:31.000000Z",
+                        "updated_at": "2023-09-12T15:47:51.000000Z"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "id": 15,
+                        "regular_task_template_id": 1,
+                        "picture_proof": null,
+                        "status": "new",
+                        "coins": 4,
+                        "adult_id": 1,
+                        "child_id": 12,
+                        "created_at": "2023-09-12T15:17:31.000000Z",
+                        "updated_at": "2023-09-12T15:47:51.000000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "coins": {
+                    "type": "integer"
+                  }
+                },
+                "x-examples": {
+                  "Example 1": {
+                    "coins": 3
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "coins": 3
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Adult side"
+        ]
+      }
+    },
+    "/adult/regular_tasks/get_templates/{child}": {
+      "get": {
+        "summary": "Get regular tasks active and inactive templates",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "age": {
+                          "type": "integer"
+                        },
+                        "gender": {
+                          "type": "integer"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "name": "Dr. Luciano Jenkins I",
+                        "age": 8,
+                        "gender": 0,
+                        "created_at": "2023-08-14T19:46:49.000000Z",
+                        "updated_at": "2023-08-14T19:46:49.000000Z"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "name": "Dr. Luciano Jenkins I",
+                        "age": 8,
+                        "gender": 0,
+                        "created_at": "2023-08-14T19:46:49.000000Z",
+                        "updated_at": "2023-08-14T19:46:49.000000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          }
+        },
+        "operationId": "get-regular-tasks-templates",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "description": "",
+        "tags": [
+          "Adult side"
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "child",
+          "in": "path",
+          "required": true
+        }
+      ]
     }
   },
   "components": {
@@ -1393,14 +1739,14 @@
       }
     }
   },
-  "tags": [
-    {
-      "name": "Children"
-    }
-  ],
   "security": [
     {
       "Authorization": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Adult side"
     }
   ]
 }

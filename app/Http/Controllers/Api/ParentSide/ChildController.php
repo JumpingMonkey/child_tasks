@@ -26,6 +26,7 @@ class ChildController extends BaseController
         }
         $success['token'] =  $child->createToken('MyApp')->plainTextToken;
         $success['name'] =  $child->name;
+        $success['id'] = $child->id;
         return $this->sendResponseWithData($success);
     }
 
@@ -46,6 +47,7 @@ class ChildController extends BaseController
         
         $success['token'] =  $child->createToken('MyApp')->plainTextToken;
         $success['name'] =  $child->name;
+        $success['id'] = $child->id;
         
         return $this->sendResponseWithData($success, 201);
     }
