@@ -1616,6 +1616,832 @@
           "required": true
         }
       ]
+    },
+    "/adult/rewards/{child}": {
+      "get": {
+        "summary": "Get all rewards by child",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "price": {
+                            "type": "integer"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "claimed_by_date": {
+                            "type": "null"
+                          },
+                          "child_id": {
+                            "type": "integer"
+                          },
+                          "adult_id": {
+                            "type": "integer"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          },
+                          "image": {
+                            "type": [
+                              "null",
+                              "object"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "filename": {
+                                "type": "string"
+                              },
+                              "imageable_type": {
+                                "type": "string"
+                              },
+                              "imageable_id": {
+                                "type": "integer"
+                              },
+                              "created_at": {
+                                "type": "string"
+                              },
+                              "updated_at": {
+                                "type": "string"
+                              },
+                              "src": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "te",
+                          "price": 10,
+                          "status": "active",
+                          "claimed_by_date": null,
+                          "child_id": 1,
+                          "adult_id": 1,
+                          "created_at": "2023-09-13T16:46:43.000000Z",
+                          "updated_at": "2023-09-13T18:42:55.000000Z",
+                          "image": {
+                            "id": 1,
+                            "filename": "/tmp/cd599043a7e4639333dffc6c8b751fa4.png",
+                            "imageable_type": "App\\Models\\ChildReward",
+                            "imageable_id": 1,
+                            "created_at": "2023-09-13T16:46:43.000000Z",
+                            "updated_at": "2023-09-13T16:46:43.000000Z",
+                            "src": "http://localhost/storage//tmp/cd599043a7e4639333dffc6c8b751fa4.png"
+                          }
+                        },
+                        {
+                          "id": 13,
+                          "title": "test222",
+                          "price": 101,
+                          "status": "active",
+                          "claimed_by_date": null,
+                          "child_id": 1,
+                          "adult_id": 1,
+                          "created_at": "2023-09-13T18:42:08.000000Z",
+                          "updated_at": "2023-09-13T18:42:08.000000Z",
+                          "image": null
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "te",
+                          "price": 10,
+                          "status": "active",
+                          "claimed_by_date": null,
+                          "child_id": 1,
+                          "adult_id": 1,
+                          "created_at": "2023-09-13T16:46:43.000000Z",
+                          "updated_at": "2023-09-13T18:42:55.000000Z",
+                          "image": {
+                            "id": 1,
+                            "filename": "/tmp/cd599043a7e4639333dffc6c8b751fa4.png",
+                            "imageable_type": "App\\Models\\ChildReward",
+                            "imageable_id": 1,
+                            "created_at": "2023-09-13T16:46:43.000000Z",
+                            "updated_at": "2023-09-13T16:46:43.000000Z",
+                            "src": "http://localhost/storage//tmp/cd599043a7e4639333dffc6c8b751fa4.png"
+                          }
+                        },
+                        {
+                          "id": 13,
+                          "title": "test222",
+                          "price": 101,
+                          "status": "active",
+                          "claimed_by_date": null,
+                          "child_id": 1,
+                          "adult_id": 1,
+                          "created_at": "2023-09-13T18:42:08.000000Z",
+                          "updated_at": "2023-09-13T18:42:08.000000Z",
+                          "image": null
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          }
+        },
+        "operationId": "get-rewards-by-child",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "description": "",
+        "tags": [
+          "Adult side",
+          "Rewards"
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "child",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "post": {
+        "summary": "Store reward by child",
+        "operationId": "post-adult-rewards-1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "title": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "child_id": {
+                          "type": "integer"
+                        },
+                        "adult_id": {
+                          "type": "integer"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "title": "test",
+                        "price": 100,
+                        "status": "active",
+                        "child_id": 1,
+                        "adult_id": 1,
+                        "updated_at": "2023-09-13T19:21:27.000000Z",
+                        "created_at": "2023-09-13T19:21:27.000000Z",
+                        "id": 14
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "title": "test",
+                        "price": 100,
+                        "status": "active",
+                        "child_id": 1,
+                        "adult_id": 1,
+                        "updated_at": "2023-09-13T19:21:27.000000Z",
+                        "created_at": "2023-09-13T19:21:27.000000Z",
+                        "id": 14
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "integer"
+                  }
+                },
+                "x-examples": {
+                  "Example 1": {
+                    "title": "test",
+                    "price": 100
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "title": "test",
+                    "price": 100
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Adult side"
+        ]
+      }
+    },
+    "/adult/rewards/{child}/{childReward}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "child",
+          "in": "path",
+          "required": true
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "childReward",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "delete": {
+        "summary": "Delete reward",
+        "operationId": "delete-adult-rewards",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "message": "Reward was deleted!"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "message": "Reward was deleted!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Adult side",
+          "Rewards"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
+          }
+        ]
+      },
+      "put": {
+        "summary": "Update reward by child",
+        "operationId": "put-rewards",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "claimed_by_date": {
+                          "type": "null"
+                        },
+                        "child_id": {
+                          "type": "integer"
+                        },
+                        "adult_id": {
+                          "type": "integer"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "title": "string",
+                        "price": 0,
+                        "status": "active",
+                        "claimed_by_date": null,
+                        "child_id": 1,
+                        "adult_id": 1,
+                        "created_at": "2023-09-13T16:46:43.000000Z",
+                        "updated_at": "2023-09-13T19:25:26.000000Z"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "title": "string",
+                        "price": 0,
+                        "status": "active",
+                        "claimed_by_date": null,
+                        "child_id": 1,
+                        "adult_id": 1,
+                        "created_at": "2023-09-13T16:46:43.000000Z",
+                        "updated_at": "2023-09-13T19:25:26.000000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "integer"
+                  }
+                },
+                "x-examples": {
+                  "Example 1": {
+                    "title": "string",
+                    "price": 0
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "title": "string",
+                    "price": 0
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "x-extension-1": {
+          "success": true,
+          "data": {
+            "id": 1,
+            "title": "string",
+            "price": 0,
+            "status": "active",
+            "claimed_by_date": null,
+            "child_id": 1,
+            "adult_id": 1,
+            "created_at": "2023-09-13T16:46:43.000000Z",
+            "updated_at": "2023-09-13T19:25:26.000000Z"
+          }
+        }
+      }
+    },
+    "/adult/rewards/image/{child}/{childReward}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "child",
+          "in": "path",
+          "required": true
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "childReward",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "delete": {
+        "summary": "Detach image to reward",
+        "operationId": "delete-reward-image",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "claimed_by_date": {
+                          "type": "null"
+                        },
+                        "child_id": {
+                          "type": "integer"
+                        },
+                        "adult_id": {
+                          "type": "integer"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        },
+                        "image": {
+                          "type": "null"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "id": 13,
+                        "title": "test222",
+                        "price": 101,
+                        "status": "active",
+                        "claimed_by_date": null,
+                        "child_id": 1,
+                        "adult_id": 1,
+                        "created_at": "2023-09-13T18:42:08.000000Z",
+                        "updated_at": "2023-09-13T18:42:08.000000Z",
+                        "image": null
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "id": 13,
+                        "title": "test222",
+                        "price": 101,
+                        "status": "active",
+                        "claimed_by_date": null,
+                        "child_id": 1,
+                        "adult_id": 1,
+                        "created_at": "2023-09-13T18:42:08.000000Z",
+                        "updated_at": "2023-09-13T18:42:08.000000Z",
+                        "image": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Adult side",
+          "Rewards"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
+          }
+        ],
+        "description": ""
+      },
+      "post": {
+        "summary": "Attach image to reward",
+        "operationId": "post-rewards-image-1-1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "claimed_by_date": {
+                          "type": "null"
+                        },
+                        "child_id": {
+                          "type": "integer"
+                        },
+                        "adult_id": {
+                          "type": "integer"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        },
+                        "image": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "filename": {
+                              "type": "string"
+                            },
+                            "imageable_type": {
+                              "type": "string"
+                            },
+                            "imageable_id": {
+                              "type": "integer"
+                            },
+                            "created_at": {
+                              "type": "string"
+                            },
+                            "updated_at": {
+                              "type": "string"
+                            },
+                            "src": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "id": 13,
+                        "title": "test222",
+                        "price": 101,
+                        "status": "active",
+                        "claimed_by_date": null,
+                        "child_id": 1,
+                        "adult_id": 1,
+                        "created_at": "2023-09-13T18:42:08.000000Z",
+                        "updated_at": "2023-09-13T18:42:08.000000Z",
+                        "image": {
+                          "id": 19,
+                          "filename": "reward-images/49bH7PiaxwF30ijvm0xtSK7q2NvehkoC3F17IoeB.jpg",
+                          "imageable_type": "App\\Models\\ChildReward",
+                          "imageable_id": 13,
+                          "created_at": "2023-09-13T19:48:40.000000Z",
+                          "updated_at": "2023-09-13T19:48:40.000000Z",
+                          "src": "http://localhost/storage/reward-images/49bH7PiaxwF30ijvm0xtSK7q2NvehkoC3F17IoeB.jpg"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "id": 13,
+                        "title": "test222",
+                        "price": 101,
+                        "status": "active",
+                        "claimed_by_date": null,
+                        "child_id": 1,
+                        "adult_id": 1,
+                        "created_at": "2023-09-13T18:42:08.000000Z",
+                        "updated_at": "2023-09-13T18:42:08.000000Z",
+                        "image": {
+                          "id": 19,
+                          "filename": "reward-images/49bH7PiaxwF30ijvm0xtSK7q2NvehkoC3F17IoeB.jpg",
+                          "imageable_type": "App\\Models\\ChildReward",
+                          "imageable_id": 13,
+                          "created_at": "2023-09-13T19:48:40.000000Z",
+                          "updated_at": "2023-09-13T19:48:40.000000Z",
+                          "src": "http://localhost/storage/reward-images/49bH7PiaxwF30ijvm0xtSK7q2NvehkoC3F17IoeB.jpg"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
+          }
+        ],
+        "tags": [
+          "Adult side",
+          "Rewards"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1747,6 +2573,9 @@
   "tags": [
     {
       "name": "Adult side"
+    },
+    {
+      "name": "Rewards"
     }
   ]
 }
