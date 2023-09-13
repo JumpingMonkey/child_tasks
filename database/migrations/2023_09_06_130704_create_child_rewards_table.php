@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('child_rewards', function (Blueprint $table) {
             $table->id();
             $table->tinyText('title');
-            $table->tinyInteger('price');
+            $table->smallInteger('price');
             $table->tinyText('status');
+            $table->dateTime('claimed_by_date')->nullable();
             $table->foreignIdFor(Child::class)->constrained();
             $table->foreignIdFor(Adult::class)->constrained();
             $table->timestamps();

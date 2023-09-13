@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ChildReward;
 use App\Models\Post;
 use App\Models\Reward;
 use App\Models\Task;
@@ -38,5 +39,10 @@ class Image extends Model
     public function rewards(): MorphToMany
     {
         return $this->morphedByMany(Reward::class, 'imageable');
+    }
+
+    public function childRewards(): MorphToMany
+    {
+        return $this->morphedByMany(ChildReward::class, 'imageable');
     }
 }

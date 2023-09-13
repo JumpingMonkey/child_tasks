@@ -4,11 +4,15 @@ namespace Database\Seeders;
 
 use App\Models\Adult;
 use App\Models\Child;
+use App\Models\ChildReward;
+use App\Models\ChildRewardImage;
+use App\Models\Image;
 use App\Models\ProofType;
 use App\Models\RegularTask;
 use App\Models\RegularTaskTemplate;
 use App\Models\Schedule;
 use App\Models\Timer;
+use Database\Factories\ImageFactory;
 use Database\Factories\TimerFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Eloquent\Factories\Sequence;
@@ -52,6 +56,12 @@ class ApiSeeder extends Seeder
                 ->create();
 
             $task = $taskTemplate->random();
+
+            ChildReward::factory()
+                ->for($adult)
+                ->for($child)
+                ->hasImage()
+                ->create();
             
             if($task->proofType->title == 'timer'){
                 RegularTask::factory()

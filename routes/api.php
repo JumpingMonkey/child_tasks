@@ -45,6 +45,17 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::controller(RewardController::class)
         ->prefix('rewards')
         ->group(function(){
+            Route::delete('/{child}/{childReward}', 'destroy');
+            Route::post('/{child}', 'store');
+            Route::put('/{child}/{childReward}', 'update');
+            Route::get('/{child}', 'index');
+            Route::delete('/image/{child}/{childReward}', 'detachImage');
+            Route::post('/image/{child}/{childReward}', 'attachImage');
+            
+        });
+        Route::controller(RewardController::class)
+        ->prefix('rewards')
+        ->group(function(){
             Route::delete('general_avalable_tasks', 'destroyGeneralAvalableTasks');
             Route::get('general_avalable_tasks', 'getGeneralAvalableTasks');
             Route::post('general_avalable_tasks', 'storeGeneralAvalableTasks');
