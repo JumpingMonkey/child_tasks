@@ -49,8 +49,30 @@ class RewardController extends BaseController
         $reward->child()->associate($child);
         $reward->adult()->associate($request->user());
         $reward->save();
+
+        if ($request->hasFile('image'))
+        {
+            $request->validate([
+                'image.*' => 'mimes:jpg,png,jpeg|max:5000'
+            ], [
+                'image.*.mimes' => 'The file should be in one of the formats: png, jpg, jpeg',
+            ]);
+            
+                $path = $request->file('image')
+                    ->store('reward-images', 'public');
+
+                $image = new ChildRewardImage([
+                    'filename' => $path,
+                ]);
+                
+                $reward->image()->save($image);
+            
+            return $this->sendResponseWithData($reward->load(['image']), 200);
+        } else {
+            return $this->sendResponseWithOutData('Fuck!');
+        } 
        
-        return $this->sendResponseWithData($reward->withoutRelations(), 200);
+        // return $this->sendResponseWithData($reward->withoutRelations(), 200);
     }
 
 
