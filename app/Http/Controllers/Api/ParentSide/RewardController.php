@@ -140,7 +140,9 @@ class RewardController extends BaseController
         
         $childReward->delete();
 
-        return $this->sendResponseWithOutData("Reward was deleted!", 200);
+        $result = $child->rewards()->get();
+
+        return $this->sendResponseWithData($result, 200);
 
     }
 }
