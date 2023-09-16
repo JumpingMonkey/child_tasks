@@ -27,14 +27,4 @@ class RegularTask extends Model
     {
         return $this->hasOne(Timer::class);
     }
-
-    public function adult()
-    {
-        return $this->belongsTo(Adult::class);
-    }
-
-    public function child()
-    {
-        return $this->belongsTo(Child::class);
-    }
 }

@@ -20,12 +20,15 @@ return new class extends Migration
             $table->id();
             $table->string('title', 150);
             $table->string('description', 500);
-            $table->string('icon');
+            $table->string('icon')->nullable();
             $table->integer('expected_duration')->nullable();
             $table->boolean('is_general_available')->default(false);
             $table->mediumInteger('coins')->default(1);
             $table->foreignIdFor(ProofType::class)->constrained();
             $table->foreignIdFor(Schedule::class)->constrained();
+            $table->boolean('status')->default(false);
+            $table->foreignIdFor(Adult::class)->nullable()->constrained();
+            $table->foreignIdFor(Child::class)->constrained();
             $table->timestamps();
         });
     }

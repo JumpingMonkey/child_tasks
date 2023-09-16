@@ -6,6 +6,7 @@ namespace App\Providers;
 
 use App\Models\Adult;
 use App\Models\Child;
+use App\Models\RegularTaskTemplate;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -44,6 +45,12 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('is_related_adult', function(Adult $adult, Child $child){
             return $adult->children->contains($child->id);
+        });
+
+        Gate::define('is_related_regular_task', 
+            function(Adult $adult, RegularTaskTemplate $regularTaskTemplate, Child $child){
+            return $adult->id == $regularTaskTemplate->adult_id && 
+                $regularTaskTemplate->child_id == $child->id;
         });
     }
 }

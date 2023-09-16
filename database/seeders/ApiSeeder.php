@@ -31,16 +31,7 @@ class ApiSeeder extends Seeder
         ))
         ->count(2)
         ->create();
-        
-        $k = 0;
-        while($k < 10){
-        RegularTaskTemplate::factory()
-            ->for($proof->random())
-            ->for(Schedule::factory())
-            ->create(['is_general_available' => true]);
-            $k++;
-        }
-        $taskTemplate = RegularTaskTemplate::all();
+
         $j = 0;
         while($j < 10){
             $child = Child::factory()->create();
@@ -54,33 +45,38 @@ class ApiSeeder extends Seeder
                     ]),
                 ])
                 ->create();
+            $k = 0;
+            while($k < 10){
+                $taskTemplate = RegularTaskTemplate::factory()
+                    ->for($proof->random())
+                    ->for(Schedule::factory())
+                    ->for($child)
+                    ->create(['is_general_available' => true, 
+                    'status' => fake()->randomElement([true, false])
+                ]);
 
-            $task = $taskTemplate->random();
+                if($taskTemplate->status){
+                    if($taskTemplate->proofType->title == 'timer'){
+                        RegularTask::factory()
+                        ->for($taskTemplate)
+                        ->has(Timer::factory())
+                        ->create(['picture_proof' => null]);
+                    } else {
+                        RegularTask::factory()
+                        ->for($taskTemplate)
+                        ->create();
+                    }
+                }
+                $k++;
+            }
 
             ChildReward::factory()
                 ->for($adult)
                 ->for($child)
                 ->hasImage()
                 ->create();
-            
-            if($task->proofType->title == 'timer'){
-                RegularTask::factory()
-                ->for($task)
-                ->for($adult)
-                ->for($child)
-                ->has(Timer::factory())
-                ->create(['picture_proof' => null]);
-            } else {
-                RegularTask::factory()
-                ->for($task)
-                ->for($adult)
-                ->for($child)
-                ->create();
-            }
-            
+                
             $j++;
         }
-
-        
     }
 }

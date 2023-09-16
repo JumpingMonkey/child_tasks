@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\AttachCode;
 use App\Models\ChildReward;
+use App\Models\RegularTaskTemplate;
 use App\Models\Reward;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -56,9 +57,9 @@ class Child extends Authenticatable
         return $this->belongsToMany(Adult::class);
     }
     
-    public function regularTasks()
+    public function regularTaskTemplates()
     {
-        return $this->hasMany(RegularTask::class);
+        return $this->hasMany(RegularTaskTemplate::class);
     }
 
     public function rewards()

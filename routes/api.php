@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ParentSide\CustomRegularTaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ParentSide\ChildController;
@@ -34,12 +35,15 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::controller(RegularTaskController::class)
         ->prefix('regular_tasks')
         ->group(function(){
-            Route::delete('/{child}', 'destroyRegularTasksByChild');
-            Route::get('/{child}', 'getRegularTasksByChild');
-            Route::post('/{child}', 'storeRegularTasks');
-            Route::put('/{child}/update/{regularTask}', 'updateTaskReward');
-            Route::get('general_avalable_tasks', 'getGeneralAvalableTaskTemplates');
-            Route::get('get_templates/{child}', 'getRegularTasksTemplatesByChildId');
+            Route::get('/{child}', 'getRegularTaskTemplatesByChild');
+            Route::put('/{child}', 'updateRegularTaskTemplates');
+            Route::controller(CustomRegularTaskController::class)
+            ->prefix('custom_tasks')
+            ->group(function(){
+                Route::post('/{child}', 'storeCustomRegularTaskTemplate');
+                Route::put('/{child}/{regularTaskTemplate}', 'updateCustomRegularTaskTemplate');
+                Route::delete('/{child}/{regularTaskTemplate}', 'destroyCustomRegularTskTemplate');
+            });
            
         });
         Route::controller(RewardController::class)

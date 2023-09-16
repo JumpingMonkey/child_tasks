@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,8 @@ class RegularTaskFactory extends Factory
         return [
             'picture_proof' => fake()->image(),
             'status' => 'new',
-            'coins' => 1,
+            'start_date' => Carbon::now()->startOfDay()->toDateTimeString(),
+            'end_date' => Carbon::now()->endOfDay()->toDateTimeString()
         ];
     }
 }
