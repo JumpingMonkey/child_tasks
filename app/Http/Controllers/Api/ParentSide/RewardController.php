@@ -69,7 +69,7 @@ class RewardController extends BaseController
             
             return $this->sendResponseWithData($reward->load(['image']), 200);
         } else {
-            return $this->sendResponseWithOutData('Fuck!');
+            return $this->sendResponseWithData($reward->withoutRelations(), 200);
         } 
        
         // return $this->sendResponseWithData($reward->withoutRelations(), 200);

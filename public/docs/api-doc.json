@@ -988,100 +988,6 @@
         }
       ]
     },
-    "/adult/regular_tasks/general_avalable_tasks": {
-      "get": {
-        "summary": "Show general available regular tasks",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "integer"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "age": {
-                          "type": "integer"
-                        },
-                        "gender": {
-                          "type": "integer"
-                        },
-                        "created_at": {
-                          "type": "string"
-                        },
-                        "updated_at": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "success": true,
-                      "data": {
-                        "id": 1,
-                        "name": "Dr. Luciano Jenkins I",
-                        "age": 8,
-                        "gender": 0,
-                        "created_at": "2023-08-14T19:46:49.000000Z",
-                        "updated_at": "2023-08-14T19:46:49.000000Z"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "success": true,
-                      "data": {
-                        "id": 1,
-                        "name": "Dr. Luciano Jenkins I",
-                        "age": 8,
-                        "gender": 0,
-                        "created_at": "2023-08-14T19:46:49.000000Z",
-                        "updated_at": "2023-08-14T19:46:49.000000Z"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
-          },
-          "422": {
-            "$ref": "#/components/responses/422"
-          }
-        },
-        "operationId": "get-child",
-        "security": [
-          {
-            "Authorization": []
-          }
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Accept"
-          }
-        ],
-        "tags": [
-          "Adult side"
-        ]
-      },
-      "parameters": []
-    },
     "/adult/regular_tasks/{child}": {
       "get": {
         "summary": "Get regular tasks by child",
@@ -1171,7 +1077,8 @@
           }
         ],
         "tags": [
-          "Adult side"
+          "Adult side",
+          "Regular Tasks"
         ]
       },
       "parameters": [
@@ -1184,88 +1091,9 @@
           "required": true
         }
       ],
-      "delete": {
-        "summary": "Delete regular tasks",
-        "operationId": "delete-regular_tasks",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "x-examples": {
-                    "Example 1": {
-                      "tasks": [
-                        4
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "success": true,
-                      "message": "Child was deleted!"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "Authorization": []
-          }
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Accept"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "X-Requested-With",
-            "description": "XmlHttpRequest"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "task": {
-                    "type": "integer"
-                  }
-                },
-                "x-examples": {
-                  "Example 1": {
-                    "task": 13
-                  }
-                }
-              },
-              "examples": {
-                "Example 1": {
-                  "value": {
-                    "task": 13
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Adult side"
-        ]
-      },
-      "post": {
-        "summary": "Store regular tasks for child",
-        "operationId": "post-adult-regular_tasks-general_avalable_tasks",
+      "put": {
+        "summary": "Update regular tasks by child",
+        "operationId": "update-regular_tasks",
         "responses": {
           "200": {
             "description": "OK",
@@ -1276,18 +1104,136 @@
                   "properties": {
                     "success": {
                       "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "icon": {
+                            "type": "string"
+                          },
+                          "expected_duration": {
+                            "type": "integer"
+                          },
+                          "is_general_available": {
+                            "type": "boolean"
+                          },
+                          "coins": {
+                            "type": "integer"
+                          },
+                          "proof_type_id": {
+                            "type": "integer"
+                          },
+                          "schedule_id": {
+                            "type": "integer"
+                          },
+                          "status": {
+                            "type": "integer"
+                          },
+                          "adult_id": {
+                            "type": "null"
+                          },
+                          "child_id": {
+                            "type": "integer"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          }
+                        }
+                      }
                     }
                   },
                   "x-examples": {
                     "Example 1": {
-                      "success": true
+                      "success": true,
+                      "data": [
+                        {
+                          "id": 5,
+                          "title": "Molestias quae beatae sint.",
+                          "description": "Et impedit voluptate aliquam debitis.",
+                          "icon": "/tmp/6f9b49f4b6f84f80065a8182828fc49a.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 2,
+                          "schedule_id": 5,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:52.000000Z",
+                          "updated_at": "2023-09-16T19:43:00.000000Z"
+                        },
+                        {
+                          "id": 6,
+                          "title": "Ut soluta ea.",
+                          "description": "Voluptas velit in quasi dicta numquam id quas.",
+                          "icon": "/tmp/b8a69fa6bcee18ec34a348d36f867481.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 5,
+                          "proof_type_id": 2,
+                          "schedule_id": 6,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:54.000000Z",
+                          "updated_at": "2023-09-16T19:43:00.000000Z"
+                        }
+                      ]
                     }
                   }
                 },
                 "examples": {
                   "Example 1": {
                     "value": {
-                      "success": true
+                      "success": true,
+                      "data": [
+                        {
+                          "id": 5,
+                          "title": "Molestias quae beatae sint.",
+                          "description": "Et impedit voluptate aliquam debitis.",
+                          "icon": "/tmp/6f9b49f4b6f84f80065a8182828fc49a.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 2,
+                          "schedule_id": 5,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:52.000000Z",
+                          "updated_at": "2023-09-16T19:43:00.000000Z"
+                        },
+                        {
+                          "id": 6,
+                          "title": "Ut soluta ea.",
+                          "description": "Voluptas velit in quasi dicta numquam id quas.",
+                          "icon": "/tmp/b8a69fa6bcee18ec34a348d36f867481.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 5,
+                          "proof_type_id": 2,
+                          "schedule_id": 6,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:54.000000Z",
+                          "updated_at": "2023-09-16T19:43:00.000000Z"
+                        }
+                      ]
                     }
                   }
                 }
@@ -1295,14 +1241,14 @@
             }
           }
         },
-        "parameters": [
-          {
-            "$ref": "./admin.json#/components/parameters/Accept"
-          }
-        ],
         "security": [
           {
             "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
           }
         ],
         "requestBody": {
@@ -1311,16 +1257,19 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "tasks": {
+                  "task_templates": {
                     "type": "array",
                     "items": {
                       "type": "object",
                       "properties": {
-                        "template_id": {
+                        "task_template_id": {
                           "type": "integer"
                         },
                         "coins": {
                           "type": "integer"
+                        },
+                        "status": {
+                          "type": "boolean"
                         }
                       }
                     }
@@ -1328,14 +1277,16 @@
                 },
                 "x-examples": {
                   "Example 1": {
-                    "tasks": [
+                    "task_templates": [
                       {
-                        "template_id": 1,
-                        "coins": 1
+                        "task_template_id": 5,
+                        "coins": 1,
+                        "status": true
                       },
                       {
-                        "template_id": 2,
-                        "coins": 2
+                        "task_template_id": 6,
+                        "coins": 5,
+                        "status": true
                       }
                     ]
                   }
@@ -1344,14 +1295,16 @@
               "examples": {
                 "Example 1": {
                   "value": {
-                    "tasks": [
+                    "task_templates": [
                       {
-                        "template_id": 1,
-                        "coins": 1
+                        "task_template_id": 5,
+                        "coins": 1,
+                        "status": true
                       },
                       {
-                        "template_id": 2,
-                        "coins": 2
+                        "task_template_id": 6,
+                        "coins": 5,
+                        "status": true
                       }
                     ]
                   }
@@ -1361,11 +1314,12 @@
           }
         },
         "tags": [
-          "Adult side"
+          "Adult side",
+          "Regular Tasks"
         ]
       }
     },
-    "/adult/regular_tasks/{child}/update/{regularTask}": {
+    "/adult/regular_tasks/custom_tasks/{child}": {
       "parameters": [
         {
           "schema": {
@@ -1374,19 +1328,11 @@
           "name": "child",
           "in": "path",
           "required": true
-        },
-        {
-          "schema": {
-            "type": "string"
-          },
-          "name": "regularTask",
-          "in": "path",
-          "required": true
         }
       ],
-      "put": {
-        "summary": "Update coins in regular task",
-        "operationId": "update-coins-in-regular-task",
+      "post": {
+        "summary": "Create custom regular task",
+        "operationId": "create-custom-regular-task",
         "responses": {
           "200": {
             "description": "OK"
@@ -1403,19 +1349,19 @@
                     "data": {
                       "type": "object",
                       "properties": {
-                        "id": {
-                          "type": "integer"
+                        "title": {
+                          "type": "string"
                         },
-                        "regular_task_template_id": {
-                          "type": "integer"
-                        },
-                        "picture_proof": {
-                          "type": "null"
-                        },
-                        "status": {
+                        "description": {
                           "type": "string"
                         },
                         "coins": {
+                          "type": "integer"
+                        },
+                        "expected_duration": {
+                          "type": "integer"
+                        },
+                        "proof_type_id": {
                           "type": "integer"
                         },
                         "adult_id": {
@@ -1424,11 +1370,17 @@
                         "child_id": {
                           "type": "integer"
                         },
-                        "created_at": {
-                          "type": "string"
+                        "schedule_id": {
+                          "type": "integer"
                         },
                         "updated_at": {
                           "type": "string"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "type": "integer"
                         }
                       }
                     }
@@ -1437,15 +1389,17 @@
                     "Example 1": {
                       "success": true,
                       "data": {
-                        "id": 15,
-                        "regular_task_template_id": 1,
-                        "picture_proof": null,
-                        "status": "new",
-                        "coins": 4,
+                        "title": "Custom task 1",
+                        "description": "Custom description",
+                        "coins": 10,
+                        "expected_duration": 60,
+                        "proof_type_id": 1,
                         "adult_id": 1,
-                        "child_id": 12,
-                        "created_at": "2023-09-12T15:17:31.000000Z",
-                        "updated_at": "2023-09-12T15:47:51.000000Z"
+                        "child_id": 1,
+                        "schedule_id": 101,
+                        "updated_at": "2023-09-16T20:03:10.000000Z",
+                        "created_at": "2023-09-16T20:03:10.000000Z",
+                        "id": 106
                       }
                     }
                   }
@@ -1455,15 +1409,17 @@
                     "value": {
                       "success": true,
                       "data": {
-                        "id": 15,
-                        "regular_task_template_id": 1,
-                        "picture_proof": null,
-                        "status": "new",
-                        "coins": 4,
+                        "title": "Custom task 1",
+                        "description": "Custom description",
+                        "coins": 10,
+                        "expected_duration": 60,
+                        "proof_type_id": 1,
                         "adult_id": 1,
-                        "child_id": 12,
-                        "created_at": "2023-09-12T15:17:31.000000Z",
-                        "updated_at": "2023-09-12T15:47:51.000000Z"
+                        "child_id": 1,
+                        "schedule_id": 101,
+                        "updated_at": "2023-09-16T20:03:10.000000Z",
+                        "created_at": "2023-09-16T20:03:10.000000Z",
+                        "id": 106
                       }
                     }
                   }
@@ -1488,20 +1444,84 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
                   "coins": {
+                    "type": "integer"
+                  },
+                  "proof_type_id": {
+                    "type": "integer"
+                  },
+                  "schedule": {
+                    "type": "object",
+                    "properties": {
+                      "monday": {
+                        "type": "integer"
+                      },
+                      "tuesday": {
+                        "type": "integer"
+                      },
+                      "wednesday": {
+                        "type": "integer"
+                      },
+                      "thursday": {
+                        "type": "integer"
+                      },
+                      "friday": {
+                        "type": "integer"
+                      },
+                      "saturday": {
+                        "type": "integer"
+                      },
+                      "sunday": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "expected_duration": {
                     "type": "integer"
                   }
                 },
                 "x-examples": {
                   "Example 1": {
-                    "coins": 3
+                    "title": "Custom task 1",
+                    "description": "Custom description",
+                    "coins": 10,
+                    "proof_type_id": 1,
+                    "schedule": {
+                      "monday": 1,
+                      "tuesday": 0,
+                      "wednesday": 1,
+                      "thursday": 0,
+                      "friday": 1,
+                      "saturday": 0,
+                      "sunday": 0
+                    },
+                    "expected_duration": 60
                   }
                 }
               },
               "examples": {
                 "Example 1": {
                   "value": {
-                    "coins": 3
+                    "title": "Custom task 1",
+                    "description": "Custom description",
+                    "coins": 10,
+                    "proof_type_id": 1,
+                    "schedule": {
+                      "monday": 1,
+                      "tuesday": 0,
+                      "wednesday": 1,
+                      "thursday": 0,
+                      "friday": 1,
+                      "saturday": 0,
+                      "sunday": 0
+                    },
+                    "expected_duration": 60
                   }
                 }
               }
@@ -1509,13 +1529,148 @@
           }
         },
         "tags": [
-          "Adult side"
+          "Adult side",
+          "Custom regular tasks",
+          "Regular Tasks"
         ]
       }
     },
-    "/adult/regular_tasks/get_templates/{child}": {
-      "get": {
-        "summary": "Get regular tasks active and inactive templates",
+    "/adult/regular_tasks/custom_tasks/{child}/{regularTaskTemplate}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "child",
+          "in": "path",
+          "required": true
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "regularTaskTemplate",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "put": {
+        "summary": "Update custom regular task template",
+        "operationId": "update-custom-regular-task-template",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Adult side",
+          "Custom regular tasks",
+          "Regular Tasks"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "coins": {
+                    "type": "integer"
+                  },
+                  "proof_type_id": {
+                    "type": "integer"
+                  },
+                  "schedule": {
+                    "type": "object",
+                    "properties": {
+                      "monday": {
+                        "type": "integer"
+                      },
+                      "tuesday": {
+                        "type": "integer"
+                      },
+                      "wednesday": {
+                        "type": "integer"
+                      },
+                      "thursday": {
+                        "type": "integer"
+                      },
+                      "friday": {
+                        "type": "integer"
+                      },
+                      "saturday": {
+                        "type": "integer"
+                      },
+                      "sunday": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "expected_duration": {
+                    "type": "integer"
+                  }
+                },
+                "x-examples": {
+                  "Example 1": {
+                    "title": "Custom task",
+                    "description": "Custom description",
+                    "coins": 101,
+                    "proof_type_id": 2,
+                    "schedule": {
+                      "monday": 1,
+                      "tuesday": 1,
+                      "wednesday": 1,
+                      "thursday": 1,
+                      "friday": 1,
+                      "saturday": 1,
+                      "sunday": 1
+                    },
+                    "expected_duration": 61
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "title": "Custom task",
+                    "description": "Custom description",
+                    "coins": 101,
+                    "proof_type_id": 2,
+                    "schedule": {
+                      "monday": 1,
+                      "tuesday": 1,
+                      "wednesday": 1,
+                      "thursday": 1,
+                      "friday": 1,
+                      "saturday": 1,
+                      "sunday": 1
+                    },
+                    "expected_duration": 61
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete custom regular task template",
+        "operationId": "delete-custom-regular-task-template",
         "responses": {
           "200": {
             "description": "OK",
@@ -1528,25 +1683,58 @@
                       "type": "boolean"
                     },
                     "data": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "integer"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "age": {
-                          "type": "integer"
-                        },
-                        "gender": {
-                          "type": "integer"
-                        },
-                        "created_at": {
-                          "type": "string"
-                        },
-                        "updated_at": {
-                          "type": "string"
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "icon": {
+                            "type": [
+                              "null",
+                              "string"
+                            ]
+                          },
+                          "expected_duration": {
+                            "type": "integer"
+                          },
+                          "is_general_available": {
+                            "type": "boolean"
+                          },
+                          "coins": {
+                            "type": "integer"
+                          },
+                          "proof_type_id": {
+                            "type": "integer"
+                          },
+                          "schedule_id": {
+                            "type": "integer"
+                          },
+                          "status": {
+                            "type": "integer"
+                          },
+                          "adult_id": {
+                            "type": [
+                              "integer",
+                              "null"
+                            ]
+                          },
+                          "child_id": {
+                            "type": "integer"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          }
                         }
                       }
                     }
@@ -1554,14 +1742,216 @@
                   "x-examples": {
                     "Example 1": {
                       "success": true,
-                      "data": {
-                        "id": 1,
-                        "name": "Dr. Luciano Jenkins I",
-                        "age": 8,
-                        "gender": 0,
-                        "created_at": "2023-08-14T19:46:49.000000Z",
-                        "updated_at": "2023-08-14T19:46:49.000000Z"
-                      }
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "Magni quia ipsa.",
+                          "description": "Repudiandae illum consectetur et veniam.",
+                          "icon": "/tmp/0c729949beee05cf0e4248392b2c4ef7.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 2,
+                          "schedule_id": 1,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:47.000000Z",
+                          "updated_at": "2023-09-15T19:37:47.000000Z"
+                        },
+                        {
+                          "id": 2,
+                          "title": "Omnis ut ut non.",
+                          "description": "Et deleniti aut et nulla vel.",
+                          "icon": "/tmp/d762a418de282dad8872d0f5c66a5bb6.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 1,
+                          "schedule_id": 2,
+                          "status": 0,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:49.000000Z",
+                          "updated_at": "2023-09-15T19:37:49.000000Z"
+                        },
+                        {
+                          "id": 3,
+                          "title": "Quibusdam at repellat.",
+                          "description": "Eaque enim quia totam corrupti magni sint et animi. Rerum ut velit vitae totam rerum.",
+                          "icon": "/tmp/9a250b36f98d1349cf96d5ee2c4b428e.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 1,
+                          "schedule_id": 3,
+                          "status": 0,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:50.000000Z",
+                          "updated_at": "2023-09-15T19:37:50.000000Z"
+                        },
+                        {
+                          "id": 4,
+                          "title": "Deleniti veritatis sapiente rerum dicta.",
+                          "description": "Error repellendus qui commodi.",
+                          "icon": "/tmp/479a18ecd8f5f5b48d51707a58f6c2d7.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 1,
+                          "schedule_id": 4,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:50.000000Z",
+                          "updated_at": "2023-09-15T19:37:50.000000Z"
+                        },
+                        {
+                          "id": 5,
+                          "title": "Molestias quae beatae sint.",
+                          "description": "Et impedit voluptate aliquam debitis.",
+                          "icon": "/tmp/6f9b49f4b6f84f80065a8182828fc49a.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 2,
+                          "schedule_id": 5,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:52.000000Z",
+                          "updated_at": "2023-09-16T19:43:00.000000Z"
+                        },
+                        {
+                          "id": 6,
+                          "title": "Ut soluta ea.",
+                          "description": "Voluptas velit in quasi dicta numquam id quas.",
+                          "icon": "/tmp/b8a69fa6bcee18ec34a348d36f867481.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 5,
+                          "proof_type_id": 2,
+                          "schedule_id": 6,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:54.000000Z",
+                          "updated_at": "2023-09-16T19:43:00.000000Z"
+                        },
+                        {
+                          "id": 7,
+                          "title": "Illum aspernatur sequi qui.",
+                          "description": "Dignissimos rerum incidunt accusamus et aut. Rerum qui fuga ea ab et.",
+                          "icon": "/tmp/570775928c3fa5ee80ab053d1de13cc8.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 1,
+                          "schedule_id": 7,
+                          "status": 0,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:54.000000Z",
+                          "updated_at": "2023-09-15T19:37:54.000000Z"
+                        },
+                        {
+                          "id": 8,
+                          "title": "Quo soluta reprehenderit nesciunt.",
+                          "description": "Consectetur odit molestiae pariatur ut sunt nihil. Quia nostrum provident id sed.",
+                          "icon": "/tmp/35780aaa5079b604789f728212ff5c16.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 1,
+                          "schedule_id": 8,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:55.000000Z",
+                          "updated_at": "2023-09-15T19:37:55.000000Z"
+                        },
+                        {
+                          "id": 9,
+                          "title": "Quo sapiente architecto autem saepe.",
+                          "description": "Qui nihil sed dolorem et sint.",
+                          "icon": "/tmp/3b796d26f7c1305cdb25d61f8eaf09f0.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 2,
+                          "schedule_id": 9,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:56.000000Z",
+                          "updated_at": "2023-09-15T19:37:56.000000Z"
+                        },
+                        {
+                          "id": 10,
+                          "title": "Eos tempora qui.",
+                          "description": "Nihil inventore neque dolorum tempora harum quia beatae.",
+                          "icon": "/tmp/f1a83040d8923fffec0d4f5538fff45c.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 2,
+                          "schedule_id": 10,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:58.000000Z",
+                          "updated_at": "2023-09-15T19:37:58.000000Z"
+                        },
+                        {
+                          "id": 101,
+                          "title": "Custom task",
+                          "description": "Custom description",
+                          "icon": null,
+                          "expected_duration": 60,
+                          "is_general_available": false,
+                          "coins": 10,
+                          "proof_type_id": 1,
+                          "schedule_id": 101,
+                          "status": 0,
+                          "adult_id": 1,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:43:39.000000Z",
+                          "updated_at": "2023-09-15T19:43:39.000000Z"
+                        },
+                        {
+                          "id": 102,
+                          "title": "Custom task",
+                          "description": "Custom description",
+                          "icon": null,
+                          "expected_duration": 60,
+                          "is_general_available": false,
+                          "coins": 10,
+                          "proof_type_id": 1,
+                          "schedule_id": 101,
+                          "status": 0,
+                          "adult_id": 1,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:44:13.000000Z",
+                          "updated_at": "2023-09-15T19:44:13.000000Z"
+                        },
+                        {
+                          "id": 105,
+                          "title": "Custom task",
+                          "description": "Custom description",
+                          "icon": null,
+                          "expected_duration": 61,
+                          "is_general_available": false,
+                          "coins": 101,
+                          "proof_type_id": 2,
+                          "schedule_id": 85,
+                          "status": 0,
+                          "adult_id": 1,
+                          "child_id": 1,
+                          "created_at": "2023-09-16T07:09:29.000000Z",
+                          "updated_at": "2023-09-16T07:10:38.000000Z"
+                        }
+                      ]
                     }
                   }
                 },
@@ -1569,28 +1959,228 @@
                   "Example 1": {
                     "value": {
                       "success": true,
-                      "data": {
-                        "id": 1,
-                        "name": "Dr. Luciano Jenkins I",
-                        "age": 8,
-                        "gender": 0,
-                        "created_at": "2023-08-14T19:46:49.000000Z",
-                        "updated_at": "2023-08-14T19:46:49.000000Z"
-                      }
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "Magni quia ipsa.",
+                          "description": "Repudiandae illum consectetur et veniam.",
+                          "icon": "/tmp/0c729949beee05cf0e4248392b2c4ef7.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 2,
+                          "schedule_id": 1,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:47.000000Z",
+                          "updated_at": "2023-09-15T19:37:47.000000Z"
+                        },
+                        {
+                          "id": 2,
+                          "title": "Omnis ut ut non.",
+                          "description": "Et deleniti aut et nulla vel.",
+                          "icon": "/tmp/d762a418de282dad8872d0f5c66a5bb6.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 1,
+                          "schedule_id": 2,
+                          "status": 0,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:49.000000Z",
+                          "updated_at": "2023-09-15T19:37:49.000000Z"
+                        },
+                        {
+                          "id": 3,
+                          "title": "Quibusdam at repellat.",
+                          "description": "Eaque enim quia totam corrupti magni sint et animi. Rerum ut velit vitae totam rerum.",
+                          "icon": "/tmp/9a250b36f98d1349cf96d5ee2c4b428e.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 1,
+                          "schedule_id": 3,
+                          "status": 0,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:50.000000Z",
+                          "updated_at": "2023-09-15T19:37:50.000000Z"
+                        },
+                        {
+                          "id": 4,
+                          "title": "Deleniti veritatis sapiente rerum dicta.",
+                          "description": "Error repellendus qui commodi.",
+                          "icon": "/tmp/479a18ecd8f5f5b48d51707a58f6c2d7.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 1,
+                          "schedule_id": 4,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:50.000000Z",
+                          "updated_at": "2023-09-15T19:37:50.000000Z"
+                        },
+                        {
+                          "id": 5,
+                          "title": "Molestias quae beatae sint.",
+                          "description": "Et impedit voluptate aliquam debitis.",
+                          "icon": "/tmp/6f9b49f4b6f84f80065a8182828fc49a.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 2,
+                          "schedule_id": 5,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:52.000000Z",
+                          "updated_at": "2023-09-16T19:43:00.000000Z"
+                        },
+                        {
+                          "id": 6,
+                          "title": "Ut soluta ea.",
+                          "description": "Voluptas velit in quasi dicta numquam id quas.",
+                          "icon": "/tmp/b8a69fa6bcee18ec34a348d36f867481.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 5,
+                          "proof_type_id": 2,
+                          "schedule_id": 6,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:54.000000Z",
+                          "updated_at": "2023-09-16T19:43:00.000000Z"
+                        },
+                        {
+                          "id": 7,
+                          "title": "Illum aspernatur sequi qui.",
+                          "description": "Dignissimos rerum incidunt accusamus et aut. Rerum qui fuga ea ab et.",
+                          "icon": "/tmp/570775928c3fa5ee80ab053d1de13cc8.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 1,
+                          "schedule_id": 7,
+                          "status": 0,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:54.000000Z",
+                          "updated_at": "2023-09-15T19:37:54.000000Z"
+                        },
+                        {
+                          "id": 8,
+                          "title": "Quo soluta reprehenderit nesciunt.",
+                          "description": "Consectetur odit molestiae pariatur ut sunt nihil. Quia nostrum provident id sed.",
+                          "icon": "/tmp/35780aaa5079b604789f728212ff5c16.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 1,
+                          "schedule_id": 8,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:55.000000Z",
+                          "updated_at": "2023-09-15T19:37:55.000000Z"
+                        },
+                        {
+                          "id": 9,
+                          "title": "Quo sapiente architecto autem saepe.",
+                          "description": "Qui nihil sed dolorem et sint.",
+                          "icon": "/tmp/3b796d26f7c1305cdb25d61f8eaf09f0.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 2,
+                          "schedule_id": 9,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:56.000000Z",
+                          "updated_at": "2023-09-15T19:37:56.000000Z"
+                        },
+                        {
+                          "id": 10,
+                          "title": "Eos tempora qui.",
+                          "description": "Nihil inventore neque dolorum tempora harum quia beatae.",
+                          "icon": "/tmp/f1a83040d8923fffec0d4f5538fff45c.png",
+                          "expected_duration": 60,
+                          "is_general_available": true,
+                          "coins": 1,
+                          "proof_type_id": 2,
+                          "schedule_id": 10,
+                          "status": 1,
+                          "adult_id": null,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:37:58.000000Z",
+                          "updated_at": "2023-09-15T19:37:58.000000Z"
+                        },
+                        {
+                          "id": 101,
+                          "title": "Custom task",
+                          "description": "Custom description",
+                          "icon": null,
+                          "expected_duration": 60,
+                          "is_general_available": false,
+                          "coins": 10,
+                          "proof_type_id": 1,
+                          "schedule_id": 101,
+                          "status": 0,
+                          "adult_id": 1,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:43:39.000000Z",
+                          "updated_at": "2023-09-15T19:43:39.000000Z"
+                        },
+                        {
+                          "id": 102,
+                          "title": "Custom task",
+                          "description": "Custom description",
+                          "icon": null,
+                          "expected_duration": 60,
+                          "is_general_available": false,
+                          "coins": 10,
+                          "proof_type_id": 1,
+                          "schedule_id": 101,
+                          "status": 0,
+                          "adult_id": 1,
+                          "child_id": 1,
+                          "created_at": "2023-09-15T19:44:13.000000Z",
+                          "updated_at": "2023-09-15T19:44:13.000000Z"
+                        },
+                        {
+                          "id": 105,
+                          "title": "Custom task",
+                          "description": "Custom description",
+                          "icon": null,
+                          "expected_duration": 61,
+                          "is_general_available": false,
+                          "coins": 101,
+                          "proof_type_id": 2,
+                          "schedule_id": 85,
+                          "status": 0,
+                          "adult_id": 1,
+                          "child_id": 1,
+                          "created_at": "2023-09-16T07:09:29.000000Z",
+                          "updated_at": "2023-09-16T07:10:38.000000Z"
+                        }
+                      ]
                     }
                   }
                 }
               }
             }
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
-          },
-          "422": {
-            "$ref": "#/components/responses/422"
           }
         },
-        "operationId": "get-regular-tasks-templates",
+        "tags": [
+          "Adult side",
+          "Custom regular tasks",
+          "Regular Tasks"
+        ],
         "security": [
           {
             "Authorization": []
@@ -1598,24 +2188,10 @@
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/Accept"
+            "$ref": "./admin.json#/components/parameters/Accept"
           }
-        ],
-        "description": "",
-        "tags": [
-          "Adult side"
         ]
-      },
-      "parameters": [
-        {
-          "schema": {
-            "type": "string"
-          },
-          "name": "child",
-          "in": "path",
-          "required": true
-        }
-      ]
+      }
     },
     "/adult/rewards/{child}": {
       "get": {
@@ -1835,7 +2411,7 @@
                           "type": "string"
                         },
                         "price": {
-                          "type": "integer"
+                          "type": "string"
                         },
                         "status": {
                           "type": "string"
@@ -1854,6 +2430,118 @@
                         },
                         "id": {
                           "type": "integer"
+                        },
+                        "child": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "age": {
+                              "type": "integer"
+                            },
+                            "gender": {
+                              "type": "integer"
+                            },
+                            "created_at": {
+                              "type": "string"
+                            },
+                            "updated_at": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "adult": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "email": {
+                              "type": "string"
+                            },
+                            "email_verified_at": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "string"
+                            },
+                            "updated_at": {
+                              "type": "string"
+                            },
+                            "children": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "integer"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "age": {
+                                    "type": "integer"
+                                  },
+                                  "gender": {
+                                    "type": "integer"
+                                  },
+                                  "created_at": {
+                                    "type": "string"
+                                  },
+                                  "updated_at": {
+                                    "type": "string"
+                                  },
+                                  "pivot": {
+                                    "type": "object",
+                                    "properties": {
+                                      "adult_id": {
+                                        "type": "integer"
+                                      },
+                                      "child_id": {
+                                        "type": "integer"
+                                      },
+                                      "adult_type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "image": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "filename": {
+                              "type": "string"
+                            },
+                            "imageable_type": {
+                              "type": "string"
+                            },
+                            "imageable_id": {
+                              "type": "integer"
+                            },
+                            "created_at": {
+                              "type": "string"
+                            },
+                            "updated_at": {
+                              "type": "string"
+                            },
+                            "src": {
+                              "type": "string"
+                            }
+                          }
                         }
                       }
                     }
@@ -1862,14 +2550,54 @@
                     "Example 1": {
                       "success": true,
                       "data": {
-                        "title": "test",
-                        "price": 100,
+                        "title": "eee",
+                        "price": "12",
                         "status": "active",
                         "child_id": 1,
                         "adult_id": 1,
-                        "updated_at": "2023-09-13T19:21:27.000000Z",
-                        "created_at": "2023-09-13T19:21:27.000000Z",
-                        "id": 14
+                        "updated_at": "2023-09-16T07:56:44.000000Z",
+                        "created_at": "2023-09-16T07:56:44.000000Z",
+                        "id": 11,
+                        "child": {
+                          "id": 1,
+                          "name": "Jake Gislason",
+                          "age": 13,
+                          "gender": 1,
+                          "created_at": "2023-09-15T19:37:46.000000Z",
+                          "updated_at": "2023-09-15T19:37:46.000000Z"
+                        },
+                        "adult": {
+                          "id": 1,
+                          "name": "Deshawn Leffler",
+                          "email": "julian.lehner@example.com",
+                          "email_verified_at": "2023-09-15T19:37:46.000000Z",
+                          "created_at": "2023-09-15T19:37:46.000000Z",
+                          "updated_at": "2023-09-15T19:37:46.000000Z",
+                          "children": [
+                            {
+                              "id": 1,
+                              "name": "Jake Gislason",
+                              "age": 13,
+                              "gender": 1,
+                              "created_at": "2023-09-15T19:37:46.000000Z",
+                              "updated_at": "2023-09-15T19:37:46.000000Z",
+                              "pivot": {
+                                "adult_id": 1,
+                                "child_id": 1,
+                                "adult_type": "Father"
+                              }
+                            }
+                          ]
+                        },
+                        "image": {
+                          "id": 11,
+                          "filename": "reward-images/UqlpOGsMkw5rLteHbNkVsLHIKvoLhcmmMySfD773.jpg",
+                          "imageable_type": "App\\Models\\ChildReward",
+                          "imageable_id": 11,
+                          "created_at": "2023-09-16T07:56:44.000000Z",
+                          "updated_at": "2023-09-16T07:56:44.000000Z",
+                          "src": "http://localhost/storage/reward-images/UqlpOGsMkw5rLteHbNkVsLHIKvoLhcmmMySfD773.jpg"
+                        }
                       }
                     }
                   }
@@ -1879,14 +2607,54 @@
                     "value": {
                       "success": true,
                       "data": {
-                        "title": "test",
-                        "price": 100,
+                        "title": "eee",
+                        "price": "12",
                         "status": "active",
                         "child_id": 1,
                         "adult_id": 1,
-                        "updated_at": "2023-09-13T19:21:27.000000Z",
-                        "created_at": "2023-09-13T19:21:27.000000Z",
-                        "id": 14
+                        "updated_at": "2023-09-16T07:56:44.000000Z",
+                        "created_at": "2023-09-16T07:56:44.000000Z",
+                        "id": 11,
+                        "child": {
+                          "id": 1,
+                          "name": "Jake Gislason",
+                          "age": 13,
+                          "gender": 1,
+                          "created_at": "2023-09-15T19:37:46.000000Z",
+                          "updated_at": "2023-09-15T19:37:46.000000Z"
+                        },
+                        "adult": {
+                          "id": 1,
+                          "name": "Deshawn Leffler",
+                          "email": "julian.lehner@example.com",
+                          "email_verified_at": "2023-09-15T19:37:46.000000Z",
+                          "created_at": "2023-09-15T19:37:46.000000Z",
+                          "updated_at": "2023-09-15T19:37:46.000000Z",
+                          "children": [
+                            {
+                              "id": 1,
+                              "name": "Jake Gislason",
+                              "age": 13,
+                              "gender": 1,
+                              "created_at": "2023-09-15T19:37:46.000000Z",
+                              "updated_at": "2023-09-15T19:37:46.000000Z",
+                              "pivot": {
+                                "adult_id": 1,
+                                "child_id": 1,
+                                "adult_type": "Father"
+                              }
+                            }
+                          ]
+                        },
+                        "image": {
+                          "id": 11,
+                          "filename": "reward-images/UqlpOGsMkw5rLteHbNkVsLHIKvoLhcmmMySfD773.jpg",
+                          "imageable_type": "App\\Models\\ChildReward",
+                          "imageable_id": 11,
+                          "created_at": "2023-09-16T07:56:44.000000Z",
+                          "updated_at": "2023-09-16T07:56:44.000000Z",
+                          "src": "http://localhost/storage/reward-images/UqlpOGsMkw5rLteHbNkVsLHIKvoLhcmmMySfD773.jpg"
+                        }
                       }
                     }
                   }
@@ -1907,21 +2675,25 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "type": "object",
+                "x-examples": {
+                  "Example 1": {
+                    "title": "test",
+                    "price": 100
+                  }
+                },
                 "properties": {
                   "title": {
                     "type": "string"
                   },
                   "price": {
                     "type": "integer"
-                  }
-                },
-                "x-examples": {
-                  "Example 1": {
-                    "title": "test",
-                    "price": 100
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
                   }
                 }
               },
@@ -2573,6 +3345,12 @@
   "tags": [
     {
       "name": "Adult side"
+    },
+    {
+      "name": "Custom regular tasks"
+    },
+    {
+      "name": "Regular Tasks"
     },
     {
       "name": "Rewards"
