@@ -6,6 +6,8 @@ use App\Models\Adult;
 use App\Models\Child;
 use App\Models\ChildReward;
 use App\Models\ChildRewardImage;
+use App\Models\GeneralAvailableRegularTask;
+use App\Models\GeneralAvailableRegularTaskTemplate;
 use App\Models\Image;
 use App\Models\ProofType;
 use App\Models\RegularTask;
@@ -31,6 +33,12 @@ class ApiSeeder extends Seeder
         ))
         ->count(2)
         ->create();
+
+        GeneralAvailableRegularTaskTemplate::factory()
+            ->for($proof->random())
+            ->for(Schedule::factory())
+            ->count(10)
+            ->create(['status' => true]);
 
         $j = 0;
         while($j < 10){

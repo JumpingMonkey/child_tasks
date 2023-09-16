@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Api\ParentSide;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Child;
+use App\Models\GeneralAvailableRegularTask;
+use App\Models\GeneralAvailableRegularTaskTemplate;
+use App\Models\RegularTaskTemplate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -48,6 +51,20 @@ class ChildController extends BaseController
         $success['token'] =  $child->createToken('MyApp')->plainTextToken;
         $success['name'] =  $child->name;
         $success['id'] = $child->id;
+
+        $generalAvailableRegularTasks = GeneralAvailableRegularTaskTemplate::all();
+
+        foreach($generalAvailableRegularTasks as $task){
+            $data = $task->toArray();
+            $data['adult_id'] = $request->user()->id;
+            $data['child_id'] = $child->id;
+            $data['status'] = false;
+            RegularTaskTemplate::create(
+                $data
+            );
+            
+            
+        }
         
         return $this->sendResponseWithData($success, 201);
     }

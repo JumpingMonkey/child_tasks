@@ -76,7 +76,7 @@ class CustomRegularTaskController extends BaseController
             'proof_type_id' => "sometimes|integer",
             "schedule" => "sometimes|array",
         ]);
-
+ 
         $schedule = Schedule::query()->firstOrCreate($validated['schedule']);
         $validated['schedule_id'] = $schedule->id;
 
