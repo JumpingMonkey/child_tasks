@@ -90,10 +90,27 @@ class CustomRegularTaskController extends BaseController
             'proof_type_id' => "sometimes|integer",
             "schedule" => "sometimes|array",
         ]);
- 
-        $schedule = Schedule::query()->firstOrCreate($validated['schedule']);
-        $validated['schedule_id'] = $schedule->id;
+        
+        if ($request->hasFile('image'))
+        {
+            $request->validate([
+                'image.*' => 'mimes:jpg,png,jpeg|max:5000'
+            ], [
+                'image.*.mimes' => 'The file should be in one of the formats: png, jpg, jpeg',
+            ]);
+            
+                $path = $request->file('image')
+                    ->store('regular-tasks-images', 'public');
 
+                $validated['image'] = $path;
+                Storage::disk('public')->delete($regularTaskTemplate->image);
+        }
+        
+        if($request->filled('schedule')){
+            $schedule = Schedule::query()->firstOrCreate($validated['schedule']);
+            $validated['schedule_id'] = $schedule->id;
+        }
+        
         $regularTaskTemplate->update($validated);
 
         return $this->sendResponseWithData($regularTaskTemplate, 200);
