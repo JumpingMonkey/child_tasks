@@ -31,7 +31,7 @@ class CustomRegularTaskController extends BaseController
     /**
      * Store a newly created resource in storage.
      */
-    //Todo Add icon and image
+    
     public function storeCustomRegularTaskTemplate(Request $request, Child $child)
     {
         if (! Gate::allows('is_related_adult', $child)) {
@@ -46,6 +46,20 @@ class CustomRegularTaskController extends BaseController
             'proof_type_id' => "required|int",
             "schedule" => "required|array",
         ]);
+
+        if ($request->hasFile('image'))
+        {
+            $request->validate([
+                'image.*' => 'mimes:jpg,png,jpeg|max:5000'
+            ], [
+                'image.*.mimes' => 'The file should be in one of the formats: png, jpg, jpeg',
+            ]);
+            
+                $path = $request->file('image')
+                    ->store('regular-tasks-images', 'public');
+
+                $validated['image'] = $path;
+        }
         
         $schedule = Schedule::query()->firstOrCreate($validated['schedule']);
 

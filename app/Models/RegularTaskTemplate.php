@@ -19,12 +19,20 @@ class RegularTaskTemplate extends Model
         'is_general_available',
         'status',
         'coins',
+        'image',
         'adult_id',
         'child_id',
         'expected_duration',
         'proof_type_id',
         'schedule_id'
     ];
+
+    protected $appends = ['src'];
+
+    public function getSrcAttribute()
+    {
+        return asset("storage/{$this->image}");
+    }
 
     protected $casts = [
         'is_general_available' => 'boolean'
@@ -54,4 +62,6 @@ class RegularTaskTemplate extends Model
     {
         return $this->belongsTo(Child::class);
     }
+
+    
 }
