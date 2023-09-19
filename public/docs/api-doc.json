@@ -1617,40 +1617,40 @@
                 },
                 "x-examples": {
                   "Example 1": {
-                    "title": "Custom task",
+                    "title": "Custom task 1",
                     "description": "Custom description",
-                    "coins": 101,
-                    "proof_type_id": 2,
+                    "coins": 10,
+                    "proof_type_id": 1,
                     "schedule": {
                       "monday": 1,
-                      "tuesday": 1,
+                      "tuesday": 0,
                       "wednesday": 1,
-                      "thursday": 1,
+                      "thursday": 0,
                       "friday": 1,
-                      "saturday": 1,
-                      "sunday": 1
+                      "saturday": 0,
+                      "sunday": 0
                     },
-                    "expected_duration": 61
+                    "expected_duration": 60
                   }
                 }
               },
               "examples": {
                 "Example 1": {
                   "value": {
-                    "title": "Custom task",
+                    "title": "Custom task 1",
                     "description": "Custom description",
-                    "coins": 101,
-                    "proof_type_id": 2,
+                    "coins": 10,
+                    "proof_type_id": 1,
                     "schedule": {
                       "monday": 1,
-                      "tuesday": 1,
+                      "tuesday": 0,
                       "wednesday": 1,
-                      "thursday": 1,
+                      "thursday": 0,
                       "friday": 1,
-                      "saturday": 1,
-                      "sunday": 1
+                      "saturday": 0,
+                      "sunday": 0
                     },
-                    "expected_duration": 61
+                    "expected_duration": 60
                   }
                 }
               }
