@@ -19,7 +19,11 @@ return new class extends Migration
             $table->smallInteger('price');
             $table->tinyText('status');
             $table->dateTime('claimed_by_date')->nullable();
-            $table->foreignIdFor(Child::class)->constrained();
+            $table->unsignedBigInteger('child_id');
+            $table->foreign('child_id')
+                ->references('id')
+                ->on('children')
+                ->cascadeOnDelete();
             $table->foreignIdFor(Adult::class)->constrained();
             $table->timestamps();
         });

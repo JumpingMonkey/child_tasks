@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('title', 150);
             $table->string('description', 500);
             $table->string('icon')->nullable();
+            $table->string('image')->nullable();
             $table->integer('expected_duration')->nullable();
             $table->boolean('is_general_available')->default(false);
             $table->mediumInteger('coins')->default(1);
@@ -28,7 +29,11 @@ return new class extends Migration
             $table->foreignIdFor(Schedule::class)->constrained();
             $table->boolean('status')->default(false);
             $table->foreignIdFor(Adult::class)->nullable()->constrained();
-            $table->foreignIdFor(Child::class)->constrained();
+            $table->unsignedBigInteger('child_id');
+            $table->foreign('child_id')
+                ->references('id')
+                ->on('children')
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

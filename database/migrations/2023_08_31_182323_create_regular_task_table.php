@@ -16,7 +16,11 @@ return new class extends Migration
     {
         Schema::create('regular_tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(RegularTaskTemplate::class)->constrained();
+            $table->unsignedBigInteger('regular_task_template_id');
+            $table->foreign('regular_task_template_id')
+                ->references('id')
+                ->on('regular_task_templates')
+                ->cascadeOnDelete();
             $table->string('picture_proof')->nullable();
             $table->string('status')->default('new');
             $table->dateTime('start_date');
