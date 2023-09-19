@@ -574,7 +574,7 @@
           }
         ],
         "tags": [
-          "Adult side"
+          "Adult - children"
         ]
       }
     },
@@ -667,7 +667,7 @@
           }
         ],
         "tags": [
-          "Adult side"
+          "Adult - children"
         ]
       },
       "parameters": [
@@ -974,7 +974,7 @@
           }
         ],
         "tags": [
-          "Adult side"
+          "Adult - children"
         ]
       },
       "parameters": [
@@ -1077,8 +1077,7 @@
           }
         ],
         "tags": [
-          "Adult side",
-          "Regular Tasks"
+          "Adult - regular tasks"
         ]
       },
       "parameters": [
@@ -1314,8 +1313,7 @@
           }
         },
         "tags": [
-          "Adult side",
-          "Regular Tasks"
+          "Adult - regular tasks"
         ]
       }
     },
@@ -1528,9 +1526,7 @@
           }
         },
         "tags": [
-          "Adult side",
-          "Custom regular tasks",
-          "Regular Tasks"
+          "Adult - regular custom tasks"
         ]
       }
     },
@@ -1561,11 +1557,6 @@
             "description": "OK"
           }
         },
-        "tags": [
-          "Adult side",
-          "Custom regular tasks",
-          "Regular Tasks"
-        ],
         "security": [
           {
             "Authorization": []
@@ -1665,7 +1656,10 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Adult - regular custom tasks"
+        ]
       },
       "delete": {
         "summary": "Delete custom regular task template",
@@ -2175,11 +2169,6 @@
             }
           }
         },
-        "tags": [
-          "Adult side",
-          "Custom regular tasks",
-          "Regular Tasks"
-        ],
         "security": [
           {
             "Authorization": []
@@ -2189,6 +2178,9 @@
           {
             "$ref": "./admin.json#/components/parameters/Accept"
           }
+        ],
+        "tags": [
+          "Adult - regular custom tasks"
         ]
       }
     },
@@ -2375,8 +2367,7 @@
         ],
         "description": "",
         "tags": [
-          "Adult side",
-          "Rewards"
+          "Adult - rewards"
         ]
       },
       "parameters": [
@@ -2708,7 +2699,7 @@
           }
         },
         "tags": [
-          "Adult side"
+          "Adult - rewards"
         ]
       }
     },
@@ -2768,10 +2759,6 @@
             }
           }
         },
-        "tags": [
-          "Adult side",
-          "Rewards"
-        ],
         "security": [
           {
             "Authorization": []
@@ -2781,6 +2768,9 @@
           {
             "$ref": "./admin.json#/components/parameters/Accept"
           }
+        ],
+        "tags": [
+          "Adult - rewards"
         ]
       },
       "put": {
@@ -2924,7 +2914,10 @@
             "created_at": "2023-09-13T16:46:43.000000Z",
             "updated_at": "2023-09-13T19:25:26.000000Z"
           }
-        }
+        },
+        "tags": [
+          "Adult - rewards"
+        ]
       }
     },
     "/adult/rewards/image/{child}/{childReward}": {
@@ -3193,10 +3186,6 @@
             "$ref": "./admin.json#/components/parameters/Accept"
           }
         ],
-        "tags": [
-          "Adult side",
-          "Rewards"
-        ],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -3211,7 +3200,10 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Adult - rewards"
+        ]
       }
     }
   },
@@ -3343,16 +3335,19 @@
   ],
   "tags": [
     {
-      "name": "Adult side"
+      "name": "Adult - children"
     },
     {
-      "name": "Custom regular tasks"
+      "name": "Adult - regular custom tasks"
     },
     {
-      "name": "Regular Tasks"
+      "name": "Adult - regular tasks"
     },
     {
-      "name": "Rewards"
+      "name": "Adult - rewards"
+    },
+    {
+      "name": "Auth"
     }
   ]
 }
