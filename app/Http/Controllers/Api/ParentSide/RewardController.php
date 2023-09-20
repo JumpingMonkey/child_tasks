@@ -106,7 +106,7 @@ class RewardController extends BaseController
             
             return $this->sendResponseWithData($childReward->load(['image']), 200);
         } else {
-            return $this->sendResponseWithOutData('Add image please!');
+            return $this->sendResponseWithOutData('Add image please!',);
         } 
     }
 
@@ -140,9 +140,29 @@ class RewardController extends BaseController
             'title' => 'string|max:50',
             'price' => 'integer|max:2000',
         ]);
-        $childReward->update($validated);
+        $childReward->updateOrFail($validated);
+
+        if ($request->hasFile('image'))
+        {
+            $request->validate([
+                'image.*' => 'mimes:jpg,png,jpeg|max:5000'
+            ], [
+                'image.*.mimes' => 'The file should be in one of the formats: png, jpg, jpeg',
+            ]);
+
+            Storage::disk('public')->delete($childReward->image->filename);
+            
+            $path = $request->file('image')
+                    ->store('reward-images', 'public');
+
+            $childReward->image->update(['filename' => $path]);
+            
+            return $this->sendResponseWithData($childReward->load(['image']), 200);
+        } else {
+            return $this->sendResponseWithData($childReward->withoutRelations(), 200);
+        } 
        
-        return $this->sendResponseWithData($childReward->withoutRelations(), 200);
+        
     }
 
     /**
