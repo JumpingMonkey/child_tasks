@@ -57,14 +57,6 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::post('/image/{child}/{childReward}', 'attachImage');
             
         });
-        Route::controller(RewardController::class)
-        ->prefix('rewards')
-        ->group(function(){
-            Route::delete('general_avalable_tasks', 'destroyGeneralAvalableTasks');
-            Route::get('general_avalable_tasks', 'getGeneralAvalableTasks');
-            Route::post('general_avalable_tasks', 'storeGeneralAvalableTasks');
-           
-        });
     });
 });
 

@@ -71,8 +71,6 @@ class RewardController extends BaseController
         } else {
             return $this->sendResponseWithData($reward->withoutRelations(), 200);
         } 
-       
-        // return $this->sendResponseWithData($reward->withoutRelations(), 200);
     }
 
 
@@ -93,6 +91,9 @@ class RewardController extends BaseController
             ], [
                 'image.*.mimes' => 'The file should be in one of the formats: png, jpg, jpeg',
             ]);
+
+            Storage::disk('public')->delete($childReward->image->filename);
+            $childReward->image->delete();
             
                 $path = $request->file('image')
                     ->store('reward-images', 'public');
@@ -105,7 +106,7 @@ class RewardController extends BaseController
             
             return $this->sendResponseWithData($childReward->load(['image']), 200);
         } else {
-            return $this->sendResponseWithOutData('Fuck!');
+            return $this->sendResponseWithOutData('Add image please!');
         } 
     }
 
