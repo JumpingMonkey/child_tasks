@@ -55,7 +55,6 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('/{child}', 'index');
             Route::delete('/image/{child}/{childReward}', 'detachImage');
             Route::post('/image/{child}/{childReward}', 'attachImage');
-            
         });
     });
 });

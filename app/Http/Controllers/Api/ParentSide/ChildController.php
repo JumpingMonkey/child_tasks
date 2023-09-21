@@ -62,8 +62,6 @@ class ChildController extends BaseController
             RegularTaskTemplate::create(
                 $data
             );
-            
-            
         }
         
         return $this->sendResponseWithData($success, 201);
@@ -72,7 +70,7 @@ class ChildController extends BaseController
     /**
      * Display the specified resource.
      */
-    public function show(Child $child)
+    public function show(Request $request, Child $child)
     {
         if (! Gate::allows('is_related_adult', $child)) {
             abort(403, "Unauthorized");
