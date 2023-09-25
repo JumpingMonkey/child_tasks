@@ -8,6 +8,7 @@ use App\Models\Child;
 use App\Models\OneDayTask;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class OneDayTaskController extends BaseController
 {
@@ -20,7 +21,9 @@ class OneDayTaskController extends BaseController
             abort(403, "Unauthorized");
         }
 
-        $result = OneDayTask::where('child_id', $child->id)->get();
+        $result = OneDayTask::where('child_id', $child->id)
+            ->with(['image'])
+            ->get();
 
         return $this->sendResponseWithData($result);
     }
@@ -46,6 +49,20 @@ class OneDayTaskController extends BaseController
         
         $validated['child_id'] = $child->id;
         $validated['adult_id'] = $request->user()->id;
+
+        if ($request->hasFile('image'))
+        {
+            $request->validate([
+                'image.*' => 'mimes:jpg,png,jpeg|max:5000'
+            ], [
+                'image.*.mimes' => 'The file should be in one of the formats: png, jpg, jpeg',
+            ]);
+            
+                $path = $request->file('image')
+                    ->store('one-day-tasks-images', 'public');
+
+                $validated['image'] = $path;
+        }
     
         $result = OneDayTask::create($validated);
 
@@ -62,7 +79,7 @@ class OneDayTaskController extends BaseController
             abort(403, "Unauthorized");
         }
         
-        $result = $oneDayTask->load(['timer', 'proofType']);
+        $result = $oneDayTask->load(['timer', 'proofType', 'image']);
 
         return $this->sendResponseWithData($result);
     }
@@ -86,6 +103,22 @@ class OneDayTaskController extends BaseController
             'end_date' => 'sometimes|date',
             'proof_type_id' => 'sometimes|integer',
         ]);
+
+        if ($request->hasFile('image'))
+        {
+            $request->validate([
+                'image.*' => 'mimes:jpg,png,jpeg|max:5000'
+            ], [
+                'image.*.mimes' => 'The file should be in one of the formats: png, jpg, jpeg',
+            ]);
+            
+                $path = $request->file('image')
+                    ->store('one-day-tasks-images', 'public');
+
+                Storage::disk('public')->delete($regularTaskTemplate->image);
+
+                $validated['image'] = $path;
+        }
     
         $oneDayTask->update($validated);
 

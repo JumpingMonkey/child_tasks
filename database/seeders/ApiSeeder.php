@@ -14,6 +14,7 @@ use App\Models\ProofType;
 use App\Models\RegularTask;
 use App\Models\RegularTaskTemplate;
 use App\Models\Schedule;
+use App\Models\TaskImage;
 use App\Models\Timer;
 use Database\Factories\ImageFactory;
 use Database\Factories\TimerFactory;
@@ -62,6 +63,7 @@ class ApiSeeder extends Seeder
                         ->for($proofTypeForOneDayTask)
                         ->for($child)
                         ->for($adult)
+                        // ->has(TaskImage::factory(), 'image')
                         ->create([
                             'picture_proof' => null,
                         ]);
@@ -70,6 +72,7 @@ class ApiSeeder extends Seeder
                         ->for($proofTypeForOneDayTask)
                         ->for($child)
                         ->for($adult)
+                        // ->has(TaskImage::factory(), 'image')
                         ->has(Timer::factory())
                         ->create();
                 }

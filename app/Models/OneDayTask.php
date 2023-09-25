@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Adult;
 use App\Models\Child;
+use App\Models\TaskImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -46,5 +47,10 @@ class OneDayTask extends Model
     public function adult()
     {
         return $this->belongsTo(Adult::class);
+    }
+
+    public function image()
+    {
+        return $this->morphOne(TaskImage::class, 'imageable');
     }
 }
