@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Timer extends Model
 {
@@ -15,8 +15,8 @@ class Timer extends Model
         'duration',
     ];
 
-    public function task(): BelongsTo
+    public function timerable(): MorphTo
     {
-        return $this->belongsTo(Task::class);
+        return $this->morphTo();
     }
 }

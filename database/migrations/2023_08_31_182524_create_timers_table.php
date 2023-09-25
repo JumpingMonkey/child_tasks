@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('timers', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(RegularTask::class);
             $table->integer('expected_duration');
             $table->integer('duration')->nullable();
+            $table->morphs('timerable');
             $table->timestamps();
         });
     }

@@ -4,9 +4,11 @@ use App\Http\Controllers\Api\ParentSide\CustomRegularTaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ParentSide\ChildController;
+use App\Http\Controllers\Api\ParentSide\OneDayTaskController;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\ParentSide\RegularTaskController;
 use App\Http\Controllers\Api\ParentSide\RewardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +46,16 @@ Route::middleware('auth:sanctum')->group(function () {
                 Route::put('/{child}/{regularTaskTemplate}', 'updateCustomRegularTaskTemplate');
                 Route::delete('/{child}/{regularTaskTemplate}', 'destroyCustomRegularTskTemplate');
             });
+           
+        });
+        Route::controller(OneDayTaskController::class)
+        ->prefix('one_day_tasks')
+        ->group(function(){
+            Route::get('/{child}', 'index');
+            Route::post('/{child}', 'store');
+            Route::get('/{child}/{oneDayTask}', 'show');
+            // Route::update('/{child}/{task}', 'update');
+            // Route::delete('/{child}/{task}', 'delete');
            
         });
         Route::controller(RewardController::class)

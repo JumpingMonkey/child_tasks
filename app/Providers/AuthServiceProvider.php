@@ -6,6 +6,7 @@ namespace App\Providers;
 
 use App\Models\Adult;
 use App\Models\Child;
+use App\Models\OneDayTask;
 use App\Models\RegularTaskTemplate;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -51,6 +52,12 @@ class AuthServiceProvider extends ServiceProvider
             function(Adult $adult, RegularTaskTemplate $regularTaskTemplate, Child $child){
             return $adult->id == $regularTaskTemplate->adult_id && 
                 $regularTaskTemplate->child_id == $child->id;
+        });
+
+        Gate::define('is_related_one_day_task', 
+            function(Adult $adult, OneDayTask $oneDayTask, Child $child){
+            return $adult->id == $oneDayTask->adult_id && 
+                $oneDayTask->child_id == $child->id;
         });
     }
 }

@@ -9,6 +9,7 @@ use App\Models\ChildRewardImage;
 use App\Models\GeneralAvailableRegularTask;
 use App\Models\GeneralAvailableRegularTaskTemplate;
 use App\Models\Image;
+use App\Models\OneDayTask;
 use App\Models\ProofType;
 use App\Models\RegularTask;
 use App\Models\RegularTaskTemplate;
@@ -53,14 +54,38 @@ class ApiSeeder extends Seeder
                     ]),
                 ])
                 ->create();
+                
+                $proofTypeForOneDayTask = $proof->random();
+                
+                if ($proofTypeForOneDayTask->title == 'image'){
+                    OneDayTask::factory()
+                        ->for($proofTypeForOneDayTask)
+                        ->for($child)
+                        ->for($adult)
+                        ->create([
+                            'picture_proof' => null,
+                        ]);
+                } elseif ($proofTypeForOneDayTask->title == 'timer') {
+                    OneDayTask::factory()
+                        ->for($proofTypeForOneDayTask)
+                        ->for($child)
+                        ->for($adult)
+                        ->has(Timer::factory())
+                        ->create();
+                }
+            
+
+            
             $k = 0;
             while($k < 10){
                 $taskTemplate = RegularTaskTemplate::factory()
                     ->for($proof->random())
                     ->for(Schedule::factory())
                     ->for($child)
-                    ->create(['is_general_available' => true, 
-                    'status' => fake()->randomElement([true, false])
+                    ->for($adult)
+                    ->create([
+                        'is_general_available' => true, 
+                        'status' => fake()->randomElement([true, false])
                 ]);
 
                 if($taskTemplate->status){

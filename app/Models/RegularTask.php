@@ -7,6 +7,7 @@ use App\Models\Child;
 use App\Models\RegularTaskTemplate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class RegularTask extends Model
 {
@@ -23,8 +24,8 @@ class RegularTask extends Model
         return $this->belongsTo(RegularTaskTemplate::class);
     }
 
-    public function timer()
+    public function timer(): MorphOne
     {
-        return $this->hasOne(Timer::class);
+        return $this->morphOne(Timer::class, 'timerable');
     }
 }

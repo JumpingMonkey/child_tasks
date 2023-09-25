@@ -2871,21 +2871,25 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "type": "object",
+                "x-examples": {
+                  "Example 1": {
+                    "title": "string",
+                    "price": 0
+                  }
+                },
                 "properties": {
                   "title": {
                     "type": "string"
                   },
                   "price": {
                     "type": "integer"
-                  }
-                },
-                "x-examples": {
-                  "Example 1": {
-                    "title": "string",
-                    "price": 0
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
                   }
                 }
               },
@@ -3203,6 +3207,946 @@
         },
         "tags": [
           "Adult - rewards"
+        ]
+      }
+    },
+    "/adult/one_day_tasks/{child}": {
+      "get": {
+        "summary": "Get all one day tasks by child",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "icon": {
+                            "type": [
+                              "null",
+                              "string"
+                            ]
+                          },
+                          "image": {
+                            "type": [
+                              "null",
+                              "string"
+                            ]
+                          },
+                          "proof_type_id": {
+                            "type": "integer"
+                          },
+                          "coins": {
+                            "type": "integer"
+                          },
+                          "expected_duration": {
+                            "type": "integer"
+                          },
+                          "picture_proof": {
+                            "type": [
+                              "null",
+                              "string"
+                            ]
+                          },
+                          "start_date": {
+                            "type": "string"
+                          },
+                          "end_date": {
+                            "type": "string"
+                          },
+                          "adult_id": {
+                            "type": "integer"
+                          },
+                          "child_id": {
+                            "type": "integer"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "Tempore nobis illum autem.",
+                          "description": "Et laudantium nisi quia laborum et ea unde. Et qui voluptas earum accusamus porro.",
+                          "icon": "/tmp/1013df7dea7dd701f642a8058c387c0d.png",
+                          "image": "/tmp/2524c6c3c4aae7148d2f2bf663df1560.png",
+                          "proof_type_id": 2,
+                          "coins": 1,
+                          "expected_duration": 60,
+                          "picture_proof": "/tmp/292c0ff92e03b73e49909d1fb5dd6246.png",
+                          "start_date": "2023-09-24 00:00:00",
+                          "end_date": "2023-09-24 23:59:59",
+                          "adult_id": 1,
+                          "child_id": 1,
+                          "created_at": "2023-09-24T18:46:41.000000Z",
+                          "updated_at": "2023-09-24T18:46:41.000000Z"
+                        },
+                        {
+                          "id": 11,
+                          "title": "sd",
+                          "description": "sdf",
+                          "icon": null,
+                          "image": null,
+                          "proof_type_id": 1,
+                          "coins": 3,
+                          "expected_duration": 60,
+                          "picture_proof": null,
+                          "start_date": "2023-09-24 00:00:00",
+                          "end_date": "2023-09-24 10:00:00",
+                          "adult_id": 1,
+                          "child_id": 1,
+                          "created_at": "2023-09-25T07:34:58.000000Z",
+                          "updated_at": "2023-09-25T07:34:58.000000Z"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "Tempore nobis illum autem.",
+                          "description": "Et laudantium nisi quia laborum et ea unde. Et qui voluptas earum accusamus porro.",
+                          "icon": "/tmp/1013df7dea7dd701f642a8058c387c0d.png",
+                          "image": "/tmp/2524c6c3c4aae7148d2f2bf663df1560.png",
+                          "proof_type_id": 2,
+                          "coins": 1,
+                          "expected_duration": 60,
+                          "picture_proof": "/tmp/292c0ff92e03b73e49909d1fb5dd6246.png",
+                          "start_date": "2023-09-24 00:00:00",
+                          "end_date": "2023-09-24 23:59:59",
+                          "adult_id": 1,
+                          "child_id": 1,
+                          "created_at": "2023-09-24T18:46:41.000000Z",
+                          "updated_at": "2023-09-24T18:46:41.000000Z"
+                        },
+                        {
+                          "id": 11,
+                          "title": "sd",
+                          "description": "sdf",
+                          "icon": null,
+                          "image": null,
+                          "proof_type_id": 1,
+                          "coins": 3,
+                          "expected_duration": 60,
+                          "picture_proof": null,
+                          "start_date": "2023-09-24 00:00:00",
+                          "end_date": "2023-09-24 10:00:00",
+                          "adult_id": 1,
+                          "child_id": 1,
+                          "created_at": "2023-09-25T07:34:58.000000Z",
+                          "updated_at": "2023-09-25T07:34:58.000000Z"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          }
+        },
+        "operationId": "get-one-day-tasks-by-child",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "description": "",
+        "tags": [
+          "OneDayTasks"
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "child",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "post": {
+        "summary": "Store one day task by child",
+        "operationId": "post-one-day-task",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "icon": {
+                            "type": "string"
+                          },
+                          "image": {
+                            "type": "string"
+                          },
+                          "proof_type_id": {
+                            "type": "integer"
+                          },
+                          "coins": {
+                            "type": "integer"
+                          },
+                          "expected_duration": {
+                            "type": "integer"
+                          },
+                          "picture_proof": {
+                            "type": "string"
+                          },
+                          "start_date": {
+                            "type": "string"
+                          },
+                          "end_date": {
+                            "type": "string"
+                          },
+                          "adult_id": {
+                            "type": "integer"
+                          },
+                          "child_id": {
+                            "type": "integer"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "Tempore nobis illum autem.",
+                          "description": "Et laudantium nisi quia laborum et ea unde. Et qui voluptas earum accusamus porro.",
+                          "icon": "/tmp/1013df7dea7dd701f642a8058c387c0d.png",
+                          "image": "/tmp/2524c6c3c4aae7148d2f2bf663df1560.png",
+                          "proof_type_id": 2,
+                          "coins": 1,
+                          "expected_duration": 60,
+                          "picture_proof": "/tmp/292c0ff92e03b73e49909d1fb5dd6246.png",
+                          "start_date": "2023-09-24 00:00:00",
+                          "end_date": "2023-09-24 23:59:59",
+                          "adult_id": 1,
+                          "child_id": 1,
+                          "created_at": "2023-09-24T18:46:41.000000Z",
+                          "updated_at": "2023-09-24T18:46:41.000000Z"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "Tempore nobis illum autem.",
+                          "description": "Et laudantium nisi quia laborum et ea unde. Et qui voluptas earum accusamus porro.",
+                          "icon": "/tmp/1013df7dea7dd701f642a8058c387c0d.png",
+                          "image": "/tmp/2524c6c3c4aae7148d2f2bf663df1560.png",
+                          "proof_type_id": 2,
+                          "coins": 1,
+                          "expected_duration": 60,
+                          "picture_proof": "/tmp/292c0ff92e03b73e49909d1fb5dd6246.png",
+                          "start_date": "2023-09-24 00:00:00",
+                          "end_date": "2023-09-24 23:59:59",
+                          "adult_id": 1,
+                          "child_id": 1,
+                          "created_at": "2023-09-24T18:46:41.000000Z",
+                          "updated_at": "2023-09-24T18:46:41.000000Z"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "coins": {
+                    "type": "integer"
+                  },
+                  "expected_duration": {
+                    "type": "integer"
+                  },
+                  "proof_type_id": {
+                    "type": "integer"
+                  },
+                  "start_date": {
+                    "type": "string"
+                  },
+                  "end_date": {
+                    "type": "string"
+                  }
+                },
+                "x-examples": {
+                  "Example 1": {
+                    "title": "test",
+                    "description": "test",
+                    "coins": 1,
+                    "expected_duration": 60,
+                    "proof_type_id": 1,
+                    "start_date": "d",
+                    "end_date": "d"
+                  }
+                }
+              },
+              "examples": {
+                "Example 2": {
+                  "value": {
+                    "title": "string",
+                    "description": "string",
+                    "coins": 0,
+                    "expected_duration": 0,
+                    "proof_type_id": 0,
+                    "start_date": "string",
+                    "end_date": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "OneDayTasks"
+        ]
+      }
+    },
+    "/adult/one_day_tasks/{child}/{oneDayTask}": {
+      "get": {
+        "summary": "Get one day task by child",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "price": {
+                            "type": "integer"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "claimed_by_date": {
+                            "type": "null"
+                          },
+                          "child_id": {
+                            "type": "integer"
+                          },
+                          "adult_id": {
+                            "type": "integer"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          },
+                          "image": {
+                            "type": [
+                              "null",
+                              "object"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "filename": {
+                                "type": "string"
+                              },
+                              "imageable_type": {
+                                "type": "string"
+                              },
+                              "imageable_id": {
+                                "type": "integer"
+                              },
+                              "created_at": {
+                                "type": "string"
+                              },
+                              "updated_at": {
+                                "type": "string"
+                              },
+                              "src": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "te",
+                          "price": 10,
+                          "status": "active",
+                          "claimed_by_date": null,
+                          "child_id": 1,
+                          "adult_id": 1,
+                          "created_at": "2023-09-13T16:46:43.000000Z",
+                          "updated_at": "2023-09-13T18:42:55.000000Z",
+                          "image": {
+                            "id": 1,
+                            "filename": "/tmp/cd599043a7e4639333dffc6c8b751fa4.png",
+                            "imageable_type": "App\\Models\\ChildReward",
+                            "imageable_id": 1,
+                            "created_at": "2023-09-13T16:46:43.000000Z",
+                            "updated_at": "2023-09-13T16:46:43.000000Z",
+                            "src": "http://localhost/storage//tmp/cd599043a7e4639333dffc6c8b751fa4.png"
+                          }
+                        },
+                        {
+                          "id": 13,
+                          "title": "test222",
+                          "price": 101,
+                          "status": "active",
+                          "claimed_by_date": null,
+                          "child_id": 1,
+                          "adult_id": 1,
+                          "created_at": "2023-09-13T18:42:08.000000Z",
+                          "updated_at": "2023-09-13T18:42:08.000000Z",
+                          "image": null
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "te",
+                          "price": 10,
+                          "status": "active",
+                          "claimed_by_date": null,
+                          "child_id": 1,
+                          "adult_id": 1,
+                          "created_at": "2023-09-13T16:46:43.000000Z",
+                          "updated_at": "2023-09-13T18:42:55.000000Z",
+                          "image": {
+                            "id": 1,
+                            "filename": "/tmp/cd599043a7e4639333dffc6c8b751fa4.png",
+                            "imageable_type": "App\\Models\\ChildReward",
+                            "imageable_id": 1,
+                            "created_at": "2023-09-13T16:46:43.000000Z",
+                            "updated_at": "2023-09-13T16:46:43.000000Z",
+                            "src": "http://localhost/storage//tmp/cd599043a7e4639333dffc6c8b751fa4.png"
+                          }
+                        },
+                        {
+                          "id": 13,
+                          "title": "test222",
+                          "price": 101,
+                          "status": "active",
+                          "claimed_by_date": null,
+                          "child_id": 1,
+                          "adult_id": 1,
+                          "created_at": "2023-09-13T18:42:08.000000Z",
+                          "updated_at": "2023-09-13T18:42:08.000000Z",
+                          "image": null
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          }
+        },
+        "operationId": "get-one-day-tasks-by-child",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "description": "",
+        "tags": [
+          "OneDayTasks"
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "child",
+          "in": "path",
+          "required": true
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "oneDayTask",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "post": {
+        "summary": "Store one day task by child",
+        "operationId": "post-one-day-task",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "title": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "child_id": {
+                          "type": "integer"
+                        },
+                        "adult_id": {
+                          "type": "integer"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "type": "integer"
+                        },
+                        "child": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "age": {
+                              "type": "integer"
+                            },
+                            "gender": {
+                              "type": "integer"
+                            },
+                            "created_at": {
+                              "type": "string"
+                            },
+                            "updated_at": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "adult": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "email": {
+                              "type": "string"
+                            },
+                            "email_verified_at": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "string"
+                            },
+                            "updated_at": {
+                              "type": "string"
+                            },
+                            "children": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "integer"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "age": {
+                                    "type": "integer"
+                                  },
+                                  "gender": {
+                                    "type": "integer"
+                                  },
+                                  "created_at": {
+                                    "type": "string"
+                                  },
+                                  "updated_at": {
+                                    "type": "string"
+                                  },
+                                  "pivot": {
+                                    "type": "object",
+                                    "properties": {
+                                      "adult_id": {
+                                        "type": "integer"
+                                      },
+                                      "child_id": {
+                                        "type": "integer"
+                                      },
+                                      "adult_type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "image": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "filename": {
+                              "type": "string"
+                            },
+                            "imageable_type": {
+                              "type": "string"
+                            },
+                            "imageable_id": {
+                              "type": "integer"
+                            },
+                            "created_at": {
+                              "type": "string"
+                            },
+                            "updated_at": {
+                              "type": "string"
+                            },
+                            "src": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "title": "eee",
+                        "price": "12",
+                        "status": "active",
+                        "child_id": 1,
+                        "adult_id": 1,
+                        "updated_at": "2023-09-16T07:56:44.000000Z",
+                        "created_at": "2023-09-16T07:56:44.000000Z",
+                        "id": 11,
+                        "child": {
+                          "id": 1,
+                          "name": "Jake Gislason",
+                          "age": 13,
+                          "gender": 1,
+                          "created_at": "2023-09-15T19:37:46.000000Z",
+                          "updated_at": "2023-09-15T19:37:46.000000Z"
+                        },
+                        "adult": {
+                          "id": 1,
+                          "name": "Deshawn Leffler",
+                          "email": "julian.lehner@example.com",
+                          "email_verified_at": "2023-09-15T19:37:46.000000Z",
+                          "created_at": "2023-09-15T19:37:46.000000Z",
+                          "updated_at": "2023-09-15T19:37:46.000000Z",
+                          "children": [
+                            {
+                              "id": 1,
+                              "name": "Jake Gislason",
+                              "age": 13,
+                              "gender": 1,
+                              "created_at": "2023-09-15T19:37:46.000000Z",
+                              "updated_at": "2023-09-15T19:37:46.000000Z",
+                              "pivot": {
+                                "adult_id": 1,
+                                "child_id": 1,
+                                "adult_type": "Father"
+                              }
+                            }
+                          ]
+                        },
+                        "image": {
+                          "id": 11,
+                          "filename": "reward-images/UqlpOGsMkw5rLteHbNkVsLHIKvoLhcmmMySfD773.jpg",
+                          "imageable_type": "App\\Models\\ChildReward",
+                          "imageable_id": 11,
+                          "created_at": "2023-09-16T07:56:44.000000Z",
+                          "updated_at": "2023-09-16T07:56:44.000000Z",
+                          "src": "http://localhost/storage/reward-images/UqlpOGsMkw5rLteHbNkVsLHIKvoLhcmmMySfD773.jpg"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "title": "eee",
+                        "price": "12",
+                        "status": "active",
+                        "child_id": 1,
+                        "adult_id": 1,
+                        "updated_at": "2023-09-16T07:56:44.000000Z",
+                        "created_at": "2023-09-16T07:56:44.000000Z",
+                        "id": 11,
+                        "child": {
+                          "id": 1,
+                          "name": "Jake Gislason",
+                          "age": 13,
+                          "gender": 1,
+                          "created_at": "2023-09-15T19:37:46.000000Z",
+                          "updated_at": "2023-09-15T19:37:46.000000Z"
+                        },
+                        "adult": {
+                          "id": 1,
+                          "name": "Deshawn Leffler",
+                          "email": "julian.lehner@example.com",
+                          "email_verified_at": "2023-09-15T19:37:46.000000Z",
+                          "created_at": "2023-09-15T19:37:46.000000Z",
+                          "updated_at": "2023-09-15T19:37:46.000000Z",
+                          "children": [
+                            {
+                              "id": 1,
+                              "name": "Jake Gislason",
+                              "age": 13,
+                              "gender": 1,
+                              "created_at": "2023-09-15T19:37:46.000000Z",
+                              "updated_at": "2023-09-15T19:37:46.000000Z",
+                              "pivot": {
+                                "adult_id": 1,
+                                "child_id": 1,
+                                "adult_type": "Father"
+                              }
+                            }
+                          ]
+                        },
+                        "image": {
+                          "id": 11,
+                          "filename": "reward-images/UqlpOGsMkw5rLteHbNkVsLHIKvoLhcmmMySfD773.jpg",
+                          "imageable_type": "App\\Models\\ChildReward",
+                          "imageable_id": 11,
+                          "created_at": "2023-09-16T07:56:44.000000Z",
+                          "updated_at": "2023-09-16T07:56:44.000000Z",
+                          "src": "http://localhost/storage/reward-images/UqlpOGsMkw5rLteHbNkVsLHIKvoLhcmmMySfD773.jpg"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "coins": {
+                    "type": "integer"
+                  },
+                  "expected_duration": {
+                    "type": "integer"
+                  },
+                  "proof_type_id": {
+                    "type": "integer"
+                  },
+                  "start_date": {
+                    "type": "string"
+                  },
+                  "end_date": {
+                    "type": "string"
+                  }
+                },
+                "x-examples": {
+                  "Example 1": {
+                    "title": "test",
+                    "description": "test",
+                    "coins": 1,
+                    "expected_duration": 60,
+                    "proof_type_id": 1,
+                    "start_date": "d",
+                    "end_date": "d"
+                  }
+                }
+              },
+              "examples": {
+                "Example 2": {
+                  "value": {
+                    "title": "string",
+                    "description": "string",
+                    "coins": 0,
+                    "expected_duration": 0,
+                    "proof_type_id": 0,
+                    "start_date": "string",
+                    "end_date": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Do not touch"
         ]
       }
     }
