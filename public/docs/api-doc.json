@@ -3395,7 +3395,7 @@
         ],
         "description": "",
         "tags": [
-          "OneDayTasks"
+          "Adult - one day tasks"
         ]
       },
       "parameters": [
@@ -3598,7 +3598,7 @@
           }
         },
         "tags": [
-          "OneDayTasks"
+          "Adult - one day tasks"
         ]
       }
     },
@@ -3785,7 +3785,7 @@
         ],
         "description": "",
         "tags": [
-          "OneDayTasks"
+          "Adult - one day tasks"
         ]
       },
       "parameters": [
@@ -3806,9 +3806,9 @@
           "required": true
         }
       ],
-      "post": {
-        "summary": "Store one day task by child",
-        "operationId": "post-one-day-task",
+      "put": {
+        "summary": "Update one day task",
+        "operationId": "update-one_day_task",
         "responses": {
           "200": {
             "description": "OK",
@@ -3817,261 +3817,50 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "success": {
-                      "type": "boolean"
+                    "title": {
+                      "type": "string"
                     },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "title": {
-                          "type": "string"
-                        },
-                        "price": {
-                          "type": "string"
-                        },
-                        "status": {
-                          "type": "string"
-                        },
-                        "child_id": {
-                          "type": "integer"
-                        },
-                        "adult_id": {
-                          "type": "integer"
-                        },
-                        "updated_at": {
-                          "type": "string"
-                        },
-                        "created_at": {
-                          "type": "string"
-                        },
-                        "id": {
-                          "type": "integer"
-                        },
-                        "child": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "integer"
-                            },
-                            "name": {
-                              "type": "string"
-                            },
-                            "age": {
-                              "type": "integer"
-                            },
-                            "gender": {
-                              "type": "integer"
-                            },
-                            "created_at": {
-                              "type": "string"
-                            },
-                            "updated_at": {
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "adult": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "integer"
-                            },
-                            "name": {
-                              "type": "string"
-                            },
-                            "email": {
-                              "type": "string"
-                            },
-                            "email_verified_at": {
-                              "type": "string"
-                            },
-                            "created_at": {
-                              "type": "string"
-                            },
-                            "updated_at": {
-                              "type": "string"
-                            },
-                            "children": {
-                              "type": "array",
-                              "items": {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "integer"
-                                  },
-                                  "name": {
-                                    "type": "string"
-                                  },
-                                  "age": {
-                                    "type": "integer"
-                                  },
-                                  "gender": {
-                                    "type": "integer"
-                                  },
-                                  "created_at": {
-                                    "type": "string"
-                                  },
-                                  "updated_at": {
-                                    "type": "string"
-                                  },
-                                  "pivot": {
-                                    "type": "object",
-                                    "properties": {
-                                      "adult_id": {
-                                        "type": "integer"
-                                      },
-                                      "child_id": {
-                                        "type": "integer"
-                                      },
-                                      "adult_type": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "image": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "integer"
-                            },
-                            "filename": {
-                              "type": "string"
-                            },
-                            "imageable_type": {
-                              "type": "string"
-                            },
-                            "imageable_id": {
-                              "type": "integer"
-                            },
-                            "created_at": {
-                              "type": "string"
-                            },
-                            "updated_at": {
-                              "type": "string"
-                            },
-                            "src": {
-                              "type": "string"
-                            }
-                          }
-                        }
-                      }
+                    "description": {
+                      "type": "string"
+                    },
+                    "coins": {
+                      "type": "integer"
+                    },
+                    "proof_type_id": {
+                      "type": "integer"
+                    },
+                    "expected_duration": {
+                      "type": "integer"
+                    },
+                    "start_date": {
+                      "type": "string"
+                    },
+                    "end_date": {
+                      "type": "string"
                     }
                   },
                   "x-examples": {
                     "Example 1": {
-                      "success": true,
-                      "data": {
-                        "title": "eee",
-                        "price": "12",
-                        "status": "active",
-                        "child_id": 1,
-                        "adult_id": 1,
-                        "updated_at": "2023-09-16T07:56:44.000000Z",
-                        "created_at": "2023-09-16T07:56:44.000000Z",
-                        "id": 11,
-                        "child": {
-                          "id": 1,
-                          "name": "Jake Gislason",
-                          "age": 13,
-                          "gender": 1,
-                          "created_at": "2023-09-15T19:37:46.000000Z",
-                          "updated_at": "2023-09-15T19:37:46.000000Z"
-                        },
-                        "adult": {
-                          "id": 1,
-                          "name": "Deshawn Leffler",
-                          "email": "julian.lehner@example.com",
-                          "email_verified_at": "2023-09-15T19:37:46.000000Z",
-                          "created_at": "2023-09-15T19:37:46.000000Z",
-                          "updated_at": "2023-09-15T19:37:46.000000Z",
-                          "children": [
-                            {
-                              "id": 1,
-                              "name": "Jake Gislason",
-                              "age": 13,
-                              "gender": 1,
-                              "created_at": "2023-09-15T19:37:46.000000Z",
-                              "updated_at": "2023-09-15T19:37:46.000000Z",
-                              "pivot": {
-                                "adult_id": 1,
-                                "child_id": 1,
-                                "adult_type": "Father"
-                              }
-                            }
-                          ]
-                        },
-                        "image": {
-                          "id": 11,
-                          "filename": "reward-images/UqlpOGsMkw5rLteHbNkVsLHIKvoLhcmmMySfD773.jpg",
-                          "imageable_type": "App\\Models\\ChildReward",
-                          "imageable_id": 11,
-                          "created_at": "2023-09-16T07:56:44.000000Z",
-                          "updated_at": "2023-09-16T07:56:44.000000Z",
-                          "src": "http://localhost/storage/reward-images/UqlpOGsMkw5rLteHbNkVsLHIKvoLhcmmMySfD773.jpg"
-                        }
-                      }
+                      "title": "Custom task",
+                      "description": "Custom description",
+                      "coins": 10,
+                      "proof_type_id": 1,
+                      "expected_duration": 60,
+                      "start_date": "2023-09-25 00:00:00",
+                      "end_date": "2023-09-25 01:00:00"
                     }
                   }
                 },
                 "examples": {
                   "Example 1": {
                     "value": {
-                      "success": true,
-                      "data": {
-                        "title": "eee",
-                        "price": "12",
-                        "status": "active",
-                        "child_id": 1,
-                        "adult_id": 1,
-                        "updated_at": "2023-09-16T07:56:44.000000Z",
-                        "created_at": "2023-09-16T07:56:44.000000Z",
-                        "id": 11,
-                        "child": {
-                          "id": 1,
-                          "name": "Jake Gislason",
-                          "age": 13,
-                          "gender": 1,
-                          "created_at": "2023-09-15T19:37:46.000000Z",
-                          "updated_at": "2023-09-15T19:37:46.000000Z"
-                        },
-                        "adult": {
-                          "id": 1,
-                          "name": "Deshawn Leffler",
-                          "email": "julian.lehner@example.com",
-                          "email_verified_at": "2023-09-15T19:37:46.000000Z",
-                          "created_at": "2023-09-15T19:37:46.000000Z",
-                          "updated_at": "2023-09-15T19:37:46.000000Z",
-                          "children": [
-                            {
-                              "id": 1,
-                              "name": "Jake Gislason",
-                              "age": 13,
-                              "gender": 1,
-                              "created_at": "2023-09-15T19:37:46.000000Z",
-                              "updated_at": "2023-09-15T19:37:46.000000Z",
-                              "pivot": {
-                                "adult_id": 1,
-                                "child_id": 1,
-                                "adult_type": "Father"
-                              }
-                            }
-                          ]
-                        },
-                        "image": {
-                          "id": 11,
-                          "filename": "reward-images/UqlpOGsMkw5rLteHbNkVsLHIKvoLhcmmMySfD773.jpg",
-                          "imageable_type": "App\\Models\\ChildReward",
-                          "imageable_id": 11,
-                          "created_at": "2023-09-16T07:56:44.000000Z",
-                          "updated_at": "2023-09-16T07:56:44.000000Z",
-                          "src": "http://localhost/storage/reward-images/UqlpOGsMkw5rLteHbNkVsLHIKvoLhcmmMySfD773.jpg"
-                        }
-                      }
+                      "title": "Custom task",
+                      "description": "Custom description",
+                      "coins": 10,
+                      "proof_type_id": 1,
+                      "expected_duration": 60,
+                      "start_date": "2023-09-25 00:00:00",
+                      "end_date": "2023-09-25 01:00:00"
                     }
                   }
                 }
@@ -4079,19 +3868,19 @@
             }
           }
         },
+        "parameters": [
+          {
+            "$ref": "./old/9082023/admin.json#/components/parameters/Accept"
+          }
+        ],
         "security": [
           {
             "Authorization": []
           }
         ],
-        "parameters": [
-          {
-            "$ref": "./admin.json#/components/parameters/Accept"
-          }
-        ],
         "requestBody": {
           "content": {
-            "multipart/form-data": {
+            "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
@@ -4104,10 +3893,10 @@
                   "coins": {
                     "type": "integer"
                   },
-                  "expected_duration": {
+                  "proof_type_id": {
                     "type": "integer"
                   },
-                  "proof_type_id": {
+                  "expected_duration": {
                     "type": "integer"
                   },
                   "start_date": {
@@ -4119,34 +3908,57 @@
                 },
                 "x-examples": {
                   "Example 1": {
-                    "title": "test",
-                    "description": "test",
-                    "coins": 1,
-                    "expected_duration": 60,
+                    "title": "Custom task",
+                    "description": "Custom description",
+                    "coins": 10,
                     "proof_type_id": 1,
-                    "start_date": "d",
-                    "end_date": "d"
+                    "expected_duration": 60,
+                    "start_date": "2023-09-25 00:00:00",
+                    "end_date": "2023-09-25 01:00:00"
                   }
                 }
               },
               "examples": {
-                "Example 2": {
+                "Example 1": {
                   "value": {
-                    "title": "string",
-                    "description": "string",
-                    "coins": 0,
-                    "expected_duration": 0,
-                    "proof_type_id": 0,
-                    "start_date": "string",
-                    "end_date": "string"
+                    "title": "Custom task",
+                    "description": "Custom description",
+                    "coins": 10,
+                    "proof_type_id": 1,
+                    "expected_duration": 60,
+                    "start_date": "2023-09-25 00:00:00",
+                    "end_date": "2023-09-25 01:00:00"
                   }
                 }
               }
             }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Adult - one day tasks"
+        ]
+      },
+      "delete": {
+        "summary": "Delete one day task",
+        "operationId": "delete-one_day_tasks",
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         },
         "tags": [
-          "Do not touch"
+          "Adult - one day tasks"
+        ],
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
+          }
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
         ]
       }
     }
@@ -4280,6 +4092,9 @@
   "tags": [
     {
       "name": "Adult - children"
+    },
+    {
+      "name": "Adult - one day tasks"
     },
     {
       "name": "Adult - regular custom tasks"

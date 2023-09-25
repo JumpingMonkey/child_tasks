@@ -54,8 +54,8 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('/{child}', 'index');
             Route::post('/{child}', 'store');
             Route::get('/{child}/{oneDayTask}', 'show');
-            // Route::update('/{child}/{task}', 'update');
-            // Route::delete('/{child}/{task}', 'delete');
+            Route::put('/{child}/{oneDayTask}', 'update');
+            Route::delete('/{child}/{oneDayTask}', 'destroy');
            
         });
         Route::controller(RewardController::class)

@@ -70,16 +70,40 @@ class OneDayTaskController extends BaseController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Child $child, OneDayTask $oneDayTask)
     {
-        //
+        if (! Gate::allows('is_related_adult', $child) || 
+            ! Gate::allows('is_related_one_day_task', [$oneDayTask, $child])) {
+            abort(403, "Unauthorized");
+        }
+
+        $validated = $request->validate([
+            'title' => 'sometimes|string|max:100',
+            'description' => 'sometimes|string|max:500',
+            'coins' => 'sometimes|max:300|integer',
+            'expected_duration' => "sometimes|integer",
+            'start_date' => 'sometimes|date',
+            'end_date' => 'sometimes|date',
+            'proof_type_id' => 'sometimes|integer',
+        ]);
+    
+        $oneDayTask->update($validated);
+
+        return $this->sendResponseWithData($oneDayTask);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, Child $child, OneDayTask $oneDayTask)
     {
-        //
+        if (! Gate::allows('is_related_adult', $child) || 
+            ! Gate::allows('is_related_one_day_task', [$oneDayTask, $child])) {
+            abort(403, "Unauthorized");
+        }
+
+        $oneDayTask->delete();
+
+        return $this->sendResponseWithoutData('Task was deleted!');
     }
 }
