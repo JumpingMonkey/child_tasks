@@ -60,7 +60,6 @@ class OneDayTaskController extends BaseController
             
                 $path = $request->file('image')
                     ->store('one-day-tasks-images', 'public');
-
                 $validated['image'] = $path;
         }
     

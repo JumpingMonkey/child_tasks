@@ -58,7 +58,7 @@ class ChildController extends BaseController
             $data = $task->toArray();
             $data['adult_id'] = $request->user()->id;
             $data['child_id'] = $child->id;
-            $data['status'] = false;
+            $data['is_active'] = false;
             RegularTaskTemplate::create(
                 $data
             );

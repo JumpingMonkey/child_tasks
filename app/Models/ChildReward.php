@@ -19,7 +19,6 @@ class ChildReward extends Model
     protected $fillable =[
         'title',
         'price',
-        'status',
     ];
 
     public function adult()

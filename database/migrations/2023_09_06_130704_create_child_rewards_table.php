@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 use App\Models\Adult;
 use App\Models\Child;
@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->tinyText('title');
             $table->smallInteger('price');
-            $table->tinyText('status');
-            $table->dateTime('claimed_by_date')->nullable();
+            $table->string('picture_proof')->nullable();
+            $table->boolean('is_claimed')->default(false);
             $table->unsignedBigInteger('child_id');
             $table->foreign('child_id')
                 ->references('id')

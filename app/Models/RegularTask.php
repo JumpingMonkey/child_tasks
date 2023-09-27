@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 class RegularTask extends Model
 {
     use HasFactory;
-
+    
     protected $fillable = [
         'coins',
         'picture_proof',

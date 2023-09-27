@@ -19,7 +19,6 @@ class ChildRewardFactory extends Factory
         return [
             'title' => fake()->sentence(3),
             'price' => fake()->numberBetween(30, 300),
-            'status' => 'active'
         ];
     }
 }

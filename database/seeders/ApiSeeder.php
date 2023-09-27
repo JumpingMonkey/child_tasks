@@ -40,7 +40,7 @@ class ApiSeeder extends Seeder
             ->for($proof->random())
             ->for(Schedule::factory())
             ->count(10)
-            ->create(['status' => true]);
+            ->create(['is_active' => true]);
 
         $j = 0;
         while($j < 10){
@@ -88,7 +88,7 @@ class ApiSeeder extends Seeder
                     ->for($adult)
                     ->create([
                         'is_general_available' => true, 
-                        'status' => fake()->randomElement([true, false])
+                        'is_active' => fake()->randomElement([true, false])
                 ]);
 
                 if($taskTemplate->status){

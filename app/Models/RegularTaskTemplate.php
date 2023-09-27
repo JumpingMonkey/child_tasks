@@ -17,7 +17,7 @@ class RegularTaskTemplate extends Model
         'description',
         'icon',
         'is_general_available',
-        'status',
+        'is_active',
         'coins',
         'image',
         'adult_id',

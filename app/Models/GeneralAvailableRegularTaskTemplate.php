@@ -16,11 +16,10 @@ class GeneralAvailableRegularTaskTemplate extends Model
         'description',
         'icon',
         'expected_duration',
-        'is_general_available',
         'coins',
         'proof_type_id',
         'schedule_id',
-        'status'
+        'is_active'
     ];
 
     public function proofType(){

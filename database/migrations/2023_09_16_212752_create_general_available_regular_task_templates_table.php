@@ -22,7 +22,7 @@ return new class extends Migration
             $table->mediumInteger('coins')->default(1);
             $table->foreignIdFor(ProofType::class)->constrained();
             $table->foreignIdFor(Schedule::class)->constrained();
-            $table->boolean('status')->default(false);
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }

@@ -93,7 +93,7 @@ class RewardController extends BaseController
                 'image.*.mimes' => 'The file should be in one of the formats: png, jpg, jpeg',
             ]);
             
-            if($childReward->has('image')){
+            if($childReward->image()->exists()){
                 Storage::disk('public')->delete($childReward->image->filename);
                 $childReward->image->delete();
             }
@@ -140,8 +140,8 @@ class RewardController extends BaseController
         }
 
         $validated = $request->validate([
-            'title' => 'string|max:50',
-            'price' => 'integer|max:2000',
+            'title' => 'sometimes|string|max:50',
+            'price' => 'sometimes|integer|max:2000',
         ]);
         $childReward->updateOrFail($validated);
 

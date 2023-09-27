@@ -20,12 +20,6 @@ class CustomRegularTaskController extends BaseController
         if(! Gate::allows('is_related_adult', $child)){
             abort(403, 'It is not your child!');
         }
-
-        $validated = $request->validate([
-            'title' => 'required|string|max:100',
-            'description' => 'required|string|max:500',
-            'coins' => 'required|max:300|integer',
-        ]);
     }
 
     /**

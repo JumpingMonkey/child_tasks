@@ -13,18 +13,27 @@ use Illuminate\Support\Facades\Validator;
 
 class RegularTaskController extends BaseController
 {
+
+    const TASK_STATUSES = [
+        'should do',
+        'done',
+        'redo the task'
+    ];
+
+
     public function updateRegularTaskTemplates(Request $request, Child $child)
     {
         if (! Gate::allows('is_related_adult', $child)) {
             abort(403, "Unauthorized");
         }
+        
         $updatedTasksIds = [];
         foreach($request->get('task_templates') as $taskTemplate){
 
             $validated = Validator::make($taskTemplate, [
                 "task_template_id" =>  "required|integer",
                 "coins" =>  "required|integer",
-                "status" =>  "required|boolean"
+                "is_active" =>  "required|boolean"
             ])->validate();
 
             $updatedTasksIds[] = $taskTemplate['task_template_id'];
@@ -47,53 +56,5 @@ class RegularTaskController extends BaseController
         $result = $child->regularTaskTemplates()->get();
 
         return $this->sendResponseWithData($result, 200);
-    }
-
-    
-
-    
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request)
-    {
-        // $success = $request->user()->regularTasks()
-        //     ->with([
-        //         'child',
-        //         'adult',
-        // ])
-        // ->with('regularTaskTemplate', function($regularTaskTemplate){
-        //     $regularTaskTemplate->with([
-        //         'proofType',
-        //         'schedule'
-        //     ]);
-        // })
-        // ->get();
-        
-        // return $this->sendResponseWithData($success, 200);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
