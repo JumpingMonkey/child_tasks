@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Adult;
 use App\Models\Child;
 use App\Models\TaskImage;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -27,6 +28,13 @@ class OneDayTask extends Model
         'child_id',
         'adult_id',
     ];
+
+    protected $appends = ['src'];
+
+    public function getSrcAttribute()
+    {
+        return asset("storage/{$this->image}");
+    }
 
     //relations
     public function timer(): MorphOne

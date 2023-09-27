@@ -22,7 +22,6 @@ class OneDayTaskController extends BaseController
         }
 
         $result = OneDayTask::where('child_id', $child->id)
-            ->with(['image'])
             ->get();
 
         return $this->sendResponseWithData($result);
@@ -78,7 +77,7 @@ class OneDayTaskController extends BaseController
             abort(403, "Unauthorized");
         }
         
-        $result = $oneDayTask->load(['timer', 'proofType', 'image']);
+        $result = $oneDayTask->load(['timer', 'proofType']);
 
         return $this->sendResponseWithData($result);
     }
