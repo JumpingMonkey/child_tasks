@@ -91,7 +91,7 @@ class ApiSeeder extends Seeder
                         'is_active' => fake()->randomElement([true, false])
                 ]);
 
-                if($taskTemplate->status){
+                if($taskTemplate->is_active){
                     if($taskTemplate->proofType->title == 'timer'){
                         RegularTask::factory()
                         ->for($taskTemplate)

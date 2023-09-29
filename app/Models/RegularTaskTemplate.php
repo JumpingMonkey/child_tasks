@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Adult;
 use App\Models\Child;
 use App\Models\ProofType;
+use App\Models\RegularTask;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

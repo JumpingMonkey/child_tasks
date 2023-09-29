@@ -22,7 +22,7 @@ return new class extends Migration
                 ->on('regular_task_templates')
                 ->cascadeOnDelete();
             $table->string('picture_proof')->nullable();
-            $table->string('status')->default('new');
+            $table->string('status');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->timestamps();

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('description', 500);
             $table->string('icon')->nullable();
             $table->string('image')->nullable();
+            $table->string('status');
             $table->foreignIdFor(ProofType::class)->constrained();
             $table->mediumInteger('coins')->default(1);
             $table->integer('expected_duration')->nullable();

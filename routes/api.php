@@ -37,8 +37,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::controller(RegularTaskController::class)
         ->prefix('regular_tasks')
         ->group(function(){
-            Route::get('/{child}', 'getRegularTaskTemplatesByChild');
-            Route::put('/{child}', 'updateRegularTaskTemplates');
+            Route::get('/regular_task_templates/{child}', 'getRegularTaskTemplatesByChild');
+            Route::put('/regular_task_templates/{child}', 'updateRegularTaskTemplates');
+            Route::get('/get_done_tasks/{child}', 'getDoneTasksByChild');
+            // Route::get('/', 'getRegularTasks');
             Route::controller(CustomRegularTaskController::class)
             ->prefix('custom_tasks')
             ->group(function(){

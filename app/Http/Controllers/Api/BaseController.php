@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
+    const TASK_STATUSES = [
+        'should do',
+        'done',
+        'checked',
+        'redo the task'
+    ];
+
     public function sendResponseWithData($data, $code = 200)
     {
         $response = [

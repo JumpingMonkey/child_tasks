@@ -22,6 +22,7 @@ class OneDayTaskFactory extends Factory
             'description' => fake()->paragraph(1),
             'icon' => fake()->image(),
             'image' => fake()->image(),
+            'status' => 'should do',
             'coins' => 1,
             'expected_duration' => 60,
             'picture_proof' => fake()->image(),
