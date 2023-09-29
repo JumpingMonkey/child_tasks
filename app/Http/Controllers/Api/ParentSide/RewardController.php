@@ -67,7 +67,7 @@ class RewardController extends BaseController
                 
                 $reward->image()->save($image);
             
-            return $this->sendResponseWithData($reward->load(['image']), 200);
+            return $this->sendResponseWithData($reward->withoutRelations()->load('image'), 200);
         } else {
             
             return $this->sendResponseWithData($reward->withoutRelations(), 200);
