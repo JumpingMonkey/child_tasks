@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Api\ParentSide;
 
+use App\Events\RegularTaskTemplateStatusWasUpdated;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Child;
 use App\Models\RegularTask;
 use App\Models\RegularTaskTemplate;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RegularTaskController extends BaseController
 {
@@ -25,19 +28,25 @@ class RegularTaskController extends BaseController
 
             $validated = Validator::make($taskTemplate, [
                 "task_template_id" =>  "required|integer",
-                "coins" =>  "required|integer",
-                "is_active" =>  "required|boolean"
+                "coins" =>  "sometimes|integer",
+                "is_active" =>  "sometimes|boolean"
             ])->validate();
 
             $updatedTasksIds[] = $taskTemplate['task_template_id'];
     
             $regTaskTemp = RegularTaskTemplate::findOrFail($taskTemplate['task_template_id']);
 
+            $regularTaskStatusBefore = $regTaskTemp->is_active;
+
             if(! ($regTaskTemp->child_id == $child->id)){
                 abort(403, "Unauthorized. Regular task template id:{$taskTemplate['task_template_id']} is not your own!");
             }
 
             $regTaskTemp->update($validated);
+            
+            if($regTaskTemp->is_active && $regularTaskStatusBefore != $regTaskTemp->is_active){
+                RegularTaskTemplateStatusWasUpdated::dispatch($regTaskTemp);
+            }
         }
 
         $updatedTasks = RegularTaskTemplate::query()->whereIn('id', $updatedTasksIds)->get();

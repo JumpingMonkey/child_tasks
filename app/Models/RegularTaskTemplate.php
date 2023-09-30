@@ -63,6 +63,4 @@ class RegularTaskTemplate extends Model
     {
         return $this->belongsTo(Child::class);
     }
-
-    
 }
