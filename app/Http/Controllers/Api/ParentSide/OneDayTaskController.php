@@ -48,6 +48,8 @@ class OneDayTaskController extends BaseController
         
         $validated['child_id'] = $child->id;
         $validated['adult_id'] = $request->user()->id;
+        
+        $validated['status'] = BaseController::TASK_STATUSES[0];
 
         if ($request->hasFile('image'))
         {

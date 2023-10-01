@@ -20,6 +20,7 @@ class OneDayTask extends Model
         'icon',
         'image',
         'coins',
+        'status',
         'expected_duration',
         'picture_proof',
         'proof_type_id',
