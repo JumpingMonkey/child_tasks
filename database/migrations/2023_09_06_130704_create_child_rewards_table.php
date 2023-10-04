@@ -19,6 +19,7 @@ return new class extends Migration
             $table->smallInteger('price');
             $table->string('picture_proof')->nullable();
             $table->boolean('is_claimed')->default(false);
+            $table->boolean('is_received')->default(false);
             $table->unsignedBigInteger('child_id');
             $table->foreign('child_id')
                 ->references('id')

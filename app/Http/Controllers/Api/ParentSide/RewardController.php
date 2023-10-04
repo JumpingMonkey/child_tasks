@@ -23,6 +23,8 @@ class RewardController extends BaseController
 
         $success = $child
             ->rewards()
+            ->where('is_claimed', false)
+            ->where('is_received', false)
             ->get();
 
         return $this->sendResponseWithData($success, 200);

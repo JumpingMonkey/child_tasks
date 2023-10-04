@@ -404,7 +404,7 @@
           }
         ],
         "tags": [
-          "Children"
+          "Adult - children"
         ]
       },
       "parameters": [],
@@ -825,7 +825,7 @@
           }
         ],
         "tags": [
-          "Adult side"
+          "Adult - children"
         ]
       },
       "delete": {
@@ -904,7 +904,7 @@
           }
         ],
         "tags": [
-          "Adult side"
+          "Adult - children"
         ]
       }
     },
@@ -988,7 +988,7 @@
         }
       ]
     },
-    "/adult/regular_tasks/{child}": {
+    "/adult/regular_tasks/regular_task_templates/{child}": {
       "get": {
         "summary": "Get regular tasks by child",
         "responses": {
@@ -1316,6 +1316,109 @@
           "Adult - regular tasks"
         ]
       }
+    },
+    "/adult/regular_tasks/get_done_tasks/{child}": {
+      "get": {
+        "summary": "Get done regular tasks by child",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "age": {
+                          "type": "integer"
+                        },
+                        "gender": {
+                          "type": "integer"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "name": "Dr. Luciano Jenkins I",
+                        "age": 8,
+                        "gender": 0,
+                        "created_at": "2023-08-14T19:46:49.000000Z",
+                        "updated_at": "2023-08-14T19:46:49.000000Z"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "name": "Dr. Luciano Jenkins I",
+                        "age": 8,
+                        "gender": 0,
+                        "created_at": "2023-08-14T19:46:49.000000Z",
+                        "updated_at": "2023-08-14T19:46:49.000000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          }
+        },
+        "operationId": "get-regular-tasks-by-child",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "tags": [
+          "Adult - regular tasks"
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "child",
+          "in": "path",
+          "required": true
+        }
+      ]
     },
     "/adult/regular_tasks/custom_tasks/{child}": {
       "parameters": [
@@ -3034,10 +3137,6 @@
             }
           }
         },
-        "tags": [
-          "Adult side",
-          "Rewards"
-        ],
         "security": [
           {
             "Authorization": []
@@ -3048,7 +3147,10 @@
             "$ref": "./admin.json#/components/parameters/Accept"
           }
         ],
-        "description": ""
+        "description": "",
+        "tags": [
+          "Adult - rewards"
+        ]
       },
       "post": {
         "summary": "Attach image to reward",
@@ -3546,6 +3648,17 @@
             "multipart/form-data": {
               "schema": {
                 "type": "object",
+                "x-examples": {
+                  "Example 1": {
+                    "title": "test",
+                    "description": "test",
+                    "coins": 1,
+                    "expected_duration": 60,
+                    "proof_type_id": 1,
+                    "start_date": "d",
+                    "end_date": "d"
+                  }
+                },
                 "properties": {
                   "title": {
                     "type": "string"
@@ -3567,17 +3680,10 @@
                   },
                   "end_date": {
                     "type": "string"
-                  }
-                },
-                "x-examples": {
-                  "Example 1": {
-                    "title": "test",
-                    "description": "test",
-                    "coins": 1,
-                    "expected_duration": 60,
-                    "proof_type_id": 1,
-                    "start_date": "d",
-                    "end_date": "d"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
                   }
                 }
               },
