@@ -10,7 +10,7 @@ use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
-class CustomRegularTask Controller extends BaseController
+class CustomRegularTaskController extends BaseController
 {
     /**
      * Display a listing of the resource.

@@ -29,8 +29,6 @@ Route::controller(RegisterController::class)->group(function(){
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('adult')
     ->name('adult.')
-    
-    // ->middleware('can:is_adult_class')
     ->group(function(){
         Route::apiResource('children', ChildController::class);
         Route::get('get_child_token/{child}', [ChildController::class, 'getAccessTokenByChild']);
@@ -70,6 +68,11 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::delete('/image/{child}/{childReward}', 'detachImage');
             Route::post('/image/{child}/{childReward}', 'attachImage');
         });
+    });
+    Route::prefix('child')
+    ->name('child.')
+    ->group(function(){
+        Route::get('g');
     });
 });
 
