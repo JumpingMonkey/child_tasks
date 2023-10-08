@@ -21,7 +21,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('regular_task_templates')
                 ->cascadeOnDelete();
-            $table->string('picture_proof')->nullable();
+            $table->boolean('is_timer_done')->default(false);
             $table->string('status');
             $table->dateTime('start_date');
             $table->dateTime('end_date');

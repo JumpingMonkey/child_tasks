@@ -21,8 +21,7 @@ return new class extends Migration
             $table->string('status');
             $table->foreignIdFor(ProofType::class)->constrained();
             $table->mediumInteger('coins')->default(1);
-            $table->integer('expected_duration')->nullable();
-            $table->string('picture_proof')->nullable();
+            $table->boolean('is_timer_done')->default(false);
             $table->dateTime('start_date')->nullable();
             $table->dateTime('end_date')->nullable();
             $table->unsignedBigInteger('adult_id')->nullable();

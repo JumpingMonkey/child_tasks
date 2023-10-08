@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Events\RegularTaskTemplateStatusWasUpdated;
+use App\Events\RegularTaskWasUpdated;
+use App\Listeners\ChangeRegularTaskStatus;
 use App\Listeners\CreateRegularTask;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -23,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
         RegularTaskTemplateStatusWasUpdated::class => [
             CreateRegularTask::class,
         ],
+        RegularTaskWasUpdated::class => [
+            ChangeRegularTaskStatus::class,
+        ]
     ];
 
     /**

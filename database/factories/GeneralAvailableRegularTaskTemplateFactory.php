@@ -21,7 +21,6 @@ class GeneralAvailableRegularTaskTemplateFactory extends Factory
             'description' => fake()->paragraph(1),
             'icon' => fake()->image(),
             'coins' => 1,
-            'expected_duration' => 60,
         ];
     }
 }

@@ -24,8 +24,6 @@ class OneDayTaskFactory extends Factory
             'image' => fake()->image(),
             'status' => 'should do',
             'coins' => 1,
-            'expected_duration' => 60,
-            'picture_proof' => fake()->image(),
             'proof_type_id' => 1,
             'start_date' => Carbon::now()->startOfDay()->toDateTimeString(),
             'end_date' => Carbon::now()->endOfDay()->toDateTimeString(),

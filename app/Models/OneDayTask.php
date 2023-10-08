@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\Adult;
 use App\Models\Child;
-use App\Models\TaskImage;
+use App\Models\TaskProofImage;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -58,8 +58,8 @@ class OneDayTask extends Model
         return $this->belongsTo(Adult::class);
     }
 
-    public function image()
+    public function imageProof()
     {
-        return $this->morphOne(TaskImage::class, 'imageable');
+        return $this->morphOne(TaskProofImage::class, 'imageable');
     }
 }

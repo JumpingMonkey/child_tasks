@@ -18,7 +18,6 @@ class RegularTaskFactory extends Factory
     public function definition(): array
     {
         return [
-            'picture_proof' => fake()->image(),
             'status' => 'should do',
             'start_date' => Carbon::now()->startOfDay()->toDateTimeString(),
             'end_date' => Carbon::now()->endOfDay()->toDateTimeString()

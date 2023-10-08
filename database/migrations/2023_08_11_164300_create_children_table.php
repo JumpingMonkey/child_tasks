@@ -17,6 +17,7 @@ return new class extends Migration
             $table->tinyText('name');
             $table->tinyInteger('age');
             $table->boolean('gender');
+            $table->unsignedBigInteger('coins')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

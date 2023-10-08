@@ -15,7 +15,7 @@ class RegularTask extends Model
     
     protected $fillable = [
         'coins',
-        'picture_proof',
+        'is_timer_done',
         'status',
     ];
 
@@ -27,5 +27,10 @@ class RegularTask extends Model
     public function timer(): MorphOne
     {
         return $this->morphOne(Timer::class, 'timerable');
+    }
+
+    public function imageProof()
+    {
+        return $this->morphMany(TaskProofImage::class, 'imageable');
     }
 }

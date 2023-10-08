@@ -22,7 +22,6 @@ class RegularTaskTemplateFactory extends Factory
             'icon' => fake()->image(),
             'image' => fake()->image(),
             'coins' => 1,
-            'expected_duration' => 60,
         ];
     }
 }

@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class TaskImage extends Model
+class TaskProofImage extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'filename',
+        'is_before'
     ];
     protected $appends = ['src'];
 

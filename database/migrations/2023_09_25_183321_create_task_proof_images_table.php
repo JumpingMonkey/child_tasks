@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('task_images', function (Blueprint $table) {
+        Schema::create('task_proof_images', function (Blueprint $table) {
             $table->id();
             $table->string('filename');
+            $table->boolean('is_before')->nullable();
             $table->morphs('imageable');
             $table->timestamps();
         });
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('task_images');
+        Schema::dropIfExists('task_proof_images');
     }
 };

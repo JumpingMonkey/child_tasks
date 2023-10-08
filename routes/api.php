@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\ChildrenSide\ChildInfoController;
+use App\Http\Controllers\Api\ChildrenSide\TaskController;
 use App\Http\Controllers\Api\ParentSide\CustomRegularTaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -72,7 +74,20 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('child')
     ->name('child.')
     ->group(function(){
-        Route::get('g');
+        Route::controller(ChildInfoController::class)
+        ->prefix('/info')
+        ->group(function(){
+            Route::get('/', 'getMainInfo');
+        });
+        Route::controller(TaskController::class)
+        ->prefix('/tasks')
+        ->group(function(){
+            Route::get('/', 'getAllTasks');
+            Route::get('/regular_tasks/{regularTask}', 'getRegularTask');
+            Route::put('/regular_tasks/{regularTask}', 'updateRegularTask');
+            Route::put('/one_day_task/{oneDayTask}', 'updateOneDayTask');
+            
+        });
     });
 });
 
