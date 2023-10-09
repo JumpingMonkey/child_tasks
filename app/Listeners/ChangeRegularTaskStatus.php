@@ -21,6 +21,8 @@ class ChangeRegularTaskStatus
      */
     public function handle(RegularTaskWasUpdated $event): void
     {
-        dd($event->regularTask);
+        $proofType = $event->regularTask->regularTaskTemplate->proofType;
+        
+        dd($proofType);
     }
 }

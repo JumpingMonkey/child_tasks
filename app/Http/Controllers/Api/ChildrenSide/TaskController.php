@@ -66,7 +66,7 @@ class TaskController extends BaseController
             abort(403, 'It is not your task!');
         }
 
-        $regularTask = $regularTask->load(['regularTaskTemplate', 'timer', '']);
+        $regularTask = $regularTask->load(['regularTaskTemplate', 'timer']);
   
         return $this->sendResponseWithData($regularTask, 200);
     }
@@ -83,12 +83,13 @@ class TaskController extends BaseController
 
         $validate = $request->validate([
             'is_timer_done' => 'sometimes|boolean',
-            'is_before' => 'sometimes|boolean'
+            'is_before' => 'sometimes|boolean',
+            'status' => 'sometimes|string'
         ]);
         
         $regularTask->update($validate);
 
-        if ($request->hasFile('imageProof'))
+        if ($request->hasFile('image_proof'))
         {
             $request->validate([
                 'imageProof.*' => 'mimes:jpg,png,jpeg|max:5000'
@@ -96,7 +97,7 @@ class TaskController extends BaseController
                 'imageProof.*.mimes' => 'The file should be in one of the formats: png, jpg, jpeg',
             ]);
             
-            $path = $request->file('imageProof')
+            $path = $request->file('image_proof')
                 ->store('regular-tasks-proof-images', 'public');
 
             // Storage::disk('public')->delete($regularTask->imageProof->filename);

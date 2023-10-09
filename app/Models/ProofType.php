@@ -10,6 +10,13 @@ class ProofType extends Model
 {
     use HasFactory;
 
+    const PROOF_TYPES = [
+        'image',
+        'timer',
+        'image-before-after',
+        'image+timer',
+    ];
+
     protected $fillable = [
         'title'
     ];

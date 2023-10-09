@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('icon')->nullable();
             $table->string('image')->nullable();
             $table->string('status');
+            $table->integer('expected_duration')->default(0);
             $table->foreignIdFor(ProofType::class)->constrained();
             $table->mediumInteger('coins')->default(1);
             $table->boolean('is_timer_done')->default(false);

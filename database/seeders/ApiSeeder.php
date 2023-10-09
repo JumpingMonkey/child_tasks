@@ -30,8 +30,8 @@ class ApiSeeder extends Seeder
     public function run(): void
     {
         $proof = ProofType::factory()->state(new Sequence(
-            ['title' => 'image'],
-            ['title' => 'timer'],
+            ['title' => ProofType::PROOF_TYPES[0]],
+            ['title' => ProofType::PROOF_TYPES[1]],
         ))
         ->count(2)
         ->create();
