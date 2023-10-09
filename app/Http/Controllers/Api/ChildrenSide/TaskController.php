@@ -62,7 +62,7 @@ class TaskController extends BaseController
             abort(403, 'You should be a child!');
         }
 
-        if(! Gate::allows('is_childs_task', $regularTask)){
+        if(! Gate::allows('is_childs_regular_task', $regularTask)){
             abort(403, 'It is not your task!');
         }
 
@@ -71,20 +71,35 @@ class TaskController extends BaseController
         return $this->sendResponseWithData($regularTask, 200);
     }
 
+    public function getOneDayTask(Request $request, OneDayTask $oneDayTask)
+    {
+        if(! Gate::allows('is_child_model', $request->user())){
+            abort(403, 'You should be a child!');
+        }
+
+        if(! Gate::allows('is_childs_one_day_task', $oneDayTask)){
+            abort(403, 'It is not your task!');
+        }
+
+        $oneDayTask = $oneDayTask->load(['timer']);
+  
+        return $this->sendResponseWithData($oneDayTask, 200);
+    }
+
     public function updateRegularTask(Request $request, RegularTask $regularTask)
     {
         if(! Gate::allows('is_child_model', $request->user())){
             abort(403, 'You should be a child!');
         }
 
-        if(! Gate::allows('is_childs_task', $regularTask)){
+        if(! Gate::allows('is_childs_regular_task', $regularTask)){
             abort(403, 'It is not your task!');
         }
 
         $validate = $request->validate([
             'is_timer_done' => 'sometimes|boolean',
             'is_before' => 'sometimes|boolean',
-            'status' => 'sometimes|string'
+            'status' => ['sometimes', 'string', Rule::in(BaseController::TASK_STATUSES)]
         ]);
         
         $regularTask->update($validate);
@@ -92,9 +107,9 @@ class TaskController extends BaseController
         if ($request->hasFile('image_proof'))
         {
             $request->validate([
-                'imageProof.*' => 'mimes:jpg,png,jpeg|max:5000'
+                'image_proof.*' => 'mimes:jpg,png,jpeg|max:5000'
             ], [
-                'imageProof.*.mimes' => 'The file should be in one of the formats: png, jpg, jpeg',
+                'image_proof.*.mimes' => 'The file should be in one of the formats: png, jpg, jpeg',
             ]);
             
             $path = $request->file('image_proof')
@@ -113,12 +128,56 @@ class TaskController extends BaseController
 
             $regularTask->imageProof;   
         }
-
-        // if($regTaskTemp->is_active && $regularTaskStatusBefore != $regTaskTemp->is_active){
-        //     RegularTaskWasUpdated::dispatch($regTaskTemp);
-        // }
+// if you need you can attach event with listeners
+            // RegularTaskWasUpdated::dispatch($regularTask);
 
         return $this->sendResponseWithData($regularTask, 200);
     }
 
+    public function updateOneDayTask(Request $request, OneDayTask $oneDayTask)
+    {
+        if(! Gate::allows('is_child_model', $request->user())){
+            abort(403, 'You should be a child!');
+        }
+
+        if(! Gate::allows('is_childs_one_day_task', $oneDayTask)){
+            abort(403, 'It is not your task!');
+        }
+
+        $validated = $request->validate([
+            'status' => ['sometimes', 'string', Rule::in(BaseController::TASK_STATUSES)],
+            'is_timer_done' => 'sometimes|boolean',
+            'is_before' => 'sometimes|boolean',
+        ]);
+
+        $oneDayTask->update($validated);
+
+        if ($request->hasFile('image_proof'))
+            {
+                
+                $request->validate([
+                    'image_proof.*' => 'mimes:jpg,png,jpeg|max:5000'
+                ], [
+                    'image_proof.*.mimes' => 'The file should be in one of the formats: png, jpg, jpeg',
+                ]);
+                
+                $path = $request->file('image_proof')
+                    ->store('one-day-tasks-proof-images', 'public');
+
+                // Storage::disk('public')->delete($regularTask->imageProof->filename);
+
+                $is_before = array_key_exists('is_before', $validated) ? 
+                    $validated['is_before'] : 
+                    null;
+                
+                $oneDayTask->imageProof()->create([
+                    'filename' => $path,
+                    'is_before' => $is_before,
+                ]);
+
+                $oneDayTask->imageProof;   
+            }
+
+        return $this->sendResponseWithData($oneDayTask, 200);
+    }
 }

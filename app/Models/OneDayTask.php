@@ -28,6 +28,7 @@ class OneDayTask extends Model
         'end_date',
         'child_id',
         'adult_id',
+        'is_timer_done',
     ];
 
     protected $appends = ['src'];
@@ -60,6 +61,6 @@ class OneDayTask extends Model
 
     public function imageProof()
     {
-        return $this->morphOne(TaskProofImage::class, 'imageable');
+        return $this->morphMany(TaskProofImage::class, 'imageable');
     }
 }

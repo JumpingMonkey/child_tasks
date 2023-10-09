@@ -85,7 +85,8 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('/', 'getAllTasks');
             Route::get('/regular_tasks/{regularTask}', 'getRegularTask');
             Route::put('/regular_tasks/{regularTask}', 'updateRegularTask');
-            Route::put('/one_day_task/{oneDayTask}', 'updateOneDayTask');
+            Route::get('/one_day_tasks/{oneDayTask}', 'getOneDayTask');
+            Route::put('/one_day_tasks/{oneDayTask}', 'updateOneDayTask');
             
         });
     });
