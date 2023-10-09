@@ -5287,6 +5287,545 @@
           "DO NOT USE"
         ]
       }
+    },
+    "/child/tasks/one_day_tasks/{oneDayTask}": {
+      "get": {
+        "summary": "Get one day task by id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "icon": {
+                          "type": "string"
+                        },
+                        "image": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "expected_duration": {
+                          "type": "integer"
+                        },
+                        "proof_type_id": {
+                          "type": "integer"
+                        },
+                        "coins": {
+                          "type": "integer"
+                        },
+                        "is_timer_done": {
+                          "type": "integer"
+                        },
+                        "start_date": {
+                          "type": "string"
+                        },
+                        "end_date": {
+                          "type": "string"
+                        },
+                        "adult_id": {
+                          "type": "integer"
+                        },
+                        "child_id": {
+                          "type": "integer"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        },
+                        "src": {
+                          "type": "string"
+                        },
+                        "timer": {
+                          "type": "null"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "title": "Eos ut vitae impedit.",
+                        "description": "Dolores eaque ad fugit ex qui quis rerum non. Itaque repellat hic esse alias magni.",
+                        "icon": "/tmp/b48c22d27e34b9d374215db34ddad6b4.png",
+                        "image": "/tmp/d8b054a4a6ecc34624ff9bb528fd238b.png",
+                        "status": "should do",
+                        "expected_duration": 0,
+                        "proof_type_id": 1,
+                        "coins": 1,
+                        "is_timer_done": 1,
+                        "start_date": "2023-10-09 00:00:00",
+                        "end_date": "2023-10-09 23:59:59",
+                        "adult_id": 1,
+                        "child_id": 1,
+                        "created_at": "2023-10-09T16:45:45.000000Z",
+                        "updated_at": "2023-10-09T20:08:07.000000Z",
+                        "src": "http://localhost/storage//tmp/d8b054a4a6ecc34624ff9bb528fd238b.png",
+                        "timer": null
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "title": "Eos ut vitae impedit.",
+                        "description": "Dolores eaque ad fugit ex qui quis rerum non. Itaque repellat hic esse alias magni.",
+                        "icon": "/tmp/b48c22d27e34b9d374215db34ddad6b4.png",
+                        "image": "/tmp/d8b054a4a6ecc34624ff9bb528fd238b.png",
+                        "status": "should do",
+                        "expected_duration": 0,
+                        "proof_type_id": 1,
+                        "coins": 1,
+                        "is_timer_done": 1,
+                        "start_date": "2023-10-09 00:00:00",
+                        "end_date": "2023-10-09 23:59:59",
+                        "adult_id": 1,
+                        "child_id": 1,
+                        "created_at": "2023-10-09T16:45:45.000000Z",
+                        "updated_at": "2023-10-09T20:08:07.000000Z",
+                        "src": "http://localhost/storage//tmp/d8b054a4a6ecc34624ff9bb528fd238b.png",
+                        "timer": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          }
+        },
+        "operationId": "get-child-one-day--task-by-id",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "description": "",
+        "x-extension-1": {
+          "message": "Unauthenticated."
+        },
+        "tags": [
+          "Child - Tasks"
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "oneDayTask",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "put": {
+        "summary": "Child - Update one day task",
+        "operationId": "update-child-regular-tasks",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "icon": {
+                          "type": "string"
+                        },
+                        "image": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "expected_duration": {
+                          "type": "integer"
+                        },
+                        "proof_type_id": {
+                          "type": "integer"
+                        },
+                        "coins": {
+                          "type": "integer"
+                        },
+                        "is_timer_done": {
+                          "type": "string"
+                        },
+                        "start_date": {
+                          "type": "string"
+                        },
+                        "end_date": {
+                          "type": "string"
+                        },
+                        "adult_id": {
+                          "type": "integer"
+                        },
+                        "child_id": {
+                          "type": "integer"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        },
+                        "src": {
+                          "type": "string"
+                        },
+                        "image_proof": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "filename": {
+                                "type": "string"
+                              },
+                              "is_before": {
+                                "type": [
+                                  "integer",
+                                  "null"
+                                ]
+                              },
+                              "imageable_type": {
+                                "type": "string"
+                              },
+                              "imageable_id": {
+                                "type": "integer"
+                              },
+                              "created_at": {
+                                "type": "string"
+                              },
+                              "updated_at": {
+                                "type": "string"
+                              },
+                              "src": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "title": "Eos ut vitae impedit.",
+                        "description": "Dolores eaque ad fugit ex qui quis rerum non. Itaque repellat hic esse alias magni.",
+                        "icon": "/tmp/b48c22d27e34b9d374215db34ddad6b4.png",
+                        "image": "/tmp/d8b054a4a6ecc34624ff9bb528fd238b.png",
+                        "status": "done",
+                        "expected_duration": 0,
+                        "proof_type_id": 1,
+                        "coins": 1,
+                        "is_timer_done": "1",
+                        "start_date": "2023-10-09 00:00:00",
+                        "end_date": "2023-10-09 23:59:59",
+                        "adult_id": 1,
+                        "child_id": 1,
+                        "created_at": "2023-10-09T16:45:45.000000Z",
+                        "updated_at": "2023-10-09T20:26:19.000000Z",
+                        "src": "http://localhost/storage//tmp/d8b054a4a6ecc34624ff9bb528fd238b.png",
+                        "image_proof": [
+                          {
+                            "id": 1,
+                            "filename": "/tmp/3bb80329c738f0a7d06a60eea3fa861b.png",
+                            "is_before": null,
+                            "imageable_type": "App\\Models\\OneDayTask",
+                            "imageable_id": 1,
+                            "created_at": "2023-10-09T16:45:46.000000Z",
+                            "updated_at": "2023-10-09T16:45:46.000000Z",
+                            "src": "http://localhost/storage//tmp/3bb80329c738f0a7d06a60eea3fa861b.png"
+                          },
+                          {
+                            "id": 18,
+                            "filename": "one-day-tasks-proof-images/ddqeeXDCBZQ719H3a5D4ZywE330GxY7yBMJEC79E.jpg",
+                            "is_before": 0,
+                            "imageable_type": "App\\Models\\OneDayTask",
+                            "imageable_id": 1,
+                            "created_at": "2023-10-09T20:10:31.000000Z",
+                            "updated_at": "2023-10-09T20:10:31.000000Z",
+                            "src": "http://localhost/storage/one-day-tasks-proof-images/ddqeeXDCBZQ719H3a5D4ZywE330GxY7yBMJEC79E.jpg"
+                          },
+                          {
+                            "id": 19,
+                            "filename": "one-day-tasks-proof-images/CrGo2yxo6dDKiaUJuYDX7ZOjm39Yd6RiXpkOKBra.jpg",
+                            "is_before": 1,
+                            "imageable_type": "App\\Models\\OneDayTask",
+                            "imageable_id": 1,
+                            "created_at": "2023-10-09T20:13:42.000000Z",
+                            "updated_at": "2023-10-09T20:13:42.000000Z",
+                            "src": "http://localhost/storage/one-day-tasks-proof-images/CrGo2yxo6dDKiaUJuYDX7ZOjm39Yd6RiXpkOKBra.jpg"
+                          },
+                          {
+                            "id": 20,
+                            "filename": "one-day-tasks-proof-images/OwxtCeUx9Qv2UCtF8CBkrDceuhAH6uCr3m27S3pt.jpg",
+                            "is_before": 1,
+                            "imageable_type": "App\\Models\\OneDayTask",
+                            "imageable_id": 1,
+                            "created_at": "2023-10-09T20:13:49.000000Z",
+                            "updated_at": "2023-10-09T20:13:49.000000Z",
+                            "src": "http://localhost/storage/one-day-tasks-proof-images/OwxtCeUx9Qv2UCtF8CBkrDceuhAH6uCr3m27S3pt.jpg"
+                          },
+                          {
+                            "id": 21,
+                            "filename": "one-day-tasks-proof-images/Yfz6sg4i1d2RDXjZnHn5sufogjbTU9mEU3vJjzeQ.jpg",
+                            "is_before": 1,
+                            "imageable_type": "App\\Models\\OneDayTask",
+                            "imageable_id": 1,
+                            "created_at": "2023-10-09T20:14:26.000000Z",
+                            "updated_at": "2023-10-09T20:14:26.000000Z",
+                            "src": "http://localhost/storage/one-day-tasks-proof-images/Yfz6sg4i1d2RDXjZnHn5sufogjbTU9mEU3vJjzeQ.jpg"
+                          },
+                          {
+                            "id": 22,
+                            "filename": "one-day-tasks-proof-images/wg7EWHdDqEKqTfLVFnI9pLYo0CL9gqpmI93jOUkI.jpg",
+                            "is_before": 1,
+                            "imageable_type": "App\\Models\\OneDayTask",
+                            "imageable_id": 1,
+                            "created_at": "2023-10-09T20:26:20.000000Z",
+                            "updated_at": "2023-10-09T20:26:20.000000Z",
+                            "src": "http://localhost/storage/one-day-tasks-proof-images/wg7EWHdDqEKqTfLVFnI9pLYo0CL9gqpmI93jOUkI.jpg"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "title": "Eos ut vitae impedit.",
+                        "description": "Dolores eaque ad fugit ex qui quis rerum non. Itaque repellat hic esse alias magni.",
+                        "icon": "/tmp/b48c22d27e34b9d374215db34ddad6b4.png",
+                        "image": "/tmp/d8b054a4a6ecc34624ff9bb528fd238b.png",
+                        "status": "done",
+                        "expected_duration": 0,
+                        "proof_type_id": 1,
+                        "coins": 1,
+                        "is_timer_done": "1",
+                        "start_date": "2023-10-09 00:00:00",
+                        "end_date": "2023-10-09 23:59:59",
+                        "adult_id": 1,
+                        "child_id": 1,
+                        "created_at": "2023-10-09T16:45:45.000000Z",
+                        "updated_at": "2023-10-09T20:26:19.000000Z",
+                        "src": "http://localhost/storage//tmp/d8b054a4a6ecc34624ff9bb528fd238b.png",
+                        "image_proof": [
+                          {
+                            "id": 1,
+                            "filename": "/tmp/3bb80329c738f0a7d06a60eea3fa861b.png",
+                            "is_before": null,
+                            "imageable_type": "App\\Models\\OneDayTask",
+                            "imageable_id": 1,
+                            "created_at": "2023-10-09T16:45:46.000000Z",
+                            "updated_at": "2023-10-09T16:45:46.000000Z",
+                            "src": "http://localhost/storage//tmp/3bb80329c738f0a7d06a60eea3fa861b.png"
+                          },
+                          {
+                            "id": 18,
+                            "filename": "one-day-tasks-proof-images/ddqeeXDCBZQ719H3a5D4ZywE330GxY7yBMJEC79E.jpg",
+                            "is_before": 0,
+                            "imageable_type": "App\\Models\\OneDayTask",
+                            "imageable_id": 1,
+                            "created_at": "2023-10-09T20:10:31.000000Z",
+                            "updated_at": "2023-10-09T20:10:31.000000Z",
+                            "src": "http://localhost/storage/one-day-tasks-proof-images/ddqeeXDCBZQ719H3a5D4ZywE330GxY7yBMJEC79E.jpg"
+                          },
+                          {
+                            "id": 19,
+                            "filename": "one-day-tasks-proof-images/CrGo2yxo6dDKiaUJuYDX7ZOjm39Yd6RiXpkOKBra.jpg",
+                            "is_before": 1,
+                            "imageable_type": "App\\Models\\OneDayTask",
+                            "imageable_id": 1,
+                            "created_at": "2023-10-09T20:13:42.000000Z",
+                            "updated_at": "2023-10-09T20:13:42.000000Z",
+                            "src": "http://localhost/storage/one-day-tasks-proof-images/CrGo2yxo6dDKiaUJuYDX7ZOjm39Yd6RiXpkOKBra.jpg"
+                          },
+                          {
+                            "id": 20,
+                            "filename": "one-day-tasks-proof-images/OwxtCeUx9Qv2UCtF8CBkrDceuhAH6uCr3m27S3pt.jpg",
+                            "is_before": 1,
+                            "imageable_type": "App\\Models\\OneDayTask",
+                            "imageable_id": 1,
+                            "created_at": "2023-10-09T20:13:49.000000Z",
+                            "updated_at": "2023-10-09T20:13:49.000000Z",
+                            "src": "http://localhost/storage/one-day-tasks-proof-images/OwxtCeUx9Qv2UCtF8CBkrDceuhAH6uCr3m27S3pt.jpg"
+                          },
+                          {
+                            "id": 21,
+                            "filename": "one-day-tasks-proof-images/Yfz6sg4i1d2RDXjZnHn5sufogjbTU9mEU3vJjzeQ.jpg",
+                            "is_before": 1,
+                            "imageable_type": "App\\Models\\OneDayTask",
+                            "imageable_id": 1,
+                            "created_at": "2023-10-09T20:14:26.000000Z",
+                            "updated_at": "2023-10-09T20:14:26.000000Z",
+                            "src": "http://localhost/storage/one-day-tasks-proof-images/Yfz6sg4i1d2RDXjZnHn5sufogjbTU9mEU3vJjzeQ.jpg"
+                          },
+                          {
+                            "id": 22,
+                            "filename": "one-day-tasks-proof-images/wg7EWHdDqEKqTfLVFnI9pLYo0CL9gqpmI93jOUkI.jpg",
+                            "is_before": 1,
+                            "imageable_type": "App\\Models\\OneDayTask",
+                            "imageable_id": 1,
+                            "created_at": "2023-10-09T20:26:20.000000Z",
+                            "updated_at": "2023-10-09T20:26:20.000000Z",
+                            "src": "http://localhost/storage/one-day-tasks-proof-images/wg7EWHdDqEKqTfLVFnI9pLYo0CL9gqpmI93jOUkI.jpg"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image_proof": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "is_timer_done": {
+                    "type": "boolean"
+                  },
+                  "is_before": {
+                    "type": "boolean"
+                  },
+                  "status": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Child - Tasks"
+        ]
+      },
+      "post": {
+        "summary": "(DO NOT USE) Child Update one day task by id",
+        "operationId": "child-update-child-one_day-task0",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string"
+                  },
+                  "is_timer_done": {
+                    "type": "integer"
+                  },
+                  "is_before": {
+                    "type": "integer"
+                  },
+                  "image_proof": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "_method": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "DO NOT USE"
+        ]
+      }
     }
   },
   "components": {
