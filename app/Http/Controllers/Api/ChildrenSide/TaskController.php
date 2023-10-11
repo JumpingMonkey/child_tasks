@@ -128,7 +128,7 @@ class TaskController extends BaseController
 
             $regularTask->imageProof;   
         }
-// if you need you can attach event with listeners
+// TODO if you need you can attach event with listeners
             // RegularTaskWasUpdated::dispatch($regularTask);
 
         return $this->sendResponseWithData($regularTask, 200);
