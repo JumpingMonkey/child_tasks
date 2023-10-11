@@ -12,7 +12,6 @@ class Timer extends Model
 
     protected $fillable = [
         'expected_duration',
-        'duration',
     ];
 
     public function timerable(): MorphTo

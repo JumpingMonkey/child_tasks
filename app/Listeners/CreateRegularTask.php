@@ -31,19 +31,19 @@ class CreateRegularTask
         if(! $event->regularTaskTemplate->regularTask()
             ->where('start_date', Carbon::now()->startOfDay())
             ->exists() && $schedule->$curentWeekDay){
-                if($event->regularTaskTemplate->proofType->title == 'timer'){
-                    RegularTask::factory()
-                    ->for($event->regularTaskTemplate)
-                    ->hasTimer(1, [
-                        'expected_duration' => $event->regularTaskTemplate->expected_duration,
-                        'duration' => 0,
-                    ])
-                    ->create(['picture_proof' => null]);
-                } else {
+                // if($event->regularTaskTemplate->proofType->title == 'timer'){
+                //     RegularTask::factory()
+                //     ->for($event->regularTaskTemplate)
+                    // ->hasTimer(1, [
+                    //     'expected_duration' => $event->regularTaskTemplate->expected_duration,
+                    //     'duration' => 0,
+                    // ])
+                    // ->create();
+                // } else {
                     RegularTask::factory()
                     ->for($event->regularTaskTemplate)
                     ->create();
-                }
+                // }
         }
         
     }
