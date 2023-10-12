@@ -14,6 +14,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Hash;
 
 class AdultResource extends Resource
 {
@@ -30,11 +31,18 @@ class AdultResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
                     ->required()
-                    ->unique(Adult::class)
+                    ->unique(ignoreRecord: true)
                     ->maxLength(255),
                 
-                Forms\Components\TextInput::make('password')->confirmed(),
-                Forms\Components\TextInput::make('password_confirmation'),
+                Forms\Components\TextInput::make('password')
+                ->confirmed()
+                ->password()
+                ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                ->dehydrated(fn ($state) => filled($state))
+                ->required(fn (string $context): bool => $context === 'create')
+                ,
+                Forms\Components\TextInput::make('password_confirmation')
+                ->password(),
                 Forms\Components\Select::make('tag_id')
                     ->label('Tag')
                     ->multiple()
