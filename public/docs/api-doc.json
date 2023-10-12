@@ -2285,6 +2285,97 @@
         "tags": [
           "Adult - regular custom tasks"
         ]
+      },
+      "post": {
+        "summary": "DO NOT USE - Update custom regular task template",
+        "operationId": "post-adult-regular_tasks-custom_tasks-child-regularTaskTemplate",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "x-examples": {
+                  "Example 1": {
+                    "title": "Custom task 1",
+                    "description": "Custom description",
+                    "coins": 10,
+                    "proof_type_id": 1,
+                    "schedule": {
+                      "monday": 1,
+                      "tuesday": 0,
+                      "wednesday": 1,
+                      "thursday": 0,
+                      "friday": 1,
+                      "saturday": 0,
+                      "sunday": 0
+                    },
+                    "expected_duration": 60
+                  }
+                },
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "coins": {
+                    "type": "integer"
+                  },
+                  "proof_type_id": {
+                    "type": "integer"
+                  },
+                  "schedule[monday]": {
+                    "type": "integer"
+                  },
+                  "schedule[tuesday]": {
+                    "type": "integer"
+                  },
+                  "schedule[wednesday]": {
+                    "type": "integer"
+                  },
+                  "schedule[thursday]": {
+                    "type": "integer"
+                  },
+                  "schedule[friday]": {
+                    "type": "integer"
+                  },
+                  "schedule[saturday]": {
+                    "type": "integer"
+                  },
+                  "schedule[sunday]": {
+                    "type": "integer"
+                  },
+                  "expected_duration": {
+                    "type": "integer"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "_method": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
+          }
+        ]
       }
     },
     "/adult/rewards/{child}": {
@@ -4608,7 +4699,7 @@
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/Accept"
+            "$ref": "./admin.json#/components/parameters/Accept"
           }
         ],
         "description": "",
@@ -4810,7 +4901,7 @@
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/Accept"
+            "$ref": "./admin.json#/components/parameters/Accept"
           }
         ],
         "description": "",
