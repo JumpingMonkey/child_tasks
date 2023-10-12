@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->timestamp('last_login')->nullable();
             $table->integer('coins')->default(0);
-            $table->boolean('is_parent');
+            $table->boolean('is_parent')->default(1);
             $table->foreignIdFor(User::class)->nullable()->constrained();
             
         });

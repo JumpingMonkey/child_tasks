@@ -75,5 +75,7 @@ class AuthServiceProvider extends ServiceProvider
             
             return $oneDayTask->child_id == $child->id;
         });
+
+        
     }
 }

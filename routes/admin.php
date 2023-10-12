@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function(){
-    return 'd';
-})
-    // ->middleware('auth')
-    ->name('index');
+// Route::get('/', function(){
+//     return 'd';
+// })
+//     // ->middleware('auth')
+//     ->name('index');
