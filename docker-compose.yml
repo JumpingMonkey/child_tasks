@@ -54,7 +54,7 @@ services:
         image: phpmyadmin
         restart: always
         ports:
-            - 8080:80
+            - 8085:80
         networks:
             - sail
         environment:
