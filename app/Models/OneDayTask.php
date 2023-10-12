@@ -18,7 +18,6 @@ class OneDayTask extends Model
         'title',
         'description',
         'icon',
-        'image',
         'coins',
         'status',
         'expected_duration',
@@ -30,13 +29,6 @@ class OneDayTask extends Model
         'adult_id',
         'is_timer_done',
     ];
-
-    protected $appends = ['src'];
-
-    public function getSrcAttribute()
-    {
-        return asset("storage/{$this->image}");
-    }
 
     //relations
     public function timer(): MorphOne
@@ -62,5 +54,10 @@ class OneDayTask extends Model
     public function imageProof()
     {
         return $this->morphMany(TaskProofImage::class, 'imageable');
+    }
+
+    public function image(): MorphOne
+    {
+        return $this->morphOne(TaskImage::class, 'imageable');
     }
 }

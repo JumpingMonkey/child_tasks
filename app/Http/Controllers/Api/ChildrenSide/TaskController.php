@@ -25,16 +25,18 @@ class TaskController extends BaseController
             ->whereHas('regularTask', function($q){
                 $q->where('start_date', Carbon::now()->startOfDay()->toDateTimeString());
             })
-            ->select(['id', 'title', 'coins', 'icon', 'image'])
+            ->select(['id', 'title', 'coins', 'icon'])
             ->with('regularTask', function($q){
-                $q->select('status', 'regular_task_template_id');
+                $q->select('status', 'regular_task_template_id', 'id');
             })
+            ->with('image')
             ->get()
             ->each(function($item){
                 $item->status = $item->regularTask[0]->status;
+                $item->regularTaskId = $item->regularTask[0]->id;
                 $item->offsetUnset('regularTask');
             });
-            $result['active_curent_regular_tasks'] = $activeCurentRegularTasks;
+            $result['active_curent_regular_task'] = $activeCurentRegularTasks;
 
         $activeRegularTasks = RegularTaskTemplate::query()
             ->where('child_id', $request->user()->id)
@@ -42,14 +44,16 @@ class TaskController extends BaseController
             ->whereDoesntHave('regularTask', function($q){
                 $q->where('start_date', Carbon::now()->startOfDay()->toDateTimeString());
             })
-            ->select(['id', 'title', 'coins', 'icon', 'image', 'is_active'])
+            ->select(['id', 'title', 'coins', 'icon', 'is_active'])
+            ->with('image')
             ->orderBy('is_active', 'desc')
             ->get();
             
             $result['regular_tasks'] = $activeRegularTasks;
 
-        $oneDayTasks = OneDayTask::select(['id', 'title', 'icon', 'coins', 'status', 'image'])
+        $oneDayTasks = OneDayTask::select(['id', 'title', 'icon', 'coins', 'status'])
         ->where('child_id', $request->user()->id)
+        ->with('image')
         ->get();
         $result['one_day_tasks'] = $oneDayTasks;
 
@@ -66,7 +70,7 @@ class TaskController extends BaseController
             abort(403, 'It is not your task!');
         }
 
-        $regularTask = $regularTask->load(['regularTaskTemplate', 'timer']);
+        $regularTask = $regularTask->load(['regularTaskTemplate.image']);
   
         return $this->sendResponseWithData($regularTask, 200);
     }
@@ -81,7 +85,7 @@ class TaskController extends BaseController
             abort(403, 'It is not your task!');
         }
 
-        $oneDayTask = $oneDayTask->load(['timer']);
+        $oneDayTask = $oneDayTask->load(['image', 'proofType']);
   
         return $this->sendResponseWithData($oneDayTask, 200);
     }
@@ -126,7 +130,7 @@ class TaskController extends BaseController
                 'is_before' => $is_before,
             ]);
 
-            $regularTask->imageProof;   
+            $regularTask->load('imageProof', 'regularTaskTemplate');   
         }
 // TODO if you need you can attach event with listeners
             // RegularTaskWasUpdated::dispatch($regularTask);

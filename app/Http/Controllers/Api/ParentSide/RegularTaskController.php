@@ -51,7 +51,7 @@ class RegularTaskController extends BaseController
 
         $updatedTasks = RegularTaskTemplate::query()->whereIn('id', $updatedTasksIds)->get();
 
-        return $this->sendResponseWithData($updatedTasks);
+        return $this->sendResponseWithData($updatedTasks->load('schedule'));
     }
 
     public function getRegularTaskTemplatesByChild(Request $request, Child $child)
@@ -60,7 +60,7 @@ class RegularTaskController extends BaseController
             abort(403, "Unauthorized");
         }
 
-        $result = $child->regularTaskTemplates()->get();
+        $result = $child->regularTaskTemplates()->with('schedule')->get();
 
         return $this->sendResponseWithData($result, 200);
     }

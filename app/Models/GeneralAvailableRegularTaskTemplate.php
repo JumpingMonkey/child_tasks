@@ -6,6 +6,7 @@ use App\Models\ProofType;
 use App\Models\Schedule;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class GeneralAvailableRegularTaskTemplate extends Model
 {
@@ -28,5 +29,10 @@ class GeneralAvailableRegularTaskTemplate extends Model
 
     public function schedule(){
         return $this->belongsTo(Schedule::class);
+    }
+
+    public function image(): MorphOne
+    {
+        return $this->morphOne(TaskImage::class, 'imageable');
     }
 }

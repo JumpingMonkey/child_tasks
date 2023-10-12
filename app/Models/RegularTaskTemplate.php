@@ -6,8 +6,10 @@ use App\Models\Adult;
 use App\Models\Child;
 use App\Models\ProofType;
 use App\Models\RegularTask;
+use App\Models\TaskImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class RegularTaskTemplate extends Model
 {
@@ -20,20 +22,12 @@ class RegularTaskTemplate extends Model
         'is_general_available',
         'is_active',
         'coins',
-        'image',
         'adult_id',
         'child_id',
         'expected_duration',
         'proof_type_id',
         'schedule_id'
     ];
-
-    protected $appends = ['src'];
-
-    public function getSrcAttribute()
-    {
-        return asset("storage/{$this->image}");
-    }
 
     protected $casts = [
         'is_general_available' => 'boolean'
@@ -62,5 +56,10 @@ class RegularTaskTemplate extends Model
     public function child()
     {
         return $this->belongsTo(Child::class);
+    }
+
+    public function image(): MorphOne
+    {
+        return $this->morphOne(TaskImage::class, 'imageable');
     }
 }

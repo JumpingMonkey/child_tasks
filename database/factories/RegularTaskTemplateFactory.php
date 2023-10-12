@@ -20,7 +20,6 @@ class RegularTaskTemplateFactory extends Factory
             'title' => fake()->sentence(3),
             'description' => fake()->paragraph(1),
             'icon' => fake()->image(),
-            'image' => fake()->image(),
             'coins' => 1,
         ];
     }

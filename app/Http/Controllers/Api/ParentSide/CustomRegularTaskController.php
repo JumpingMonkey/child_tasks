@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Api\ParentSide;
 
+use App\Events\RegularTaskTemplateStatusWasUpdated;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Child;
 use App\Models\RegularTaskTemplate;
 use App\Models\Schedule;
+use App\Models\TaskImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class CustomRegularTaskController extends BaseController
 {
@@ -41,6 +44,16 @@ class CustomRegularTaskController extends BaseController
             "schedule" => "required|array",
         ]);
 
+        $schedule = Schedule::query()->firstOrCreate($validated['schedule']);
+
+        $regularTaskTemplate = RegularTaskTemplate::query()->make($validated);
+        $regularTaskTemplate->adult_id = $request->user()->id;
+        $regularTaskTemplate->child_id = $child->id;
+        $regularTaskTemplate->proof_type_id;
+        $regularTaskTemplate->is_active = 1;
+        $regularTaskTemplate->schedule_id = $schedule->id;
+        $regularTaskTemplate->save();
+
         if ($request->hasFile('image'))
         {
             $request->validate([
@@ -52,19 +65,18 @@ class CustomRegularTaskController extends BaseController
                 $path = $request->file('image')
                     ->store('regular-tasks-images', 'public');
 
-                $validated['image'] = $path;
+                $image = new TaskImage([
+                    'filename' => $path
+                ]);
+
+                $regularTaskTemplate->image()->save($image);
         }
         
-        $schedule = Schedule::query()->firstOrCreate($validated['schedule']);
+        if($regularTaskTemplate->is_active){
+            RegularTaskTemplateStatusWasUpdated::dispatch($regularTaskTemplate);
+        }
 
-        $regularTaskTemplate = RegularTaskTemplate::query()->make($validated);
-        $regularTaskTemplate->adult_id = $request->user()->id;
-        $regularTaskTemplate->child_id = $child->id;
-        $regularTaskTemplate->proof_type_id;
-        $regularTaskTemplate->schedule_id = $schedule->id;
-        $regularTaskTemplate->save();
-
-        return $this->sendResponseWithData($regularTaskTemplate, 200);
+        return $this->sendResponseWithData($regularTaskTemplate->load('schedule', 'image'), 200);
     }
 
     /**
@@ -86,6 +98,13 @@ class CustomRegularTaskController extends BaseController
             'proof_type_id' => "sometimes|integer",
             "schedule" => "sometimes|array",
         ]);
+
+        if($request->filled('schedule')){
+            $schedule = Schedule::query()->firstOrCreate($validated['schedule']);
+            $validated['schedule_id'] = $schedule->id;
+        }
+        
+        $regularTaskTemplate->update($validated);
         
         if ($request->hasFile('image'))
         {
@@ -98,16 +117,12 @@ class CustomRegularTaskController extends BaseController
                 $path = $request->file('image')
                     ->store('regular-tasks-images', 'public');
 
-                $validated['image'] = $path;
                 Storage::disk('public')->delete($regularTaskTemplate->image);
+
+                $regularTaskTemplate->image->update([
+                    'filename' => $path
+                ]);
         }
-        
-        if($request->filled('schedule')){
-            $schedule = Schedule::query()->firstOrCreate($validated['schedule']);
-            $validated['schedule_id'] = $schedule->id;
-        }
-        
-        $regularTaskTemplate->update($validated);
 
         return $this->sendResponseWithData($regularTaskTemplate, 200);
     }
@@ -115,14 +130,14 @@ class CustomRegularTaskController extends BaseController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroyCustomRegularTskTemplate(Request $request, Child $child, RegularTaskTemplate $regularTaskTemplate)
+    public function destroyCustomRegularTaskTemplate(Request $request, Child $child, RegularTaskTemplate $regularTaskTemplate)
     {
         if (! Gate::allows('is_related_adult', $child) || 
             ! Gate::allows('is_related_regular_task', [$regularTaskTemplate, $child]) ||
             $regularTaskTemplate->is_general_available) {
             abort(403, "Unauthorized");
         }
-
+        $regularTaskTemplate->image?->delete();
         $regularTaskTemplate->delete();
         $result = $child->regularTaskTemplates()->get();
 

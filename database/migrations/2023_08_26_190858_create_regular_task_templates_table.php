@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('title', 150);
             $table->string('description', 500);
             $table->string('icon')->nullable();
-            $table->string('image')->nullable();
             $table->integer('expected_duration')->default(0);
             $table->boolean('is_general_available')->default(false);
             $table->mediumInteger('coins')->default(1);
