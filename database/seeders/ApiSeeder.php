@@ -17,6 +17,7 @@ use App\Models\Schedule;
 use App\Models\TaskImage;
 use App\Models\TaskProofImage;
 use App\Models\Timer;
+use Carbon\Carbon;
 use Database\Factories\ImageFactory;
 use Database\Factories\TimerFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -47,6 +48,9 @@ class ApiSeeder extends Seeder
         $j = 0;
         while($j < 10){
             $child = Child::factory()->create();
+            $prem = fake()->randomElement([true, false]);
+            $premUntil = $prem ? Carbon::now()->addDays(30)->toDateTimeString() : null;
+            
             $adult = Adult::factory()
                 ->hasAttached($child, [
                     'adult_type' => fake()->randomElement([
@@ -56,7 +60,7 @@ class ApiSeeder extends Seeder
                         'Grandpa',
                     ]),
                 ])
-                ->create();
+                ->create(['is_premium' => $prem, 'until' => $premUntil]);
                 
                 $proofTypeForOneDayTask = $proof->random();
                 
