@@ -36,8 +36,8 @@ class CustomRegularTaskController extends BaseController
         }
         
         $validated = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'title' => 'required|string|max:255',
+            'description' => 'sometimes|string|max:500',
             'coins' => 'required|int',
             'expected_duration' => 'sometimes|int',
             'proof_type_id' => "required|int",
