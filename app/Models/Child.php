@@ -27,6 +27,7 @@ class Child extends Authenticatable
         'name',
         'age',
         'gender',
+        'coins'
     ];
 
     /**

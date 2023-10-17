@@ -25,6 +25,8 @@ class Adult extends Authenticatable
         'name',
         'email',
         'password',
+        'is_premium',
+        'until',
         'adult_type',
     ];
 

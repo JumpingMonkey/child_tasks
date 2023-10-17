@@ -15,6 +15,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Hash;
+use Filament\Infolists;
+use Filament\Infolists\Infolist;
+use Filament\Tables\Actions\ActionGroup;
+use Filament\Tables\Filters\Filter;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 
 class AdultResource extends Resource
 {
@@ -39,15 +45,31 @@ class AdultResource extends Resource
                 ->password()
                 ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                 ->dehydrated(fn ($state) => filled($state))
-                ->required(fn (string $context): bool => $context === 'create')
-                ,
+                ->required(fn (string $context): bool => $context === 'create'),
+
                 Forms\Components\TextInput::make('password_confirmation')
                 ->password(),
+                Forms\Components\Checkbox::make('is_premium')
+                    ->columnSpan(1)
+                    ->live()
+                    ->afterStateUpdated(function (Set $set, $state) {
+                        if(!$state){
+                            $set('until', null);
+                        }; 
+                    }),
+                Forms\Components\DatePicker::make('until')
+                    ->hidden(fn (Get $get) => $get('is_premium') !== true)
+                    
+                    ->columnSpan(2),
+                    
                 Forms\Components\Select::make('tag_id')
                     ->label('Tag')
                     ->multiple()
                     ->searchable()
-                    ->relationship('tags', 'name')
+                    ->relationship(name: 'tags', titleAttribute: 'name')
+                    ->optionsLimit(5)
+                    ->preload()
+                    ->columnSpan(2)
                     ->createOptionForm([
                         Forms\Components\TextInput::make('name')
                             ->required()
@@ -61,45 +83,47 @@ class AdultResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('tags.name'),
+                Tables\Columns\IconColumn::make('is_premium')->boolean(),
+                Tables\Columns\TextColumn::make('premium until')
+                    ->sortable()
+                    ->getStateUsing(function(Model $model){
+                        return $model->until;
+                    }),
+                Tables\Columns\TextColumn::make('tags.name')
+                ->badge(),
                 Tables\Columns\TextColumn::make('registration date')
                     ->sortable()
                     ->getStateUsing(function(Model $model){
                         return $model->created_at;
                     }),
-                Tables\Columns\TextColumn::make('children_count')->counts('children'),
-                Tables\Columns\TextColumn::make('Gender')
-                    ->getStateUsing(function(Model $model){
-                        return $model->children()->first()?->gender ? 'boy' : 'girl';
-                    }),
-                Tables\Columns\TextColumn::make('Kid Name')
-                    ->getStateUsing(function(Model $model){
-                        return $model->children()->first()?->name;
-                    }),
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('Age')
-                    ->getStateUsing(function(Model $model){
-                        return $model->children()->first()?->age;
-                    }),
-                Tables\Columns\TextColumn::make('Parent Status')
-                ->getStateUsing(function(Model $record){
-                    return $record->children()->first()?->pivot->adult_type ?: '-';
-                }),
-
+                Tables\Columns\TextColumn::make('children_count')
+                    ->counts('children')
+                    ->sortable(),
+                
                 
             ])
             ->filters([
-                //
+                Filter::make('is_premium')
+                    ->query(fn (Builder $query): Builder => $query->where('is_premium', true))
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                ActionGroup::make([
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\DeleteAction::make()
+                    ->requiresConfirmation(),
+                    ])->tooltip('Actions'),
+                    
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+                    ->requiresConfirmation(),
                 ]),
             ]);
     }
@@ -107,7 +131,7 @@ class AdultResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ChildrenRelationManager::class,
         ];
     }
     
@@ -116,7 +140,25 @@ class AdultResource extends Resource
         return [
             'index' => Pages\ListAdults::route('/'),
             'create' => Pages\CreateAdult::route('/create'),
+            'view' => Pages\ViewAdult::route('/{record}'),
             'edit' => Pages\EditAdult::route('/{record}/edit'),
         ];
-    }    
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+    return $infolist
+    
+        ->schema([
+            Infolists\Components\TextEntry::make('name'),
+            Infolists\Components\TextEntry::make('email'),
+            Infolists\Components\TextEntry::make('created_at'),
+            Infolists\Components\IconEntry::make('is_premium')
+                ->boolean(),
+            Infolists\Components\TextEntry::make('until'),
+               
+        ]);
+
+        
+    }
 }

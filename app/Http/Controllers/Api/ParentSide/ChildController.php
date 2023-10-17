@@ -42,11 +42,11 @@ class ChildController extends BaseController
             'name' => "required|string|max:50",
             'age' => "required|integer|max:20",
             'gender' => "required|boolean",
-            'adult_type' => "required|string|max:50",
+            'adult_type' => "sometimes|string|max:50",
         ]);
 
         $child = Child::create($validated);
-        $request->user()->children()->attach($child->id, ['adult_type' => $validated['adult_type']]);
+        $request->user()->children()->attach($child->id);
         
         $success['token'] =  $child->createToken('MyApp')->plainTextToken;
         $success['name'] =  $child->name;
