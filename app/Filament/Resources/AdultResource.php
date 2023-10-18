@@ -58,10 +58,13 @@ class AdultResource extends Resource
                         }; 
                     }),
                 Forms\Components\DatePicker::make('until')
-                    ->hidden(fn (Get $get) => $get('is_premium') !== true)
-                    
+                    // ->hidden(fn (Get $get) => $get('is_premium') !== true)
                     ->columnSpan(2),
-                    
+
+                Forms\Components\TextInput::make('adult_type')
+                    ->required()
+                    ->maxLength(255),
+
                 Forms\Components\Select::make('tag_id')
                     ->label('Tag')
                     ->multiple()
@@ -84,6 +87,9 @@ class AdultResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('adult_type')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('email')
