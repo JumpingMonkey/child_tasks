@@ -29,16 +29,16 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('regular_task_templates', function (Blueprint $table) {
-            $table->string('description', 500)->nullable(false)->change();
-        });
+        // Schema::table('regular_task_templates', function (Blueprint $table) {
+        //     $table->string('description', 500)->nullable(false)->change();
+        // });
 
-        Schema::table('general_available_regular_task_templates', function (Blueprint $table) {
-            $table->string('description', 500)->nullable(false)->change();
-        });
+        // Schema::table('general_available_regular_task_templates', function (Blueprint $table) {
+        //     $table->string('description', 500)->nullable(false)->change();
+        // });
 
-        Schema::table('one_day_tasks', function (Blueprint $table) {
-            $table->string('description', 500)->nullable(false)->change();
-        });
+        // Schema::table('one_day_tasks', function (Blueprint $table) {
+        //     $table->string('description', 500)->nullable(false)->change();
+        // });
     }
 };

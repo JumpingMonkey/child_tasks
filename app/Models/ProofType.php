@@ -11,10 +11,13 @@ class ProofType extends Model
     use HasFactory;
 
     const PROOF_TYPES = [
-        'image',
+        'photo',
         'timer',
-        'image-before-after',
-        'image+timer',
+        'photo before/after',
+        'photo + timer',
+        'voice note',
+        'screenshot',
+        'picture + photo'
     ];
 
     protected $fillable = [
