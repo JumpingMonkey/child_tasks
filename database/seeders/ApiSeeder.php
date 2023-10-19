@@ -17,6 +17,7 @@ use App\Models\Schedule;
 use App\Models\TaskImage;
 use App\Models\TaskProofImage;
 use App\Models\Timer;
+use App\Models\User;
 use Carbon\Carbon;
 use Database\Factories\ImageFactory;
 use Database\Factories\TimerFactory;
@@ -31,6 +32,8 @@ class ApiSeeder extends Seeder
      */
     public function run(): void
     {
+        User::factory()->me()->create();
+        User::factory()->admin()->create();
         $proof = ProofType::factory()->state(new Sequence(
             ['title' => ProofType::PROOF_TYPES[0]],
             ['title' => ProofType::PROOF_TYPES[1]],
