@@ -151,7 +151,15 @@ class ApiSeeder extends Seeder
 
         foreach($generalAvailableRegularTaskTemplate as $task){
             GeneralAvailableRegularTaskTemplate::factory()
-            ->for(Schedule::factory())
+            ->for(Schedule::factory()->state([
+                'monday' => 1,
+                'tuesday' => 1,
+                'wednesday' => 1,
+                'thursday' => 1,
+                'friday' => 1,
+                'saturday' => 1,
+                'sunday' => 1,
+            ]))
             ->has(TaskImage::factory(), 'image')
             ->create($task);
         }
