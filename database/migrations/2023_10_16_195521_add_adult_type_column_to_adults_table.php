@@ -28,9 +28,5 @@ return new class extends Migration
         Schema::table('adults', function (Blueprint $table) {
             $table->dropColumn('adult_type');
         });
-
-        Schema::table('adult_child', function (Blueprint $table) {
-            $table->tinyText('adult_type')->nullable(false)->change();
-        });
     }
 };
