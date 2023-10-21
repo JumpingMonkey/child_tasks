@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\ChildrenSide\ChildInfoController;
 use App\Http\Controllers\Api\ChildrenSide\TaskController;
 use App\Http\Controllers\Api\ParentSide\AdultController;
+use App\Http\Controllers\Api\ParentSide\AdultTypeController;
 use App\Http\Controllers\Api\ParentSide\CustomRegularTaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +34,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('adult')
     ->name('adult.')
     ->group(function(){
-        Route::apiResource('adults', AdultController::class)->only(['update', 'show']);
+        Route::prefix('adults')
+            ->group(function(){
+                Route::get('/showAdultProfile', [AdultController::class, 'showAdultProfile']);
+                Route::put('/updateAdultProfile', [AdultController::class, 'updateAdultProfile']);
+            });
+        Route::apiResource('adult_types', AdultTypeController::class)->only(['index']);
         Route::apiResource('children', ChildController::class);
         Route::get('get_child_token/{child}', [ChildController::class, 'getAccessTokenByChild']);
         Route::controller(RegularTaskController::class)

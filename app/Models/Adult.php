@@ -27,7 +27,7 @@ class Adult extends Authenticatable
         'password',
         'is_premium',
         'until',
-        'adult_type',
+        'adult_type_id'
     ];
 
     /**
@@ -67,5 +67,10 @@ class Adult extends Authenticatable
     public function regularTasks()
     {
         return $this->hasMany(RegularTask::class);
+    }
+
+    public function adultType()
+    {
+        return $this->belongsTo(AdultType::class);
     }
 }
