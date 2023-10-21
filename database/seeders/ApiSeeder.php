@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Adult;
+use App\Models\AdultType;
 use App\Models\Child;
 use App\Models\ChildReward;
 use App\Models\ChildRewardImage;
@@ -164,6 +165,17 @@ class ApiSeeder extends Seeder
             ->create($task);
         }
         
+        $adultTypes = AdultType::factory()
+            ->state(new Sequence(
+                ['title' => 'Mother'],
+                ['title' => 'Father'],
+                ['title' => 'Grandmather'],
+                ['title' => 'Grandfather'],
+                ['title' => 'Sister'],
+                ['title' => 'Brother'],
+                ['title' => 'Uncle'],
+                ['title' => 'Aunt'],
+            ))->count(8)->create();
 
         $j = 0;
         while($j < 10){
@@ -172,14 +184,8 @@ class ApiSeeder extends Seeder
             $premUntil = $prem ? Carbon::now()->addDays(30)->toDateTimeString() : null;
             
             $adult = Adult::factory()
-                ->hasAttached($child, [
-                    'adult_type' => fake()->randomElement([
-                        'Father',
-                        'Mother',
-                        'Grandma',
-                        'Grandpa',
-                    ]),
-                ])
+                ->hasAttached($child)
+                ->for($adultTypes->random())
                 ->create(['is_premium' => $prem, 'until' => $premUntil]);
                 
                 $proofTypeForOneDayTask = $proof->random();

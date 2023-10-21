@@ -25,7 +25,11 @@ return new class extends Migration
                 ->references('id')
                 ->on('children')
                 ->cascadeOnDelete();
-            $table->foreignIdFor(Adult::class)->constrained();
+            $table->unsignedBigInteger('adult_id');
+            $table->foreign('adult_id')
+                ->references('id')
+                ->on('adults')
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

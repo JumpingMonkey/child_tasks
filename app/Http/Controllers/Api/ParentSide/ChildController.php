@@ -42,7 +42,6 @@ class ChildController extends BaseController
             'name' => "required|string|max:50",
             'age' => "required|integer|max:20",
             'gender' => "required|boolean",
-            'adult_type' => "sometimes|string|max:50",
         ]);
 
         $child = Child::create($validated);

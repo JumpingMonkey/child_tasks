@@ -39,7 +39,7 @@ class RegisterController extends BaseController
     public function login(Request $request)
     {
         $validate = $request->validate([
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email',
             'password' => 'required',
         ]);
 

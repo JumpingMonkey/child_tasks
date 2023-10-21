@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('adult_child', function (Blueprint $table) {
+        Schema::create('adult_types', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('adult_id');
-            $table->unsignedBigInteger('child_id');
+            $table->tinyText('title');
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('adult_child');
+        Schema::dropIfExists('adult_types');
     }
 };

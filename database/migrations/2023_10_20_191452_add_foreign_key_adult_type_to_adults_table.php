@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('adults', function (Blueprint $table) {
-            $table->tinyText('adult_type')->nullable();
+            $table->unsignedBigInteger('adult_type_id')->nullable();
+            $table->foreign('adult_type_id')
+                ->references('id')
+                ->on('adult_types')
+                ->nullOnDelete();
         });
     }
 
@@ -22,7 +26,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('adults', function (Blueprint $table) {
-            $table->dropColumn('adult_type');
+            $table->dropForeign(['adult_type_id']);
+            $table->dropColumn('adult_type_id');
         });
     }
 };

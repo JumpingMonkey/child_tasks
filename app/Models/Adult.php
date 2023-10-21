@@ -55,7 +55,7 @@ class Adult extends Authenticatable
     //Adult(parent) has many children.
     public function children()
     {
-        return $this->belongsToMany(Child::class)->withPivot('adult_type');
+        return $this->belongsToMany(Child::class);
     }
 
     public function tags()
