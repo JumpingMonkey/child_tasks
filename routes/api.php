@@ -28,7 +28,12 @@ use App\Http\Controllers\Api\ParentSide\RewardController;
 Route::controller(RegisterController::class)->group(function(){
     Route::post('register', 'register');
     Route::post('login', 'login');
-});
+    Route::post('logout', 'logout')->middleware('auth:sanctum');
+
+    Route::post('forgot-password', 'sendPasswordResetToken');
+    Route::post('reset-password', 'resetPassword')->name('password.reset');
+    Route::post('update-password', 'updatePassword');
+})->middleware('guest');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('adult')

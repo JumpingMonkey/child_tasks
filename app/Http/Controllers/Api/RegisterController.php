@@ -9,6 +9,7 @@ use App\Models\Adult;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 
 class RegisterController extends BaseController
@@ -53,5 +54,36 @@ class RegisterController extends BaseController
         $success['id'] = $user->id;
         return $this->sendResponseWithData($success);
         
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->tokens()->delete();
+
+        return $this->sendResponseWithOutData('Tokens was deleted');
+    }
+
+    public function sendPasswordResetToken(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+        
+        if($status == Password::RESET_LINK_SENT){
+            return $this->sendResponseWithOutData('Token was sent to user email');
+        }
+
+        throw ValidationException::withMessages([
+            'email' => [trans($status)]
+        ]);
+    }
+
+    public function resetPassword()
+    {
+        //
     }
 }
