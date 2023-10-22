@@ -419,6 +419,142 @@
                   "Example 1": {
                     "value": {
                       "success": true,
+                      "message": "Reset pasword token was sent to your email"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "data": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": false,
+                      "message": {
+                        "error": "Unauthorised"
+                      },
+                      "data": "Unauthorised."
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": false,
+                      "message": {
+                        "error": "Unauthorised"
+                      },
+                      "data": "Unauthorised."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Auth"
+        ],
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
+          }
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "email": "new@email.com"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": []
+    },
+    "/reset-password": {
+      "post": {
+        "summary": "Reset password",
+        "operationId": "post-register",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "token": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "token": "2|OuZGk0MUy6G9ydcs1QqkBdvxOknA03FpuZN5o9c8",
+                        "email": "mai2ss2saf332l@mail.com",
+                        "id": 11
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
                       "data": {
                         "token": "2|OuZGk0MUy6G9ydcs1QqkBdvxOknA03FpuZN5o9c8",
                         "email": "mai2ss2saf332l@mail.com",
@@ -496,7 +632,13 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "email": {
+                  "token": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "password_confirmation": {
                     "type": "string"
                   }
                 }
