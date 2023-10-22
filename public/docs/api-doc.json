@@ -5283,7 +5283,7 @@
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/Accept"
+            "$ref": "./admin.json#/components/parameters/Accept"
           }
         ],
         "description": "",
@@ -6863,6 +6863,175 @@
           "DO NOT USE"
         ]
       }
+    },
+    "/child/rewards": {
+      "get": {
+        "summary": "Get all rewards",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "price": {
+                            "type": "integer"
+                          },
+                          "picture_proof": {
+                            "type": "null"
+                          },
+                          "is_claimed": {
+                            "type": "integer"
+                          },
+                          "is_received": {
+                            "type": "integer"
+                          },
+                          "child_id": {
+                            "type": "integer"
+                          },
+                          "adult_id": {
+                            "type": "integer"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          },
+                          "image": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "filename": {
+                                "type": "string"
+                              },
+                              "imageable_type": {
+                                "type": "string"
+                              },
+                              "imageable_id": {
+                                "type": "integer"
+                              },
+                              "created_at": {
+                                "type": "string"
+                              },
+                              "updated_at": {
+                                "type": "string"
+                              },
+                              "src": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "Aut quibusdam minus.",
+                          "price": 278,
+                          "picture_proof": null,
+                          "is_claimed": 0,
+                          "is_received": 0,
+                          "child_id": 1,
+                          "adult_id": 1,
+                          "created_at": "2023-10-20T19:46:16.000000Z",
+                          "updated_at": "2023-10-20T19:46:16.000000Z",
+                          "image": {
+                            "id": 1,
+                            "filename": "/tmp/e6ccb43a4e57fe3d16a973e4053b760b.png",
+                            "imageable_type": "App\\Models\\ChildReward",
+                            "imageable_id": 1,
+                            "created_at": "2023-10-20T19:46:17.000000Z",
+                            "updated_at": "2023-10-20T19:46:17.000000Z",
+                            "src": "http://localhost/storage//tmp/e6ccb43a4e57fe3d16a973e4053b760b.png"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "Aut quibusdam minus.",
+                          "price": 278,
+                          "picture_proof": null,
+                          "is_claimed": 0,
+                          "is_received": 0,
+                          "child_id": 1,
+                          "adult_id": 1,
+                          "created_at": "2023-10-20T19:46:16.000000Z",
+                          "updated_at": "2023-10-20T19:46:16.000000Z",
+                          "image": {
+                            "id": 1,
+                            "filename": "/tmp/e6ccb43a4e57fe3d16a973e4053b760b.png",
+                            "imageable_type": "App\\Models\\ChildReward",
+                            "imageable_id": 1,
+                            "created_at": "2023-10-20T19:46:17.000000Z",
+                            "updated_at": "2023-10-20T19:46:17.000000Z",
+                            "src": "http://localhost/storage//tmp/e6ccb43a4e57fe3d16a973e4053b760b.png"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          }
+        },
+        "operationId": "get-all-child-rewards-child",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
+          }
+        ],
+        "description": "",
+        "x-extension-1": {
+          "message": "Unauthenticated."
+        },
+        "tags": [
+          "Child - Rewards"
+        ]
+      },
+      "parameters": []
     }
   },
   "components": {
@@ -7015,6 +7184,9 @@
     },
     {
       "name": "Child - Main info"
+    },
+    {
+      "name": "Child - Rewards"
     },
     {
       "name": "Child - Tasks"

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ChildrenSide\ChildInfoController;
+use App\Http\Controllers\Api\ChildrenSide\ChildRewardController;
 use App\Http\Controllers\Api\ChildrenSide\TaskController;
 use App\Http\Controllers\Api\ParentSide\AdultController;
 use App\Http\Controllers\Api\ParentSide\AdultTypeController;
@@ -101,6 +102,11 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('/one_day_tasks/{oneDayTask}', 'getOneDayTask');
             Route::put('/one_day_tasks/{oneDayTask}', 'updateOneDayTask');
             
+        });
+        Route::controller(ChildRewardController::class)
+        ->prefix('/rewards')
+        ->group(function(){
+            Route::get('/', 'getAllRewards');
         });
     });
 });

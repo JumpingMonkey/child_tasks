@@ -65,7 +65,7 @@ class Child extends Authenticatable
 
     public function rewards()
     {
-        return $this->HasMany(ChildReward::class)->with('image');
+        return $this->HasMany(ChildReward::class, 'child_id')->with('image');
     }
 
 
