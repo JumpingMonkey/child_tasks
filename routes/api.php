@@ -32,7 +32,7 @@ Route::controller(RegisterController::class)->group(function(){
 
     Route::post('forgot-password', 'sendPasswordResetToken');
     Route::post('reset-password', 'resetPassword')->name('password.reset');
-    Route::post('update-password', 'updatePassword');
+    // Route::post('update-password', 'updatePassword');
 })->middleware('guest');
 
 Route::middleware('auth:sanctum')->group(function () {

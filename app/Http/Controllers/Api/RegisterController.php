@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\BaseController;
 use App\Http\Requests\ApiRegisterRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Adult;
+use App\Models\PasswordResetToken;
+use App\Notifications\ApiPasswordResetNotification;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Hash;
@@ -65,25 +67,66 @@ class RegisterController extends BaseController
 
     public function sendPasswordResetToken(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email'
+        $valid = $request->validate([
+            'email' => 'required|email|exists:adults,email'
         ]);
-
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
         
-        if($status == Password::RESET_LINK_SENT){
-            return $this->sendResponseWithOutData('Token was sent to user email');
+        $user = Adult::query()->where('email', $valid['email'])->first();
+
+        $oldPasswordResetToken = PasswordResetToken::where('email', $user->email)->first();
+        $newPasswordResetToken = str_pad(random_int(1,9999), 4, "0", STR_PAD_LEFT);
+
+        if(!$oldPasswordResetToken){
+            
+            PasswordResetToken::create([
+                'email' => $user->email,
+                'token' => $newPasswordResetToken
+            ]);
+        } else {
+            $oldPasswordResetToken->update([
+                'email' => $user->email,
+                'token' => $newPasswordResetToken
+            ]);
         }
 
-        throw ValidationException::withMessages([
-            'email' => [trans($status)]
-        ]);
+        $user->notify(new ApiPasswordResetNotification($newPasswordResetToken));
+
+        return $this->sendResponseWithOutData('Reset pasword token was sent to your email');
+
+        // $status = Password::sendResetLink(
+        //     $request->only('email')
+        // );
+
+        // if($status == Password::RESET_LINK_SENT){
+        //     return $this->sendResponseWithOutData('Token was sent to user email');
+        // }
+
+        // throw ValidationException::withMessages([
+        //     'email' => [trans($status)]
+        // ]);
     }
 
-    public function resetPassword()
+    public function resetPassword(Request $request)
     {
-        //
+        $valid = $request->validate([
+            'token' => 'required|max:9999|exists:password_reset_tokens,token',
+            'password' => 'required|confirmed',
+        ]);
+
+        $PasswordResetTokenRecord = PasswordResetToken::where('token', $valid['token'])->first();
+
+        $user = Adult::where('email', $PasswordResetTokenRecord->email)->first();
+
+        $user->update([
+            'password' => Hash::make($valid['password']),
+        ]);
+
+        $user->tokens()->delete();
+        $PasswordResetTokenRecord->delete();
+
+        $success['token'] =  $user->createToken('MyApp')->plainTextToken;
+        $success['email'] =  $user->email;
+        $success['id'] = $user->id;
+        return $this->sendResponseWithData($success);
     }
 }
