@@ -53,6 +53,7 @@ class TaskController extends BaseController
 
         $oneDayTasks = OneDayTask::select(['id', 'title', 'icon', 'coins', 'status'])
         ->where('child_id', $request->user()->id)
+        ->where('start_date', Carbon::now()->startOfDay()->toDateTimeString())
         ->with('image')
         ->get();
         $result['one_day_tasks'] = $oneDayTasks;
