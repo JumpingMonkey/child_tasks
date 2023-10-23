@@ -61,9 +61,9 @@ class AdultResource extends Resource
                     // ->hidden(fn (Get $get) => $get('is_premium') !== true)
                     ->columnSpan(2),
 
-                Forms\Components\TextInput::make('adult_type')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Select::make('adult_type_id')
+                    ->relationship('adultType', 'title')
+                    ->required(),
 
                 Forms\Components\Select::make('tag_id')
                     ->label('Tag')
@@ -162,6 +162,7 @@ class AdultResource extends Resource
             Infolists\Components\IconEntry::make('is_premium')
                 ->boolean(),
             Infolists\Components\TextEntry::make('until'),
+            Infolists\Components\TextEntry::make('adultType.title'),
                
         ]);
 
