@@ -114,7 +114,7 @@
     "/login": {
       "post": {
         "summary": "Register",
-        "operationId": "post-register",
+        "operationId": "post-login",
         "responses": {
           "200": {
             "description": "OK",
@@ -258,7 +258,7 @@
     "/logout": {
       "post": {
         "summary": "Logout",
-        "operationId": "post-register",
+        "operationId": "post-logout",
         "responses": {
           "200": {
             "description": "OK",
@@ -377,7 +377,7 @@
     "/forgot-password": {
       "post": {
         "summary": "Forgot password",
-        "operationId": "post-register",
+        "operationId": "post-forgot-password",
         "responses": {
           "200": {
             "description": "OK",
@@ -513,7 +513,7 @@
     "/reset-password": {
       "post": {
         "summary": "Reset password",
-        "operationId": "post-register",
+        "operationId": "post-reset-password",
         "responses": {
           "200": {
             "description": "OK",
