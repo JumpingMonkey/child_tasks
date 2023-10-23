@@ -1524,6 +1524,309 @@
         ]
       }
     },
+    "/adult/proof_types": {
+      "parameters": [],
+      "get": {
+        "summary": "Get proof types",
+        "operationId": "get-adult-proof-types",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "Mother",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        },
+                        {
+                          "id": 2,
+                          "title": "Father",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        },
+                        {
+                          "id": 3,
+                          "title": "Grandmather",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        },
+                        {
+                          "id": 4,
+                          "title": "Grandfather",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        },
+                        {
+                          "id": 5,
+                          "title": "Sister",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        },
+                        {
+                          "id": 6,
+                          "title": "Brother",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        },
+                        {
+                          "id": 7,
+                          "title": "Uncle",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        },
+                        {
+                          "id": 8,
+                          "title": "Aunt",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "Mother",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        },
+                        {
+                          "id": 2,
+                          "title": "Father",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        },
+                        {
+                          "id": 3,
+                          "title": "Grandmather",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        },
+                        {
+                          "id": 4,
+                          "title": "Grandfather",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        },
+                        {
+                          "id": 5,
+                          "title": "Sister",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        },
+                        {
+                          "id": 6,
+                          "title": "Brother",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        },
+                        {
+                          "id": 7,
+                          "title": "Uncle",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        },
+                        {
+                          "id": 8,
+                          "title": "Aunt",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "photo",
+                          "created_at": "2023-10-20T19:45:33.000000Z",
+                          "updated_at": "2023-10-20T19:45:33.000000Z"
+                        },
+                        {
+                          "id": 2,
+                          "title": "timer",
+                          "created_at": "2023-10-20T19:45:33.000000Z",
+                          "updated_at": "2023-10-20T19:45:33.000000Z"
+                        },
+                        {
+                          "id": 3,
+                          "title": "photo before/after",
+                          "created_at": "2023-10-20T19:45:33.000000Z",
+                          "updated_at": "2023-10-20T19:45:33.000000Z"
+                        },
+                        {
+                          "id": 4,
+                          "title": "photo + timer",
+                          "created_at": "2023-10-20T19:45:33.000000Z",
+                          "updated_at": "2023-10-20T19:45:33.000000Z"
+                        },
+                        {
+                          "id": 5,
+                          "title": "voice note",
+                          "created_at": "2023-10-20T19:45:33.000000Z",
+                          "updated_at": "2023-10-20T19:45:33.000000Z"
+                        },
+                        {
+                          "id": 6,
+                          "title": "screenshot",
+                          "created_at": "2023-10-20T19:45:33.000000Z",
+                          "updated_at": "2023-10-20T19:45:33.000000Z"
+                        },
+                        {
+                          "id": 7,
+                          "title": "picture + photo",
+                          "created_at": "2023-10-20T19:45:33.000000Z",
+                          "updated_at": "2023-10-20T19:45:33.000000Z"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "photo",
+                          "created_at": "2023-10-20T19:45:33.000000Z",
+                          "updated_at": "2023-10-20T19:45:33.000000Z"
+                        },
+                        {
+                          "id": 2,
+                          "title": "timer",
+                          "created_at": "2023-10-20T19:45:33.000000Z",
+                          "updated_at": "2023-10-20T19:45:33.000000Z"
+                        },
+                        {
+                          "id": 3,
+                          "title": "photo before/after",
+                          "created_at": "2023-10-20T19:45:33.000000Z",
+                          "updated_at": "2023-10-20T19:45:33.000000Z"
+                        },
+                        {
+                          "id": 4,
+                          "title": "photo + timer",
+                          "created_at": "2023-10-20T19:45:33.000000Z",
+                          "updated_at": "2023-10-20T19:45:33.000000Z"
+                        },
+                        {
+                          "id": 5,
+                          "title": "voice note",
+                          "created_at": "2023-10-20T19:45:33.000000Z",
+                          "updated_at": "2023-10-20T19:45:33.000000Z"
+                        },
+                        {
+                          "id": 6,
+                          "title": "screenshot",
+                          "created_at": "2023-10-20T19:45:33.000000Z",
+                          "updated_at": "2023-10-20T19:45:33.000000Z"
+                        },
+                        {
+                          "id": 7,
+                          "title": "picture + photo",
+                          "created_at": "2023-10-20T19:45:33.000000Z",
+                          "updated_at": "2023-10-20T19:45:33.000000Z"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "./admin.json#/components/parameters/Accept"
+          }
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "tags": [
+          "Adult - proof types"
+        ]
+      }
+    },
     "/adult/children/{child}": {
       "get": {
         "summary": "Show child by id",
@@ -3311,6 +3614,10 @@
                   },
                   "_method": {
                     "type": "string"
+                  },
+                  "is_active": {
+                    "type": "integer",
+                    "default": 1
                   }
                 }
               }
@@ -7169,6 +7476,9 @@
     },
     {
       "name": "Adult - one day tasks"
+    },
+    {
+      "name": "Adult - proof types"
     },
     {
       "name": "Adult - regular custom tasks"

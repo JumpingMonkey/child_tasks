@@ -97,6 +97,7 @@ class CustomRegularTaskController extends BaseController
             'expected_duration' => 'sometimes|integer',
             'proof_type_id' => "sometimes|integer",
             "schedule" => "sometimes|array",
+            "is_active" => "sometimes"
         ]);
 
         if($request->filled('schedule')){
@@ -124,7 +125,7 @@ class CustomRegularTaskController extends BaseController
                 ]);
         }
 
-        return $this->sendResponseWithData($regularTaskTemplate, 200);
+        return $this->sendResponseWithData($regularTaskTemplate->load('schedule', 'image'), 200);
     }
 
     /**
