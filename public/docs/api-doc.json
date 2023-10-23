@@ -976,7 +976,7 @@
       "parameters": [],
       "get": {
         "summary": "Get adult info",
-        "operationId": "get-adult-adults-adult",
+        "operationId": "get-adult-profile",
         "responses": {
           "200": {
             "description": "OK",
@@ -1108,7 +1108,7 @@
       "parameters": [],
       "put": {
         "summary": "Update adult info",
-        "operationId": "update-adult",
+        "operationId": "update-adult_profile",
         "responses": {
           "200": {
             "description": "OK",
@@ -1904,7 +1904,7 @@
             "$ref": "#/components/responses/422"
           }
         },
-        "operationId": "get-child",
+        "operationId": "get-child-by-id",
         "security": [
           {
             "Authorization": []
@@ -1931,7 +1931,7 @@
       ],
       "put": {
         "summary": "Update child",
-        "operationId": "update-child",
+        "operationId": "update-child-by-id",
         "responses": {
           "200": {
             "description": "OK",
@@ -2079,7 +2079,7 @@
       },
       "delete": {
         "summary": "Delete child",
-        "operationId": "delete-child",
+        "operationId": "delete-child-by-id",
         "responses": {
           "200": {
             "description": "OK",
@@ -2341,7 +2341,7 @@
       ],
       "put": {
         "summary": "Update regular tasks by child",
-        "operationId": "update-regular_tasks",
+        "operationId": "update-regular_tasks-by-child",
         "responses": {
           "200": {
             "description": "OK",
@@ -2643,7 +2643,7 @@
             "$ref": "#/components/responses/422"
           }
         },
-        "operationId": "get-regular-tasks-by-child",
+        "operationId": "get-done-regular-tasks-by-child",
         "security": [
           {
             "Authorization": []
@@ -2681,8 +2681,8 @@
         }
       ],
       "post": {
-        "summary": "Create custom regular task",
-        "operationId": "create-custom-regular-task",
+        "summary": "Create custom regular task by child",
+        "operationId": "create-custom-regular-task-by-child",
         "responses": {
           "200": {
             "description": "OK"
@@ -2903,7 +2903,7 @@
       ],
       "put": {
         "summary": "Update custom regular task template",
-        "operationId": "update-custom-regular-task-template",
+        "operationId": "update-custom-reg-task-template-by-child",
         "responses": {
           "200": {
             "description": "OK"
@@ -3015,7 +3015,7 @@
       },
       "delete": {
         "summary": "Delete custom regular task template",
-        "operationId": "delete-custom-regular-task-template",
+        "operationId": "delete-custom-regular-task-template-by-child",
         "responses": {
           "200": {
             "description": "OK",
@@ -3537,7 +3537,7 @@
       },
       "post": {
         "summary": "DO NOT USE - Update custom regular task template",
-        "operationId": "post-adult-regular_tasks-custom_tasks-child-regularTaskTemplate",
+        "operationId": "update-custom-regular-task-template-by-child",
         "responses": {
           "200": {
             "description": "OK"
@@ -3829,7 +3829,7 @@
       ],
       "post": {
         "summary": "Store reward by child",
-        "operationId": "post-adult-rewards-1",
+        "operationId": "store-reward-by-child",
         "responses": {
           "200": {
             "description": "OK",
@@ -4171,7 +4171,7 @@
       ],
       "delete": {
         "summary": "Delete reward",
-        "operationId": "delete-adult-rewards",
+        "operationId": "delete-reward-by-child",
         "responses": {
           "200": {
             "description": "OK",
@@ -4222,7 +4222,7 @@
       },
       "put": {
         "summary": "Update reward by child",
-        "operationId": "put-rewards",
+        "operationId": "update-reward-by-child",
         "responses": {
           "200": {
             "description": "OK",
@@ -4392,7 +4392,7 @@
       ],
       "delete": {
         "summary": "Detach image to reward",
-        "operationId": "delete-reward-image",
+        "operationId": "delete-reward-image-by-child",
         "responses": {
           "200": {
             "description": "OK",
@@ -4498,7 +4498,7 @@
       },
       "post": {
         "summary": "Attach image to reward",
-        "operationId": "post-rewards-image-1-1",
+        "operationId": "attach-reward-image-by-child",
         "responses": {
           "200": {
             "description": "OK",
@@ -4856,7 +4856,7 @@
       ],
       "post": {
         "summary": "Store one day task by child",
-        "operationId": "post-one-day-task",
+        "operationId": "store-one-day-task-by-child",
         "responses": {
           "200": {
             "description": "OK",
@@ -5222,7 +5222,7 @@
             "$ref": "#/components/responses/422"
           }
         },
-        "operationId": "get-one-day-tasks-by-child",
+        "operationId": "show-one-day-task-by-child",
         "security": [
           {
             "Authorization": []
@@ -5258,7 +5258,7 @@
       ],
       "put": {
         "summary": "Update one day task",
-        "operationId": "update-one_day_task",
+        "operationId": "update-one-day-task-by-child",
         "responses": {
           "200": {
             "description": "OK",
@@ -5391,7 +5391,7 @@
       },
       "delete": {
         "summary": "Delete one day task",
-        "operationId": "delete-one_day_tasks",
+        "operationId": "delete-one-day-tasks-by-child",
         "responses": {
           "200": {
             "description": "OK"
@@ -6177,7 +6177,7 @@
       ],
       "put": {
         "summary": "Child - Update regular task",
-        "operationId": "update-child-regular-tasks",
+        "operationId": "update-child-regular-task-by-id",
         "responses": {
           "200": {
             "description": "OK",
@@ -6769,7 +6769,7 @@
             "$ref": "#/components/responses/422"
           }
         },
-        "operationId": "get-child-one-day--task-by-id",
+        "operationId": "get-child-one-day-task-by-id",
         "security": [
           {
             "Authorization": []
@@ -6800,7 +6800,7 @@
       ],
       "put": {
         "summary": "Child - Update one day task",
-        "operationId": "update-child-regular-tasks",
+        "operationId": "update-child-regular-task-by-id",
         "responses": {
           "200": {
             "description": "OK",
@@ -7123,7 +7123,7 @@
       },
       "post": {
         "summary": "(DO NOT USE) Child Update one day task by id",
-        "operationId": "child-update-child-one_day-task0",
+        "operationId": "checking-child-update-child-one_day-task-by-id",
         "responses": {
           "200": {
             "description": "OK"
@@ -7319,7 +7319,7 @@
             "$ref": "#/components/responses/422"
           }
         },
-        "operationId": "get-all-child-rewards-child",
+        "operationId": "get-all-child-rewards-by-child",
         "security": [
           {
             "Authorization": []
