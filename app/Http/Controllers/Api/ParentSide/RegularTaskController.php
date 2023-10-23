@@ -60,7 +60,7 @@ class RegularTaskController extends BaseController
             abort(403, "Unauthorized");
         }
 
-        $result = $child->regularTaskTemplates()->with('schedule')->get();
+        $result = $child->regularTaskTemplates()->with('schedule', 'image')->get();
 
         return $this->sendResponseWithData($result, 200);
     }
