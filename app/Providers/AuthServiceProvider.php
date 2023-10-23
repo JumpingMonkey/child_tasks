@@ -66,6 +66,10 @@ class AuthServiceProvider extends ServiceProvider
             return $child instanceof Child;
         });
 
+        Gate::define('is_adult_model', function($adult){
+            return $adult instanceof Adult;
+        });
+
         Gate::define('is_childs_regular_task', function(Child $child, RegularTask $regularTask){
             
             return $regularTask->regularTaskTemplate->child_id == $child->id;

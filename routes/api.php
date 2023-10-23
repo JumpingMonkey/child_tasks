@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ParentSide\ChildController;
 use App\Http\Controllers\Api\ParentSide\OneDayTaskController;
+use App\Http\Controllers\Api\ParentSide\ProofTypeController;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\ParentSide\RegularTaskController;
 use App\Http\Controllers\Api\ParentSide\RewardController;
@@ -46,6 +47,7 @@ Route::middleware('auth:sanctum')->group(function () {
                 Route::put('/updateAdultProfile', [AdultController::class, 'updateAdultProfile']);
             });
         Route::apiResource('adult_types', AdultTypeController::class)->only(['index']);
+        Route::apiResource('proof_types', ProofTypeController::class)->only(['index']);
         Route::apiResource('children', ChildController::class);
         Route::get('get_child_token/{child}', [ChildController::class, 'getAccessTokenByChild']);
         Route::controller(RegularTaskController::class)
