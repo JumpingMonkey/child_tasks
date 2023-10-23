@@ -2882,6 +2882,246 @@
         ]
       }
     },
+    "/adult/regular_tasks/custom_tasks/{regularTaskTemplate}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "regularTaskTemplate",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Get custom regular task template by id",
+        "operationId": "get-adult-regular-custom-task-template",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "icon": {
+                          "type": "string"
+                        },
+                        "expected_duration": {
+                          "type": "integer"
+                        },
+                        "is_general_available": {
+                          "type": "boolean"
+                        },
+                        "coins": {
+                          "type": "integer"
+                        },
+                        "proof_type_id": {
+                          "type": "integer"
+                        },
+                        "schedule_id": {
+                          "type": "integer"
+                        },
+                        "is_active": {
+                          "type": "integer"
+                        },
+                        "adult_id": {
+                          "type": "integer"
+                        },
+                        "child_id": {
+                          "type": "integer"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        },
+                        "image": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "filename": {
+                              "type": "string"
+                            },
+                            "imageable_type": {
+                              "type": "string"
+                            },
+                            "imageable_id": {
+                              "type": "integer"
+                            },
+                            "created_at": {
+                              "type": "string"
+                            },
+                            "updated_at": {
+                              "type": "string"
+                            },
+                            "src": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "schedule": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "monday": {
+                              "type": "boolean"
+                            },
+                            "tuesday": {
+                              "type": "boolean"
+                            },
+                            "wednesday": {
+                              "type": "boolean"
+                            },
+                            "thursday": {
+                              "type": "boolean"
+                            },
+                            "friday": {
+                              "type": "boolean"
+                            },
+                            "saturday": {
+                              "type": "boolean"
+                            },
+                            "sunday": {
+                              "type": "boolean"
+                            },
+                            "created_at": {
+                              "type": "string"
+                            },
+                            "updated_at": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "title": "Nihil quam autem.",
+                        "description": "Distinctio laudantium recusandae ea mollitia et facere. Id quasi aspernatur aut sapiente.",
+                        "icon": "/tmp/eba39bd44a26d2a596e7bf36c65952f1.png",
+                        "expected_duration": 0,
+                        "is_general_available": true,
+                        "coins": 1,
+                        "proof_type_id": 2,
+                        "schedule_id": 26,
+                        "is_active": 1,
+                        "adult_id": 1,
+                        "child_id": 1,
+                        "created_at": "2023-10-20T19:46:05.000000Z",
+                        "updated_at": "2023-10-20T19:46:05.000000Z",
+                        "image": {
+                          "id": 27,
+                          "filename": "/tmp/70d79b087aeb7594523c8f1c601a7221.png",
+                          "imageable_type": "App\\Models\\RegularTaskTemplate",
+                          "imageable_id": 1,
+                          "created_at": "2023-10-20T19:46:05.000000Z",
+                          "updated_at": "2023-10-20T19:46:05.000000Z",
+                          "src": "http://localhost/storage//tmp/70d79b087aeb7594523c8f1c601a7221.png"
+                        },
+                        "schedule": {
+                          "id": 26,
+                          "monday": false,
+                          "tuesday": true,
+                          "wednesday": false,
+                          "thursday": true,
+                          "friday": false,
+                          "saturday": false,
+                          "sunday": false,
+                          "created_at": "2023-10-20T19:46:05.000000Z",
+                          "updated_at": "2023-10-20T19:46:05.000000Z"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "title": "Nihil quam autem.",
+                        "description": "Distinctio laudantium recusandae ea mollitia et facere. Id quasi aspernatur aut sapiente.",
+                        "icon": "/tmp/eba39bd44a26d2a596e7bf36c65952f1.png",
+                        "expected_duration": 0,
+                        "is_general_available": true,
+                        "coins": 1,
+                        "proof_type_id": 2,
+                        "schedule_id": 26,
+                        "is_active": 1,
+                        "adult_id": 1,
+                        "child_id": 1,
+                        "created_at": "2023-10-20T19:46:05.000000Z",
+                        "updated_at": "2023-10-20T19:46:05.000000Z",
+                        "image": {
+                          "id": 27,
+                          "filename": "/tmp/70d79b087aeb7594523c8f1c601a7221.png",
+                          "imageable_type": "App\\Models\\RegularTaskTemplate",
+                          "imageable_id": 1,
+                          "created_at": "2023-10-20T19:46:05.000000Z",
+                          "updated_at": "2023-10-20T19:46:05.000000Z",
+                          "src": "http://localhost/storage//tmp/70d79b087aeb7594523c8f1c601a7221.png"
+                        },
+                        "schedule": {
+                          "id": 26,
+                          "monday": false,
+                          "tuesday": true,
+                          "wednesday": false,
+                          "thursday": true,
+                          "friday": false,
+                          "saturday": false,
+                          "sunday": false,
+                          "created_at": "2023-10-20T19:46:05.000000Z",
+                          "updated_at": "2023-10-20T19:46:05.000000Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Adult - regular custom tasks"
+        ],
+        "parameters": [
+          {
+            "$ref": "./old/9082023/admin.json#/components/parameters/Accept"
+          }
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
     "/adult/regular_tasks/custom_tasks/{child}/{regularTaskTemplate}": {
       "parameters": [
         {
@@ -4364,6 +4604,18 @@
             "adult_id": 1,
             "created_at": "2023-09-13T16:46:43.000000Z",
             "updated_at": "2023-09-13T19:25:26.000000Z"
+          }
+        },
+        "tags": [
+          "Adult - rewards"
+        ]
+      },
+      "get": {
+        "summary": "Get reward by id",
+        "operationId": "get-adult-rewards-by-child-childReward",
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         },
         "tags": [
