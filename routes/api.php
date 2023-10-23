@@ -60,6 +60,7 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::controller(CustomRegularTaskController::class)
             ->prefix('custom_tasks')
             ->group(function(){
+                Route::get('/{regularTaskTemplate}', 'getCustomRegularTaskTemplateById');
                 Route::post('/{child}', 'storeCustomRegularTaskTemplate');
                 Route::put('/{child}/{regularTaskTemplate}', 'updateCustomRegularTaskTemplate');
                 Route::delete('/{child}/{regularTaskTemplate}', 'destroyCustomRegularTaskTemplate');
@@ -82,7 +83,9 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::delete('/{child}/{childReward}', 'destroy');
             Route::post('/{child}', 'store');
             Route::put('/{child}/{childReward}', 'update');
+            Route::get('/{child}/{childReward}', 'getRewardById');
             Route::get('/{child}', 'index');
+            
             Route::delete('/image/{child}/{childReward}', 'detachImage');
             Route::post('/image/{child}/{childReward}', 'attachImage');
         });

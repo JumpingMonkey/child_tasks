@@ -18,11 +18,13 @@ class CustomRegularTaskController extends BaseController
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, Child $child)
+    public function getCustomRegularTaskTemplateById(Request $request, RegularTaskTemplate $regularTaskTemplate)
     {
-        if(! Gate::allows('is_related_adult', $child)){
-            abort(403, 'It is not your child!');
-        }
+        // if(! Gate::allows('is_related_adult', $child)){
+        //     abort(403, 'It is not your child!');
+        // }
+
+        return $this->sendResponseWithData($regularTaskTemplate->load('image', 'schedule'), 200);
     }
 
     /**

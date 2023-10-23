@@ -30,6 +30,11 @@ class RewardController extends BaseController
         return $this->sendResponseWithData($success, 200);
     }
 
+    public function getRewardById(Request $request, Child $child, ChildReward $childReward)
+    {
+        return $this->sendResponseWithData($childReward->load('image'));
+    }
+
     /**
      * Store a newly created resource in storage.
      */
