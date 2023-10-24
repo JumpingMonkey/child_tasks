@@ -9,7 +9,12 @@
   },
   "servers": [
     {
-      "url": "http://localhost/api/"
+      "url": "http://localhost/api/",
+      "description": "local"
+    },
+    {
+      "url": "https://api.do-it.staj.bid/api/",
+      "description": "server"
     }
   ],
   "paths": {
