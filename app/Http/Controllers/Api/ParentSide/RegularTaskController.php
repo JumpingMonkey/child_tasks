@@ -65,17 +65,19 @@ class RegularTaskController extends BaseController
         return $this->sendResponseWithData($result, 200);
     }
 
-    public function getDoneRegularTasksByChild(Request $request, Child $child)
+    public function getRegularTasksByChild(Request $request, Child $child)
     {
         if (! Gate::allows('is_related_adult', $child)) {
             abort(403, "Unauthorized");
         }
 
+        $filters = $request->only(['status']);
+
         $result = RegularTask::query()->whereHas('regularTaskTemplate', function($q) use($child) {
             return $q->where('child_id', $child->id);
         })
-        ->where('status', 'done')
-        ->with(['regularTaskTemplate'])
+        ->filter($filters)
+        ->with(['regularTaskTemplate.image'])
         ->get();
             
 

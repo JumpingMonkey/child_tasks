@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Adult;
 use App\Models\Child;
 use App\Models\RegularTaskTemplate;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -19,6 +20,7 @@ class RegularTask extends Model
         'status',
     ];
 
+    //relationship
     public function regularTaskTemplate()
     {
         return $this->belongsTo(RegularTaskTemplate::class);
@@ -32,5 +34,15 @@ class RegularTask extends Model
     public function imageProof()
     {
         return $this->morphMany(TaskProofImage::class, 'imageable');
+    }
+
+    //scopes
+
+    public function scopeFilter(Builder $query, array $filters)
+    {
+        $query->when(
+            $filters['status'] ?? false,
+            fn($query, $value) => $query->where('status', $value)
+        );
     }
 }
