@@ -114,9 +114,9 @@ class RegisterController extends BaseController
         ]);
 
         $PasswordResetTokenRecord = PasswordResetToken::where('token', $valid['token'])->first();
-
+        
         $user = Adult::where('email', $PasswordResetTokenRecord->email)->first();
-
+        
         $user->update([
             'password' => Hash::make($valid['password']),
         ]);

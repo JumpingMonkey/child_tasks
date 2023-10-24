@@ -12,7 +12,7 @@ class PasswordResetToken extends Model
     const UPDATED_AT = null;
 
     public $primaryKey = 'email';
-
+    public $incrementing = false;
     protected $fillable = [
         'email',
         'token'
