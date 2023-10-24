@@ -21,10 +21,14 @@ class RewardController extends BaseController
             abort(403, 'It is not your child!');
         }
 
+        $filters = $request->only([
+            'is_claimed',
+            'is_received'
+        ]);
+
         $success = $child
             ->rewards()
-            ->where('is_claimed', false)
-            ->where('is_received', false)
+            ->filter($filters)
             ->get();
 
         return $this->sendResponseWithData($success, 200);
