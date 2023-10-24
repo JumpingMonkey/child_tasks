@@ -65,7 +65,7 @@ class RegularTaskController extends BaseController
         return $this->sendResponseWithData($result, 200);
     }
 
-    public function getDoneTasksByChild(Request $request, Child $child)
+    public function getDoneRegularTasksByChild(Request $request, Child $child)
     {
         if (! Gate::allows('is_related_adult', $child)) {
             abort(403, "Unauthorized");

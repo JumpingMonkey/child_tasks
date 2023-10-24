@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Adult;
 use App\Models\Child;
 use App\Models\TaskProofImage;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -59,5 +60,15 @@ class OneDayTask extends Model
     public function image(): MorphOne
     {
         return $this->morphOne(TaskImage::class, 'imageable');
+    }
+
+    //filters
+
+    public function scopeFilter(Builder $query, array $filters)
+    {
+        $query->when(
+            $filters['status'] ?? false,
+            fn($query, $value) => $query->where('status', $value)
+        );
     }
 }

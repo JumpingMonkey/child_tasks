@@ -22,7 +22,10 @@ class OneDayTaskController extends BaseController
             abort(403, "Unauthorized");
         }
 
+        $filters = $request->only(['status']);
+
         $result = OneDayTask::where('child_id', $child->id)
+            ->filter($filters)
             ->with('image')
             ->get();
 
