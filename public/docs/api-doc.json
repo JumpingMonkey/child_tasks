@@ -112,7 +112,11 @@
           },
           "description": ""
         },
-        "parameters": []
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ]
       },
       "parameters": []
     },
@@ -256,7 +260,11 @@
           },
           "description": ""
         },
-        "parameters": []
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ]
       },
       "parameters": []
     },
@@ -368,7 +376,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "security": [
@@ -483,7 +491,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "security": [
@@ -511,7 +519,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": false
       },
       "parameters": []
     },
@@ -623,7 +632,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "security": [
@@ -964,7 +973,7 @@
         },
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "security": [
@@ -1096,7 +1105,7 @@
         },
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "tags": [
@@ -1352,7 +1361,7 @@
         },
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "tags": [
@@ -1516,7 +1525,7 @@
         },
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "tags": [
@@ -1819,7 +1828,7 @@
         },
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "security": [
@@ -2244,7 +2253,7 @@
     },
     "/adult/regular_tasks/regular_task_templates/{child}": {
       "get": {
-        "summary": "Get regular tasks by child",
+        "summary": "Get regular task templates by child",
         "responses": {
           "200": {
             "description": "OK",
@@ -2319,7 +2328,7 @@
             "$ref": "#/components/responses/422"
           }
         },
-        "operationId": "get-regular-tasks-by-child",
+        "operationId": "get-regular-tasks-template-by-child",
         "security": [
           {
             "Authorization": []
@@ -2345,8 +2354,8 @@
         }
       ],
       "put": {
-        "summary": "Update regular tasks by child",
-        "operationId": "update-regular_tasks-by-child",
+        "summary": "Update regular tasks template by child",
+        "operationId": "update-regular_tasks-template-by-child",
         "responses": {
           "200": {
             "description": "OK",
@@ -2501,7 +2510,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "requestBody": {
@@ -2571,9 +2580,9 @@
         ]
       }
     },
-    "/adult/regular_tasks/get_done_tasks/{child}": {
+    "/adult/regular_tasks/{child}": {
       "get": {
-        "summary": "Get done regular tasks by child",
+        "summary": "Get regular tasks by child",
         "responses": {
           "200": {
             "description": "OK",
@@ -2648,7 +2657,7 @@
             "$ref": "#/components/responses/422"
           }
         },
-        "operationId": "get-done-regular-tasks-by-child",
+        "operationId": "get-regular-tasks-by-child",
         "security": [
           {
             "Authorization": []
@@ -2657,6 +2666,13 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "status"
           }
         ],
         "tags": [
@@ -2790,7 +2806,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "requestBody": {
@@ -3117,7 +3133,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./old/9082023/admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "security": [
@@ -3161,7 +3177,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "requestBody": {
@@ -3773,7 +3789,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "tags": [
@@ -3871,7 +3887,7 @@
         },
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ]
       }
@@ -4055,6 +4071,20 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "is_claimed"
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "is_received"
           }
         ],
         "description": "",
@@ -4352,7 +4382,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "requestBody": {
@@ -4458,7 +4488,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "tags": [
@@ -4558,7 +4588,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "requestBody": {
@@ -4580,6 +4610,10 @@
                     "type": "integer"
                   },
                   "image": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "image_proof": {
                     "type": "string",
                     "format": "binary"
                   }
@@ -4625,7 +4659,57 @@
         },
         "tags": [
           "Adult - rewards"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
         ]
+      },
+      "post": {
+        "summary": "Update reward by child",
+        "operationId": "post-checkng-adult-rewards-child-childReward",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Adult - rewards"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "integer"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "image_proof": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "_method": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/adult/rewards/image/{child}/{childReward}": {
@@ -4745,7 +4829,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "description": "",
@@ -4890,7 +4974,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "requestBody": {
@@ -5093,6 +5177,13 @@
         ],
         "parameters": [
           {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "status"
+          },
+          {
             "$ref": "#/components/parameters/Accept"
           }
         ],
@@ -5241,7 +5332,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "requestBody": {
@@ -5577,7 +5668,7 @@
         },
         "parameters": [
           {
-            "$ref": "./old/9082023/admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "security": [
@@ -5659,7 +5750,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "security": [
@@ -5847,7 +5938,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "description": "",
@@ -6209,7 +6300,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "description": "",
@@ -6411,7 +6502,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "description": "",
@@ -6808,7 +6899,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "requestBody": {
@@ -6854,7 +6945,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "requestBody": {
@@ -7347,7 +7438,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "requestBody": {
@@ -7393,7 +7484,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "requestBody": {
@@ -7584,7 +7675,7 @@
         ],
         "parameters": [
           {
-            "$ref": "./admin.json#/components/parameters/Accept"
+            "$ref": "#/components/parameters/Accept"
           }
         ],
         "description": "",
@@ -7610,7 +7701,7 @@
       "Accept": {
         "name": "Accept",
         "in": "header",
-        "required": false,
+        "required": true,
         "schema": {
           "type": "string",
           "default": "application/json",

@@ -169,7 +169,7 @@ class ApiSeeder extends Seeder
             ->state(new Sequence(
                 ['title' => 'Mother'],
                 ['title' => 'Father'],
-                ['title' => 'Grandmather'],
+                ['title' => 'Grandmother'],
                 ['title' => 'Grandfather'],
                 ['title' => 'Sister'],
                 ['title' => 'Brother'],

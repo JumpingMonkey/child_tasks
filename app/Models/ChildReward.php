@@ -38,6 +38,11 @@ class ChildReward extends Model
         return $this->morphOne(ChildRewardImage::class, 'imageable');
     }
 
+    public function imageProof(): MorphOne
+    {
+        return $this->morphOne(ChildRewardProofImage::class, 'imageable');
+    }
+
     //scopes
 
     public function scopeFilter(Builder $query, array $filters)

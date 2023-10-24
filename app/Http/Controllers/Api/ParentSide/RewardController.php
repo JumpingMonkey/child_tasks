@@ -158,6 +158,7 @@ class RewardController extends BaseController
 
         if ($request->hasFile('image'))
         {
+            
             $request->validate([
                 'image.*' => 'mimes:jpg,png,jpeg|max:5000'
             ], [
@@ -170,11 +171,34 @@ class RewardController extends BaseController
                     ->store('reward-images', 'public');
 
             $childReward->image->update(['filename' => $path]);
-            
-            return $this->sendResponseWithData($childReward->load(['image']), 200);
-        } else {
-            return $this->sendResponseWithData($childReward->withoutRelations(), 200);
+
+        }
+        
+        if($request->hasFile('image_proof')) {
+
+            $request->validate([
+                'image_proof.*' => 'mimes:jpg,png,jpeg|max:5000'
+            ], [
+                'image_proof.*.mimes' => 'The file should be in one of the formats: png, jpg, jpeg',
+            ]);
+
+            $path = $request->file('image_proof')
+                    ->store('reward-proof-images', 'public');
+
+            if($childReward->imageProof?->filename){
+                Storage::disk('public')->delete($childReward->imageProof->filename);
+                $childReward->imageProof->update(['filename' => $path]);
+            } else {
+                $childReward->imageProof()->create(['filename' => $path]);
+            }
         } 
+        
+        if(!($request->hasFile('image_proof') OR $request->hasFile('image'))) {
+
+            return $this->sendResponseWithData($childReward->withoutRelations(), 200);
+        }
+
+        return $this->sendResponseWithData($childReward->load(['imageProof', 'image']), 200);
        
         
     }
@@ -190,9 +214,13 @@ class RewardController extends BaseController
 
         if($childReward->image){
             $image = $childReward->image;
-
             Storage::disk('public')->delete($image->filename);
             $image->delete();
+        }
+        if ($childReward->imageProof){
+            $imageProof = $childReward->imageProof;
+            Storage::disk('public')->delete($imageProof->filename);
+            $imageProof->delete();
         }
         
         $childReward->delete();
