@@ -87,7 +87,7 @@ class CustomRegularTaskController extends BaseController
     public function updateCustomRegularTaskTemplate(Request $request, Child $child, RegularTaskTemplate $regularTaskTemplate)
     {
         if (! Gate::allows('is_related_adult', $child) || 
-            ! Gate::allows('is_related_regular_task', [$regularTaskTemplate, $child]) ||
+            ! Gate::allows('is_related_regular_task_and_child', [$regularTaskTemplate, $child]) ||
             $regularTaskTemplate->is_general_available) {
             abort(403, "Unauthorized");
         }
@@ -136,7 +136,7 @@ class CustomRegularTaskController extends BaseController
     public function destroyCustomRegularTaskTemplate(Request $request, Child $child, RegularTaskTemplate $regularTaskTemplate)
     {
         if (! Gate::allows('is_related_adult', $child) || 
-            ! Gate::allows('is_related_regular_task', [$regularTaskTemplate, $child]) ||
+            ! Gate::allows('is_related_regular_task_and_child', [$regularTaskTemplate, $child]) ||
             $regularTaskTemplate->is_general_available) {
             abort(403, "Unauthorized");
         }

@@ -26,7 +26,7 @@ class OneDayTaskController extends BaseController
 
         $result = OneDayTask::where('child_id', $child->id)
             ->filter($filters)
-            ->with('image')
+            ->with('image', 'proofType', 'imageProof')
             ->get();
 
         return $this->sendResponseWithData($result);
@@ -110,6 +110,7 @@ class OneDayTaskController extends BaseController
             'start_date' => 'sometimes|date',
             'end_date' => 'sometimes|date',
             'proof_type_id' => 'sometimes|integer',
+            'is_timer_done' => 'sometimes|integer',
         ]);
 
         $oneDayTask->update($validated);
@@ -124,13 +125,20 @@ class OneDayTaskController extends BaseController
             
                 $path = $request->file('image')
                     ->store('one-day-tasks-images', 'public');
-                if(Storage::disk('public')->exists($oneDayTask->image->filename)){
-                    Storage::disk('public')->delete($oneDayTask->image->filename);
-                }
 
-                $oneDayTask->image->update([
-                    'filename' => $path
-                ]);
+                $oldPath = $oneDayTask?->image?->filename ?? '-';
+                    
+                if(Storage::disk('public')->exists($oldPath)){
+                    
+                    Storage::disk('public')->delete($oneDayTask->image->filename);
+                    $oneDayTask->image->update([
+                        'filename' => $path
+                    ]);
+                } else {
+                    $oneDayTask->image()->create([
+                        'filename' => $path
+                    ]);
+                }
         }
 
         return $this->sendResponseWithData($oneDayTask->load('image'));

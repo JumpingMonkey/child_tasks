@@ -2690,6 +2690,53 @@
         }
       ]
     },
+    "/adult/regular_tasks/{regularTask}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "regularTask",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "post": {
+        "summary": "Update regular task",
+        "operationId": "post-adult-regular_tasks-regularTask",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string"
+                  },
+                  "is_timer_done": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Adult - regular tasks"
+        ]
+      }
+    },
     "/adult/regular_tasks/custom_tasks/{child}": {
       "parameters": [
         {
@@ -5757,6 +5804,83 @@
           {
             "Authorization": []
           }
+        ]
+      },
+      "post": {
+        "summary": "Update on day task by child and task id",
+        "operationId": "post-adult-one_day_tasks-child-oneDayTask",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "x-examples": {
+                  "Example 1": {
+                    "title": "Custom task",
+                    "description": "Custom description",
+                    "coins": 10,
+                    "proof_type_id": 1,
+                    "expected_duration": 60,
+                    "start_date": "2023-09-25 00:00:00",
+                    "end_date": "2023-09-25 01:00:00"
+                  }
+                },
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "coins": {
+                    "type": "integer"
+                  },
+                  "proof_type_id": {
+                    "type": "integer"
+                  },
+                  "expected_duration": {
+                    "type": "integer"
+                  },
+                  "start_date": {
+                    "type": "string"
+                  },
+                  "end_date": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "title": "Custom task",
+                    "description": "Custom description",
+                    "coins": 10,
+                    "proof_type_id": 1,
+                    "expected_duration": 60,
+                    "start_date": "2023-09-25 00:00:00",
+                    "end_date": "2023-09-25 01:00:00"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Adult - one day tasks"
         ]
       }
     },

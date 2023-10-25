@@ -56,6 +56,7 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('/regular_task_templates/{child}', 'getRegularTaskTemplatesByChild');
             Route::put('/regular_task_templates/{child}', 'updateRegularTaskTemplates');
             Route::get('/{child}', 'getRegularTasksByChild');
+            Route::post('/{regularTask}', 'updateRegularTask');
             // Route::get('/', 'getRegularTasks');
             Route::controller(CustomRegularTaskController::class)
             ->prefix('custom_tasks')
@@ -74,6 +75,7 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::post('/{child}', 'store');
             Route::get('/{child}/{oneDayTask}', 'show');
             Route::put('/{child}/{oneDayTask}', 'update');
+            Route::post('/{child}/{oneDayTask}', 'update');
             Route::delete('/{child}/{oneDayTask}', 'destroy');
            
         });

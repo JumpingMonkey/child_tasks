@@ -50,10 +50,15 @@ class AuthServiceProvider extends ServiceProvider
             return $adult->children->contains($child->id);
         });
 
-        Gate::define('is_related_regular_task', 
+        Gate::define('is_related_regular_task_and_child', 
             function(Adult $adult, RegularTaskTemplate $regularTaskTemplate, Child $child){
             return $adult->id == $regularTaskTemplate->adult_id && 
                 $regularTaskTemplate->child_id == $child->id;
+        });
+
+        Gate::define('is_related_regular_task', 
+            function(Adult $adult, RegularTaskTemplate $regularTaskTemplate){
+            return $adult->id == $regularTaskTemplate->adult_id;
         });
 
         Gate::define('is_related_one_day_task', 

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api\ParentSide;
 
+use App\Events\RegularTaskStatusWasUpdated;
 use App\Events\RegularTaskTemplateStatusWasUpdated;
+use App\Events\RegularTaskWasUpdated;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Child;
@@ -13,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class RegularTaskController extends BaseController
 {
@@ -77,11 +80,33 @@ class RegularTaskController extends BaseController
             return $q->where('child_id', $child->id);
         })
         ->filter($filters)
-        ->with(['regularTaskTemplate.image'])
+        ->with(['regularTaskTemplate.image', 'regularTaskTemplate.proofType', 'imageProof'])
         ->get();
             
 
         return $this->sendResponseWithData($result, 200);
+    }
+
+    public function updateRegularTask(Request $request, RegularTask $regularTask)
+    {
+        
+        if (! Gate::allows('is_related_regular_task', $regularTask->regularTaskTemplate)) {
+            abort(403, "Unauthorized");
+        }
+        $oldStatus = $regularTask->status;
+        $validated = $request->validate([
+            'status' => ['sometimes', 'string', Rule::in(BaseController::TASK_STATUSES)],
+            'is_timer_done' => ['sometimes','integer'],
+        ]);
+
+        $regularTask->update($validated);
+        
+        if($oldStatus != $regularTask->status){
+            RegularTaskStatusWasUpdated::dispatch($regularTask);
+        }
+        
+
+        return $this->sendResponseWithData($regularTask->load('regularTaskTemplate.image'), 200);
     }
 
 }

@@ -2,10 +2,14 @@
 
 namespace App\Providers;
 
+use App\Events\OneDayTaskStatusWasUpdated;
+use App\Events\RegularTaskStatusWasUpdated;
 use App\Events\RegularTaskTemplateStatusWasUpdated;
 use App\Events\RegularTaskWasUpdated;
+use App\Listeners\AddCoinsToChildAccount;
 use App\Listeners\ChangeRegularTaskStatus;
 use App\Listeners\CreateRegularTask;
+use App\Listeners\TaskEventSubscriber;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -27,7 +31,13 @@ class EventServiceProvider extends ServiceProvider
         ],
         RegularTaskWasUpdated::class => [
             ChangeRegularTaskStatus::class,
-        ]
+        ],
+        // RegularTaskStatusWasUpdated::class => [
+        //     AddCoinsToChildAccount::class,
+        // ],
+        // OneDayTaskStatusWasUpdated::class => [
+        //     AddCoinsToChildAccount::class,
+        // ]
     ];
 
     /**
@@ -45,4 +55,13 @@ class EventServiceProvider extends ServiceProvider
     {
         return false;
     }
+
+    /**
+     * The subscriber classes to register.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        TaskEventSubscriber::class,
+    ];
 }
