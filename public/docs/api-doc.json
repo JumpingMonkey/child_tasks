@@ -1118,6 +1118,138 @@
         ]
       }
     },
+    "/adult/adults/statistics/": {
+      "parameters": [],
+      "get": {
+        "summary": "Get adult statistics",
+        "operationId": "get-adult-profile-statistics",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "email_verified_at": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        },
+                        "is_premium": {
+                          "type": "integer"
+                        },
+                        "until": {
+                          "type": "string"
+                        },
+                        "adult_type": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "string"
+                            },
+                            "updated_at": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "adult_type_id": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "name": "new name",
+                        "email": "new@email.com",
+                        "email_verified_at": "2023-10-20T19:46:03.000000Z",
+                        "created_at": "2023-10-20T19:46:03.000000Z",
+                        "updated_at": "2023-10-21T19:00:38.000000Z",
+                        "is_premium": 1,
+                        "until": "2023-11-19 19:46:03",
+                        "adult_type": {
+                          "id": 1,
+                          "title": "Mother",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        },
+                        "adult_type_id": 1
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "id": 1,
+                        "name": "new name",
+                        "email": "new@email.com",
+                        "email_verified_at": "2023-10-20T19:46:03.000000Z",
+                        "created_at": "2023-10-20T19:46:03.000000Z",
+                        "updated_at": "2023-10-21T19:00:38.000000Z",
+                        "is_premium": 1,
+                        "until": "2023-11-19 19:46:03",
+                        "adult_type": {
+                          "id": 1,
+                          "title": "Mother",
+                          "created_at": "2023-10-20T19:46:03.000000Z",
+                          "updated_at": "2023-10-20T19:46:03.000000Z"
+                        },
+                        "adult_type_id": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "tags": [
+          "Adult - adult"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
     "/adult/adults/updateAdultProfile": {
       "parameters": [],
       "put": {
@@ -4751,6 +4883,9 @@
                   },
                   "_method": {
                     "type": "string"
+                  },
+                  "is_received": {
+                    "type": "integer"
                   }
                 }
               }
@@ -5860,6 +5995,9 @@
                   "image": {
                     "type": "string",
                     "format": "binary"
+                  },
+                  "status": {
+                    "type": "string"
                   }
                 }
               },
@@ -7811,6 +7949,62 @@
         ]
       },
       "parameters": []
+    },
+    "/child/rewards/{childReward}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "childReward",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "post": {
+        "summary": "Update reward by id",
+        "operationId": "update-child-rewards-childReward-childside",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "tags": [
+          "Child - Rewards"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "is_claimed": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "is_claimed": true
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      }
     }
   },
   "components": {
