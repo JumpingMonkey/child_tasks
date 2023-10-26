@@ -8,6 +8,7 @@ use App\Events\RegularTaskTemplateStatusWasUpdated;
 use App\Listeners\AddCoinsToChildAccount;
 use App\Listeners\ChangeRegularTaskStatus;
 use App\Listeners\CreateRegularTask;
+use App\Listeners\RewardEventSubscriber;
 use App\Listeners\TaskEventSubscriber;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -53,5 +54,6 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $subscribe = [
         TaskEventSubscriber::class,
+        RewardEventSubscriber::class,
     ];
 }

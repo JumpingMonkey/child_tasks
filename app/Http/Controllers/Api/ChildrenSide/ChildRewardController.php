@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\ChildrenSide;
 
+use App\Events\ChildRewardWasClaimed;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\ChildReward;
@@ -53,12 +54,21 @@ class ChildRewardController extends BaseController
             abort(403, 'It is not your reward!');
         }
 
-
         $validated = $request->validate([
             'is_claimed' => 'sometimes|boolean'
         ]);
+
+        if($childReward->is_claimed) {
+            return $this->sendError('', "Reward is alredy claimed", 401);
+        }
+
+        if($childReward->child->coins < $childReward->price) {
+            return $this->sendError('', "You can't buy reward. You have less coins than you need!", 401);
+        }
         
         $childReward->update($validated);
+
+        ChildRewardWasClaimed::dispatchIf($childReward->is_claimed, $childReward);      
 
         return $this->sendResponseWithData($childReward,200);
     }
