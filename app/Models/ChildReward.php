@@ -20,6 +20,7 @@ class ChildReward extends Model
     protected $fillable =[
         'title',
         'price',
+        'is_claimed',
         'is_received'
     ];
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\ChildrenSide;
 
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Controller;
+use App\Models\ChildReward;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -42,9 +43,24 @@ class ChildRewardController extends BaseController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function updateReward(Request $request, ChildReward $childReward)
     {
-        //
+        if(! Gate::allows('is_child_model', $request->user())){
+            abort(403, 'You should be a child!');
+        }
+
+        if(! Gate::allows('is_childs_reward', $childReward)){
+            abort(403, 'It is not your reward!');
+        }
+
+
+        $validated = $request->validate([
+            'is_claimed' => 'sometimes|boolean'
+        ]);
+        
+        $childReward->update($validated);
+
+        return $this->sendResponseWithData($childReward,200);
     }
 
     /**

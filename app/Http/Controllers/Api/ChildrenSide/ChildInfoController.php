@@ -15,7 +15,7 @@ class ChildInfoController extends BaseController
         if(! Gate::allows('is_child_model', $request->user())){
             abort(403, 'You should be a child!');
         }
-        $child = $request->user();
+        $child = $request->user()->load('adults');
         return $this->sendResponseWithData($child, 200);
     }
 }

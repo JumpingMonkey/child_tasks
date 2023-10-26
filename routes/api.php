@@ -114,6 +114,7 @@ Route::middleware('auth:sanctum')->group(function () {
         ->prefix('/rewards')
         ->group(function(){
             Route::get('/', 'getAllRewards');
+            Route::post('/{childReward}', 'updateReward');
         });
     });
 });

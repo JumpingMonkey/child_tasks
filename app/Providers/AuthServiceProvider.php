@@ -6,6 +6,7 @@ namespace App\Providers;
 
 use App\Models\Adult;
 use App\Models\Child;
+use App\Models\ChildReward;
 use App\Models\OneDayTask;
 use App\Models\RegularTask;
 use App\Models\RegularTaskTemplate;
@@ -83,6 +84,11 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('is_childs_one_day_task', function(Child $child, OneDayTask $oneDayTask){
             
             return $oneDayTask->child_id == $child->id;
+        });
+
+        Gate::define('is_childs_reward', function(Child $child, ChildReward $childReward){
+            
+            return $childReward->child_id == $child->id;
         });
 
         
