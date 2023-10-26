@@ -49,12 +49,12 @@ class ChildReward extends Model
     public function scopeFilter(Builder $query, array $filters)
     {
         $query->when(
-            $filters['is_claimed'] ?? false,
-            fn($query, $value) => $query->where('is_claimed', $value)
+            isset($filters['is_claimed']),
+            fn($query) => $query->where('is_claimed', $filters['is_claimed'])
         )
         ->when(
-            $filters['is_received'] ?? false,
-            fn($query, $value) => $query->where('is_received', $value)
+            isset($filters['is_received']),
+            fn($query) => $query->where('is_received', $filters['is_received'])
         );
     }
 }

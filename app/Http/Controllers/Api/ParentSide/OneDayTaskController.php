@@ -10,6 +10,7 @@ use App\Models\TaskImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class OneDayTaskController extends BaseController
 {
@@ -111,6 +112,7 @@ class OneDayTaskController extends BaseController
             'end_date' => 'sometimes|date',
             'proof_type_id' => 'sometimes|integer',
             'is_timer_done' => 'sometimes|integer',
+            'status' => ['sometimes', 'string', Rule::in(BaseController::TASK_STATUSES)],
         ]);
 
         $oneDayTask->update($validated);

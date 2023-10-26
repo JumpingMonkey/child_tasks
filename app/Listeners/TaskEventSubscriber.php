@@ -16,7 +16,7 @@ class TaskEventSubscriber
     public function handleUpdateRegularTask(RegularTaskStatusWasUpdated $event): void {
         $task = $event->regularTask;
     
-        if ($task->status === 'done'){
+        if ($task->status === 'checked'){
             $taskTemplate = $task->regularTaskTemplate;
             $child = $taskTemplate->child;
             $child->coins = $child->coins + $taskTemplate->coins;

@@ -84,7 +84,7 @@ Route::middleware('auth:sanctum')->group(function () {
         ->group(function(){
             Route::delete('/{child}/{childReward}', 'destroy');
             Route::post('/{child}', 'store');
-            Route::put('/{child}/{childReward}', 'update');
+            Route::post('/{child}/{childReward}', 'update');
             Route::get('/{child}/{childReward}', 'getRewardById');
             Route::get('/{child}', 'index');
             

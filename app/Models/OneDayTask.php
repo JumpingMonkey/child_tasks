@@ -67,8 +67,8 @@ class OneDayTask extends Model
     public function scopeFilter(Builder $query, array $filters)
     {
         $query->when(
-            $filters['status'] ?? false,
-            fn($query, $value) => $query->where('status', $value)
+            isset($filters['status']),
+            fn($query) => $query->where('status', $filters['status'])
         );
     }
 }

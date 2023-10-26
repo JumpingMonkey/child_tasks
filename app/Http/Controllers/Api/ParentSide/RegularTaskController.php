@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Api\ParentSide;
 
 use App\Events\RegularTaskStatusWasUpdated;
-use App\Events\RegularTaskTemplateStatusWasUpdated;
-use App\Events\RegularTaskWasUpdated;
+use App\Events\RegularTaskTemplateStatusWasUpdated;s
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Child;

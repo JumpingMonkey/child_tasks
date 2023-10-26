@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Events\OneDayTaskStatusWasUpdated;
 use App\Events\RegularTaskStatusWasUpdated;
 use App\Events\RegularTaskTemplateStatusWasUpdated;
-use App\Events\RegularTaskWasUpdated;
 use App\Listeners\AddCoinsToChildAccount;
 use App\Listeners\ChangeRegularTaskStatus;
 use App\Listeners\CreateRegularTask;
@@ -29,15 +28,6 @@ class EventServiceProvider extends ServiceProvider
         RegularTaskTemplateStatusWasUpdated::class => [
             CreateRegularTask::class,
         ],
-        RegularTaskWasUpdated::class => [
-            ChangeRegularTaskStatus::class,
-        ],
-        // RegularTaskStatusWasUpdated::class => [
-        //     AddCoinsToChildAccount::class,
-        // ],
-        // OneDayTaskStatusWasUpdated::class => [
-        //     AddCoinsToChildAccount::class,
-        // ]
     ];
 
     /**

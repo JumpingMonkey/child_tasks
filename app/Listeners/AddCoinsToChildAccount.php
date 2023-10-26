@@ -3,7 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\RegularTaskStatusWasUpdated;
-use App\Events\RegularTaskWasUpdated;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 

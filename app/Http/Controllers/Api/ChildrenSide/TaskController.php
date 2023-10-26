@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\ChildrenSide;
 
-use App\Events\RegularTaskWasUpdated;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\OneDayTask;
@@ -134,7 +133,7 @@ class TaskController extends BaseController
             $regularTask->load('imageProof', 'regularTaskTemplate');   
         }
 // TODO if you need you can attach event with listeners
-            // RegularTaskWasUpdated::dispatch($regularTask);
+            
 
         return $this->sendResponseWithData($regularTask, 200);
     }

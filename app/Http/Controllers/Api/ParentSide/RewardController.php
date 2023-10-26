@@ -153,7 +153,7 @@ class RewardController extends BaseController
         $validated = $request->validate([
             'title' => 'sometimes|string|max:50',
             'price' => 'sometimes|integer|max:2000',
-            'is_received' => 'sometimes|integer'
+            'is_received' => 'sometimes|integer',
         ]);
 
         if ($request->hasFile('image'))
@@ -196,10 +196,10 @@ class RewardController extends BaseController
         
         $childReward->updateOrFail($validated);
 
-        if(!($request->hasFile('image_proof') OR $request->hasFile('image'))) {
+        // if(!($request->hasFile('image_proof') OR $request->hasFile('image'))) {
 
-            return $this->sendResponseWithData($childReward->withoutRelations(), 200);
-        }
+        //     return $this->sendResponseWithData($childReward->load(['imageProof', 'image']), 200);
+        // }
 
         return $this->sendResponseWithData($childReward->load(['imageProof', 'image']), 200);
        

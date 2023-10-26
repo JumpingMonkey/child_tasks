@@ -41,8 +41,8 @@ class RegularTask extends Model
     public function scopeFilter(Builder $query, array $filters)
     {
         $query->when(
-            $filters['status'] ?? false,
-            fn($query, $value) => $query->where('status', $value)
+            isset($filters['status']),
+            fn($query, $value) => $query->where('status', $filters['status'])
         );
     }
 }
