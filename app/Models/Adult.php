@@ -3,7 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\RegularTask;
+use App\Models\ChildReward;
+use App\Models\OneDayTask;
+use App\Models\RegularTaskTemplate;
 use App\Models\Reward;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -64,9 +66,19 @@ class Adult extends Authenticatable
     }
 
     //Api
-    public function regularTasks()
+    public function regularTaskTemplates()
     {
-        return $this->hasMany(RegularTask::class);
+        return $this->hasMany(RegularTaskTemplate::class);
+    }
+
+    public function oneDayTasks()
+    {
+        return $this->hasMany(OneDayTask::class);
+    }
+
+    public function rewards()
+    {
+        return $this->hasMany(ChildReward::class);
     }
 
     public function adultType()

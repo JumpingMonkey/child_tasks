@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ChildrenSide\TaskController;
 use App\Http\Controllers\Api\ParentSide\AdultController;
 use App\Http\Controllers\Api\ParentSide\AdultTypeController;
 use App\Http\Controllers\Api\ParentSide\CustomRegularTaskController;
+use App\Http\Controllers\Api\ParentSide\StatisticController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ParentSide\ChildController;
@@ -45,6 +46,10 @@ Route::middleware('auth:sanctum')->group(function () {
             ->group(function(){
                 Route::get('/showAdultProfile', [AdultController::class, 'showAdultProfile']);
                 Route::put('/updateAdultProfile', [AdultController::class, 'updateAdultProfile']);
+                Route::prefix('statistics')
+                    ->group(function(){
+                        Route::get('/', [StatisticController::class, 'adultStatistic']);
+                    });
             });
         Route::apiResource('adult_types', AdultTypeController::class)->only(['index']);
         Route::apiResource('proof_types', ProofTypeController::class)->only(['index']);
