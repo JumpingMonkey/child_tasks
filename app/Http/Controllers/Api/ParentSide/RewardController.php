@@ -165,12 +165,15 @@ class RewardController extends BaseController
                 'image.*.mimes' => 'The file should be in one of the formats: png, jpg, jpeg',
             ]);
 
-            Storage::disk('public')->delete($childReward->image->filename);
-            
             $path = $request->file('image')
                     ->store('reward-images', 'public');
 
-            $childReward->image->update(['filename' => $path]);
+            if($childReward->image?->filename){
+                Storage::disk('public')->delete($childReward->image->filename);
+                $childReward->image->update(['filename' => $path]);
+            } else {
+                $childReward->image()->create(['filename' => $path]);
+            }
 
         }
         
