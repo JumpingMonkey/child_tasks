@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\AttachCode;
 use App\Models\ChildReward;
+use App\Models\RegularTask;
 use App\Models\RegularTaskTemplate;
 use App\Models\Reward;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

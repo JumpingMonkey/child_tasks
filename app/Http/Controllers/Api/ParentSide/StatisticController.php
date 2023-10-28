@@ -17,12 +17,14 @@ class StatisticController extends BaseController
         }
 
         $adult = $request->user()->withCount([
-            'regularTaskTemplates',
-            'oneDayTasks',
+            'regularTaskTemplates' => fn( $q) => $q->whereHas('regularTask', fn($q) => $q->where('status', 'checked')),
+            'oneDayTasks' => fn(Builder $q) => $q->where('status', 'checked'),
             'rewards' => function(Builder $q){
                 $q->where('is_received', 1);
             }
-        ])->firstOrFail();
+        ])
+        ->withCount([])
+        ->firstOrFail();
 
         return $this->sendResponseWithData($adult);
     }
