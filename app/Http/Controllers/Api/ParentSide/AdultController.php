@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Adult;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 
 class AdultController extends BaseController
@@ -17,7 +18,7 @@ class AdultController extends BaseController
     {
         $adult = $request->user();
 
-        return $this->sendResponseWithData($adult->load('adultType'), 200);
+        return $this->sendResponseWithData($adult->load('adultType', 'accountSettings'), 200);
     }
 
     /**
@@ -34,6 +35,25 @@ class AdultController extends BaseController
     public function show(Request $request)
     {
         
+    }
+
+    public function updateSettings(Request $request)
+    {
+        $user = $request->user();
+
+        if(!Gate::allows('is_adult_model', $request->user())){
+            abort(403,'You are not adult!');
+        }
+
+        $validated = $request->validate([
+            'is_child_notification_enabled' => 'sometimes|boolean',
+            'is_adult_notification_enabled' => 'sometimes|boolean',
+            'language' => ['sometimes', Rule::in(['en', 'uk', 'ru'])],
+        ]);
+
+        $user->accountSettings->update($validated);
+        
+        return $this->sendResponseWithData($user);
     }
 
     /**

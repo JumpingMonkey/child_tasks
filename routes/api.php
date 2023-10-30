@@ -46,6 +46,7 @@ Route::middleware('auth:sanctum')->group(function () {
             ->group(function(){
                 Route::get('/showAdultProfile', [AdultController::class, 'showAdultProfile']);
                 Route::put('/updateAdultProfile', [AdultController::class, 'updateAdultProfile']);
+                Route::put('/updateSettings', [AdultController::class, 'updateSettings']);
                 Route::prefix('statistics')
                     ->group(function(){
                         Route::get('/', [StatisticController::class, 'adultStatistic']);

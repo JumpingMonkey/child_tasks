@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Adult;
+use App\Models\AdultAccountSettings;
 use App\Models\AdultType;
 use App\Models\Child;
 use App\Models\ChildReward;
@@ -37,12 +38,12 @@ class ApiSeeder extends Seeder
         User::factory()->admin()->create();
         $proof = ProofType::factory()->state(new Sequence(
             ['title' => ProofType::PROOF_TYPES[0]],
-            ['title' => ProofType::PROOF_TYPES[1]],
-            ['title' => ProofType::PROOF_TYPES[2]],
-            ['title' => ProofType::PROOF_TYPES[3]],
-            ['title' => ProofType::PROOF_TYPES[4]],
             ['title' => ProofType::PROOF_TYPES[5]],
-            ['title' => ProofType::PROOF_TYPES[6]],
+            // ['title' => ProofType::PROOF_TYPES[2]],
+            // ['title' => ProofType::PROOF_TYPES[3]],
+            // ['title' => ProofType::PROOF_TYPES[4]],
+            // ['title' => ProofType::PROOF_TYPES[5]],
+            // ['title' => ProofType::PROOF_TYPES[6]],
         ))
         ->count(7)
         ->create();
@@ -54,19 +55,19 @@ class ApiSeeder extends Seeder
             'is_active' => true],
             ['title' => 'Make the bed',
             'description' => 'Take two photos: First photo - the bed is spread out. Second photo - the bed is made.',
-            'proof_type_id' => 3,
+            'proof_type_id' => 1,
             'is_active' => true],
             ['title' => 'Brush your teeth',
             'description' => 'Brush your teeth for 2 minutes and then take a photo with a smile.',
-            'proof_type_id' => 4,
+            'proof_type_id' => 1,
             'is_active' => true],
             ['title' => 'Clean the room',
             'description' => 'Wipe the dust, sweep the floor. Take a picture of this purity.',
-            'proof_type_id' => 5,
+            'proof_type_id' => 1,
             'is_active' => false],
             ['title' => 'Wash the dishes',
             'description' => 'Take the photo of dirty and clean dishes.',
-            'proof_type_id' => 3,
+            'proof_type_id' => 1,
             'is_active' => false],
             ['title' => 'Feed your pet',
             'description' => 'Put food in a bowl of your pet and make photo of it.',
@@ -74,11 +75,11 @@ class ApiSeeder extends Seeder
             'is_active' => false],
             ['title' => 'Do exercises',
             'description' => 'Do warm-up exercises for 5 minutes, and at the end take a photo of yourself.',
-            'proof_type_id' => 4,
+            'proof_type_id' => 1,
             'is_active' => false],
             ['title' => 'Read a book',
             'description' => 'Read a book and record a voice note about what you read.',
-            'proof_type_id' => 5,
+            'proof_type_id' => 1,
             'is_active' => false],
             ['title' => 'Clean up after pet',
             'description' => 'Cleen up after your pet and send a photo of his clean tray.',
@@ -102,7 +103,7 @@ class ApiSeeder extends Seeder
             'is_active' => false],
             ['title' => 'Draw a picture',
             'description' => 'Draw a picture that we made a guess and take photo of it.',
-            'proof_type_id' => 7,
+            'proof_type_id' => 1,
             'is_active' => false],
             ['title' => 'Dress yourself',
             'description' => 'Dress yourself and take a photo in the mirror.',
@@ -126,7 +127,7 @@ class ApiSeeder extends Seeder
             'is_active' => false],
             ['title' => 'Call grandparents',
             'description' => 'Call your grandmother and find out how she is doing.',
-            'proof_type_id' => 6,
+            'proof_type_id' => 2,
             'is_active' => false],
             ['title' => 'Visit sections',
             'description' => 'Visit the section and take a photo of yourself there.',
@@ -146,7 +147,7 @@ class ApiSeeder extends Seeder
             'is_active' => false],
             ['title' => 'Find an item',
             'description' => 'Find this object at house and make photo of it.',
-            'proof_type_id' => 7,
+            'proof_type_id' => 1,
             'is_active' => false],
         ];
 
@@ -175,6 +176,8 @@ class ApiSeeder extends Seeder
                 ['title' => 'Brother'],
                 ['title' => 'Uncle'],
                 ['title' => 'Aunt'],
+                ['title' => 'Nunny'],
+                ['title' => 'etc.'],
             ))->count(8)->create();
 
         $j = 0;
@@ -185,6 +188,7 @@ class ApiSeeder extends Seeder
             
             $adult = Adult::factory()
                 ->hasAttached($child)
+                ->has(AdultAccountSettings::factory(), 'accountSettings')
                 ->for($adultTypes->random())
                 ->create(['is_premium' => $prem, 'until' => $premUntil]);
                 

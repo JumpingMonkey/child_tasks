@@ -85,4 +85,9 @@ class Adult extends Authenticatable
     {
         return $this->belongsTo(AdultType::class);
     }
+
+    public function accountSettings()
+    {
+        return $this->hasOne(AdultAccountSettings::class);
+    }
 }
