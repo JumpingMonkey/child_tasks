@@ -61,8 +61,12 @@ class RegularTaskController extends BaseController
         if (! Gate::allows('is_related_adult', $child)) {
             abort(403, "Unauthorized");
         }
-
-        $result = $child->regularTaskTemplates()->with('schedule', 'image')->get();
+        
+        $filters = $request->only(['is_unlock_required']);
+        
+        $result = $child->regularTaskTemplates()
+            ->filter($filters)
+            ->with('schedule', 'image')->get();
 
         return $this->sendResponseWithData($result, 200);
     }

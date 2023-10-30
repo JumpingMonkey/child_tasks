@@ -14,6 +14,10 @@ class BaseController extends Controller
         'redo the task'
     ];
 
+    const TASK_STATUSES_FOR_CHILDREN = [
+        'done',
+    ];
+
     public function sendResponseWithData($data, $code = 200)
     {
         $response = [

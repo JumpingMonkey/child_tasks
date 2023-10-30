@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('icon')->nullable();
             $table->integer('expected_duration')->default(0);
             $table->boolean('is_general_available')->default(false);
+            $table->boolean('is_unlock_required')->default(false);
             $table->unsignedBigInteger('coins')->default(1);
             $table->foreignIdFor(ProofType::class)->constrained();
             $table->foreignIdFor(Schedule::class)->constrained();

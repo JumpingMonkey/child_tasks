@@ -103,7 +103,8 @@ class TaskController extends BaseController
         $validate = $request->validate([
             'is_timer_done' => 'sometimes|boolean',
             'is_before' => 'sometimes|boolean',
-            'status' => ['sometimes', 'string', Rule::in(BaseController::TASK_STATUSES)]
+            'status' => ['sometimes', 'string', Rule::in(BaseController::TASK_STATUSES_FOR_CHILDREN)],
+            'is_unlock_required' => 'sometimes|boolean',
         ]);
         
         $regularTask->update($validate);
@@ -152,6 +153,7 @@ class TaskController extends BaseController
             'status' => ['sometimes', 'string', Rule::in(BaseController::TASK_STATUSES)],
             'is_timer_done' => 'sometimes|boolean',
             'is_before' => 'sometimes|boolean',
+            'is_unlock_required' => 'sometimes|boolean',
         ]);
 
         $oneDayTask->update($validated);

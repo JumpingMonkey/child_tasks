@@ -7,6 +7,7 @@ use App\Models\Child;
 use App\Models\ProofType;
 use App\Models\RegularTask;
 use App\Models\TaskImage;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -26,11 +27,13 @@ class RegularTaskTemplate extends Model
         'child_id',
         'expected_duration',
         'proof_type_id',
-        'schedule_id'
+        'schedule_id',
+        'is_unlock_required'
     ];
 
     protected $casts = [
-        'is_general_available' => 'boolean'
+        'is_general_available' => 'boolean',
+        'is_unlock_required' => 'boolean'
     ];
 
     public function proofType()
@@ -61,5 +64,15 @@ class RegularTaskTemplate extends Model
     public function image(): MorphOne
     {
         return $this->morphOne(TaskImage::class, 'imageable');
+    }
+
+    public function scopeFilter(Builder $query, array $filters)
+    {
+        
+        $query->when(
+           
+            isset($filters['is_unlock_required']),
+            fn($query) => $query->where('is_unlock_required', $filters['is_unlock_required'])
+        );
     }
 }
