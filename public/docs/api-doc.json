@@ -1250,7 +1250,7 @@
         ]
       }
     },
-    "/adult/adults/updateAdultProfile": {
+    "/adult/adults/deleteAdultProfile": {
       "parameters": [],
       "put": {
         "summary": "Update adult info",
@@ -1498,6 +1498,25 @@
         ],
         "tags": [
           "Adult - adult"
+        ]
+      },
+      "delete": {
+        "summary": "Delete adult frofile",
+        "operationId": "delete-adult-adults=profile",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
         ]
       }
     },

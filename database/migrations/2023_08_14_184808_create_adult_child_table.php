@@ -14,7 +14,15 @@ return new class extends Migration
         Schema::create('adult_child', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('adult_id');
+            $table->foreign('adult_id')
+                ->references('id')
+                ->on('adults')
+                ->cascadeOnDelete();
             $table->unsignedBigInteger('child_id');
+            $table->foreign('child_id')
+                ->references('id')
+                ->on('children')
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

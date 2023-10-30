@@ -49,8 +49,8 @@ class RewardController extends BaseController
         }
 
         $validated = $request->validate([
-            'title' => 'required|string|max:50',
-            'price' => 'required|integer|max:2000',
+            'title' => 'required|string|max:250',
+            'price' => 'required|integer',
         ]);
         
         $validated['status'] = 'active';

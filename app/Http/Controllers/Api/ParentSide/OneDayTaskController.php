@@ -45,7 +45,7 @@ class OneDayTaskController extends BaseController
         $validated = $request->validate([
             'title' => 'required|string|max:100',
             'description' => 'sometimes|string|max:500',
-            'coins' => 'required|max:300|integer',
+            'coins' => 'required|integer',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
             'proof_type_id' => 'required|integer',
@@ -108,7 +108,7 @@ class OneDayTaskController extends BaseController
         $validated = $request->validate([
             'title' => 'sometimes|string|max:100',
             'description' => 'sometimes|string|max:500',
-            'coins' => 'sometimes|max:300|integer',
+            'coins' => 'sometimes|integer',
             'start_date' => 'sometimes|date',
             'end_date' => 'sometimes|date',
             'proof_type_id' => 'sometimes|integer',

@@ -90,4 +90,12 @@ class Adult extends Authenticatable
     {
         return $this->hasOne(AdultAccountSettings::class);
     }
+
+    protected static function booted(): void
+    {
+        static::deleting(function (Adult $adult) {
+            
+            $adult->children()->delete();
+        });
+    }
 }

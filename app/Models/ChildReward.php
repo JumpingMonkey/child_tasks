@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use App\Models\ChildRewardImage;
 use App\Models\Image;
 use App\Models\User;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Support\Facades\Storage;
 
 class ChildReward extends Model
 {
@@ -57,6 +59,23 @@ class ChildReward extends Model
             isset($filters['is_received']),
             fn($query) => $query->where('is_received', $filters['is_received'])
         );
+    }
+
+    protected static function booted(): void
+    {
+        static::deleted(function (ChildReward $childReward) {
+            
+            if($childReward->image){
+                $image = $childReward->image;
+                Storage::disk('public')->delete($image->filename);
+                $image->delete();
+            }
+            if ($childReward->imageProof){
+                $imageProof = $childReward->imageProof;
+                Storage::disk('public')->delete($imageProof->filename);
+                $imageProof->delete();
+            }
+        });
     }
 }
 

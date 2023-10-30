@@ -16,6 +16,10 @@ class AdultController extends BaseController
      */
     public function showAdultProfile(Request $request)
     {
+        if(!Gate::allows('is_adult_model', $request->user())){
+            abort(403,'You are not adult!');
+        }
+        
         $adult = $request->user();
 
         return $this->sendResponseWithData($adult->load('adultType', 'accountSettings'), 200);
@@ -39,6 +43,10 @@ class AdultController extends BaseController
 
     public function updateSettings(Request $request)
     {
+        if(!Gate::allows('is_adult_model', $request->user())){
+            abort(403,'You are not adult!');
+        }
+
         $user = $request->user();
 
         if(!Gate::allows('is_adult_model', $request->user())){
@@ -61,6 +69,10 @@ class AdultController extends BaseController
      */
     public function updateAdultProfile(Request $request)
     {
+        if(!Gate::allows('is_adult_model', $request->user())){
+            abort(403,'You are not adult!');
+        }
+
         $adult = $request->user();
         
         $validated = $request->validate([
@@ -82,8 +94,14 @@ class AdultController extends BaseController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        if(!Gate::allows('is_adult_model', $request->user())){
+            abort(403,'You are not adult!');
+        }
+//Todo sort of deleting process
+        $request->user()->delete();
+
+        return $this->sendResponseWithoutData();
     }
 }
