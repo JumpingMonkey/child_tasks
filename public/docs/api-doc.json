@@ -1517,6 +1517,9 @@
           {
             "Authorization": []
           }
+        ],
+        "tags": [
+          "Adult - adult"
         ]
       }
     },
@@ -2739,6 +2742,13 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "is_unlock_required"
           }
         ],
         "tags": [
