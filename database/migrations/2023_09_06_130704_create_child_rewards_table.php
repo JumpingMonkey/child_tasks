@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('child_rewards', function (Blueprint $table) {
             $table->id();
             $table->tinyText('title');
-            $table->smallInteger('price');
+            $table->unsignedBigInteger('price');
             $table->string('picture_proof')->nullable();
             $table->boolean('is_claimed')->default(false);
             $table->boolean('is_received')->default(false);
