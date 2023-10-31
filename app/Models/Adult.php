@@ -97,5 +97,10 @@ class Adult extends Authenticatable
             
             $adult->children()->delete();
         });
+
+        static::created(function (Adult $adult) {
+            $settings = new AdultAccountSettings();
+            $adult->accountSettings()->save($settings);
+        });
     }
 }
