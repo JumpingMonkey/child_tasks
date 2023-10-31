@@ -75,6 +75,20 @@ class TaskController extends BaseController
         return $this->sendResponseWithData($regularTask, 200);
     }
 
+    public function storeTaskUnlockRequest(Request $request)
+    {
+        if(! Gate::allows('is_child_model', $request->user())){
+            abort(403, 'You should be a child!');
+        }
+        
+        RegularTaskTemplate::whereIn('id', $request->task_ids)
+        ->update([
+            'is_unlock_required' => true,
+        ]);
+
+        return $this->sendResponseWithOutData('status was changed!');
+    }
+
     public function getOneDayTask(Request $request, OneDayTask $oneDayTask)
     {
         if(! Gate::allows('is_child_model', $request->user())){
@@ -104,7 +118,6 @@ class TaskController extends BaseController
             'is_timer_done' => 'sometimes|boolean',
             'is_before' => 'sometimes|boolean',
             'status' => ['sometimes', 'string', Rule::in(BaseController::TASK_STATUSES_FOR_CHILDREN)],
-            'is_unlock_required' => 'sometimes|boolean',
         ]);
         
         $regularTask->update($validate);
@@ -153,7 +166,6 @@ class TaskController extends BaseController
             'status' => ['sometimes', 'string', Rule::in(BaseController::TASK_STATUSES)],
             'is_timer_done' => 'sometimes|boolean',
             'is_before' => 'sometimes|boolean',
-            'is_unlock_required' => 'sometimes|boolean',
         ]);
 
         $oneDayTask->update($validated);

@@ -115,6 +115,7 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::put('/regular_tasks/{regularTask}', 'updateRegularTask');
             Route::get('/one_day_tasks/{oneDayTask}', 'getOneDayTask');
             Route::put('/one_day_tasks/{oneDayTask}', 'updateOneDayTask');
+            Route::post('/store_unlock_request', 'storeTaskUnlockRequest');
             
         });
         Route::controller(ChildRewardController::class)

@@ -58,6 +58,10 @@ class RegularTaskController extends BaseController
 
     public function getRegularTaskTemplatesByChild(Request $request, Child $child)
     {
+        if (! Gate::allows('is_adult_model')) {
+            abort(403, "Unauthorized");
+        }
+
         if (! Gate::allows('is_related_adult', $child)) {
             abort(403, "Unauthorized");
         }
