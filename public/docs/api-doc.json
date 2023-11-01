@@ -6852,6 +6852,56 @@
       },
       "parameters": []
     },
+    "/child/tasks/store_unlock_request": {
+      "parameters": [],
+      "post": {
+        "summary": "Store task unlock request",
+        "operationId": "post-child-tasks-store_unlock_request",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Child - Tasks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "task_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "x-examples": {
+                  "Example 1": {
+                    "task_ids": [
+                      123,
+                      233
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/child/tasks/regular_tasks/{regularTask}": {
       "get": {
         "summary": "Get regular task by id",
