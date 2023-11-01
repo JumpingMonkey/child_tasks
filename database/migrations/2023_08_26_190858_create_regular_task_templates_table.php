@@ -4,6 +4,7 @@ use App\Models\Adult;
 use App\Models\Child;
 use App\Models\ProofType;
 use App\Models\Schedule;
+use App\Models\TaskIcon;
 use App\Models\TaskTemplate;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,7 +21,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 150);
             $table->string('description', 500);
-            $table->string('icon')->nullable();
+            $table->foreignIdFor(TaskIcon::class);
             $table->integer('expected_duration')->default(0);
             $table->boolean('is_general_available')->default(false);
             $table->boolean('is_unlock_required')->default(false);

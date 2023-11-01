@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\RegularTaskTemplate>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TaskIcon>
  */
-class RegularTaskTemplateFactory extends Factory
+class TaskIconFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,7 @@ class RegularTaskTemplateFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->sentence(3),
-            'description' => fake()->paragraph(1),
-            'coins' => 1,
+            'filename' => fake()->imageUrl(),
         ];
     }
 }

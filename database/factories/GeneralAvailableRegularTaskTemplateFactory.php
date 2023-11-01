@@ -19,7 +19,6 @@ class GeneralAvailableRegularTaskTemplateFactory extends Factory
         return [
             'title' => fake()->sentence(3),
             'description' => fake()->paragraph(1),
-            'icon' => fake()->image(),
             'coins' => 1,
         ];
     }

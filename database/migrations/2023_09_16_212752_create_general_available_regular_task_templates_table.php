@@ -2,6 +2,7 @@
 
 use App\Models\ProofType;
 use App\Models\Schedule;
+use App\Models\TaskIcon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 150);
             $table->string('description', 500);
-            $table->string('icon')->nullable();
+            $table->foreignIdFor(TaskIcon::class);
             $table->integer('expected_duration')->default(0);
             $table->mediumInteger('coins')->default(1);
             $table->foreignIdFor(ProofType::class)->constrained();

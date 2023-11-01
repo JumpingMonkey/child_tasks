@@ -6,6 +6,7 @@ use App\Filament\Resources\DefaultTaskResource\Pages;
 use App\Filament\Resources\DefaultTaskResource\RelationManagers;
 use App\Models\DefaultTask;
 use App\Models\GeneralAvailableRegularTaskTemplate;
+use App\Models\TaskIcon;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -21,6 +22,18 @@ class DefaultTaskResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Tasks';
+
+    public static function getCleanOptionString(Model $model): string
+    {
+        return 
+                view('filament.components.select-icon')
+                    ->with('id', $model?->id)
+                    ->with('filename', $model?->filename)
+                    ->render();
+        
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -31,35 +44,52 @@ class DefaultTaskResource extends Resource
                 Forms\Components\Textarea::make('description')
                     ->maxLength(255)
                     ->columnSpan(2),
-                Forms\Components\TextInput::make('coins')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('expected_duration')
-                    ->maxLength(255)
-                    ->hint('Number of seconds'),
+                // Forms\Components\TextInput::make('expected_duration')
+                //     ->maxLength(255)
+                //     ->hint('Number of seconds')
+                //     ->default(0),
                 Forms\Components\Checkbox::make('is_active')
                     ->required()
                     ->default(true),
                 Forms\Components\Select::make('proof_type_id')
                     ->label('Proof type')
-                    ->relationship('proofType', 'title'),
+                    ->relationship('proofType', 'title')
+                    ->required(),
                     // ->createOptionForm([
                     //     Forms\Components\TextInput::make('title')
                     //         ->required()
                     //         ->maxLength(255),
                     // ]),
-                    Forms\Components\Fieldset::make('Schedule')
-                        ->schema([
-                            Forms\Components\Checkbox::make('monday'),
-                            Forms\Components\Checkbox::make('tuesday'),
-                            Forms\Components\Checkbox::make('wednesday'),
-                            Forms\Components\Checkbox::make('thursday'),
-                            Forms\Components\Checkbox::make('friday'),
-                            Forms\Components\Checkbox::make('saturday'),
-                            Forms\Components\Checkbox::make('sunday'),
-                        ])
-                        
-                        ->columns(7),
+                Forms\Components\Select::make('task_icon_id')
+                    ->label('Icon')
+                    ->allowHtml()
+                    ->searchable()
+                    ->preload()
+                    
+                    ->getSearchResultsUsing(function (string $search) {
+                        $users = TaskIcon::limit(50)->get();
+                 
+                        return $users->mapWithKeys(function ($user) {
+                              return [$user->getKey() => static::getCleanOptionString($user)];
+                        })->toArray();
+                   })
+                   ->getOptionLabelUsing(function ($value): string {
+                       $user = TaskIcon::find($value);
+                 
+                       return static::getCleanOptionString($user);
+                   })
+                    // ->relationship('icon', 'filename')
+                    ->required(),
+                Forms\Components\Fieldset::make('Schedule')
+                    ->schema([
+                        Forms\Components\Checkbox::make('monday'),
+                        Forms\Components\Checkbox::make('tuesday'),
+                        Forms\Components\Checkbox::make('wednesday'),
+                        Forms\Components\Checkbox::make('thursday'),
+                        Forms\Components\Checkbox::make('friday'),
+                        Forms\Components\Checkbox::make('saturday'),
+                        Forms\Components\Checkbox::make('sunday'),
+                    ])->columns(7),
                 // Forms\Components\Select::make('schedule_id')
                 //     ->label('Schedule')
                 //     ->relationship(name: 'schedule')

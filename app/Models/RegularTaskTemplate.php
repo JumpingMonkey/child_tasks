@@ -19,7 +19,7 @@ class RegularTaskTemplate extends Model
     protected $fillable = [
         'title',
         'description',
-        'icon',
+        'task_icon_id',
         'is_general_available',
         'is_active',
         'coins',
@@ -64,6 +64,11 @@ class RegularTaskTemplate extends Model
     public function image(): MorphOne
     {
         return $this->morphOne(TaskImage::class, 'imageable');
+    }
+
+    public function icon()
+    {
+        return $this->belongsTo(TaskIcon::class, 'task_icon_id');
     }
 
     public function scopeFilter(Builder $query, array $filters)

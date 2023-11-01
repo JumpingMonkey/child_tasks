@@ -28,6 +28,8 @@ class AdultResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Users';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -41,16 +43,14 @@ class AdultResource extends Resource
                     ->maxLength(255),
                 
                 Forms\Components\TextInput::make('password')
-                ->confirmed()
                 ->password()
                 ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                 ->dehydrated(fn ($state) => filled($state))
                 ->required(fn (string $context): bool => $context === 'create'),
 
-                Forms\Components\TextInput::make('password_confirmation')
-                ->password(),
+                
                 Forms\Components\Checkbox::make('is_premium')
-                    ->columnSpan(1)
+                    ->columnSpan(2)
                     ->live()
                     ->afterStateUpdated(function (Set $set, $state) {
                         if(!$state){
@@ -62,8 +62,7 @@ class AdultResource extends Resource
                     ->columnSpan(2),
 
                 Forms\Components\Select::make('adult_type_id')
-                    ->relationship('adultType', 'title')
-                    ->required(),
+                    ->relationship('adultType', 'title'),
 
                 Forms\Components\Select::make('tag_id')
                     ->label('Tag')
