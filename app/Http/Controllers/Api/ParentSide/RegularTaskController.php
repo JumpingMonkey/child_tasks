@@ -31,7 +31,8 @@ class RegularTaskController extends BaseController
             $validated = Validator::make($taskTemplate, [
                 "task_template_id" =>  "required|integer",
                 "coins" =>  "sometimes|integer",
-                "is_active" =>  "sometimes|boolean"
+                "is_active" =>  "sometimes|boolean",
+                'is_unlock_required' => "sometimes|boolean",
             ])->validate();
 
             $updatedTasksIds[] = $taskTemplate['task_template_id'];

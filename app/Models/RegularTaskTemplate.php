@@ -80,4 +80,15 @@ class RegularTaskTemplate extends Model
             fn($query) => $query->where('is_unlock_required', $filters['is_unlock_required'])
         );
     }
+
+    protected static function booted(): void
+    {
+        static::updated(function (RegularTaskTemplate $regularTaskTemplate) {
+            
+            if($regularTaskTemplate->is_active && $regularTaskTemplate->is_unlock_required){
+                $regularTaskTemplate->is_unlock_required = false;
+                $regularTaskTemplate->save();
+            }
+        });
+    }
 }
