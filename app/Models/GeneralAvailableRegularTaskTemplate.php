@@ -6,7 +6,9 @@ use App\Models\ProofType;
 use App\Models\Schedule;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Awcodes\Curator\Models\Media;
 
 class GeneralAvailableRegularTaskTemplate extends Model
 {
@@ -36,8 +38,8 @@ class GeneralAvailableRegularTaskTemplate extends Model
         return $this->morphOne(TaskImage::class, 'imageable');
     }
 
-    public function icon()
+    public function taskIcon()
     {
-        return $this->belongsTo(TaskIcon::class, 'task_icon_id');
+        return $this->belongsTo(Media::class, 'task_icon_id');
     }
 }

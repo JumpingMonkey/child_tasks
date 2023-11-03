@@ -25,6 +25,10 @@ class TaskIconResource extends Resource
 
     protected static ?string $navigationGroup = 'Tasks';
 
+    protected static ?string $label = 'Default task icon';
+
+    protected static ?string $navigationLabel = 'Default task icon';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -50,8 +54,8 @@ class TaskIconResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\DeleteAction::make()
-                    ->requiresConfirmation(),
+                // Tables\Actions\DeleteAction::make()
+                    // ->requiresConfirmation(),
                     
             ])
             ->bulkActions([

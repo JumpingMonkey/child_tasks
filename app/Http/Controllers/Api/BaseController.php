@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\TaskIcon;
 use Illuminate\Http\Request;
 
 class BaseController extends Controller
@@ -53,5 +54,10 @@ class BaseController extends Controller
         }
 
         return response()->json($response, $code);
+    }
+
+    public function getDefaultIcon()
+    {
+        return $this->sendResponseWithData(TaskIcon::first());
     }
 }

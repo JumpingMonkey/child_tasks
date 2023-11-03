@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Awcodes\Curator\CuratorPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -55,6 +56,17 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->sidebarFullyCollapsibleOnDesktop()
-            ->maxContentWidth('full');
+            ->maxContentWidth('full')
+            ->viteTheme('resources/css/filament/admin/theme.css')
+            ->plugins([
+                CuratorPlugin::make()
+                    ->label('Task icons')
+                    ->pluralLabel('Task icons')
+                    ->navigationIcon('heroicon-o-photo')
+                    ->navigationGroup('Tasks')
+                    ->navigationSort(3)
+                    ->navigationCountBadge()
+                    // ->resource(\App\Filament\Resources\CustomMediaResource::class)
+            ]);
     }
 }

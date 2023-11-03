@@ -11,10 +11,13 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Components\Tables\CuratorColumn;
 
 class DefaultTaskResource extends Resource
 {
@@ -23,16 +26,6 @@ class DefaultTaskResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $navigationGroup = 'Tasks';
-
-    public static function getCleanOptionString(Model $model): string
-    {
-        return 
-                view('filament.components.select-icon')
-                    ->with('id', $model?->id)
-                    ->with('filename', $model?->filename)
-                    ->render();
-        
-    }
 
     public static function form(Form $form): Form
     {
@@ -60,26 +53,12 @@ class DefaultTaskResource extends Resource
                     //         ->required()
                     //         ->maxLength(255),
                     // ]),
-                Forms\Components\Select::make('task_icon_id')
+                    CuratorPicker::make('task_icon_id')
                     ->label('Icon')
-                    ->allowHtml()
-                    ->searchable()
-                    ->preload()
+                    ->relationship('taskIcon','id')
+                    ->directory('task-icons')
+                    ->buttonLabel('Add Icon'),
                     
-                    ->getSearchResultsUsing(function (string $search) {
-                        $users = TaskIcon::limit(50)->get();
-                 
-                        return $users->mapWithKeys(function ($user) {
-                              return [$user->getKey() => static::getCleanOptionString($user)];
-                        })->toArray();
-                   })
-                   ->getOptionLabelUsing(function ($value): string {
-                       $user = TaskIcon::find($value);
-                 
-                       return static::getCleanOptionString($user);
-                   })
-                    // ->relationship('icon', 'filename')
-                    ->required(),
                 Forms\Components\Fieldset::make('Schedule')
                     ->schema([
                         Forms\Components\Checkbox::make('monday'),
@@ -124,6 +103,11 @@ class DefaultTaskResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('coins')
                     ->searchable(),
+                    CuratorColumn::make('task_icon_id')
+                    ->circular()
+                    ->size(60),
+                
+                    
                 Tables\Columns\CheckboxColumn::make('is_active')
                     ->searchable(),
             ])

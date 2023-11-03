@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Awcodes\Curator\Models\Media;
 
 class RegularTaskTemplate extends Model
 {
@@ -66,9 +67,9 @@ class RegularTaskTemplate extends Model
         return $this->morphOne(TaskImage::class, 'imageable');
     }
 
-    public function icon()
+    public function taskIcon()
     {
-        return $this->belongsTo(TaskIcon::class, 'task_icon_id');
+        return $this->belongsTo(Media::class, 'task_icon_id');
     }
 
     public function scopeFilter(Builder $query, array $filters)

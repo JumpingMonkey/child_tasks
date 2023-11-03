@@ -21,7 +21,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 150);
             $table->string('description', 500);
-            $table->foreignIdFor(TaskIcon::class);
+            $table->foreignId('task_icon_id')->nullable();
             $table->integer('expected_duration')->default(0);
             $table->boolean('is_general_available')->default(false);
             $table->boolean('is_unlock_required')->default(false);

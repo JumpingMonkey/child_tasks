@@ -14,9 +14,9 @@ class ListTaskIcons extends ListRecords
     {
         return [
             Actions\CreateAction::make()
-            // ->hidden(function(){
-            //     return $this->getTableRecords()->count() > 0;
-            // }),
+            ->hidden(function(){
+                return $this->getTableRecords()->count() > 0;
+            }),
         ];
     }
 }

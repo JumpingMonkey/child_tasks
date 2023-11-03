@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Api\ChildrenSide\ChildInfoController;
 use App\Http\Controllers\Api\ChildrenSide\ChildRewardController;
 use App\Http\Controllers\Api\ChildrenSide\TaskController;
@@ -39,6 +40,7 @@ Route::controller(RegisterController::class)->group(function(){
 })->middleware('guest');
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/default_icon', [BaseController::class, 'getDefaultIcon']);
     Route::prefix('adult')
     ->name('adult.')
     ->group(function(){

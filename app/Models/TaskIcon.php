@@ -22,22 +22,4 @@ class TaskIcon extends Model
     {
         return asset("storage/{$this->filename}");
     }
-
-    /**
-     * Get all of the posts that are assigned this tag.
-     */
-    public function regularTaskTemplates(): HasMany
-    {
-        return $this->hasMany(RegularTaskTemplate::class);
-    }
-
-    public function oneDayTasks(): HasMany
-    {
-        return $this->hasMany(OneDayTask::class);
-    }
-
-    public function generalAvailableRegularTasks(): HasMany
-    {
-        return $this->hasMany(GeneralAvailableRegularTaskTemplate::class);
-    }
 }
