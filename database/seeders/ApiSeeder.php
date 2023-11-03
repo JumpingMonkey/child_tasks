@@ -166,7 +166,7 @@ class ApiSeeder extends Seeder
                 'sunday' => 1,
             ]))
             ->has(TaskImage::factory(), 'image')
-            ->for($taskIcon, 'icon')
+            // ->for($taskIcon, 'icon')
             ->create($task);
         }
         
@@ -203,7 +203,7 @@ class ApiSeeder extends Seeder
                         ->for($proofTypeForOneDayTask)
                         ->for($child)
                         ->for($adult)
-                        ->for($taskIcon, 'icon')
+                        // ->for($taskIcon, 'icon')
                         ->has(TaskProofImage::factory(), 'imageProof')
                         ->has(TaskImage::factory(), 'image')
                         ->create();
@@ -211,7 +211,7 @@ class ApiSeeder extends Seeder
                     OneDayTask::factory()
                         ->for($proofTypeForOneDayTask)
                         ->for($child)
-                        ->for($taskIcon, 'icon')
+                        // ->for($taskIcon, 'icon')
                         ->for($adult)
                         ->has(TaskImage::factory(), 'image')
                         ->create();
@@ -227,7 +227,7 @@ class ApiSeeder extends Seeder
                     ->has(TaskImage::factory(), 'image')
                     ->for($child)
                     ->for($adult)
-                    ->for($taskIcon, 'icon')
+                    // ->for($taskIcon, 'icon')
                     ->create([
                         'is_general_available' => true, 
                         'is_active' => fake()->randomElement([true, false])
