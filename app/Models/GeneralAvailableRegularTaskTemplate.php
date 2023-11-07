@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Awcodes\Curator\Models\Media;
+use Spatie\Translatable\HasTranslations;
 
 class GeneralAvailableRegularTaskTemplate extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     protected $fillable = [
         'title',
@@ -24,6 +25,16 @@ class GeneralAvailableRegularTaskTemplate extends Model
         'schedule_id',
         'is_active'
     ];
+    
+     public $translatable = [
+        'title',
+        'description',
+    ];
+
+    // protected $casts = [
+    //     'title' => 'array',
+    //     'description' => 'array',
+    // ];
 
     public function proofType(){
         return $this->belongsTo(ProofType::class);
@@ -42,4 +53,11 @@ class GeneralAvailableRegularTaskTemplate extends Model
     {
         return $this->belongsTo(Media::class, 'task_icon_id');
     }
+
+    // protected static function booted()
+    // {
+    //     static::creating(function (GeneralAvailableRegularTaskTemplate $generalAvailableRegularTaskTemplate) {
+    //                 dd($generalAvailableRegularTaskTemplate);
+    //             });
+    // }
 }

@@ -18,9 +18,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
+use Filament\Resources\Concerns\Translatable;
 
 class DefaultTaskResource extends Resource
 {
+    use Translatable;
+    
     protected static ?string $model = GeneralAvailableRegularTaskTemplate::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';

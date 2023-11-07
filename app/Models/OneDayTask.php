@@ -12,10 +12,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Awcodes\Curator\Models\Media;
+use Spatie\Translatable\HasTranslations;
 
 class OneDayTask extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     protected $fillable = [
         'title',
@@ -32,6 +33,11 @@ class OneDayTask extends Model
         'adult_id',
         'is_timer_done',
     ];
+
+    // public $translatable = [
+    //     'title',
+    //     'description',
+    // ];
 
     //relations
     public function timer(): MorphOne

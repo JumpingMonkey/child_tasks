@@ -18,6 +18,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Filament\SpatieLaravelTranslatablePlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -55,6 +56,8 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
+            ->plugin(SpatieLaravelTranslatablePlugin::make()
+            ->defaultLocales(['en', 'uk', 'ru']),)
             ->sidebarFullyCollapsibleOnDesktop()
             ->maxContentWidth('full')
             ->viteTheme('resources/css/filament/admin/theme.css')
@@ -65,8 +68,9 @@ class AdminPanelProvider extends PanelProvider
                     ->navigationIcon('heroicon-o-photo')
                     ->navigationGroup('Tasks')
                     ->navigationSort(3)
-                    ->navigationCountBadge()
-                    // ->resource(\App\Filament\Resources\CustomMediaResource::class)
+                    ->navigationCountBadge(),
+                    // SpatieLaravelTranslatablePlugin::make()
+                    // ->defaultLocales(['en', 'uk']),
             ]);
     }
 }

@@ -10,17 +10,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class EditDefaultTask extends EditRecord
 {
+    use EditRecord\Concerns\Translatable;
+     
     protected static string $resource = DefaultTaskResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
             Actions\DeleteAction::make(),
+            Actions\LocaleSwitcher::make(),
         ];
     }
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
+        
         $schedule = Schedule::query()
             ->select([
                 'monday',

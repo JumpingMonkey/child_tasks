@@ -16,8 +16,8 @@ return new class extends Migration
     {
         Schema::create('general_available_regular_task_templates', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 150);
-            $table->string('description', 500);
+            $table->json('title');
+            $table->json('description');
             $table->foreignId('task_icon_id')->nullable();
             $table->integer('expected_duration')->default(0);
             $table->mediumInteger('coins')->default(1);
