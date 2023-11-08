@@ -3,6 +3,7 @@
 return [
     'accepted_file_types' => [
         'image/jpeg',
+        'image/jpg',
         'image/png',
         'image/webp',
         'image/svg+xml',
