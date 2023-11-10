@@ -16,7 +16,7 @@ return new class extends Migration
         });
 
         Schema::table('general_available_regular_task_templates', function (Blueprint $table) {
-            $table->string('description', 500)->nullable()->change();
+            $table->json('description')->nullable()->change();
         });
 
         Schema::table('one_day_tasks', function (Blueprint $table) {

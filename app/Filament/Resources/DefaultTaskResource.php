@@ -6,6 +6,7 @@ use App\Filament\Resources\DefaultTaskResource\Pages;
 use App\Filament\Resources\DefaultTaskResource\RelationManagers;
 use App\Models\DefaultTask;
 use App\Models\GeneralAvailableRegularTaskTemplate;
+use App\Models\ProofType;
 use App\Models\TaskIcon;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -19,6 +20,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
 use Filament\Resources\Concerns\Translatable;
+use Illuminate\Support\Facades\App;
 
 class DefaultTaskResource extends Resource
 {
@@ -50,6 +52,9 @@ class DefaultTaskResource extends Resource
                 Forms\Components\Select::make('proof_type_id')
                     ->label('Proof type')
                     ->relationship('proofType', 'title')
+                    //Todo update title label with translation
+                    ->getOptionLabelFromRecordUsing(
+                        fn (ProofType $record) => $record->title)
                     ->required(),
                     // ->createOptionForm([
                     //     Forms\Components\TextInput::make('title')
