@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('adult_types', function (Blueprint $table) {
             $table->id();
-            $table->tinyText('title');
+            $table->json('title');
             $table->timestamps();
         });
     }
