@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AdultResource\Pages;
 use App\Filament\Resources\AdultResource\RelationManagers;
 use App\Models\Adult;
+use App\Models\AdultType;
 use App\Models\Tag;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -62,7 +63,9 @@ class AdultResource extends Resource
                     ->columnSpan(2),
 
                 Forms\Components\Select::make('adult_type_id')
-                    ->relationship('adultType', 'title'),
+                    ->relationship('adultType', 'title')
+                    ->getOptionLabelFromRecordUsing(
+                        fn (AdultType $record) => $record->title),
 
                 Forms\Components\Select::make('tag_id')
                     ->label('Tag')
