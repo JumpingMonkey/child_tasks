@@ -17,7 +17,7 @@ class TaskIconFactory extends Factory
     public function definition(): array
     {
         return [
-            'filename' => fake()->imageUrl(),
+            'filename' => fake()->image(),
         ];
     }
 }
