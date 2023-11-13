@@ -86,7 +86,7 @@ class ApiSeeder extends Seeder
                 "uk" => 'Протри пил, підміти підлогу. Сфотографуй цю чистоту.'
             ],
             'proof_type_id' => 1,
-            'is_active' => false],
+            'is_active' => true],
 
             ['title' => ["en" => 'Wash the dishes', "ru" => "Помыть посуду", "uk" => "Помити посуд",],
             'description' => [
@@ -95,7 +95,7 @@ class ApiSeeder extends Seeder
                 "uk" => 'Зроби фотографію чистих тарілок.'
             ],
             'proof_type_id' => 1,
-            'is_active' => false],
+            'is_active' => true],
 
             ['title' => ["en" => 'Feed your pet', "ru" => "Покормить животное", "uk" => "Погодувати вихованця",],
             'description' => [

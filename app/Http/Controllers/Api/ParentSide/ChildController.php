@@ -8,6 +8,7 @@ use App\Models\Child;
 use App\Models\GeneralAvailableRegularTask;
 use App\Models\GeneralAvailableRegularTaskTemplate;
 use App\Models\RegularTaskTemplate;
+use App\Models\TaskImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -38,30 +39,46 @@ class ChildController extends BaseController
      */
     public function store(Request $request)
     {
+        
         $validated = $request->validate([
             'name' => "required|string|max:50",
             'age' => "required|integer|max:20",
             'gender' => "required|boolean",
         ]);
-
-        $child = Child::create($validated);
-        $request->user()->children()->attach($child->id);
         
+        // $children = $request->user()->children();
+        // if($children->count() > 4) {
+        //     abort("You can't have more then 4 children", 403);
+        // }
+        $child = Child::create($validated);
+        
+        $request->user()->children()->attach($child->id);
+       
         $success['token'] =  $child->createToken('MyApp')->plainTextToken;
         $success['name'] =  $child->name;
         $success['id'] = $child->id;
-
-        $generalAvailableRegularTasks = GeneralAvailableRegularTaskTemplate::all();
-
+        
+        $generalAvailableRegularTasks = GeneralAvailableRegularTaskTemplate::where('is_active', 1)->get();
+        $activeTaskCounter = 1;
         foreach($generalAvailableRegularTasks as $task){
-            $data = $task->toArray();
-            $data['adult_id'] = $request->user()->id;
-            $data['child_id'] = $child->id;
-            $data['is_active'] = false;
-            $data['is_general_available'] = true;
-            RegularTaskTemplate::create(
-                $data
-            );
+            $attributes = $task->getAttributes();
+            $attributes['title'] = $task->title;
+            $attributes['description'] = $task->description;
+            unset($attributes['created_at'], $attributes['updated_at'], $attributes['id']);
+            $attributes['adult_id'] = $request->user()->id;
+            $attributes['child_id'] = $child->id;
+
+            if($activeTaskCounter < 4) {
+                $attributes['is_active'] = 1;
+                $activeTaskCounter++;
+            } else {
+                $attributes['is_active'] = 0;
+            }
+            $attributes['is_general_available'] = true;
+            
+            $taskTemplate = RegularTaskTemplate::create($attributes);
+            $path = $task->image->filename;
+            $taskTemplate->image()->create(['filename' => $path]);
         }
         
         return $this->sendResponseWithData($success, 201);
