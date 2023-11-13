@@ -57,7 +57,7 @@ class ChildController extends BaseController
         $success['token'] =  $child->createToken('MyApp')->plainTextToken;
         $success['name'] =  $child->name;
         $success['id'] = $child->id;
-        
+        //Todo define subscriber for children and listener for cone below
         $generalAvailableRegularTasks = GeneralAvailableRegularTaskTemplate::where('is_active', 1)->get();
         $activeTaskCounter = 1;
         foreach($generalAvailableRegularTasks as $task){
