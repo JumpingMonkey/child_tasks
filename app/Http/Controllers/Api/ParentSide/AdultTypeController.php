@@ -14,7 +14,9 @@ class AdultTypeController extends BaseController
      */
     public function index(Request $request)
     {
-        return $this->sendResponseWithData(AdultType::all(), 200);
+        $result = AdultType::all();
+        
+        return $this->sendResponseWithData($result, 200);
     }
 
     /**

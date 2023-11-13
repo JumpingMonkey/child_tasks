@@ -34,6 +34,7 @@ class ProofType extends Model
     // public $casts = [
     //     'title'=> 'array',
     // ];
+    
 //Todo rewrite relation to morph
     public function regularTaskTemplates()
     {
