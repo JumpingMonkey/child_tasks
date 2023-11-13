@@ -16,7 +16,7 @@ use Spatie\Translatable\HasTranslations;
 
 class OneDayTask extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory;
 
     protected $fillable = [
         'title',

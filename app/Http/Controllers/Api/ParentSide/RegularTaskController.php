@@ -71,7 +71,7 @@ class RegularTaskController extends BaseController
         
         $result = $child->regularTaskTemplates()
             ->filter($filters)
-            ->with('schedule', 'image')->get();
+            ->with('schedule', 'image', 'taskIcon')->get();
 
         return $this->sendResponseWithData($result, 200);
     }
@@ -88,7 +88,7 @@ class RegularTaskController extends BaseController
             return $q->where('child_id', $child->id);
         })
         ->filter($filters)
-        ->with(['regularTaskTemplate.image', 'regularTaskTemplate.proofType', 'imageProof'])
+        ->with(['regularTaskTemplate.image', 'regularTaskTemplate.proofType', 'imageProof', 'regularTaskTemplate.taskIcon'])
         ->get();
             
 
@@ -114,7 +114,7 @@ class RegularTaskController extends BaseController
         }
         
 
-        return $this->sendResponseWithData($regularTask->load('regularTaskTemplate.image'), 200);
+        return $this->sendResponseWithData($regularTask->load('regularTaskTemplate.image', 'regularTaskTemplate.taskIcon'), 200);
     }
 
 }
