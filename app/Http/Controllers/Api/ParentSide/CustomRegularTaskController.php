@@ -117,14 +117,23 @@ class CustomRegularTaskController extends BaseController
                 'image.*.mimes' => 'The file should be in one of the formats: png, jpg, jpeg',
             ]);
             
+                
                 $path = $request->file('image')
                     ->store('regular-tasks-images', 'public');
 
-                Storage::disk('public')->delete($regularTaskTemplate->image);
-
-                $regularTaskTemplate->image->update([
-                    'filename' => $path
-                ]);
+                $oldPath = $regularTaskTemplate?->image?->filename ?? '-';
+                    
+                if(Storage::disk('public')->exists($oldPath)){
+                    
+                    Storage::disk('public')->delete($regularTaskTemplate->image->filename);
+                    $regularTaskTemplate->image->update([
+                        'filename' => $path
+                    ]);
+                } else {
+                    $regularTaskTemplate->image()->create([
+                        'filename' => $path
+                    ]);
+                }
         }
 
         return $this->sendResponseWithData($regularTaskTemplate->load('schedule', 'image'), 200);
