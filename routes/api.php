@@ -72,7 +72,7 @@ Route::middleware('auth:sanctum')->group(function () {
             ->group(function(){
                 Route::get('/{regularTaskTemplate}', 'getCustomRegularTaskTemplateById');
                 Route::post('/{child}', 'storeCustomRegularTaskTemplate');
-                Route::put('/{child}/{regularTaskTemplate}', 'updateCustomRegularTaskTemplate');
+                Route::post('/{child}/{regularTaskTemplate}', 'updateCustomRegularTaskTemplate');
                 Route::delete('/{child}/{regularTaskTemplate}', 'destroyCustomRegularTaskTemplate');
             });
            

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\GeneralAvailableRegularTaskTemplate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 use Spatie\Translatable\HasTranslations;
 
 class ProofType extends Model
@@ -49,5 +50,10 @@ class ProofType extends Model
     public function OneDayTasks()
     {
         return $this->hasMany(OneDayTask::class);
+    }
+
+    public function getTitleAttribute()
+    {
+        return  json_decode($this->attributes['title'])->{App::getLocale()};
     }
 }
