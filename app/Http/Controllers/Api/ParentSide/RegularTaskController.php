@@ -26,6 +26,7 @@ class RegularTaskController extends BaseController
         }
         
         $updatedTasksIds = [];
+        
         foreach($request->get('task_templates') as $taskTemplate){
 
             $validated = Validator::make($taskTemplate, [
