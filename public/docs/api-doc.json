@@ -189,7 +189,8 @@
               }
             }
           }
-        }
+        },
+        "description": ""
       }
     },
     "/login": {
@@ -841,6 +842,14 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "x-examples": {
+                  "Example 1": {
+                    "name": "test2",
+                    "age": 7,
+                    "gender": 1,
+                    "adult_type": "Grandma"
+                  }
+                },
                 "properties": {
                   "name": {
                     "type": "string"
@@ -850,17 +859,6 @@
                   },
                   "gender": {
                     "type": "integer"
-                  },
-                  "adult_type": {
-                    "type": "string"
-                  }
-                },
-                "x-examples": {
-                  "Example 1": {
-                    "name": "test2",
-                    "age": 7,
-                    "gender": 1,
-                    "adult_type": "Grandma"
                   }
                 }
               },
@@ -869,8 +867,7 @@
                   "value": {
                     "name": "test2",
                     "age": 7,
-                    "gender": 1,
-                    "adult_type": "Grandma"
+                    "gender": 1
                   }
                 }
               }
@@ -1322,7 +1319,7 @@
         ]
       }
     },
-    "/adult/adults/deleteAdultProfile": {
+    "/adult/adults/update-adult-profile": {
       "parameters": [],
       "put": {
         "summary": "Update adult info",
@@ -1571,7 +1568,10 @@
         "tags": [
           "Adult - adult"
         ]
-      },
+      }
+    },
+    "/adult/adults/deleteAdultProfile": {
+      "parameters": [],
       "delete": {
         "summary": "Delete adult frofile",
         "operationId": "delete-adult-adults=profile",
@@ -3699,118 +3699,6 @@
           "required": true
         }
       ],
-      "put": {
-        "summary": "Update custom regular task template",
-        "operationId": "update-custom-reg-task-template-by-child",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "Authorization": []
-          }
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Accept"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "title": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "coins": {
-                    "type": "integer"
-                  },
-                  "proof_type_id": {
-                    "type": "integer"
-                  },
-                  "schedule": {
-                    "type": "object",
-                    "properties": {
-                      "monday": {
-                        "type": "integer"
-                      },
-                      "tuesday": {
-                        "type": "integer"
-                      },
-                      "wednesday": {
-                        "type": "integer"
-                      },
-                      "thursday": {
-                        "type": "integer"
-                      },
-                      "friday": {
-                        "type": "integer"
-                      },
-                      "saturday": {
-                        "type": "integer"
-                      },
-                      "sunday": {
-                        "type": "integer"
-                      }
-                    }
-                  },
-                  "expected_duration": {
-                    "type": "integer"
-                  }
-                },
-                "x-examples": {
-                  "Example 1": {
-                    "title": "Custom task 1",
-                    "description": "Custom description",
-                    "coins": 10,
-                    "proof_type_id": 1,
-                    "schedule": {
-                      "monday": 1,
-                      "tuesday": 0,
-                      "wednesday": 1,
-                      "thursday": 0,
-                      "friday": 1,
-                      "saturday": 0,
-                      "sunday": 0
-                    },
-                    "expected_duration": 60
-                  }
-                }
-              },
-              "examples": {
-                "Example 1": {
-                  "value": {
-                    "title": "Custom task 1",
-                    "description": "Custom description",
-                    "coins": 10,
-                    "proof_type_id": 1,
-                    "schedule": {
-                      "monday": 1,
-                      "tuesday": 0,
-                      "wednesday": 1,
-                      "thursday": 0,
-                      "friday": 1,
-                      "saturday": 0,
-                      "sunday": 0
-                    },
-                    "expected_duration": 60
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Adult - regular custom tasks"
-        ]
-      },
       "delete": {
         "summary": "Delete custom regular task template",
         "operationId": "delete-custom-regular-task-template-by-child",
@@ -4334,7 +4222,7 @@
         ]
       },
       "post": {
-        "summary": "DO NOT USE - Update custom regular task template",
+        "summary": "Update custom regular task template",
         "operationId": "update-custom-regular-task-template-by-child",
         "responses": {
           "200": {
@@ -4410,9 +4298,6 @@
                     "type": "string",
                     "format": "binary"
                   },
-                  "_method": {
-                    "type": "string"
-                  },
                   "is_active": {
                     "type": "integer",
                     "default": 1
@@ -4426,6 +4311,9 @@
           {
             "$ref": "#/components/parameters/Accept"
           }
+        ],
+        "tags": [
+          "Adult - regular custom tasks"
         ]
       }
     },
