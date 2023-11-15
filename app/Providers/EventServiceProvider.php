@@ -7,6 +7,7 @@ use App\Events\RegularTaskStatusWasUpdated;
 use App\Events\RegularTaskTemplateStatusWasUpdated;
 use App\Listeners\AddCoinsToChildAccount;
 use App\Listeners\ChangeRegularTaskStatus;
+use App\Listeners\ChildEventSubscriber;
 use App\Listeners\CreateRegularTask;
 use App\Listeners\RewardEventSubscriber;
 use App\Listeners\TaskEventSubscriber;

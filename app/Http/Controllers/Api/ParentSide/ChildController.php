@@ -57,9 +57,9 @@ class ChildController extends BaseController
         $success['token'] =  $child->createToken('MyApp')->plainTextToken;
         $success['name'] =  $child->name;
         $success['id'] = $child->id;
-        //Todo define subscriber for children and listener for cone below
+        //Todo define subscriber for children and listener for code below
         $generalAvailableRegularTasks = GeneralAvailableRegularTaskTemplate::where('is_active', 1)->get();
-        $activeTaskCounter = 1;
+        // $activeTaskCounter = 1;
         foreach($generalAvailableRegularTasks as $task){
             $attributes = $task->getAttributes();
             $attributes['title'] = $task->title;
@@ -68,17 +68,21 @@ class ChildController extends BaseController
             $attributes['adult_id'] = $request->user()->id;
             $attributes['child_id'] = $child->id;
 
-            if($activeTaskCounter < 4) {
-                $attributes['is_active'] = 1;
-                $activeTaskCounter++;
-            } else {
+            // if($activeTaskCounter < 4) {
+            //     $attributes['is_active'] = 1;
+            //     $activeTaskCounter++;
+            // } else {
                 $attributes['is_active'] = 0;
-            }
+            // }
             $attributes['is_general_available'] = true;
             
             $taskTemplate = RegularTaskTemplate::create($attributes);
-            $path = $task->image->filename;
-            $taskTemplate->image()->create(['filename' => $path]);
+            
+            if(isset($task->image)){
+                $path = $task?->image?->filename;
+                $taskTemplate->image()->create(['filename' => $path]);
+            }
+            
         }
         
         return $this->sendResponseWithData($success, 201);

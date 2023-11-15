@@ -34,7 +34,7 @@ class CreateDefaultTask extends CreateRecord
         $schedule = Schedule::query()->firstOrCreate($receivedSchedule);
         $firstElement = array_keys($data)[0];
         $data[$firstElement]['schedule_id'] = $schedule->id;
-
+        
         $record->fill(Arr::except(Arr::first($data), $translatableAttributes));
         
         foreach ($data as $locale => $localeData) {
