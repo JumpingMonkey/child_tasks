@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\LocaleMiddleware;
 use Awcodes\Curator\CuratorPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -57,7 +58,7 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugin(SpatieLaravelTranslatablePlugin::make()
-            ->defaultLocales(['en', 'uk', 'ru']),)
+            ->defaultLocales(LocaleMiddleware::$languages),)
             ->sidebarFullyCollapsibleOnDesktop()
             ->maxContentWidth('full')
             ->viteTheme('resources/css/filament/admin/theme.css')

@@ -14,7 +14,7 @@ class ProofType extends Model
 
     const PROOF_TYPES = [
         ["en" => "photo", "ru" => "фото", "uk" => "фото"],
-        ["en" => "screenshot", "ru" => "скриншот", "uk" => "сриншот"],
+        ["en" => "screenshot", "ru" => "скриншот", "uk" => "скриншот"],
         'photo',
         'timer',
         'photo before/after',

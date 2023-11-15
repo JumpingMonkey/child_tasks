@@ -37,9 +37,9 @@ Route::controller(RegisterController::class)->group(function(){
     Route::post('forgot-password', 'sendPasswordResetToken');
     Route::post('reset-password', 'resetPassword')->name('password.reset');
     // Route::post('update-password', 'updatePassword');
-})->middleware('guest');
+})->middleware(['guest', 'locale']);
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware(['auth:sanctum', 'locale'])->group(function () {
     Route::get('/default_icon', [BaseController::class, 'getDefaultIcon']);
     Route::prefix('adult')
     ->name('adult.')
