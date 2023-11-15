@@ -2306,6 +2306,13 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "lang"
           }
         ],
         "security": [
