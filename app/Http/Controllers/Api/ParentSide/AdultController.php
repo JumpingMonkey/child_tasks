@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api\ParentSide;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Adult;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 
@@ -60,7 +62,9 @@ class AdultController extends BaseController
         ]);
 
         $user->accountSettings->update($validated);
-        
+        $adultType = $user->adultType()->first();
+        $user['adult_type'] = $adultType->translateModel();
+
         return $this->sendResponseWithData($user);
     }
 
