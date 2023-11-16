@@ -58,7 +58,7 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugin(SpatieLaravelTranslatablePlugin::make()
-            ->defaultLocales(LocaleMiddleware::$languages),)
+                ->defaultLocales(LocaleMiddleware::$languages),)
             ->sidebarFullyCollapsibleOnDesktop()
             ->maxContentWidth('full')
             ->viteTheme('resources/css/filament/admin/theme.css')

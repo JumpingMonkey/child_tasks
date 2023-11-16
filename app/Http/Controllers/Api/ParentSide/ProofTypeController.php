@@ -19,7 +19,9 @@ class ProofTypeController extends BaseController
         //     return abort(403, '');
         // }
 
-        $result = ProofType::all();
+        $result = ProofType::all()->map(function($model){
+            return $model->translateModel();
+        });
 
         return $this->sendResponseWithData($result, 200);
     }

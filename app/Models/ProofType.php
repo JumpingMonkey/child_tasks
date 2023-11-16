@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\GeneralAvailableRegularTaskTemplate;
+use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
@@ -10,7 +11,7 @@ use Spatie\Translatable\HasTranslations;
 
 class ProofType extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory, HasTranslations, Translatable;
 
     const PROOF_TYPES = [
         ["en" => "photo", "ru" => "фото", "uk" => "фото"],
@@ -52,8 +53,8 @@ class ProofType extends Model
         return $this->hasMany(OneDayTask::class);
     }
 
-    public function getTitleAttribute()
-    {
-        return  json_decode($this->attributes['title'])->{App::getLocale()};
-    }
+    // public function getTitleAttribute()
+    // {
+    //     return  json_decode($this->attributes['title'])->{App::getLocale()};
+    // }
 }

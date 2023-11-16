@@ -14,7 +14,9 @@ class AdultTypeController extends BaseController
      */
     public function index(Request $request)
     {
-        $result = AdultType::all();
+        $result = AdultType::all()->map(function($model){
+            return $model->translateModel();
+        });
         
         return $this->sendResponseWithData($result, 200);
     }
