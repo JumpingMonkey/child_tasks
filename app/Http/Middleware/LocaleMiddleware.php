@@ -47,7 +47,7 @@ class LocaleMiddleware
 
         } else {
             
-            $locale = Auth::user()->accountSettings->language;
+            $locale = Auth::user()?->accountSettings?->language;
             if (\Auth::check() && $locale) {
                 \App::setLocale($locale);
             }
