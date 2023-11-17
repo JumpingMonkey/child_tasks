@@ -47,7 +47,7 @@ Route::middleware(['auth:sanctum', 'locale'])->group(function () {
         Route::prefix('adults')
             ->group(function(){
                 Route::get('/showAdultProfile', [AdultController::class, 'showAdultProfile']);
-                Route::put('/updateAdultProfile', [AdultController::class, 'updateAdultProfile']);
+                Route::put('/update-adult-profile', [AdultController::class, 'updateAdultProfile']);
                 Route::delete('/deleteAdultProfile', [AdultController::class, 'destroy']);
                 Route::put('/updateSettings', [AdultController::class, 'updateSettings']);
                 Route::prefix('statistics')
