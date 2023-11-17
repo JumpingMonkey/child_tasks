@@ -91,8 +91,10 @@ class AdultController extends BaseController
         ]);
 
         $adult->update($validated);
+        $adultType = $adult->adultType()->first();
+        $adult['adult_type'] = $adultType->translateModel();
 
-        return $this->sendResponseWithData($adult->load('adultType'), 200);
+        return $this->sendResponseWithData($adult, 200);
     }
 
     /**
