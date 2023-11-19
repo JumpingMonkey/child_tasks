@@ -9,6 +9,7 @@ use App\Models\GeneralAvailableRegularTaskTemplate;
 use App\Models\ProofType;
 use App\Models\TaskIcon;
 use Filament\Forms;
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -30,7 +31,11 @@ class DefaultTaskResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'Default tasks';
+
     protected static ?string $navigationGroup = 'Tasks';
+
+    protected static ?string $label = 'Default tasks';
 
     public static function form(Form $form): Form
     {
@@ -77,6 +82,7 @@ class DefaultTaskResource extends Resource
                         Forms\Components\Checkbox::make('saturday'),
                         Forms\Components\Checkbox::make('sunday'),
                     ])->columns(7),
+                
                 // Forms\Components\Select::make('schedule_id')
                 //     ->label('Schedule')
                 //     ->relationship(name: 'schedule')

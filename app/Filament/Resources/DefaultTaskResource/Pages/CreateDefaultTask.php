@@ -18,6 +18,7 @@ class CreateDefaultTask extends CreateRecord
 
     protected function handleRecordCreation(array $data): Model
     {
+        dd($data);
         $record = app(static::getModel());
 
         $translatableAttributes = $record->getTranslatableAttributes();

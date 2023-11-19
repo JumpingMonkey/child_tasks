@@ -29,6 +29,8 @@ class AdultResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'Accounts';
+
     protected static ?string $navigationGroup = 'Users';
 
     public static function form(Form $form): Form
@@ -165,6 +167,8 @@ class AdultResource extends Resource
                 ->boolean(),
             Infolists\Components\TextEntry::make('until'),
             Infolists\Components\TextEntry::make('adultType.title'),
+            Infolists\Components\TextEntry::make('tags.name')
+                ->badge(),
                
         ]);
 
