@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ChildrenSide\TaskController;
 use App\Http\Controllers\Api\ParentSide\AdultController;
 use App\Http\Controllers\Api\ParentSide\AdultTypeController;
 use App\Http\Controllers\Api\ParentSide\CustomRegularTaskController;
+use App\Http\Controllers\Api\ParentSide\SocialLoginController;
 use App\Http\Controllers\Api\ParentSide\StatisticController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,11 @@ Route::controller(RegisterController::class)->group(function(){
     Route::post('reset-password', 'resetPassword')->name('password.reset');
     // Route::post('update-password', 'updatePassword');
 })->middleware(['guest', 'locale']);
+
+Route::controller(SocialLoginController::class)->group(function(){
+    Route::get('social-auth/{provider}',  'redirectToProvider');
+    Route::get('social-auth/{provider}/callback',  'handleProviderCallback');
+});
 
 Route::middleware(['auth:sanctum', 'locale'])->group(function () {
     Route::get('/default_icon', [BaseController::class, 'getDefaultIcon']);

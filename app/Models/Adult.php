@@ -7,7 +7,9 @@ use App\Models\ChildReward;
 use App\Models\OneDayTask;
 use App\Models\RegularTaskTemplate;
 use App\Models\Reward;
+use App\Models\SocialProvider;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -89,6 +91,11 @@ class Adult extends Authenticatable
     public function accountSettings()
     {
         return $this->hasOne(AdultAccountSettings::class);
+    }
+
+    public function socialProviders() : HasMany
+    {
+        return $this->hasMany(SocialProvider::class);
     }
 
     protected static function booted(): void
