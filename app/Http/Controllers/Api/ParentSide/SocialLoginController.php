@@ -38,10 +38,12 @@ class SocialLoginController extends BaseController
         } catch (ClientException $clientException) {
             return response()->json(['message'=> 'Invalid credentials'],422);
         }
-        
+
             $createdUser = Adult::query()->firstOrCreate(
             [
                 'email' => $user->getEmail(),
+                
+            ], [
                 'email_verified_at' => now(),
                 'name' => $user->getName(),
             ]
