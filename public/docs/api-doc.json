@@ -120,6 +120,27 @@
       },
       "parameters": []
     },
+    "/social-auth/{provider}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "provider",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Register/Login with social media",
+        "operationId": "get-social-auth-provider",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/default_icon": {
       "parameters": [],
       "get": {
@@ -2003,6 +2024,13 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "lang"
           }
         ],
         "tags": [
