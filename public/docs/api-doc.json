@@ -120,7 +120,7 @@
       },
       "parameters": []
     },
-    "/social-auth/{provider}": {
+    "/web-social-auth/{provider}": {
       "parameters": [
         {
           "schema": {
@@ -132,11 +132,49 @@
         }
       ],
       "get": {
-        "summary": "Register/Login with social media",
+        "summary": "Web Register/Login with social media",
         "operationId": "get-social-auth-provider",
         "responses": {
           "200": {
             "description": "OK"
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/android-social-auth/login": {
+      "parameters": [],
+      "post": {
+        "summary": "Android Register/Login with social media",
+        "operationId": "post-android-social-auth-provider",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "access_token": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "blemuolg9ecdy"
+                    }
+                  }
+                },
+                "required": [
+                  "access_token"
+                ]
+              }
+            }
           }
         }
       }
