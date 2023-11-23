@@ -43,7 +43,7 @@ Route::controller(RegisterController::class)->group(function(){
 Route::controller(SocialLoginController::class)->group(function(){
     Route::get('web-social-auth/{provider}',  'redirectToProvider');
     Route::get('web-social-auth/{provider}/callback',  'handleProviderCallback');
-    Route::post('android-social-auth/login', 'androidSocialLogin');
+    Route::post('social-auth/login', 'appSocialLogin');
 });
 
 Route::middleware(['auth:sanctum', 'locale'])->group(function () {
