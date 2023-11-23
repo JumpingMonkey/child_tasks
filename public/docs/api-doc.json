@@ -144,7 +144,7 @@
         ]
       }
     },
-    "/android-social-auth/login": {
+    "/social-auth/login": {
       "parameters": [],
       "post": {
         "summary": "Android Register/Login with social media",
@@ -167,6 +167,18 @@
                     "type": "string",
                     "x-stoplight": {
                       "id": "blemuolg9ecdy"
+                    }
+                  },
+                  "platform": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "z5xjtb3okyqlj"
+                    }
+                  },
+                  "provider": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "2inzzeybbgo7d"
                     }
                   }
                 },
