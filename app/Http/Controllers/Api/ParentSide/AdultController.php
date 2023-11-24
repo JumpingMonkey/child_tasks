@@ -23,8 +23,10 @@ class AdultController extends BaseController
         }
         
         $adult = $request->user();
+        $adultType = $adult->adultType()->first();
+        $adult['adult_type'] = $adultType->translateModel();
 
-        return $this->sendResponseWithData($adult->load('adultType', 'accountSettings'), 200);
+        return $this->sendResponseWithData($adult->load('accountSettings'), 200);
     }
 
     /**
