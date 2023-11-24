@@ -25,17 +25,18 @@ class Kernel extends ConsoleKernel
                         $q->where(Str::lower(Carbon::now()->englishDayOfWeek), 1);
                     })->get();
                 foreach($regularTaskTemplates as $regularTaskTemplate){
+                    
                     if(! $regularTaskTemplate->regularTask()
                         ->where('start_date', Carbon::now()->startOfDay())
                         ->exists()){
-                
+                            
                         RegularTask::factory()
-                        ->for($event->regularTaskTemplate)
+                        ->for($regularTaskTemplate)
                         ->create();
                     }
                 }
             }
-        })->daily();
+        })->everyFiveSeconds();
     }
 
     /**
