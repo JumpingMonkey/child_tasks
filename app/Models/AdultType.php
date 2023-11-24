@@ -22,12 +22,12 @@ class AdultType extends Model
 
     protected $casts = ['title'];
 
-    // protected $appends = ['title'];
+    protected $appends = ['title'];
 
-    // public function getTitleAttribute()
-    // {
-    //     return  json_decode($this->attributes['title'])->{App::getLocale()};
-    // }
+    public function getTitleAttribute()
+    {
+        return  json_decode($this->attributes['title'])->{App::getLocale()};
+    }
 
     public function adults()
     {

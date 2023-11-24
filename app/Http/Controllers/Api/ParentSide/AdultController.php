@@ -23,10 +23,8 @@ class AdultController extends BaseController
         }
         
         $adult = $request->user();
-        $adultType = $adult->adultType()->first();
-        $adult['adult_type'] = $adultType->translateModel();
 
-        return $this->sendResponseWithData($adult->load('accountSettings'), 200);
+        return $this->sendResponseWithData($adult->load('adultType', 'accountSettings'), 200);
     }
 
     /**
@@ -64,10 +62,10 @@ class AdultController extends BaseController
         ]);
 
         $user->accountSettings->update($validated);
-        $adultType = $user->adultType()->first();
-        $user['adult_type'] = $adultType->translateModel();
+        // $adultType = $user->adultType()->first();
+        // $user['adult_type'] = $adultType->translateModel();
 
-        return $this->sendResponseWithData($user);
+        return $this->sendResponseWithData($user->load('adultType'));
     }
 
     /**
