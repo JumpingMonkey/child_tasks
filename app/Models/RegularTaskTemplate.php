@@ -6,6 +6,7 @@ use App\Models\Adult;
 use App\Models\Child;
 use App\Models\ProofType;
 use App\Models\RegularTask;
+use App\Models\Scopes\RegularTaskRelationshipScope;
 use App\Models\TaskImage;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,6 +18,12 @@ class RegularTaskTemplate extends Model
 {
     use HasFactory;
 
+    const REQUIRED_RELATIONSHIPS = [
+        'image',
+        'schedule'
+    ];
+
+    public $with = self::REQUIRED_RELATIONSHIPS;
     protected $fillable = [
         'title',
         'description',

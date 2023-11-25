@@ -24,7 +24,7 @@ class CustomRegularTaskController extends BaseController
         //     abort(403, 'It is not your child!');
         // }
 
-        return $this->sendResponseWithData($regularTaskTemplate->load('image', 'schedule'), 200);
+        return $this->sendResponseWithData($regularTaskTemplate, 200);
     }
 
     /**
@@ -77,8 +77,10 @@ class CustomRegularTaskController extends BaseController
         if($regularTaskTemplate->is_active){
             RegularTaskTemplateStatusWasUpdated::dispatch($regularTaskTemplate);
         }
+        
+        $regularTaskTemplate->load($regularTaskTemplate::REQUIRED_RELATIONSHIPS);
 
-        return $this->sendResponseWithData($regularTaskTemplate->load('schedule', 'image'), 200);
+        return $this->sendResponseWithData($regularTaskTemplate, 200);
     }
 
     /**
@@ -135,8 +137,9 @@ class CustomRegularTaskController extends BaseController
                     ]);
                 }
         }
+        $regularTaskTemplate->load($regularTaskTemplate::REQUIRED_RELATIONSHIPS);
 
-        return $this->sendResponseWithData($regularTaskTemplate->load('schedule', 'image'), 200);
+        return $this->sendResponseWithData($regularTaskTemplate, 200);
     }
 
     /**
