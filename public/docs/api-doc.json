@@ -1615,6 +1615,12 @@
                   "email": {
                     "type": "string",
                     "format": "email"
+                  },
+                  "is_premium": {
+                    "type": "boolean",
+                    "x-stoplight": {
+                      "id": "dt0hoap9knjgw"
+                    }
                   }
                 }
               },
@@ -1623,7 +1629,8 @@
                   "value": {
                     "adult_type_id": 1,
                     "name": "new name",
-                    "email": "new@email.com"
+                    "email": "new@email.com",
+                    "is_premium": true
                   }
                 }
               }
@@ -5001,160 +5008,6 @@
             "$ref": "#/components/parameters/Accept"
           }
         ],
-        "tags": [
-          "Adult - rewards"
-        ]
-      },
-      "put": {
-        "summary": "Update reward by child",
-        "operationId": "update-reward-by-child",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "integer"
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "price": {
-                          "type": "integer"
-                        },
-                        "status": {
-                          "type": "string"
-                        },
-                        "claimed_by_date": {
-                          "type": "null"
-                        },
-                        "child_id": {
-                          "type": "integer"
-                        },
-                        "adult_id": {
-                          "type": "integer"
-                        },
-                        "created_at": {
-                          "type": "string"
-                        },
-                        "updated_at": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "success": true,
-                      "data": {
-                        "id": 1,
-                        "title": "string",
-                        "price": 0,
-                        "status": "active",
-                        "claimed_by_date": null,
-                        "child_id": 1,
-                        "adult_id": 1,
-                        "created_at": "2023-09-13T16:46:43.000000Z",
-                        "updated_at": "2023-09-13T19:25:26.000000Z"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "success": true,
-                      "data": {
-                        "id": 1,
-                        "title": "string",
-                        "price": 0,
-                        "status": "active",
-                        "claimed_by_date": null,
-                        "child_id": 1,
-                        "adult_id": 1,
-                        "created_at": "2023-09-13T16:46:43.000000Z",
-                        "updated_at": "2023-09-13T19:25:26.000000Z"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "Authorization": []
-          }
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Accept"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "x-examples": {
-                  "Example 1": {
-                    "title": "string",
-                    "price": 0
-                  }
-                },
-                "properties": {
-                  "title": {
-                    "type": "string"
-                  },
-                  "price": {
-                    "type": "integer"
-                  },
-                  "image": {
-                    "type": "string",
-                    "format": "binary"
-                  },
-                  "image_proof": {
-                    "type": "string",
-                    "format": "binary"
-                  }
-                }
-              },
-              "examples": {
-                "Example 1": {
-                  "value": {
-                    "title": "string",
-                    "price": 0
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        },
-        "x-extension-1": {
-          "success": true,
-          "data": {
-            "id": 1,
-            "title": "string",
-            "price": 0,
-            "status": "active",
-            "claimed_by_date": null,
-            "child_id": 1,
-            "adult_id": 1,
-            "created_at": "2023-09-13T16:46:43.000000Z",
-            "updated_at": "2023-09-13T19:25:26.000000Z"
-          }
-        },
         "tags": [
           "Adult - rewards"
         ]
