@@ -82,6 +82,7 @@ class AdultController extends BaseController
         $validated = $request->validate([
             'adult_type_id' => 'sometimes|int',
             'name' => 'sometimes|string',
+            'is_premium' => "sometimes|boolean",
             'email' => ['sometimes',
                 'email', 
                 Rule::unique('adults')->ignore($adult->id),
