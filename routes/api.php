@@ -48,6 +48,7 @@ Route::controller(SocialLoginController::class)->group(function(){
 
 Route::middleware(['auth:sanctum', 'locale'])->group(function () {
     Route::get('/default_icon', [BaseController::class, 'getDefaultIcon']);
+    Route::get('/task_icons', [BaseController::class, 'getTaskIcons']);
     Route::prefix('adult')
     ->name('adult.')
     ->group(function(){

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\TaskIcon;
 use Illuminate\Http\Request;
+use Awcodes\Curator\Models\Media;
 
 class BaseController extends Controller
 {
@@ -59,5 +60,10 @@ class BaseController extends Controller
     public function getDefaultIcon()
     {
         return $this->sendResponseWithData(TaskIcon::first());
+    }
+
+    public function getTaskIcons()
+    {
+        return $this->sendResponseWithData(Media::all());
     }
 }

@@ -15,6 +15,15 @@ class GeneralAvailableRegularTaskTemplate extends Model
 {
     use HasFactory, HasTranslations;
 
+    const REQUIRED_RELATIONSHIPS = [
+        'image',
+        'schedule',
+        'proofType',
+        'taskIcon'
+    ];
+
+    public $with = self::REQUIRED_RELATIONSHIPS;
+
     protected $fillable = [
         'title',
         'description',
