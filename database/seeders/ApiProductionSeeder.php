@@ -9,7 +9,7 @@ use App\Models\ProofType;
 use App\Models\Schedule;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
-
+use App\Models\AdultType;
 
 class ApiProductionSeeder extends Seeder
 {
