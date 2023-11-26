@@ -280,19 +280,19 @@ class ApiProductionSeeder extends Seeder
             ->create($task);
         }
         
-        // $adultTypes = AdultType::factory()
-        //     ->state(new Sequence(
-        //         ['title' => ["en" => 'Mother', "ru" => "Мама", "uk" => "Мати"]],
-        //         ['title' => ["en" => 'Father', "ru" => "Папа", "uk" => "Тато"]],
-        //         ['title' => ["en" => 'Grandmother', "ru" => "Бабушка", "uk" => "Бабуся"]],
-        //         ['title' => ["en" => 'Grandfather', "ru" => "Дедушка", "uk" => "Дідусь"]],
-        //         ['title' => ["en" => 'Sister', "ru" => "Сестра", "uk" => "Сестра"]],
-        //         ['title' => ["en" => 'Brother', "ru" => "Брат", "uk" => "Брат"]],
-        //         ['title' => ["en" => 'Uncle', "ru" => "Дядя", "uk" => "Дядько"]],
-        //         ['title' => ["en" => 'Aunt', "ru" => "Тетя", "uk" => "Тітка"]],
-        //         ['title' => ["en" => 'Nunny', "ru" => "Няня", "uk" => "Няня"]],
-        //         ['title' => ["en" => 'etc.', "ru" => "Другое", "uk" => "Іньше"]],
-        //     ))->count(10)->create();
+        $adultTypes = AdultType::factory()
+            ->state(new Sequence(
+                ['title' => ["en" => 'Mother', "ru" => "Мама", "uk" => "Мати"]],
+                ['title' => ["en" => 'Father', "ru" => "Папа", "uk" => "Тато"]],
+                ['title' => ["en" => 'Grandmother', "ru" => "Бабушка", "uk" => "Бабуся"]],
+                ['title' => ["en" => 'Grandfather', "ru" => "Дедушка", "uk" => "Дідусь"]],
+                ['title' => ["en" => 'Sister', "ru" => "Сестра", "uk" => "Сестра"]],
+                ['title' => ["en" => 'Brother', "ru" => "Брат", "uk" => "Брат"]],
+                ['title' => ["en" => 'Uncle', "ru" => "Дядя", "uk" => "Дядько"]],
+                ['title' => ["en" => 'Aunt', "ru" => "Тетя", "uk" => "Тітка"]],
+                ['title' => ["en" => 'Nunny', "ru" => "Няня", "uk" => "Няня"]],
+                ['title' => ["en" => 'etc.', "ru" => "Другое", "uk" => "Іньше"]],
+            ))->count(10)->create();
 
         // $j = 0;
         // while($j < 10){
