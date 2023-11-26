@@ -4,6 +4,12 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\GeneralAvailableRegularTaskTemplate;
+use App\Models\ProofType;
+use App\Models\Schedule;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Sequence;
+
 
 class ApiProductionSeeder extends Seeder
 {
