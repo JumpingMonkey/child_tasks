@@ -2,35 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Adult;
-use App\Models\AdultAccountSettings;
-use App\Models\AdultType;
-use App\Models\Child;
-use App\Models\ChildReward;
-use App\Models\ChildRewardImage;
-use App\Models\GeneralAvailableRegularTask;
-use App\Models\GeneralAvailableRegularTaskTemplate;
-use App\Models\Image;
-use App\Models\OneDayTask;
-use App\Models\ProofType;
-use App\Models\RegularTask;
-use App\Models\RegularTaskTemplate;
-use App\Models\Schedule;
-use App\Models\TaskIcon;
-use App\Models\TaskImage;
-use App\Models\TaskProofImage;
-use App\Models\Timer;
-use App\Models\User;
-use Illuminate\Support\Carbon;
-use Database\Factories\ImageFactory;
-use Database\Factories\TimerFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Str;
 
-class ApiSeeder extends Seeder
+class ApiProductionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
