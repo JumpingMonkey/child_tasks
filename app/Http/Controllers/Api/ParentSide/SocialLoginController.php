@@ -37,7 +37,7 @@ class SocialLoginController extends BaseController
        
         try {
             $user = Socialite::driver($provider)->stateless()->user();
-            // dd($user);
+            dd($user);
         } catch (ClientException $clientException) {
             return response()->json(['message'=> 'Invalid credentials'],422);
         }
@@ -79,7 +79,9 @@ class SocialLoginController extends BaseController
             config([
                 "services.$request->provider.client_id" => env('GOOGLE_ANDROID_CLIENT_ID'),
             ]);
+            
             $token = Socialite::driver($provider)->getAccessTokenResponse($token);
+            dd(11);
         }
 
         if ($request->provider === 'google' && $request->platform === 'ios') {
@@ -87,7 +89,7 @@ class SocialLoginController extends BaseController
                 "services.$request->provider.client_id" => env('GOOGLE_IOS_CLIENT_ID'),
             ]);
         }
-
+// dd(2);
         $providerUser = Socialite::driver($provider)->stateless()->userFromToken($token);
         
         // get the provider's user. (In the provider server)
