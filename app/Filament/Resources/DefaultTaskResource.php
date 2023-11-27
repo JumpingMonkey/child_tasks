@@ -52,7 +52,6 @@ class DefaultTaskResource extends Resource
                 //     ->hint('Number of seconds')
                 //     ->default(0),
                 Forms\Components\Checkbox::make('is_active')
-                    ->required()
                     ->default(true),
                 Forms\Components\Select::make('proof_type_id')
                     ->label('Proof type')
