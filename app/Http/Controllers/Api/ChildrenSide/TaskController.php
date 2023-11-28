@@ -24,7 +24,7 @@ class TaskController extends BaseController
             ->whereHas('regularTask', function($q){
                 $q->where('start_date', Carbon::now()->startOfDay()->toDateTimeString());
             })
-            ->select(['id', 'title', 'coins'])
+            ->select(['id', 'title', 'coins', 'task_icon_id'])
             ->with('regularTask', function($q){
                 $q->select('status', 'regular_task_template_id', 'id');
             })
@@ -43,17 +43,17 @@ class TaskController extends BaseController
             ->whereDoesntHave('regularTask', function($q){
                 $q->where('start_date', Carbon::now()->startOfDay()->toDateTimeString());
             })
-            ->select(['id', 'title', 'coins', 'is_active'])
+            ->select(['id', 'title', 'coins', 'is_active', 'task_icon_id'])
             ->with('image', 'taskIcon')
             ->orderBy('is_active', 'desc')
             ->get();
             
             $result['regular_tasks'] = $activeRegularTasks;
 
-        $oneDayTasks = OneDayTask::select(['id', 'title', 'coins', 'status'])
+        $oneDayTasks = OneDayTask::select(['id', 'title', 'coins', 'status', 'task_icon_id'])
         ->where('child_id', $request->user()->id)
         ->where('start_date', Carbon::now()->startOfDay()->toDateTimeString())
-        ->with('image', 'taskIcon')
+        // ->with('image', 'taskIcon')
         ->get();
         $result['one_day_tasks'] = $oneDayTasks;
 

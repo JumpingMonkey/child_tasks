@@ -20,7 +20,8 @@ class RegularTaskTemplate extends Model
 
     const REQUIRED_RELATIONSHIPS = [
         'image',
-        'schedule'
+        'schedule',
+        'taskIcon'
     ];
 
     public $with = self::REQUIRED_RELATIONSHIPS;
