@@ -66,4 +66,9 @@ class BaseController extends Controller
     {
         return $this->sendResponseWithData(Media::all());
     }
+
+    public function getTaskIconById(Media $icon)
+    {
+        return $this->sendResponseWithData($icon);
+    }
 }
