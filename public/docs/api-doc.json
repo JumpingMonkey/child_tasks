@@ -195,7 +195,7 @@
       "parameters": [],
       "get": {
         "summary": "Get default icon",
-        "operationId": "get-register---copy",
+        "operationId": "get-default-icon",
         "responses": {
           "200": {
             "description": "OK"
@@ -261,14 +261,17 @@
             }
           }
         },
-        "description": ""
+        "description": "",
+        "tags": [
+          "Icons"
+        ]
       }
     },
     "/task_icons": {
       "parameters": [],
       "get": {
         "summary": "Get task icons",
-        "operationId": "get-register---copy",
+        "operationId": "get-task-icons",
         "responses": {
           "200": {
             "description": "OK"
@@ -334,7 +337,95 @@
             }
           }
         },
-        "description": ""
+        "description": "",
+        "tags": [
+          "Icons"
+        ]
+      }
+    },
+    "/task_icons/{icon}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "icon",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Get task icon by id",
+        "operationId": "get-task-icon-by-id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "filename": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        },
+                        "src": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "id": 8,
+                        "filename": "default-task-icon/xV3mPsTb0LVjcx7V92gb9UdNknwggo-metaYWxleGVnLTAyOTgtMTY1MDg4OTU5MDRmS1lELmpwZw==-.jpg",
+                        "created_at": "2023-11-01T22:03:32.000000Z",
+                        "updated_at": "2023-11-01T22:03:32.000000Z",
+                        "src": "http://localhost/storage/default-task-icon/xV3mPsTb0LVjcx7V92gb9UdNknwggo-metaYWxleGVnLTAyOTgtMTY1MDg4OTU5MDRmS1lELmpwZw==-.jpg"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "id": 8,
+                        "filename": "default-task-icon/xV3mPsTb0LVjcx7V92gb9UdNknwggo-metaYWxleGVnLTAyOTgtMTY1MDg4OTU5MDRmS1lELmpwZw==-.jpg",
+                        "created_at": "2023-11-01T22:03:32.000000Z",
+                        "updated_at": "2023-11-01T22:03:32.000000Z",
+                        "src": "http://localhost/storage/default-task-icon/xV3mPsTb0LVjcx7V92gb9UdNknwggo-metaYWxleGVnLTAyOTgtMTY1MDg4OTU5MDRmS1lELmpwZw==-.jpg"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "tags": [
+          "Icons"
+        ]
       }
     },
     "/login": {
@@ -8473,6 +8564,9 @@
     },
     {
       "name": "DO NOT USE"
+    },
+    {
+      "name": "Icons"
     }
   ]
 }
