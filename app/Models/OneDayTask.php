@@ -18,13 +18,19 @@ class OneDayTask extends Model
 {
     use HasFactory;
 
-    const REQUIRED_RELATIONSHIPS = [
-        'image',
-        'taskIcon'
+    // const REQUIRED_RELATIONSHIPS = [
+    //     'image',
+    //     'taskIcon'
+    // ];
+
+    // public $with = self::REQUIRED_RELATIONSHIPS;
+
+    protected $hidden = [
+        'task_icon_id',
+        'proof_type_id',
+        'child_id',
+        'adult_id',
     ];
-
-    public $with = self::REQUIRED_RELATIONSHIPS;
-
     protected $fillable = [
         'title',
         'description',
