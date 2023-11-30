@@ -16,6 +16,10 @@ class TaskController extends BaseController
 {
     public function getAllTasks(Request $request)
     {
+        if(! Gate::allows('is_child_model', $request->user())){
+            abort(403, 'You should be a child!');
+        }
+
         $result = [];
 
         $activeCurentRegularTasks = RegularTaskTemplate::query()
@@ -28,7 +32,7 @@ class TaskController extends BaseController
             ->with('regularTask', function($q){
                 $q->select('status', 'regular_task_template_id', 'id');
             })
-            ->with('image', 'taskIcon')
+            ->with('taskIcon')
             ->get()
             ->each(function($item){
                 $item->status = $item->regularTask[0]->status;
@@ -44,7 +48,8 @@ class TaskController extends BaseController
                 $q->where('start_date', Carbon::now()->startOfDay()->toDateTimeString());
             })
             ->select(['id', 'title', 'coins', 'is_active', 'task_icon_id'])
-            ->with('image', 'taskIcon')
+            ->with('taskIcon')
+            
             ->orderBy('is_active', 'desc')
             ->get();
             
@@ -53,7 +58,7 @@ class TaskController extends BaseController
         $oneDayTasks = OneDayTask::select(['id', 'title', 'coins', 'status', 'task_icon_id'])
         ->where('child_id', $request->user()->id)
         ->where('start_date', Carbon::now()->startOfDay()->toDateTimeString())
-        // ->with('image', 'taskIcon')
+        ->with('taskIcon')
         ->get();
         $result['one_day_tasks'] = $oneDayTasks;
 

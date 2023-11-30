@@ -18,13 +18,24 @@ class RegularTaskTemplate extends Model
 {
     use HasFactory;
 
-    const REQUIRED_RELATIONSHIPS = [
-        'image',
-        'schedule',
-        'taskIcon'
-    ];
+    // const REQUIRED_RELATIONSHIPS = [
+    //     'image',
+    //     'schedule',
+    //     'taskIcon',
+    //     'proofType'
+    // ];
 
-    public $with = self::REQUIRED_RELATIONSHIPS;
+    // public $with = self::REQUIRED_RELATIONSHIPS;
+
+    protected $hidden = [
+        'task_icon_id',
+        "proof_type_id",
+        "schedule_id",
+        "adult_id",
+        "child_id",
+        "created_at",
+        "updated_at"
+    ];
     protected $fillable = [
         'title',
         'description',
