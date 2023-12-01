@@ -22,9 +22,15 @@ class AdultController extends BaseController
             abort(403,'You are not adult!');
         }
         
-        $adult = $request->user();
+        // $adult = $request->user();
 
-        return $this->sendResponseWithData($adult->load('adultType', 'accountSettings'), 200);
+        $adult = Adult::where('id', $request->user()->id)
+            ->with('adultType', 'accountSettings')
+            ->firstOrFail()->toArray();
+        
+        $adult['adult_type'] = $request->user()->adultType->translateModel();
+        
+        return $this->sendResponseWithData($adult, 200);
     }
 
     /**
