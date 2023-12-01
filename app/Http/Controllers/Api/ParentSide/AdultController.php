@@ -28,7 +28,9 @@ class AdultController extends BaseController
             ->with('adultType', 'accountSettings')
             ->firstOrFail()->toArray();
         
-        $adult['adult_type'] = $request->user()->adultType->translateModel();
+        if(isset($adult['adult_type'])){
+            $adult['adult_type'] = $request->user()->adultType->translateModel();
+        }
         
         return $this->sendResponseWithData($adult, 200);
     }

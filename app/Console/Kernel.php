@@ -21,6 +21,7 @@ class Kernel extends ConsoleKernel
             $children = Child::all();
             foreach($children as $child){
                 $regularTaskTemplates = RegularTaskTemplate::where('child_id', $child->id)
+                    ->where('is_active', 1)
                     ->whereHas('schedule', function($q){
                         $q->where(Str::lower(Carbon::now()->englishDayOfWeek), 1);
                     })->get();
