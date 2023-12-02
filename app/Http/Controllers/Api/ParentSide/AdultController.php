@@ -70,10 +70,10 @@ class AdultController extends BaseController
         ]);
 
         $user->accountSettings->update($validated);
-        // $adultType = $user->adultType()->first();
-        // $user['adult_type'] = $adultType->translateModel();
+        $adultType = $user->adultType()->first();
+        $user['adult_type'] = $adultType->translateModel();
 
-        return $this->sendResponseWithData($user->load('adultType'));
+        return $this->sendResponseWithData($user);
     }
 
     /**
