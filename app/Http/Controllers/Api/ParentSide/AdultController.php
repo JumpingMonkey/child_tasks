@@ -25,7 +25,7 @@ class AdultController extends BaseController
         $adult = $request->user();
         $adult->addTranslatedAdultType();
         
-        return $this->sendResponseWithData($adult->load('accountSettings'), 200);
+        return $this->sendResponseWithData($adult->load('accountSettings', 'usedReferalCodes'), 200);
     }
 
     /**
