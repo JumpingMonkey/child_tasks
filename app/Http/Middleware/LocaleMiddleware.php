@@ -46,7 +46,7 @@ class LocaleMiddleware
             }
 
         } else {
-            
+            //Todo remove lazyload here
             $locale = Auth::user()?->accountSettings?->language;
             if (\Auth::check() && $locale) {
                 \App::setLocale($locale);

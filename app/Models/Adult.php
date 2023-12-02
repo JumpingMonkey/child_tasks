@@ -53,6 +53,7 @@ class Adult extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'until' => 'datetime'
     ];
 
     //Relationship

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ParentSide\ChildController;
 use App\Http\Controllers\Api\ParentSide\OneDayTaskController;
 use App\Http\Controllers\Api\ParentSide\ProofTypeController;
+use App\Http\Controllers\Api\ParentSide\ReferalController;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\ParentSide\RegularTaskController;
 use App\Http\Controllers\Api\ParentSide\RewardController;
@@ -52,6 +53,13 @@ Route::middleware(['auth:sanctum', 'locale'])->group(function () {
     Route::get('/task_icons/{icon}', [BaseController::class, 'getTaskIconById']);
     Route::prefix('adult')
     ->name('adult.')
+    ->group(function() {
+        Route::prefix('refer')
+            ->group(function(){
+                Route::get('/', [ReferalController::class,'createCode']);
+                Route::post('/', [ReferalController::class,'useReferalCode']);
+            });
+    })
     ->group(function(){
         Route::prefix('adults')
             ->group(function(){
