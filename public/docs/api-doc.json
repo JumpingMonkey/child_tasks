@@ -1290,6 +1290,247 @@
         ]
       }
     },
+    "/adult/refer": {
+      "post": {
+        "summary": "Use referal code",
+        "operationId": "post-use-referal-code",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "token": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "token": "20|M29nroDSGrF6iFKc3SfqeZR3nkdB6ifQkfyRRyxv",
+                        "name": "test2"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "token": "20|M29nroDSGrF6iFKc3SfqeZR3nkdB6ifQkfyRRyxv",
+                        "name": "test2"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": false,
+                      "message": "You can't use your own code!"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": false,
+                      "message": "You can't use your own code!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "x-examples": {
+                  "Example 1": {
+                    "name": "test2",
+                    "age": 7,
+                    "gender": 1,
+                    "adult_type": "Grandma"
+                  }
+                },
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "5lmjhm5bmr1f9"
+                    }
+                  }
+                },
+                "required": [
+                  "code"
+                ]
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "code": "test2"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "tags": [
+          "Adult - children"
+        ]
+      },
+      "parameters": [],
+      "get": {
+        "summary": "Create referal code",
+        "operationId": "get-generate-referal-code",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "adult_id": {
+                          "type": "integer"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "code": "1d9PhyT35",
+                        "adult_id": 1,
+                        "updated_at": "2023-12-02T20:31:04.000000Z",
+                        "created_at": "2023-12-02T20:31:04.000000Z",
+                        "id": 9
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "code": "1d9PhyT35",
+                        "adult_id": 1,
+                        "updated_at": "2023-12-02T20:31:04.000000Z",
+                        "created_at": "2023-12-02T20:31:04.000000Z",
+                        "id": 9
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "message": "Unauthenticated."
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "message": "Unauthenticated."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "tags": [
+          "Adult - children"
+        ]
+      }
+    },
     "/adult/adults/showAdultProfile": {
       "parameters": [],
       "get": {
@@ -7588,7 +7829,7 @@
         ]
       },
       "post": {
-        "summary": "(DO NOT USE) Child Update regular task by id",
+        "summary": "(USE instead of  PUT method) Child Update regular task by id",
         "operationId": "for-checking-update-child-regular-tasks0",
         "responses": {
           "200": {
@@ -7633,7 +7874,7 @@
           }
         },
         "tags": [
-          "DO NOT USE"
+          "Child - Tasks"
         ]
       }
     },
@@ -8567,6 +8808,9 @@
     },
     {
       "name": "Icons"
+    },
+    {
+      "name": "Referal"
     }
   ]
 }
