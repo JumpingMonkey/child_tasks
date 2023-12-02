@@ -21,18 +21,11 @@ class AdultController extends BaseController
         if(!Gate::allows('is_adult_model', $request->user())){
             abort(403,'You are not adult!');
         }
-        
-        // $adult = $request->user();
 
-        $adult = Adult::where('id', $request->user()->id)
-            ->with('adultType', 'accountSettings')
-            ->firstOrFail()->toArray();
+        $adult = $request->user();
+        $adult->addTranslatedAdultType();
         
-        if(isset($adult['adult_type'])){
-            $adult['adult_type'] = $request->user()->adultType->translateModel();
-        }
-        
-        return $this->sendResponseWithData($adult, 200);
+        return $this->sendResponseWithData($adult->load('accountSettings'), 200);
     }
 
     /**
@@ -57,7 +50,7 @@ class AdultController extends BaseController
             abort(403,'You are not adult!');
         }
 
-        $user = $request->user();
+        $adult = $request->user();
 
         if(!Gate::allows('is_adult_model', $request->user())){
             abort(403,'You are not adult!');
@@ -69,11 +62,10 @@ class AdultController extends BaseController
             'language' => ['sometimes', Rule::in(['en', 'uk', 'ru'])],
         ]);
 
-        $user->accountSettings->update($validated);
-        $adultType = $user->adultType()->first();
-        $user['adult_type'] = $adultType->translateModel();
+        $adult->accountSettings->update($validated);
+        $adult->addTranslatedAdultType();
 
-        return $this->sendResponseWithData($user);
+        return $this->sendResponseWithData($adult->load('accountSettings'));
     }
 
     /**
@@ -86,7 +78,6 @@ class AdultController extends BaseController
         }
 
         $adult = $request->user();
-        
         $validated = $request->validate([
             'adult_type_id' => 'sometimes|int',
             'name' => 'sometimes|string',
@@ -100,10 +91,9 @@ class AdultController extends BaseController
         ]);
 
         $adult->update($validated);
-        $adultType = $adult->adultType()->first();
-        $adult['adult_type'] = $adultType->translateModel();
+        $adult->addTranslatedAdultType();
 
-        return $this->sendResponseWithData($adult, 200);
+        return $this->sendResponseWithData($adult->load('accountSettings'), 200);
     }
 
     /**

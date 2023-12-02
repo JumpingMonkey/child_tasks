@@ -9,6 +9,7 @@ use App\Models\RegularTaskTemplate;
 use App\Models\Reward;
 use App\Models\SocialProvider;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -109,5 +110,23 @@ class Adult extends Authenticatable
             $settings = new AdultAccountSettings();
             $adult->accountSettings()->save($settings);
         });
+    }
+
+    public function createdReferalCodes()
+    {
+        return $this->hasMany(ReferalCode::class);
+    }
+
+    public function usedReferalCodes(): BelongsToMany
+    {
+        return $this->belongsToMany(ReferalCode::class);
+    }
+
+    public function addTranslatedAdultType(): void
+    {
+        if($this->adultType()->exists()){
+            $adultType = $this->adultType()->first();
+            $this['adult_type'] = $adultType->translateModel();
+        }
     }
 }
