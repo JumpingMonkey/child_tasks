@@ -18,12 +18,12 @@ class RegularTaskTemplate extends Model
 {
     use HasFactory;
 
-    // const REQUIRED_RELATIONSHIPS = [
-    //     'image',
-    //     'schedule',
-    //     'taskIcon',
-    //     'proofType'
-    // ];
+    const REQUIRED_RELATIONSHIPS = [
+        'image',
+        'schedule',
+        'taskIcon',
+        'proofType'
+    ];
 
     // public $with = self::REQUIRED_RELATIONSHIPS;
 
