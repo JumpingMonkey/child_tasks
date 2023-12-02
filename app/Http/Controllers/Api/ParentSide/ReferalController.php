@@ -9,11 +9,16 @@ use Illuminate\Http\Request;
 use App\Models\ReferalCode;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Gate;
 
 class ReferalController extends BaseController
 {
     public function createCode(Request $request)
     {
+        if(!Gate::allows('is_adult_model', $request->user())){
+            abort(403,'You are not adult!');
+        }
+
         $code = $request->user()->createdReferalCodes()->create([
             'code' => $request->user()->id . Str::random(6) . random_int(10,99),
         ]);
@@ -23,6 +28,10 @@ class ReferalController extends BaseController
 
     public function useReferalCode(ReferalCodeRequest $request)
     {
+        if(!Gate::allows('is_adult_model', $request->user())){
+            abort(403,'You are not adult!');
+        }
+
         $code = $request->validated();
 
         $adult = $request->user();
