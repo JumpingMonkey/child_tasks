@@ -11,9 +11,9 @@ class BaseController extends Controller
 {
     const TASK_STATUSES = [
         'should do',
+        'redo',
         'done',
         'checked',
-        'redo the task'
     ];
 
     const TASK_STATUSES_FOR_CHILDREN = [
