@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Models\Adult;
 use App\Models\Child;
 use App\Models\RegularTask;
 use App\Models\RegularTaskTemplate;
@@ -37,6 +38,15 @@ class Kernel extends ConsoleKernel
                     }
                 }
             }
+            
+            $adults = Adult::where('is_premium', 1)->get();
+            $adults->each(function($adult){
+                if($adult->until < now()){
+                    $adult->is_premium = 0;
+                    $adult->save();
+                }
+            });
+            
         })->daily();
     }
 
