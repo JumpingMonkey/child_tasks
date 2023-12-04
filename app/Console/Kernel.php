@@ -31,8 +31,12 @@ class Kernel extends ConsoleKernel
                     if(! $regularTaskTemplate->regularTask()
                         ->where('start_date', Carbon::now()->startOfDay()->toDateTimeString())
                         ->exists()){
-                            dump($regularTaskTemplate->id);
-                            
+                            $regularTaskTemplate->regularTask()->create([
+                                'status' => 'should do',
+                                'start_date' => Carbon::now()->startOfDay()->toDateTimeString(),
+                                'end_date' => Carbon::now()->endOfDay()->toDateTimeString(),
+                            ]);
+
                         // RegularTask::factory(1)
                         // ->for($regularTaskTemplate)
                         // ->create();
