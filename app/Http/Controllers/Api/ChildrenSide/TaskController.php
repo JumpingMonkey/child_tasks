@@ -24,13 +24,14 @@ class TaskController extends BaseController
 
         $activeCurentRegularTasks = RegularTaskTemplate::query()
             ->where('child_id', $request->user()->id)
-            ->where('is_active', true)
+            // ->where('is_active', true)
             ->whereHas('regularTask', function($q){
                 $q->where('start_date', Carbon::now()->startOfDay()->toDateTimeString());
             })
             ->select(['id', 'title', 'coins', 'task_icon_id'])
             ->with('regularTask', function($q){
                 $q->select('status', 'regular_task_template_id', 'id');
+                $q->where('start_date', Carbon::now()->startOfDay()->toDateTimeString());
             })
             ->with('taskIcon')
             ->get()

@@ -93,6 +93,7 @@ class SocialLoginController extends BaseController
         }
 // dd(2);
         $providerUser = Socialite::driver($provider)->stateless()->userFromToken($token);
+        // $providerUser = Socialite::driver($provider)->verifyIdToken($token);
         // $providerUser = Socialite::driver($provider)->stateless()->user();
         
         // get the provider's user. (In the provider server)

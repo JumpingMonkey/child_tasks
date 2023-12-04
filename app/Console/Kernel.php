@@ -46,8 +46,8 @@ class Kernel extends ConsoleKernel
                     $adult->save();
                 }
             });
-            
-        })->daily();
+
+        })->everyMinute();
     }
 
     /**
