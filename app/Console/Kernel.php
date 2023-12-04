@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
                 foreach($regularTaskTemplates as $regularTaskTemplate){
                     
                     if(! $regularTaskTemplate->regularTask()
-                        ->where('start_date', Carbon::now()->startOfDay())
+                        ->where('start_date', Carbon::now()->startOfDay()->toDateTimeString())
                         ->exists()){
                             
                         RegularTask::factory()
