@@ -18,6 +18,9 @@ class RegularTask extends Model
         'coins',
         'is_timer_done',
         'status',
+        'start_date',
+        'end_date',
+        'regular_task_template_id',
     ];
 
     //relationship
