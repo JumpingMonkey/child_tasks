@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
                         ->where('start_date', Carbon::now()->startOfDay()->toDateTimeString())
                         ->exists()){
                             
-                        RegularTask::factory()
+                        RegularTask::factory(1)
                         ->for($regularTaskTemplate)
                         ->create();
                     }
