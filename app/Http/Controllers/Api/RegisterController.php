@@ -46,8 +46,18 @@ class RegisterController extends BaseController
             'password' => 'required',
         ]);
 
+        
+
         $user = Adult::where('email', $request->email)->first();
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        
+        $userSocialProvider = $user->socialProviders[0]->provider;
+        
+        if($user AND empty($user->password)){
+            return $this->sendError('No password', 
+                ['error'=>"Last time you sign in via $userSocialProvider"], 401);
+        }
+
+        if (! $user || ! Hash::check($request?->password, $user?->password)) {
             return $this->sendError('Unauthorised.', ['error'=>'Unauthorised'], 401);
         }
 

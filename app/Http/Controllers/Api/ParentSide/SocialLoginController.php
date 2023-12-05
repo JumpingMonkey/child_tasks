@@ -81,11 +81,6 @@ class SocialLoginController extends BaseController
             config([
                 "services.$request->provider.client_id" => env('GOOGLE_ANDROID_CLIENT_ID'),
             ]);
-            // print_r($provider);
-            // die;
-            
-            // $token = Socialite::driver($provider)->getAccessTokenResponse($token);
-            // dd(11);
         }
 
         if ($request->provider === 'google' && $request->platform === 'ios') {
@@ -93,11 +88,10 @@ class SocialLoginController extends BaseController
                 "services.$request->provider.client_id" => env('GOOGLE_IOS_CLIENT_ID'),
             ]);
         }
-// dd(2);
+
         // $providerUser = Socialite::driver($provider)->stateless()->userFromToken($token);
-        // $providerUser = Socialite::driver($provider)->verifyIdToken($token);
+        
         // $providerUser = Socialite::driver($provider)->stateless()->user();
-        // $providerUser = new Verify();
 
         //Verify ID Token with Google library
         $providerUser = new Client(['client_id' => env('GOOGLE_CLIENT_ID')]);
@@ -105,13 +99,8 @@ class SocialLoginController extends BaseController
         if(!$providerUser){
             return $this->sendError([], 'Invalid token!');
         }
-
-        // print_r($providerUser);
-        // die;
         
         // get the provider's user. (In the provider server)
-        
-        
         
         
         // check if access token exists etc..
