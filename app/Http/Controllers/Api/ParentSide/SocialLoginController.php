@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Controller;
 
 use App\Models\Adult;
+use Google\AccessToken\Verify;
+use Google\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -37,7 +39,7 @@ class SocialLoginController extends BaseController
        
         try {
             $user = Socialite::driver($provider)->stateless()->user();
-            dd($user);
+            // dd($user);
         } catch (ClientException $clientException) {
             return response()->json(['message'=> 'Invalid credentials'],422);
         }
@@ -92,9 +94,20 @@ class SocialLoginController extends BaseController
             ]);
         }
 // dd(2);
-        $providerUser = Socialite::driver($provider)->stateless()->userFromToken($token);
+        // $providerUser = Socialite::driver($provider)->stateless()->userFromToken($token);
         // $providerUser = Socialite::driver($provider)->verifyIdToken($token);
         // $providerUser = Socialite::driver($provider)->stateless()->user();
+        // $providerUser = new Verify();
+
+        //Verify ID Token with Google library
+        $providerUser = new Client(['client_id' => env('GOOGLE_CLIENT_ID')]);
+        $providerUser = $providerUser->verifyIdToken($token);
+        if(!$providerUser){
+            return $this->sendError([], 'Invalid token!');
+        }
+
+        // print_r($providerUser);
+        // die;
         
         // get the provider's user. (In the provider server)
         
@@ -106,23 +119,23 @@ class SocialLoginController extends BaseController
         // $user = Adult::where('provider_name', $provider)->where('provider_id', $providerUser->id)->first();
         $createdUser = Adult::query()->firstOrCreate(
             [
-                'email' => $providerUser->getEmail(),
+                'email' => $providerUser['email'],
                 
             ], [
                 'email_verified_at' => now(),
-                'name' => $providerUser->getName(),
+                'name' => $providerUser['name'],
             ]
         );
         $createdUser->socialProviders()->updateOrCreate(
             [
                 'provider' => $request->provider,
-                'provider_id' => $providerUser->getId(),
+                'provider_id' => $providerUser['sub'],
             ]
         );
         // if there is no record with these data, create a new user
         
         // create a token for the user, so they can login
-        $success['token'] =  $createdUser->createToken('MyApp')->plainTextToken;
+        $success['token'] =  $createdUser->createToken('Google')->plainTextToken;
         $success['email'] =  $createdUser->email;
         $success['id'] = $createdUser->id;
         // return the token for usage   

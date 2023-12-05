@@ -159,7 +159,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        PulkitJalan\Google\GoogleServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -170,6 +170,7 @@ return [
         App\Providers\Filament\AdminPanelProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
+        
     ])->toArray(),
 
     /*
@@ -185,6 +186,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'Google' => PulkitJalan\Google\Facades\Google::class
     ])->toArray(),
 
 ];
