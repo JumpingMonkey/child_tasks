@@ -50,9 +50,8 @@ class RegisterController extends BaseController
 
         $user = Adult::where('email', $request->email)->first();
         
-        $userSocialProvider = $user->socialProviders[0]->provider;
-        
         if($user AND empty($user->password)){
+            $userSocialProvider = $user->socialProviders[0]->provider;
             return $this->sendError('No password', 
                 ['error'=>"Last time you sign in via $userSocialProvider"], 401);
         }
