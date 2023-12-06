@@ -19,4 +19,13 @@ class SocialProvider extends Model
         'created_at',
         'updated_at'
     ];
+
+    const PROVIDERS = [
+        'google',
+    ];
+
+    const PLATFORMS = [
+        'android',
+        'apple'
+    ];
 }

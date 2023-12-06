@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\ParentSide;
 
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\SocialLoginRequest;
 use App\Models\Adult;
 use Google\AccessToken\Verify;
 use Google\Client;
@@ -71,23 +71,25 @@ class SocialLoginController extends BaseController
     /**
      * Android Social Login
      */
-    public function appSocialLogin(Request $request)
+    public function appSocialLogin(SocialLoginRequest $request)
     {
-        $provider = $request->get("provider"); // or $request->input('provider_name') for multiple providers
-        $platform = $request->get('platform');
-        $token = $request->input('access_token');
+        $validated = $request->validated();
+        // print_r($validated);
+        // die;
+        $token = $validated['access_token'];
+        $provider = $validated['provider'];
 
-        if ($request->provider === 'google' && $request->platform === 'android') {
-            config([
-                "services.$request->provider.client_id" => env('GOOGLE_ANDROID_CLIENT_ID'),
-            ]);
-        }
+        // if ($request->provider === 'google' && $request->platform === 'android') {
+        //     config([
+        //         "services.$request->provider.client_id" => env('GOOGLE_ANDROID_CLIENT_ID'),
+        //     ]);
+        // }
 
-        if ($request->provider === 'google' && $request->platform === 'ios') {
-            config([
-                "services.$request->provider.client_id" => env('GOOGLE_IOS_CLIENT_ID'),
-            ]);
-        }
+        // if ($request->provider === 'google' && $request->platform === 'ios') {
+        //     config([
+        //         "services.$request->provider.client_id" => env('GOOGLE_IOS_CLIENT_ID'),
+        //     ]);
+        // }
 
         // $providerUser = Socialite::driver($provider)->stateless()->userFromToken($token);
         
@@ -117,7 +119,7 @@ class SocialLoginController extends BaseController
         );
         $createdUser->socialProviders()->updateOrCreate(
             [
-                'provider' => $request->provider,
+                'provider' => $provider,
                 'provider_id' => $providerUser['sub'],
             ]
         );
