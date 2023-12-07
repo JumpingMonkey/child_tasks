@@ -50,7 +50,7 @@ class Kernel extends ConsoleKernel
             
             $adults = Adult::where('is_premium', 1)->get();
             $adults->each(function($adult){
-                if($adult->until < now()){
+                if($adult->until < now() AND !empty($adult->until)){
                     $adult->is_premium = 0;
                     $adult->save();
                 }
