@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class AdultController extends BaseController
 {
@@ -63,9 +64,17 @@ class AdultController extends BaseController
         ]);
 
         $adult->accountSettings->update($validated);
+        
+        // Set locale for getting curent translation of AdultType
+        //  because locale is sat through middleware when you do your query
+        $locale = Auth::user()?->accountSettings?->language;
+        if (\Auth::check() && $locale) {
+            \App::setLocale($locale);
+        }
+
         $adult->addTranslatedAdultType();
 
-        return $this->sendResponseWithData($adult->load('accountSettings'));
+        return $this->sendResponseWithData($adult);
     }
 
     /**
