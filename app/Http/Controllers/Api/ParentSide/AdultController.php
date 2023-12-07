@@ -113,7 +113,7 @@ class AdultController extends BaseController
         if(!Gate::allows('is_adult_model', $request->user())){
             abort(403,'You are not adult!');
         }
-//Todo sort of deleting process
+
         $request->user()->delete();
 
         return $this->sendResponseWithoutData();

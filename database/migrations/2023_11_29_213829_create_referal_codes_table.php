@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('referal_codes', function (Blueprint $table) {
             $table->id();
             $table->string('code');
-            $table->foreignIdFor(Adult::class);
+            $table->foreignIdFor(Adult::class)->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }

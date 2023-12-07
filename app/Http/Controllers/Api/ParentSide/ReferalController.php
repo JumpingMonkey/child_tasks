@@ -53,7 +53,7 @@ class ReferalController extends BaseController
                 $adult->save();
             }
 
-            return $this->sendResponseWithData($adult,200);
+            return $this->sendResponseWithData($adult->load('usedReferalCodes'),200);
 
         } else {
             $adult->usedReferalCodes()->updateExistingPivot($referalCode->id, ['updated_at' => now()]);
