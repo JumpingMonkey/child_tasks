@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\ParentSide;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReferalCodeRequest;
+use App\Models\Adult;
 use Illuminate\Http\Request;
 use App\Models\ReferalCode;
 use Illuminate\Support\Carbon;
@@ -19,11 +20,19 @@ class ReferalController extends BaseController
             abort(403,'You are not adult!');
         }
 
-        $code = $request->user()->createdReferalCodes()->create([
+        $code = $request->user()->createdReferalCodes()->firstOrCreate([], [
             'code' => $request->user()->id . Str::random(6) . random_int(10,99),
         ]);
+        $loginedFriends = Adult::query()->whereHas('usedReferalCodes', function($q) use($request){
+            $q->where('referal_codes.adult_id', $request->user()->id);
+        })->count();
 
-        return $this->sendResponseWithData($code,200);
+        $responce = [
+            'code' => $code,
+            'friends invited' => $loginedFriends,
+            'days received' => $loginedFriends * 7
+        ];
+        return $this->sendResponseWithData($responce,200);
     }
 
     public function useReferalCode(ReferalCodeRequest $request)
@@ -41,7 +50,7 @@ class ReferalController extends BaseController
         if($referalCode->adult_id == $adult->id){
             return $this->sendError([], "You can't use your own code!", 401);
         }
-
+        
         if($adult->usedReferalCodes->doesntContain($referalCode->id)){
             $adult->usedReferalCodes()->attach($referalCode, ['created_at' => now()]);
             if($adult->is_premium){
@@ -53,6 +62,10 @@ class ReferalController extends BaseController
                 $adult->save();
             }
 
+            $creator = $referalCode->adultCreator;
+            $creator->until = $creator->until ? $creator->until->addDays(7) : now()->addDays(7);
+            $creator->save();
+            
             return $this->sendResponseWithData($adult->load('usedReferalCodes'),200);
 
         } else {

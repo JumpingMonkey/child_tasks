@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class ReferalCode extends Model
@@ -12,11 +13,12 @@ class ReferalCode extends Model
 
     protected $fillable = [
         "code",
+        'adult_id'
     ];
 
-    public function adultCreator()
+    public function adultCreator(): BelongsTo
     {
-        return $this->belongsTo(Adult::class);
+        return $this->belongsTo(Adult::class, 'adult_id', 'id');
     }
 
     public function adultsWhoUsed(): BelongsToMany
