@@ -5,18 +5,21 @@ namespace App\Models;
 use App\Models\Adult;
 use App\Models\Child;
 use App\Models\ProofType;
-use App\Models\RegularTask;
-use App\Models\Scopes\RegularTaskRelationshipScope;
 use App\Models\TaskImage;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
+use App\Models\RegularTask;
+use App\Traits\Translatable;
 use Awcodes\Curator\Models\Media;
+use Illuminate\Support\Facades\App;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
+use Illuminate\Database\Eloquent\Builder;
+use App\Models\Scopes\RegularTaskRelationshipScope;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class RegularTaskTemplate extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations, Translatable;
 
     const REQUIRED_RELATIONSHIPS = [
         'image',
@@ -51,10 +54,19 @@ class RegularTaskTemplate extends Model
         'is_unlock_required'
     ];
 
+    protected $translatable = [
+        'title',
+        'description',
+    ];
+
     protected $casts = [
         'is_general_available' => 'boolean',
-        'is_unlock_required' => 'boolean'
+        'is_unlock_required' => 'boolean',
+        'title' => 'array',
+        'description' => 'array'
     ];
+
+    protected $appends = ['title'];
 
     public function proofType()
     {
@@ -110,5 +122,17 @@ class RegularTaskTemplate extends Model
                 $regularTaskTemplate->save();
             }
         });
+    }
+
+    
+
+    public function getTitleAttribute()
+    {
+        return  json_decode($this->attributes['title'])->{App::getLocale()};
+    }
+
+    public function getDescriptionAttribute()
+    {
+        return  json_decode($this->attributes['description'])->{App::getLocale()};
     }
 }
