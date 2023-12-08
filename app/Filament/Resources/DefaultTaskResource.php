@@ -69,6 +69,7 @@ class DefaultTaskResource extends Resource
                     ->label('Icon')
                     ->relationship('taskIcon','id')
                     ->directory('task-icons')
+                    ->size('lg')
                     ->buttonLabel('Add Icon'),
                     
                 Forms\Components\Fieldset::make('Schedule')
