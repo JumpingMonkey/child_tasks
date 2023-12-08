@@ -27,10 +27,15 @@ class ReferalController extends BaseController
             $q->where('referal_codes.adult_id', $request->user()->id);
         })->count();
 
+        $usedCodes = ReferalCode::where('adult_id', $request->user()->id)
+            ->has('adultsWhoUsed')
+            ->get();
+
         $responce = [
             'code' => $code,
             'friends invited' => $loginedFriends,
-            'days received' => $loginedFriends * 7
+            'days received' => $loginedFriends * 7,
+            'used_referal_codes' => $usedCodes
         ];
         return $this->sendResponseWithData($responce,200);
     }
