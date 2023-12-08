@@ -59,21 +59,21 @@ class ChildController extends BaseController
         $success['id'] = $child->id;
         //Todo define subscriber for children and listener for code below
         $generalAvailableRegularTasks = GeneralAvailableRegularTaskTemplate::where('is_active', 1)->get();
-        // $activeTaskCounter = 1;
+        $activeTaskCounter = 1;
         foreach($generalAvailableRegularTasks as $task){
             $attributes = $task->getAttributes();
-            $attributes['title'] = $task->title;
-            $attributes['description'] = $task->description;
+            $attributes['title'] = json_decode($attributes['title'], true);
+            $attributes['description'] = json_decode($attributes['description'], true);
             unset($attributes['created_at'], $attributes['updated_at'], $attributes['id']);
             $attributes['adult_id'] = $request->user()->id;
             $attributes['child_id'] = $child->id;
 
-            // if($activeTaskCounter < 4) {
-            //     $attributes['is_active'] = 1;
-            //     $activeTaskCounter++;
-            // } else {
+            if($activeTaskCounter < 4) {
+                $attributes['is_active'] = 1;
+                $activeTaskCounter++;
+            } else {
                 $attributes['is_active'] = 0;
-            // }
+            }
             $attributes['is_general_available'] = true;
             
             $taskTemplate = RegularTaskTemplate::create($attributes);

@@ -46,6 +46,8 @@ class CreateRegularTasksForChildren extends Command
                     $attributes['is_active'] = 0;
                 }
                 $attributes['is_general_available'] = true;
+                $attributes['title'] = json_decode($attributes['title'], true);
+                $attributes['description'] = json_decode($attributes['description'], true);
                 
                 $taskTemplate = RegularTaskTemplate::create($attributes);
                 
