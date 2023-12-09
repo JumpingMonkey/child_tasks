@@ -68,12 +68,12 @@ class ChildController extends BaseController
             $attributes['adult_id'] = $request->user()->id;
             $attributes['child_id'] = $child->id;
 
-            if($activeTaskCounter < 4) {
-                $attributes['is_active'] = 1;
-                $activeTaskCounter++;
-            } else {
+            // if($activeTaskCounter < 4) {
+            //     $attributes['is_active'] = 1;
+            //     $activeTaskCounter++;
+            // } else {
                 $attributes['is_active'] = 0;
-            }
+            // }
             $attributes['is_general_available'] = true;
             
             $taskTemplate = RegularTaskTemplate::create($attributes);
