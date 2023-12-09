@@ -71,4 +71,9 @@ class BaseController extends Controller
     {
         return $this->sendResponseWithData($icon);
     }
+
+    public function getTaskStatuses()
+    {
+        return $this->sendResponseWithData(self::TASK_STATUSES);
+    }
 }
