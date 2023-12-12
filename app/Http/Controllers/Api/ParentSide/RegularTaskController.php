@@ -45,7 +45,7 @@ class RegularTaskController extends BaseController
             if(! ($regTaskTemp->child_id == $child->id)){
                 abort(403, "Unauthorized. Regular task template id:{$taskTemplate['task_template_id']} is not your own!");
             }
-
+            
             $regTaskTemp->update($validated);
             
             if($regTaskTemp->is_active && $regularTaskStatusBefore != $regTaskTemp->is_active){

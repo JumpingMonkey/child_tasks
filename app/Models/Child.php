@@ -3,15 +3,17 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Reward;
+use App\Models\ShortCode;
 use App\Models\AttachCode;
 use App\Models\ChildReward;
 use App\Models\RegularTask;
+use Laravel\Sanctum\HasApiTokens;
 use App\Models\RegularTaskTemplate;
-use App\Models\Reward;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class Child extends Authenticatable
 {
@@ -77,5 +79,10 @@ class Child extends Authenticatable
         $success['id'] = $this->id;
         
         return $success;
+    }
+
+    public function shortCode(): HasOne 
+    {
+        return $this->hasOne(ShortCode::class);
     }
 }

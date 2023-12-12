@@ -11,6 +11,8 @@ use App\Models\RegularTaskTemplate;
 use App\Models\TaskImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class ChildController extends BaseController
 {
@@ -32,6 +34,32 @@ class ChildController extends BaseController
         $success = $child->createAccessToken();
 
         return $this->sendResponseWithData($success);
+    }
+
+    public function createShortCode(Request $request, Child $child)
+    {
+        if (! Gate::allows('is_related_adult', $child)) {
+            abort(403, "Unauthorized");
+        }
+
+        $code = $child->shortCode;          
+        if(!empty($code)){
+            return $this->sendResponseWithData($code);
+        }
+        
+        $validated =  Validator::make([
+            'code' => random_int(10, 99) . strtoupper(Str::random(4)) . $request->user()->id,
+            'child_id' => $child->id,
+        ], [
+            'code' => ['unique:short_codes,code'],
+            'child_id' => ['exists:children,id']
+        ])->validated();
+
+        $validated['expires_at'] = now()->addDay();
+
+        $success = $request->user()->shortCode()->create($validated);
+
+        return $this->sendResponseWithData($success);   
     }
 
     /**

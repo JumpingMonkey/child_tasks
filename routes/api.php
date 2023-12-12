@@ -39,6 +39,7 @@ Route::controller(RegisterController::class)->group(function(){
     Route::post('forgot-password', 'sendPasswordResetToken');
     Route::post('reset-password', 'resetPassword')->name('password.reset');
     // Route::post('update-password', 'updatePassword');
+    Route::post('/get-child-token', [ChildInfoController::class, 'getToken']);
 })->middleware(['guest', 'locale']);
 
 Route::controller(SocialLoginController::class)->group(function(){
@@ -51,6 +52,7 @@ Route::middleware(['auth:sanctum', 'locale'])->group(function () {
     Route::get('/default_icon', [BaseController::class, 'getDefaultIcon']);
     Route::get('/task_icons', [BaseController::class, 'getTaskIcons']);
     Route::get('/task_icons/{icon}', [BaseController::class, 'getTaskIconById']);
+    Route::get('/get_task_statuses', [BaseController::class, 'getTaskStatuses']);
     Route::prefix('adult')
     ->name('adult.')
     ->group(function() {
@@ -75,6 +77,7 @@ Route::middleware(['auth:sanctum', 'locale'])->group(function () {
         Route::apiResource('adult_types', AdultTypeController::class)->only(['index']);
         Route::apiResource('proof_types', ProofTypeController::class)->only(['index']);
         Route::apiResource('children', ChildController::class);
+        Route::post('/create-short-code/{child}', [ChildController::class, 'createShortCode']);
         Route::get('get_child_token/{child}', [ChildController::class, 'getAccessTokenByChild']);
         Route::controller(RegularTaskController::class)
         ->prefix('regular_tasks')

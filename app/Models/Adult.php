@@ -11,6 +11,7 @@ use App\Models\SocialProvider;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -98,6 +99,11 @@ class Adult extends Authenticatable
     public function socialProviders() : HasMany
     {
         return $this->hasMany(SocialProvider::class);
+    }
+
+    public function shortCode(): HasOne
+    {
+        return $this->hasOne(ShortCode::class);
     }
 
     protected static function booted(): void

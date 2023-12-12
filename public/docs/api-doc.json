@@ -1370,6 +1370,181 @@
         ]
       }
     },
+    "/adult/create-short-code/{child}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "child",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "post": {
+        "summary": "Create short code",
+        "operationId": "post-adult-create-short-code-child",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "tags": [
+          "Adult - children"
+        ]
+      }
+    },
+    "/get-child-token": {
+      "post": {
+        "summary": "Get access token for child",
+        "operationId": "get-child-access-token",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "token": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "data": {
+                        "token": "20|M29nroDSGrF6iFKc3SfqeZR3nkdB6ifQkfyRRyxv",
+                        "name": "test2"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": true,
+                      "data": {
+                        "token": "20|M29nroDSGrF6iFKc3SfqeZR3nkdB6ifQkfyRRyxv",
+                        "name": "test2"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "data": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "success": false,
+                      "message": {
+                        "error": "Unauthorised"
+                      },
+                      "data": "Unauthorised."
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "success": false,
+                      "message": {
+                        "error": "Unauthorised"
+                      },
+                      "data": "Unauthorised."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "x-examples": {
+                  "Example 1": {
+                    "name": "test2",
+                    "age": 7,
+                    "gender": 1,
+                    "adult_type": "Grandma"
+                  }
+                },
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "1cc4irspqkj3b"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "code": "test2"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "tags": [
+          "Child - Main info"
+        ],
+        "description": ""
+      },
+      "parameters": []
+    },
     "/adult/refer": {
       "post": {
         "summary": "Use referal code",
