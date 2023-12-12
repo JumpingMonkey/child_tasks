@@ -69,5 +69,13 @@ class Child extends Authenticatable
         return $this->HasMany(ChildReward::class, 'child_id')->with('image');
     }
 
-
+    public function createAccessToken(): array
+    {
+        $success = [];
+        $success['token'] =  $this->createToken('MyApp')->plainTextToken;
+        $success['name'] =  $this->name;
+        $success['id'] = $this->id;
+        
+        return $success;
+    }
 }

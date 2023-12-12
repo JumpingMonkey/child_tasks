@@ -28,9 +28,9 @@ class ChildController extends BaseController
         if (! Gate::allows('is_related_adult', $child)) {
             abort(403, "Unauthorized");
         }
-        $success['token'] =  $child->createToken('MyApp')->plainTextToken;
-        $success['name'] =  $child->name;
-        $success['id'] = $child->id;
+
+        $success = $child->createAccessToken();
+
         return $this->sendResponseWithData($success);
     }
 
@@ -54,9 +54,8 @@ class ChildController extends BaseController
         
         $request->user()->children()->attach($child->id);
        
-        $success['token'] =  $child->createToken('MyApp')->plainTextToken;
-        $success['name'] =  $child->name;
-        $success['id'] = $child->id;
+        $success = $child->createAccessToken();
+        
         //Todo define subscriber for children and listener for code below
         $generalAvailableRegularTasks = GeneralAvailableRegularTaskTemplate::where('is_active', 1)->get();
         $activeTaskCounter = 1;
