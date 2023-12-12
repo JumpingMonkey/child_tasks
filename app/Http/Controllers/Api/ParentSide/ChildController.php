@@ -47,13 +47,20 @@ class ChildController extends BaseController
             return $this->sendResponseWithData($code);
         }
         
-        $validated =  Validator::make([
-            'code' => random_int(10, 99) . strtoupper(Str::random(4)) . $request->user()->id,
-            'child_id' => $child->id,
-        ], [
-            'code' => ['unique:short_codes,code'],
-            'child_id' => ['exists:children,id']
-        ])->validated();
+        do {
+            $validator =  Validator::make([
+                'code' => random_int(10, 99) . strtoupper(Str::random(4)) . $request->user()->id,
+                'child_id' => $child->id,
+            ], [
+                'code' => ['unique:short_codes,code'],
+                'child_id' => ['exists:children,id']
+            ]);
+
+            $errors = $validator->errors();
+
+        } while($errors->has('code'));
+
+        $validated = $validator->validated();
 
         $validated['expires_at'] = now()->addDay();
 
