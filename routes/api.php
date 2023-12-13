@@ -128,6 +128,7 @@ Route::middleware(['auth:sanctum', 'locale'])->group(function () {
         ->prefix('/info')
         ->group(function(){
             Route::get('/', 'getMainInfo');
+            Route::get('/get-child-code',  'getCode');
         });
         Route::controller(TaskController::class)
         ->prefix('/tasks')

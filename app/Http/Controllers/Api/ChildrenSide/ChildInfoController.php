@@ -31,8 +31,17 @@ class ChildInfoController extends BaseController
 
         $success = $code->child->createAccessToken();
 
-        $code->delete();
+        // $code->delete();
 
         return $this->sendResponseWithData($success);
+    }
+
+    public function getCode(Request $request)
+    {
+        if(! Gate::allows('is_child_model', $request->user())){
+            abort(403, 'You should be a child!');
+        }
+        
+        return $this->sendResponseWithData($request->user()->shortCode);
     }
 }
