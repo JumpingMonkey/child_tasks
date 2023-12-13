@@ -1545,6 +1545,31 @@
       },
       "parameters": []
     },
+    "/child/info/get-child-code": {
+      "parameters": [],
+      "get": {
+        "summary": "Get child code",
+        "operationId": "get-child-code",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Child - Main info"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Accept"
+          }
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
     "/adult/refer": {
       "post": {
         "summary": "Use referal code",
@@ -8895,6 +8920,18 @@
           },
           "description": ""
         }
+      }
+    },
+    "/get-child-token - copy": {
+      "get": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header"
+          }
+        ]
       }
     }
   },
