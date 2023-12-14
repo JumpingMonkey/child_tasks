@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('short_codes', function (Blueprint $table) {
             $table->id();
             $table->string('code');
-            $table->foreignId('adult_id')->constrained();
-            $table->foreignId('child_id')->constrained();
+            $table->foreignId('adult_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('child_id')->constrained()->cascadeOnDelete();
             $table->unique('child_id');
             $table->unique('code');
             $table->timestamp('expires_at')->nullable();
