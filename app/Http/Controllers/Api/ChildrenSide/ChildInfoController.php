@@ -31,7 +31,7 @@ class ChildInfoController extends BaseController
 
         $success = $code->child->createAccessToken();
 
-        // $code->delete();
+        $code->delete();
 
         return $this->sendResponseWithData($success);
     }
