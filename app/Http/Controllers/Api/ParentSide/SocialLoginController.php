@@ -79,28 +79,34 @@ class SocialLoginController extends BaseController
         $token = $validated['access_token'];
         $provider = $validated['provider'];
 
-        // if ($request->provider === 'google' && $request->platform === 'android') {
-        //     config([
-        //         "services.$request->provider.client_id" => env('GOOGLE_ANDROID_CLIENT_ID'),
-        //     ]);
-        // }
+        if ($request->provider === 'google' && $request->platform === 'android') {
+            config([
+                "services.$request->provider.client_id" => env('GOOGLE_CLIENT_ID'),
+            ]);
 
-        // if ($request->provider === 'google' && $request->platform === 'ios') {
-        //     config([
-        //         "services.$request->provider.client_id" => env('GOOGLE_IOS_CLIENT_ID'),
-        //     ]);
-        // }
+            $providerUser = new Client(['client_id' => env('GOOGLE_CLIENT_ID')]);
+            $providerUser = $providerUser->verifyIdToken($token);
+            if(!$providerUser){
+                return $this->sendError([], 'Invalid token!');
+            }
+        }
+
+        if ($request->provider === 'apple' && $request->platform === 'apple') {
+            config([
+                "services.$request->provider.client_id" => env('APPLE_CLIENT_ID'),
+            ]);
+
+            $providerUser = Socialite::driver($provider)->stateless()->userFromToken($token);
+            print_r($providerUser);
+            die;
+        }
 
         // $providerUser = Socialite::driver($provider)->stateless()->userFromToken($token);
         
         // $providerUser = Socialite::driver($provider)->stateless()->user();
 
         //Verify ID Token with Google library
-        $providerUser = new Client(['client_id' => env('GOOGLE_CLIENT_ID')]);
-        $providerUser = $providerUser->verifyIdToken($token);
-        if(!$providerUser){
-            return $this->sendError([], 'Invalid token!');
-        }
+        
         
         // get the provider's user. (In the provider server)
         
