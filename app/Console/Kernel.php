@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Jobs\CreateTasksBySchedule;
+use App\Jobs\SwithPremium;
 use App\Models\Adult;
 use App\Models\Child;
 use App\Models\RegularTask;
@@ -18,45 +20,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->call(function(){
-            $children = Child::all();
-            foreach($children as $child){
-                $regularTaskTemplates = RegularTaskTemplate::where('child_id', $child->id)
-                    ->where('is_active', 1)
-                    ->whereHas('schedule', function($q){
-                        $q->where(Str::lower(Carbon::now()->englishDayOfWeek), 1);
-                    })->get();
-                foreach($regularTaskTemplates as $regularTaskTemplate){
-                    
-                    if(! $regularTaskTemplate->regularTask()
-                        ->where('start_date', Carbon::now()->startOfDay()->toDateTimeString())
-                        ->exists()){
-                            
-                            
-                            $regulatTask = RegularTask::create([
-                                'status' => 'should do',
-                                'start_date' => Carbon::now()->startOfDay()->toDateTimeString(),
-                                'end_date' => Carbon::now()->endOfDay()->toDateTimeString(),
-                                'regular_task_template_id' => $regularTaskTemplate->id,
-                            ]);
-                            // $regularTaskTemplate->regularTask()->attach($regulatTask);
-
-                        // RegularTask::factory(1)
-                        // ->for($regularTaskTemplate)
-                        // ->create();
-                    }
-                }
-            }
-            
-            $adults = Adult::where('is_premium', 1)->get();
-            $adults->each(function($adult){
-                if($adult->until < now() AND !empty($adult->until)){
-                    $adult->is_premium = 0;
-                    $adult->save();
-                }
-            });
-
-        })->everyMinute();
+        $schedule->job(new CreateTasksBySchedule)->everyMinute();
+        $schedule->job(new SwithPremium)->everyMinute();
     }
 
     /**
