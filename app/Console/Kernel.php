@@ -20,8 +20,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->job(new CreateTasksBySchedule)->everyMinute();
-        $schedule->job(new SwithPremium)->everyMinute();
+        $schedule->job(new CreateTasksBySchedule)->daily();
+        $schedule->job(new SwithPremium)->daily();
     }
 
     /**
