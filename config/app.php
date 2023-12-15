@@ -159,7 +159,7 @@ return [
         /*
          * Package Service Providers...
          */
-        PulkitJalan\Google\GoogleServiceProvider::class,
+        //PulkitJalan\Google\GoogleServiceProvider::class,
         /*
          * Application Service Providers...
          */

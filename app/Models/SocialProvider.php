@@ -22,6 +22,7 @@ class SocialProvider extends Model
 
     const PROVIDERS = [
         'google',
+        'apple'
     ];
 
     const PLATFORMS = [

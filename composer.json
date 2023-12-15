@@ -21,6 +21,7 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.1",
         "pulkitjalan/google-apiclient": "^6.1",
+        "socialiteproviders/apple": "^5.6",
         "socialiteproviders/google": "^4.1",
         "tightenco/ziggy": "^1.6"
     },

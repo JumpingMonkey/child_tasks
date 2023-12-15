@@ -26,7 +26,8 @@ class SocialLoginRequest extends FormRequest
         return [
             'provider' => ['required', 'string', Rule::in(SocialProvider::PROVIDERS)],
             'platform' => ['required', 'string', Rule::in(SocialProvider::PLATFORMS)],
-            'access_token' => ['required', 'string']
-        ];
+            'access_token' => ['required', 'string'],   
+	  'name' => ['nullable']
+	];
     }
 }

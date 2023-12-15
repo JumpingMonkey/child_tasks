@@ -69,27 +69,34 @@ class SocialLoginController extends BaseController
     }
 
     /**
-     * Android Social Login
+     * Android and Apple Social Login
      */
     public function appSocialLogin(SocialLoginRequest $request)
     {
         $validated = $request->validated();
-        // print_r($validated);
-        // die;
         $token = $validated['access_token'];
         $provider = $validated['provider'];
 
         if ($request->provider === 'google' && $request->platform === 'android') {
-            config([
-                "services.$request->provider.client_id" => env('GOOGLE_CLIENT_ID'),
-            ]);
-
-            $providerUser = new Client(['client_id' => env('GOOGLE_CLIENT_ID')]);
+            
+            $providerUser = new Client(['client_id' => env('GOOGLE_ANDROID_CLIENT_ID')]);
+            
             $providerUser = $providerUser->verifyIdToken($token);
             if(!$providerUser){
                 return $this->sendError([], 'Invalid token!');
             }
         }
+
+        if ($request->provider === 'google' && $request->platform === 'apple') {
+            
+            $providerUser = new Client(['client_id' => env('GOOGLE_IOS_CLIENT_ID')]);
+
+            $providerUser = $providerUser->verifyIdToken($token);
+            if(!$providerUser){
+                return $this->sendError([], 'Invalid token!');
+            }
+        }
+
 
         if ($request->provider === 'apple' && $request->platform === 'apple') {
             config([
@@ -97,30 +104,15 @@ class SocialLoginController extends BaseController
             ]);
 
             $providerUser = Socialite::driver($provider)->stateless()->userFromToken($token);
-            print_r($providerUser);
-            die;
-        }
+                    }        
 
-        // $providerUser = Socialite::driver($provider)->stateless()->userFromToken($token);
-        
-        // $providerUser = Socialite::driver($provider)->stateless()->user();
-
-        //Verify ID Token with Google library
-        
-        
-        // get the provider's user. (In the provider server)
-        
-        
-        // check if access token exists etc..
-        // search for a user in our server with the specified provider id and provider name
-        // $user = Adult::where('provider_name', $provider)->where('provider_id', $providerUser->id)->first();
         $createdUser = Adult::query()->firstOrCreate(
             [
                 'email' => $providerUser['email'],
                 
             ], [
                 'email_verified_at' => now(),
-                'name' => $providerUser['name'],
+                'name' => $providerUser['name'] ?? $request->name,
             ]
         );
         $createdUser->socialProviders()->updateOrCreate(
@@ -138,99 +130,5 @@ class SocialLoginController extends BaseController
         // return the token for usage   
         return $this->sendResponseWithData($success, 201);
     }
-
-   //////////////Vlad/////////////////
-
-    public function redirectToGoogle(OnlyProviderRequest $request)
-    {
-        config([
-            "services.$request->provider.redirect" => url("/api/v1/auth/$request->provider/callback")
-        ]);
-        return Socialite::driver($request->provider)->stateless()->redirect();
-    }
-
-    public function handleCallback(
-        SocialProvidersRequest $request,
-        User                   $userModel,
-        IdSocialNetwork        $idSocialNetwork,
-        AuthService            $authService
-    )
-    {
-        try {
-
-        if ($request->provider === SocialEnum::GOOGLE->value && $request->platform === AppPlatformEnum::ANDROID_APP->value) {
-            config([
-                "services.$request->provider.client_id" => env('GOOGLE_ANDROID_APP_ID'),
-            ]);
-        }
-
-        if ($request->provider === SocialEnum::GOOGLE->value && $request->platform === AppPlatformEnum::IOS_APP->value) {
-            config([
-                "services.$request->provider.client_id" => env('GOOGLE_IOS_APP_ID'),
-            ]);
-        }
-
-        $column = $request->provider . '_id';
-
-        $socialUser = Socialite::driver($request->provider)->stateless()
-            ->userFromToken($request->socialToken);
-        if ($socialUser->getName() !== null) {
-            $name = $socialUser->getName();
-        } else {
-            $name = $request->name;
-        }
-
-        $email = $socialUser->getEmail();
-        $socialId = $socialUser->getId();
-        $socialIdUser = $idSocialNetwork->where($column, $socialId)->first();
-
-        $findUser = User::where('email', $socialUser->getEmail())->first();
-
-
-        if ($findUser?->deleted_at) {
-            return redirect(url(config('app.front_url')) . '?error=user has been removed');
-        }
-
-        if ($findUser !== null || $socialIdUser !== null) {
-            if ($findUser !== null) {
-                $userId = $findUser->id;
-                $token = $authService->getTokenForSocial($findUser);
-            } else {
-                $userId = $socialIdUser->user_id;
-                $token = $authService->getTokenForSocial($socialIdUser);
-            }
-        } else {
-            $avatar = $socialUser->getAvatar();
-            $newUser = $userModel->createUser($email, null, $name);
-            $userId = $newUser->id;
-            $prefix = bin2hex(random_bytes(20));
-            $fileName = $prefix . '.' . 'png';
-            $path = $this->getSocialAvatar($avatar, $userId, $fileName);
-            $newUser->saveAvatar($path);
-            $token = $authService->getTokenForSocial($userModel);
-        }
-        $idSocialNetwork->updateOrCreateNetworks($column, $userId, $socialId);
-
-        return self::successfulResponseWithData($token);
-
-
-        } catch (Exception $e) {
-            Log::error($e);
-
-            return self::errorResponse('Internal server error');
-        }
-    }
-
-    function getSocialAvatar($avatar, $id, $fileName)
-    {
-        if(!$avatar) {
-            return null;
-        }
-
-        $path = 'users/' . $id . '/avatar/' . $fileName;
-
-        Storage::disk('public')->put($path, file_get_contents($avatar));
-
-        return $path;
-    }
+     
 }

@@ -30,6 +30,11 @@ class EventServiceProvider extends ServiceProvider
         RegularTaskTemplateStatusWasUpdated::class => [
             CreateRegularTask::class,
         ],
+
+  	\SocialiteProviders\Manager\SocialiteWasCalled::class => [
+             // ... other providers
+             \SocialiteProviders\Apple\AppleExtendSocialite::class.'@handle',
+         ],
     ];
 
     /**
