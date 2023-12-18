@@ -66,7 +66,7 @@ class RegularTaskTemplate extends Model
         'description' => 'array'
     ];
 
-    protected $appends = ['title'];
+    protected $appends = ['title', 'description'];
 
     public function proofType()
     {
@@ -128,11 +128,23 @@ class RegularTaskTemplate extends Model
 
     public function getTitleAttribute()
     {
-        return  json_decode($this->attributes['title'])->{App::getLocale()};
+        $translation = json_decode($this->attributes['title']);
+        
+        if(!empty($translation->{App::getLocale()})){
+            return  $translation->{App::getLocale()};
+        } else {
+            return current($translation);
+        }
+        
     }
 
     public function getDescriptionAttribute()
     {
-        return  json_decode($this->attributes['description'])->{App::getLocale()};
+        $translation =  json_decode($this->attributes['description']);
+        if(!empty($translation->{App::getLocale()})){
+            return  $translation->{App::getLocale()};
+        } else {
+            return current($translation);
+        }
     }
 }
