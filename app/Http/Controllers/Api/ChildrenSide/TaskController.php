@@ -48,7 +48,7 @@ class TaskController extends BaseController
             ->whereDoesntHave('regularTask', function($q){
                 $q->where('start_date', Carbon::now()->startOfDay()->toDateTimeString());
             })
-            ->select(['id', 'title', 'coins', 'is_active', 'task_icon_id'])
+            ->select(['id', 'title', 'description',  'coins', 'is_active', 'task_icon_id'])
             ->with('taskIcon')
             
             ->orderBy('is_active', 'desc')
