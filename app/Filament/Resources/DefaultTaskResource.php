@@ -2,26 +2,27 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
+use Filament\Tables;
+use App\Models\TaskIcon;
+use Filament\Forms\Form;
+use App\Models\ProofType;
+use Filament\Tables\Table;
+use App\Models\DefaultTask;
+use Filament\Resources\Resource;
+use Illuminate\Support\Facades\App;
+use Illuminate\Database\Eloquent\Model;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Forms\Components\FileUpload;
+use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\CheckboxList;
+use Filament\Resources\Concerns\Translatable;
+use App\Models\GeneralAvailableRegularTaskTemplate;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Awcodes\Curator\Components\Tables\CuratorColumn;
 use App\Filament\Resources\DefaultTaskResource\Pages;
 use App\Filament\Resources\DefaultTaskResource\RelationManagers;
-use App\Models\DefaultTask;
-use App\Models\GeneralAvailableRegularTaskTemplate;
-use App\Models\ProofType;
-use App\Models\TaskIcon;
-use Filament\Forms;
-use Filament\Forms\Components\CheckboxList;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Awcodes\Curator\Components\Forms\CuratorPicker;
-use Awcodes\Curator\Components\Tables\CuratorColumn;
-use Filament\Resources\Concerns\Translatable;
-use Illuminate\Support\Facades\App;
 
 class DefaultTaskResource extends Resource
 {
@@ -65,13 +66,19 @@ class DefaultTaskResource extends Resource
                     //         ->required()
                     //         ->maxLength(255),
                     // ]),
-                    CuratorPicker::make('task_icon_id')
+                CuratorPicker::make('task_icon_id')
                     ->label('Icon')
                     ->relationship('taskIcon','id')
                     ->directory('task-icons')
                     ->size('lg')
                     ->buttonLabel('Add Icon'),
-                    
+                
+                Forms\Components\Fieldset::make('Image')
+                    ->relationship('image')
+                    ->schema([
+                        FileUpload::make('filename')
+                            ->directory('regular-tasks-images'),
+                    ]),
                 Forms\Components\Fieldset::make('Schedule')
                     ->schema([
                         Forms\Components\Checkbox::make('monday'),
@@ -117,10 +124,10 @@ class DefaultTaskResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('coins')
                     ->searchable(),
-                    CuratorColumn::make('task_icon_id')
+                CuratorColumn::make('task_icon_id')
                     ->circular()
                     ->size(60),
-                
+                ImageColumn::make('image.filename'),
                     
                 Tables\Columns\CheckboxColumn::make('is_active')
                     ->searchable(),
