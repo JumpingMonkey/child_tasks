@@ -98,8 +98,9 @@ class RegularTaskController extends BaseController
 
     public function updateRegularTask(Request $request, RegularTask $regularTask)
     {
+        $taskTemplate = $regularTask->regularTaskTemplate;
         
-        if (! Gate::allows('is_related_regular_task', $regularTask->regularTaskTemplate)) {
+        if (! Gate::allows('is_related_regular_task', $taskTemplate)) {
             abort(403, "Unauthorized");
         }
         $oldStatus = $regularTask->status;
@@ -113,9 +114,17 @@ class RegularTaskController extends BaseController
         if($oldStatus != $regularTask->status){
             RegularTaskStatusWasUpdated::dispatch($regularTask);
         }
+
+        $coins = $taskTemplate->child->coins;
+
+
+        $task = $regularTask->load('regularTaskTemplate.image', 'regularTaskTemplate.taskIcon');
+
+        $task = $task->toArray();
+        $task['child_coins'] = $coins;
         
 
-        return $this->sendResponseWithData($regularTask->load('regularTaskTemplate.image', 'regularTaskTemplate.taskIcon'), 200);
+        return $this->sendResponseWithData($task, 200);
     }
 
 }

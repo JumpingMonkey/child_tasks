@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Api\ParentSide;
 
-use App\Http\Controllers\Api\BaseController;
-use App\Http\Controllers\Controller;
 use App\Models\Child;
-use App\Models\OneDayTask;
 use App\Models\TaskImage;
+use App\Models\OneDayTask;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rule;
+use App\Events\OneDayTaskStatusWasUpdated;
+use App\Http\Controllers\Api\BaseController;
 
 class OneDayTaskController extends BaseController
 {
@@ -115,7 +116,7 @@ class OneDayTaskController extends BaseController
             'is_timer_done' => 'sometimes|integer',
             'status' => ['sometimes', 'string', Rule::in(BaseController::TASK_STATUSES)],
         ]);
-
+        $oldStatus = $oneDayTask->status;
         $oneDayTask->update($validated);
 
         if ($request->hasFile('image'))
@@ -144,7 +145,18 @@ class OneDayTaskController extends BaseController
                 }
         }
 
-        return $this->sendResponseWithData($oneDayTask->load('image'));
+        if($oldStatus != $oneDayTask->status){
+            OneDayTaskStatusWasUpdated::dispatch($oneDayTask);
+        }
+
+        $coins = $oneDayTask->child->coins;
+
+        $task = $oneDayTask->load('image');
+
+        $task = $task->toArray();
+        $task['child_coins'] = $coins;
+
+        return $this->sendResponseWithData($task);
     }
 
     /**
