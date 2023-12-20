@@ -28,7 +28,7 @@ class TaskController extends BaseController
             ->whereHas('regularTask', function($q){
                 $q->where('start_date', Carbon::now()->startOfDay()->toDateTimeString());
             })
-            ->select(['id', 'title', 'coins', 'task_icon_id'])
+            ->select(['id', 'title', 'description', 'coins', 'task_icon_id'])
             ->with('regularTask', function($q){
                 $q->select('status', 'regular_task_template_id', 'id');
                 $q->where('start_date', Carbon::now()->startOfDay()->toDateTimeString());
