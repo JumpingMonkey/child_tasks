@@ -62,19 +62,23 @@ class OneDayTaskController extends BaseController
 
         if ($request->hasFile('image'))
         {
+            // Validate the image file
             $request->validate([
                 'image.*' => 'mimes:jpg,png,jpeg|max:5000'
             ], [
                 'image.*.mimes' => 'The file should be in one of the formats: png, jpg, jpeg',
             ]);
-            
-                $path = $request->file('image')
-                    ->store('one-day-tasks-images', 'public');
-
+        
+            // Store the image file in the 'one-day-tasks-images' directory in the 'public' disk
+            $path = $request->file('image')
+                ->store('one-day-tasks-images', 'public');
+        
+            // Create a new TaskImage instance with the filename
             $image = new TaskImage([
                 'filename' => $path
             ]);
-            
+        
+            // Save the TaskImage instance related to the $oneDayTask
             $oneDayTask->image()->save($image);
         }
 

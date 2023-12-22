@@ -25,6 +25,9 @@ class RegularTaskController extends BaseController
             abort(403, "Unauthorized");
         }
         
+        $adultWithPremium = $child->adults()->where('is_premium', true)->exists();  
+        $numberOfActiveTasks = $child->regularTaskTemplates()->where('is_active', true)->count();
+
         $updatedTasksIds = [];
         
         foreach($request->get('task_templates') as $taskTemplate){
@@ -36,6 +39,9 @@ class RegularTaskController extends BaseController
                 'is_unlock_required' => "sometimes|boolean",
             ])->validate();
 
+            if (!$adultWithPremium && $numberOfActiveTasks > 2 && $validated["is_active"] == true){
+                return $this->sendError(messages: ["You can only have 3 active regular tasks."], code: 422);
+            }
             $updatedTasksIds[] = $taskTemplate['task_template_id'];
     
             $regTaskTemp = RegularTaskTemplate::findOrFail($taskTemplate['task_template_id']);
