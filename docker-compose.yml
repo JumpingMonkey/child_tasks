@@ -22,12 +22,14 @@ services:
             - '.:/var/www/html'
         networks:
             - sail
+        restart: unless-stopped
         depends_on:
             - mysql
             - redis
             - mailpit
     mysql:
         image: 'mysql/mysql-server:8.0'
+        restart: unless-stopped
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
@@ -52,7 +54,7 @@ services:
             timeout: 5s
     phpmyadmin:
         image: phpmyadmin
-        restart: always
+        restart: unless-stopped
         ports:
             - 8085:80
         networks:
@@ -65,6 +67,7 @@ services:
 
     redis:
         image: 'redis:alpine'
+        restart: unless-stopped
         ports:
             - '${FORWARD_REDIS_PORT:-6379}:6379'
         volumes:
