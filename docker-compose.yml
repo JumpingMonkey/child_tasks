@@ -85,6 +85,15 @@ services:
             - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025'
         networks:
             - sail
+    cron:
+        build:
+          context: .
+          dockerfile: cron.dockerfile
+        container_name: cron
+        volumes:
+            - .:/var/www/html
+        networks:
+            - sail
 networks:
     sail:
         driver: bridge
